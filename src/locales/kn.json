@@ -5,6 +5,7 @@
     "awareness": "ಅರಿವು",
     "aiLegalAdvice": "AI ಕಾನೂನು ಸಲಹೆ",
     "documentServices": "ದಾಖಲೆ ಸೇವೆಗಳು",
+    "legalTemplates": "ಕಾನೂನು ಟೆಂಪ್ಲೇಟ್‌ಗಳು",
     "indianConstitution": "ಭಾರತದ ಸಂವಿಧಾನ",
     "login": "ಲಾಗಿನ್ ಮಾಡಿ",
     "register": "ನೋಂದಾಯಿಸಿ",
@@ -53,6 +54,11 @@
       "title": "Document Services",
       "description": "Create affidavits and get documents notarized with professional assistance.",
       "cta": "Get Started"
+    },
+    "legalTemplates": {
+      "title": "ಕಾನೂನು ಟೆಂಪ್ಲೇಟ್‌ಗಳು",
+      "description": "ಬಾಡಿಗೆ ಒಪ್ಪಂದಗಳು, ಕಾನೂನು ಸೂಚನೆಗಳು, ಮತ್ತು ಹೆಚ್ಚಿನವುಗಳಂತಹ ಸಾಮಾನ್ಯ ಕಾನೂನು ದಾಖಲೆಗಳಿಗಾಗಿ ಡ್ರಾಫ್ಟ್‌ಗಳನ್ನು ರಚಿಸಿ.",
+      "cta": "ದಾಖಲೆ ರಚಿಸಿ"
     }
   },
   "indianConstitution": {

@@ -5,6 +5,7 @@
     "awareness": "जागरूकता",
     "aiLegalAdvice": "एआई कानूनी सलाह",
     "documentServices": "दस्तावेज़ सेवाएं",
+    "legalTemplates": "कानूनी टेम्पलेट्स",
     "indianConstitution": "भारतीय संविधान",
     "login": "लॉग इन करें",
     "register": "पंजीकरण करें",
@@ -53,6 +54,11 @@
       "title": "Document Services",
       "description": "Create affidavits and get documents notarized with professional assistance.",
       "cta": "Get Started"
+    },
+    "legalTemplates": {
+      "title": "कानूनी टेम्पलेट्स",
+      "description": "किराया समझौतों, कानूनी नोटिस, और अधिक जैसे सामान्य कानूनी दस्तावेजों के लिए ड्राफ्ट तैयार करें।",
+      "cta": "दस्तावेज़ बनाएँ"
     }
   },
   "indianConstitution": {

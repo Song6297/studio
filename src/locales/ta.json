@@ -5,6 +5,7 @@
     "awareness": "விழிப்புணர்வு",
     "aiLegalAdvice": "AI சட்ட ஆலோசனை",
     "documentServices": "ஆவண சேவைகள்",
+    "legalTemplates": "சட்ட டெம்ப்ளேட்கள்",
     "indianConstitution": "இந்திய அரசியலமைப்பு",
     "login": "உள்நுழை",
     "register": "பதிவு செய்",
@@ -53,6 +54,11 @@
       "title": "Document Services",
       "description": "Create affidavits and get documents notarized with professional assistance.",
       "cta": "Get Started"
+    },
+    "legalTemplates": {
+      "title": "சட்ட டெம்ப்ளேட்கள்",
+      "description": "வாடகை ஒப்பந்தங்கள், சட்ட அறிவிப்புகள் போன்ற பொதுவான சட்ட ஆவணங்களுக்கான வரைவுகளை உருவாக்கவும்.",
+      "cta": "ஆவணத்தை உருவாக்கவும்"
     }
   },
   "indianConstitution": {

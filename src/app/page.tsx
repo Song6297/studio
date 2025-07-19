@@ -49,6 +49,13 @@ export default function Home() {
       href: "/document-services",
       cta: t('features.documentServices.cta'),
     },
+    {
+      icon: FileText,
+      title: t('features.legalTemplates.title'),
+      description: t('features.legalTemplates.description'),
+      href: "/legal-templates",
+      cta: t('features.legalTemplates.cta'),
+    },
   ];
 
   const IndianFlagBackground = () => (
