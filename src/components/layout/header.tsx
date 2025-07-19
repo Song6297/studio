@@ -25,7 +25,6 @@ export function Header() {
     { href: '/case-submission', label: t('header.registerCase') },
     { href: '/legal-awareness', label: t('header.awareness') },
     { href: '/ai-legal-guide', label: t('header.aiLegalAdvice') },
-    { href: '/dashboard', label: 'Dashboard' },
   ];
 
   return (
