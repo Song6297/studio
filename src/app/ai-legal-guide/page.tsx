@@ -7,7 +7,7 @@ import { useLanguage } from '@/context/language-context';
 export default function AiLegalGuidePage() {
   const { t } = useLanguage();
   return (
-    <div className="bg-secondary/30 flex-1">
+    <div className="bg-background flex-1">
       <div className="container mx-auto px-4 py-12 sm:py-16 md:py-24">
         <div className="flex flex-col items-center justify-center text-center space-y-4">
           <div className="inline-block rounded-full bg-background p-4 shadow-md border border-primary/10">

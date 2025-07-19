@@ -69,7 +69,7 @@ export default function RegisterPage() {
           <TabsTrigger value="ngo">{t('register.tabs.ngo')}</TabsTrigger>
         </TabsList>
         <TabsContent value="advocate" className="mt-6">
-          <Card>
+          <Card className="bg-card/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="font-headline">{t('register.advocate.cardTitle')}</CardTitle>
               <CardDescription>{t('register.advocate.cardDescription')}</CardDescription>
@@ -96,7 +96,7 @@ export default function RegisterPage() {
           </Card>
         </TabsContent>
         <TabsContent value="ngo" className="mt-6">
-           <Card>
+           <Card className="bg-card/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="font-headline">{t('register.ngo.cardTitle')}</CardTitle>
               <CardDescription>{t('register.ngo.cardDescription')}</CardDescription>

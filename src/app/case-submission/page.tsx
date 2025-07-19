@@ -48,7 +48,7 @@ export default function CaseSubmissionPage() {
 
   return (
     <div className="container py-12 md:py-24">
-      <Card className="mx-auto max-w-3xl">
+      <Card className="mx-auto max-w-3xl bg-card/80 backdrop-blur-sm">
         <CardHeader className="text-center p-8">
           <FileText className="mx-auto h-12 w-12 text-primary" />
           <CardTitle className="mt-4 font-headline text-3xl md:text-4xl">{t('caseSubmission.title')}</CardTitle>

@@ -51,7 +51,7 @@ export default function DashboardPage() {
         <TabsContent value="citizen" className="mt-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {citizenCases.map((c) => (
-              <Card key={c.id}>
+              <Card key={c.id} className="bg-card/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="font-headline">{c.title}</CardTitle>
                   <CardDescription>{c.id}</CardDescription>
@@ -73,7 +73,7 @@ export default function DashboardPage() {
         <TabsContent value="lawyer" className="mt-6">
            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {lawyerCases.map((c) => (
-              <Card key={c.id}>
+              <Card key={c.id} className="bg-card/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="font-headline">{c.title}</CardTitle>
                   <CardDescription>{c.id}</CardDescription>
@@ -95,7 +95,7 @@ export default function DashboardPage() {
         <TabsContent value="ngo" className="mt-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {ngoCases.map((c) => (
-              <Card key={c.id}>
+              <Card key={c.id} className="bg-card/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="font-headline">{c.title}</CardTitle>
                   <CardDescription>{c.id}</CardDescription>

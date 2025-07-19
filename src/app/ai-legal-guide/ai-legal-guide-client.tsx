@@ -95,7 +95,7 @@ export function AiLegalGuideClient() {
                     <Textarea
                       placeholder={t('aiLegalGuide.form.query.placeholder')}
                       rows={5}
-                      className="bg-background/80 focus:bg-background text-base p-4 rounded-xl shadow-inner backdrop-blur-sm"
+                      className="bg-background/80 focus:bg-background text-base p-4 rounded-xl shadow-inner"
                       {...field}
                     />
                   </FormControl>
@@ -139,7 +139,7 @@ export function AiLegalGuideClient() {
             </Card>
           )}
           {advice && (
-             <Card className="bg-background/80 backdrop-blur-sm border-primary/20">
+             <Card className="bg-background border-primary/20">
                <CardHeader className="flex-row items-center gap-4 space-y-0 pb-2">
                   <FileText className="h-6 w-6 text-primary" />
                   <h3 className="font-headline text-xl font-bold text-primary">{t('aiLegalGuide.adviceCard.title')}</h3>

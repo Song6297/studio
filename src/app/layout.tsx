@@ -1,4 +1,5 @@
 
+'use client';
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
@@ -6,17 +7,18 @@ import { cn } from '@/lib/utils';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { LanguageProvider } from '@/context/language-context';
+import { AshokaChakraIcon } from '@/components/icons/emblem';
+import { usePathname } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'My Legal Firm',
-  description: 'A unified platform connecting citizens with legal professionals and NGOs to ensure access to justice for all.',
-};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isAIGuidePage = pathname === '/ai-legal-guide';
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -28,7 +30,14 @@ export default function RootLayout({
         <LanguageProvider>
           <div className="relative flex min-h-dvh flex-col bg-background">
             <Header />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 relative">
+             {!isAIGuidePage && (
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[400px] opacity-5 dark:opacity-10 -z-10">
+                    <AshokaChakraIcon />
+                </div>
+              )}
+              {children}
+            </main>
             <Footer />
           </div>
           <Toaster />

@@ -69,7 +69,7 @@ export default function LegalAwarenessPage() {
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {articles.map((article, index) => (
-                    <Card key={index} className="flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+                    <Card key={index} className="flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl bg-card/80 backdrop-blur-sm">
                         <Image src={article.image} alt={article.title} width={600} height={400} className="h-48 w-full object-cover" data-ai-hint={article.hint}/>
                         <CardHeader>
                             <Badge variant="secondary" className="w-fit">{article.category}</Badge>
