@@ -1,18 +1,42 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { EmblemOfIndia } from '@/components/icons/emblem';
-import { ArrowRight } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { AshokaChakraIcon } from '@/components/icons/emblem';
+import { ArrowRight, BookOpen, FileText, Bot } from 'lucide-react';
+
+const features = [
+  {
+    icon: FileText,
+    title: "Submit a Case",
+    description: "Easily submit your legal case with our simple and secure online form. Get connected with professionals who can help.",
+    href: "/case-submission",
+    cta: "Submit Your Case",
+  },
+  {
+    icon: Bot,
+    title: "AI Legal Guide",
+    description: "Get preliminary legal information and guidance on various topics from our AI-powered assistant, available 24/7.",
+    href: "/ai-legal-guide",
+    cta: "Ask AI Guide",
+  },
+  {
+    icon: BookOpen,
+    title: "Legal Awareness",
+    description: "Empower yourself with knowledge. Browse our portal of articles and guides on Indian law and your rights.",
+    href: "/legal-awareness",
+    cta: "Explore Portal",
+  },
+];
 
 export default function Home() {
   return (
     <>
-      <section className="relative bg-background">
+      <section className="relative w-full bg-background">
         <div className="container flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center text-center">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5 dark:opacity-10">
-              <EmblemOfIndia />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[400px] opacity-5 dark:opacity-10">
+              <AshokaChakraIcon />
           </div>
-          <h1 className="font-headline text-4xl font-bold tracking-tighter md:text-6xl lg:text-7xl">
+          <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
             Justice, Rights, and Support
           </h1>
           <p className="mx-auto mt-4 max-w-[700px] text-lg text-muted-foreground md:text-xl">
@@ -21,7 +45,7 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="/case-submission">
-                Submit a Case <ArrowRight className="ml-2 h-5 w-5" />
+                Get Started <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button asChild variant="secondary" size="lg">
@@ -31,35 +55,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="preamble" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
-        <div className="container">
-          <Card className="max-w-3xl mx-auto shadow-lg border-2 border-accent/20">
-            <CardHeader>
-              <CardTitle className="font-headline text-2xl md:text-3xl text-center text-primary">
-                The Preamble of the Constitution of India
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 text-center text-base md:text-lg leading-relaxed">
-              <p>
-                <span className="font-bold uppercase">WE, THE PEOPLE OF INDIA,</span> having solemnly resolved to constitute India into a{' '}
-                <span className="font-semibold text-accent-foreground uppercase">SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC</span> and to secure to all its citizens:
-              </p>
-              <p className="font-medium">
-                <span className="font-semibold text-accent-foreground uppercase">JUSTICE</span>, social, economic and political;
-                <br />
-                <span className="font-semibold text-accent-foreground uppercase">LIBERTY</span> of thought, expression, belief, faith and worship;
-                <br />
-                <span className="font-semibold text-accent-foreground uppercase">EQUALITY</span> of status and of opportunity; and to promote among them all
-              </p>
-              <p>
-                <span className="font-semibold text-accent-foreground uppercase">FRATERNITY</span> assuring the dignity of the individual and the unity and integrity of the Nation;
-              </p>
-              <p className="font-bold">
-                IN OUR CONSTITUENT ASSEMBLY this twenty-sixth day of November, 1949, do{' '}
-                <span className="uppercase">HEREBY ADOPT, ENACT AND GIVE TO OURSELVES THIS CONSTITUTION.</span>
-              </p>
-            </CardContent>
-          </Card>
+      <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
+        <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-3">
+            {features.map((feature) => (
+                <Card key={feature.title} className="flex flex-col text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <CardHeader className="items-center">
+                        <div className="mb-4 rounded-full bg-primary/10 p-4 text-primary">
+                            <feature.icon className="h-8 w-8" />
+                        </div>
+                        <CardTitle className="font-headline text-2xl">{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-1">
+                        <CardDescription className="text-base">
+                            {feature.description}
+                        </CardDescription>
+                    </CardContent>
+                    <CardContent>
+                         <Button asChild variant="outline">
+                            <Link href={feature.href}>
+                                {feature.cta} <ArrowRight className="ml-2 h-4 w-4" />
+                            </Link>
+                        </Button>
+                    </CardContent>
+                </Card>
+            ))}
         </div>
       </section>
     </>

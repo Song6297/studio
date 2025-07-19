@@ -4,19 +4,32 @@ import { Badge } from "@/components/ui/badge";
 import { LayoutDashboard } from "lucide-react";
 
 const citizenCases = [
+  // English
   { id: 'CASE-001', title: 'Property Dispute', status: 'In Review', lawyer: 'Adv. Sharma' },
   { id: 'CASE-002', title: 'Divorce Filing', status: 'Hearing Scheduled', lawyer: 'Adv. Verma' },
+  // Kannada
+  { id: 'ಪ್ರಕರಣ-೦೦೩', title: 'ಆಸ್ತಿ ವಿವಾದ', status: 'ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ', lawyer: 'ವಕೀಲ ಶರ್ಮಾ' },
+  // Hindi
+  { id: 'मामला-००४', title: 'संपत्ति विवाद', status: 'समीक्षा में', lawyer: 'अधिवक्ता शर्मा' },
 ];
 
 const lawyerCases = [
+  // English
   { id: 'CASE-001', title: 'Property Dispute', status: 'In Review', client: 'R. Kumar' },
   { id: 'CASE-003', title: 'Bail Application', status: 'Awaiting Documents', client: 'S. Singh' },
-  { id: 'CASE-004', title: 'Contract Breach', status: 'Negotiation', client: 'P. Gupta' },
+  // Kannada
+  { id: 'ಪ್ರಕರಣ-೦೦೪', title: 'ಒಪ್ಪಂದ ಉಲ್ಲಂಘನೆ', status: 'ಸಮಾಲೋಚನೆ', client: 'ಪಿ. ಗುಪ್ತಾ' },
+  // Hindi
+  { id: 'मामला-००५', title: 'जमानत याचिका', status: 'दस्तावेजों का इंतजार', client: 'एस. सिंह' },
 ];
 
 const ngoCases = [
+  // English
   { id: 'NGO-PIL-01', title: 'Public Interest Litigation for Clean Air', status: 'Filed', lead: 'Adv. Mehta' },
-  { id: 'NGO-AWR-05', title: 'Legal Awareness Camp - Rural Area', status: 'Completed', lead: 'Team Lead' },
+  // Kannada
+  { id: 'ಎನ್‌ಜಿಒ-ಪಿಐಎಲ್-೦೨', title: 'ಸ್ವಚ್ಛ ಗಾಳಿಗಾಗಿ ಸಾರ್ವಜನಿಕ ಹಿತಾಸಕ್ತಿ ಮೊಕದ್ದಮೆ', status: 'ದಾಖಲಿಸಲಾಗಿದೆ', lead: 'ವಕೀಲ ಮೆಹ್ತಾ' },
+  // Hindi
+  { id: 'एनजीओ-पीआईएल-०३', title: 'कानूनी जागरूकता शिविर - ग्रामीण क्षेत्र', status: 'पूर्ण', lead: 'टीम लीड' },
 ];
 
 
@@ -46,7 +59,7 @@ export default function DashboardPage() {
                 <CardContent className="space-y-2">
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Status:</span>
-                    <Badge variant={c.status === 'In Review' ? 'secondary' : 'default'}>{c.status}</Badge>
+                    <Badge variant={c.status.includes('Review') || c.status.includes('ಪರಿಶೀಲನೆ') || c.status.includes('समीक्षा') ? 'secondary' : 'default'}>{c.status}</Badge>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Lawyer:</span>

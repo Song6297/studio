@@ -1,4 +1,4 @@
-import { EmblemOfIndia } from '@/components/icons/emblem';
+import { AshokaChakraIcon } from '@/components/icons/emblem';
 import { Logo } from '@/components/icons/logo';
 import Link from 'next/link';
 
@@ -19,7 +19,7 @@ export function Footer() {
             </p>
           </div>
           <div className="flex items-center justify-center w-24 h-24 text-primary">
-            <EmblemOfIndia />
+            <AshokaChakraIcon />
           </div>
         </div>
       </div>
