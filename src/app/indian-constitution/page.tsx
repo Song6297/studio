@@ -79,7 +79,7 @@ export default function IndianConstitutionPage() {
 
 
     return (
-        <div className="container py-12 md:py-24">
+        <div className="container py-12 md:py-16">
             <div className="flex flex-col items-center text-center space-y-4 mb-12">
                 <div className="inline-block rounded-full bg-background p-4 shadow-md border border-primary/10">
                     <Scale className="h-10 w-10 text-primary" />
@@ -92,75 +92,96 @@ export default function IndianConstitutionPage() {
                 </p>
             </div>
             
-            <div className="space-y-16">
-                <section id="preamble">
-                    <div className="flex flex-col items-center justify-center space-y-6 text-center">
-                        <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
-                            <Gavel className="h-8 w-8" />
+            {/* Book-like structure */}
+            <div className="mx-auto max-w-6xl mt-8">
+                <div className="bg-card shadow-2xl rounded-lg flex flex-col md:flex-row min-h-[600px]">
+                    
+                    {/* Left Page */}
+                    <div className="w-full md:w-1/2 p-6 md:p-10 border-b-2 md:border-b-0 md:border-r-2 border-dashed border-primary/20 relative">
+                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[300px] opacity-5 dark:opacity-10 -z-10">
+                            <Gavel />
                         </div>
-                        <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">{t('indianConstitution.preamble.title')}</h2>
-                        <Card className="max-w-3xl mx-auto p-6 md:p-8 mt-6 bg-background/50 border-primary/20 shadow-lg">
-                            <CardContent className="p-0">
-                                <p className="whitespace-pre-wrap text-left text-base md:text-lg leading-relaxed text-foreground/80 font-serif">
-                                    {preambleText}
-                                </p>
-                            </CardContent>
-                        </Card>
+                        <section id="preamble" className="h-full flex flex-col">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                                    <Gavel className="h-6 w-6" />
+                                </div>
+                                <h2 className="font-headline text-2xl font-bold tracking-tighter sm:text-3xl">{t('indianConstitution.preamble.title')}</h2>
+                            </div>
+                            <div className="flex-1 overflow-y-auto">
+                                <Card className="p-6 md:p-8 bg-transparent border-none shadow-none">
+                                    <CardContent className="p-0">
+                                        <p className="whitespace-pre-wrap text-left text-base md:text-lg leading-relaxed text-foreground/80 font-serif">
+                                            {preambleText}
+                                        </p>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </section>
                     </div>
-                </section>
 
-                <section id="fundamental-rights">
-                    <div className="flex flex-col items-center justify-center space-y-6 text-center">
-                        <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
-                            <Shield className="h-8 w-8" />
+                    {/* Right Page */}
+                    <div className="w-full md:w-1/2 p-6 md:p-10 relative">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[300px] opacity-5 dark:opacity-10 -z-10">
+                            <Shield />
                         </div>
-                        <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">{t('indianConstitution.fundamentalRights.title')}</h2>
-                        <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                            {t('indianConstitution.fundamentalRights.description')}
-                        </p>
-                    </div>
-                    <div className="mx-auto max-w-3xl mt-8">
-                        <Accordion type="single" collapsible className="w-full">
-                            {fundamentalRights.map((right, index) => (
-                                <AccordionItem value={`item-${index}`} key={index}>
-                                    <AccordionTrigger className="font-headline text-lg hover:no-underline">{right.title}</AccordionTrigger>
-                                    <AccordionContent className="text-base text-muted-foreground">
-                                    <ul className="space-y-3 list-disc list-inside">
-                                        {right.content.map((item, itemIndex) => (
-                                        <li key={itemIndex}>
-                                            <span className="font-semibold text-foreground/90">{item.article}:</span> {item.text}
-                                        </li>
+                        <div className="space-y-12 h-full flex flex-col">
+                            <section id="fundamental-rights" className="flex-1 flex flex-col">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                                        <Shield className="h-6 w-6" />
+                                    </div>
+                                    <h2 className="font-headline text-2xl font-bold tracking-tighter sm:text-3xl">{t('indianConstitution.fundamentalRights.title')}</h2>
+                                </div>
+                                <div className="overflow-y-auto flex-1">
+                                    <p className="text-muted-foreground text-sm mb-4">
+                                        {t('indianConstitution.fundamentalRights.description')}
+                                    </p>
+                                    <Accordion type="single" collapsible className="w-full">
+                                        {fundamentalRights.map((right, index) => (
+                                            <AccordionItem value={`item-${index}`} key={index}>
+                                                <AccordionTrigger className="font-headline text-lg hover:no-underline">{right.title}</AccordionTrigger>
+                                                <AccordionContent className="text-base text-muted-foreground">
+                                                <ul className="space-y-3 list-disc list-inside">
+                                                    {right.content.map((item, itemIndex) => (
+                                                    <li key={itemIndex}>
+                                                        <span className="font-semibold text-foreground/90">{item.article}:</span> {item.text}
+                                                    </li>
+                                                    ))}
+                                                </ul>
+                                                </AccordionContent>
+                                            </AccordionItem>
                                         ))}
-                                    </ul>
-                                    </AccordionContent>
-                                </AccordionItem>
-                            ))}
-                        </Accordion>
-                    </div>
-                </section>
+                                    </Accordion>
+                                </div>
+                            </section>
 
-                <section id="fundamental-duties">
-                    <div className="flex flex-col items-center justify-center space-y-6 text-center">
-                        <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
-                            <CheckSquare className="h-8 w-8" />
+                            <div className="border-t border-dashed border-primary/20 my-4"></div>
+
+                            <section id="fundamental-duties">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                                        <CheckSquare className="h-6 w-6" />
+                                    </div>
+                                    <h2 className="font-headline text-2xl font-bold tracking-tighter sm:text-3xl">{t('indianConstitution.fundamentalDuties.title')}</h2>
+                                </div>
+                                <p className="text-muted-foreground text-sm mb-4">
+                                {t('indianConstitution.fundamentalDuties.description')}
+                                </p>
+                                 <Card className="bg-transparent border-none shadow-none">
+                                    <CardContent className="p-0">
+                                        <ul className="space-y-2 list-disc list-inside text-left text-sm text-foreground/80">
+                                            {fundamentalDuties.map((duty, index) => (
+                                                <li key={index}>{duty}</li>
+                                            ))}
+                                        </ul>
+                                    </CardContent>
+                                </Card>
+                            </section>
                         </div>
-                        <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">{t('indianConstitution.fundamentalDuties.title')}</h2>
-                        <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                           {t('indianConstitution.fundamentalDuties.description')}
-                        </p>
                     </div>
-                    <div className="mx-auto max-w-3xl mt-8">
-                        <Card className="bg-background/50 border-primary/20 shadow-lg">
-                            <CardContent className="p-6">
-                                <ul className="space-y-4 list-disc list-inside text-left text-base text-foreground/80">
-                                    {fundamentalDuties.map((duty, index) => (
-                                        <li key={index}>{duty}</li>
-                                    ))}
-                                </ul>
-                            </CardContent>
-                        </Card>
-                    </div>
-                </section>
+
+                </div>
             </div>
         </div>
     );
