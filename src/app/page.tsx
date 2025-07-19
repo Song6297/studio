@@ -3,7 +3,7 @@
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
 import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale, Gavel } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
@@ -67,14 +67,18 @@ export default function Home() {
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link href="/case-submission" passHref>
-                <Button size="lg">
+              <Button asChild size="lg">
+                <a>
                   {t('home.getStartedButton')} <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                </a>
+              </Button>
             </Link>
             <Link href="/ai-legal-guide" passHref>
-                <Button variant="secondary" size="lg">
+              <Button asChild variant="secondary" size="lg">
+                <a>
                     {t('home.aiAdviceButton')}
-                </Button>
+                </a>
+              </Button>
             </Link>
           </div>
         </div>
