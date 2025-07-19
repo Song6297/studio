@@ -98,7 +98,7 @@ function RegisterForm() {
   }
   
   return (
-    <Tabs defaultValue={defaultTab}>
+    <Tabs defaultValue={defaultTab} className="w-full">
       <TabsList className="grid w-full grid-cols-3">
         <TabsTrigger value="advocate">{t('register.tabs.advocate')}</TabsTrigger>
         <TabsTrigger value="ngo">{t('register.tabs.ngo')}</TabsTrigger>
