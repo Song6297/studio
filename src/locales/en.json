@@ -238,6 +238,9 @@
         "ngo": "NGO",
         "volunteer": "Volunteer"
     },
+    "toast": {
+        "errorTitle": "Registration Failed"
+    },
     "advocate": {
         "cardTitle": "Advocate Registration",
         "cardDescription": "Create your professional profile.",
@@ -282,6 +285,10 @@
                 "label": "Registration Number",
                 "placeholder": "NGO/REG/12345"
             },
+            "mission": {
+                "label": "Mission Statement",
+                "placeholder": "Describe the mission and focus of your NGO..."
+            },
             "email": {
                 "label": "Contact Email",
                 "placeholder": "contact@ngo.org"
@@ -294,6 +301,7 @@
         "validation": {
             "nameRequired": "NGO name is required",
             "regNoRequired": "A valid registration number is required",
+            "missionRequired": "A mission statement of at least 20 characters is required",
             "emailInvalid": "Invalid email address",
             "passwordRequired": "Password must be at least 8 characters"
         },
@@ -525,3 +533,5 @@
     }
   }
 }
+
+    

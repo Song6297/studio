@@ -10,10 +10,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from '@/hooks/use-toast';
-import { UserPlus } from 'lucide-react';
+import { UserPlus, Loader2 } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect } from 'react';
+import { registerAdvocate, registerNgo, registerVolunteer } from './actions';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function RegisterPage() {
   const { t } = useLanguage();
@@ -21,6 +23,7 @@ export default function RegisterPage() {
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get('type') || 'advocate';
   const [isMounted, setIsMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -36,6 +39,7 @@ export default function RegisterPage() {
   const ngoSchema = z.object({
     ngoName: z.string().min(3, t('register.ngo.validation.nameRequired')),
     registrationNumber: z.string().min(5, t('register.ngo.validation.regNoRequired')),
+    missionStatement: z.string().min(20, t('register.ngo.validation.missionRequired')),
     contactEmail: z.string().email(t('register.ngo.validation.emailInvalid')),
     password: z.string().min(8, t('register.ngo.validation.passwordRequired')),
   });
@@ -54,7 +58,7 @@ export default function RegisterPage() {
 
   const ngoForm = useForm<z.infer<typeof ngoSchema>>({
     resolver: zodResolver(ngoSchema),
-    defaultValues: { ngoName: '', registrationNumber: '', contactEmail: '', password: '' },
+    defaultValues: { ngoName: '', registrationNumber: '', missionStatement: '', contactEmail: '', password: '' },
   });
   
   const volunteerForm = useForm<z.infer<typeof volunteerSchema>>({
@@ -62,22 +66,40 @@ export default function RegisterPage() {
     defaultValues: { fullName: '', email: '', university: '', password: '' },
   });
 
-  function onAdvocateSubmit(values: z.infer<typeof advocateSchema>) {
-    console.log(values);
-    toast({ title: t('register.advocate.toast.successTitle'), description: t('register.advocate.toast.successDescription') });
-    advocateForm.reset();
+  async function onAdvocateSubmit(values: z.infer<typeof advocateSchema>) {
+    setIsLoading(true);
+    const result = await registerAdvocate(values);
+    if (result.success) {
+      toast({ title: t('register.advocate.toast.successTitle'), description: t('register.advocate.toast.successDescription') });
+      advocateForm.reset();
+    } else {
+      toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
+    }
+    setIsLoading(false);
   }
   
-  function onNgoSubmit(values: z.infer<typeof ngoSchema>) {
-    console.log(values);
-    toast({ title: t('register.ngo.toast.successTitle'), description: t('register.ngo.toast.successDescription') });
-    ngoForm.reset();
+  async function onNgoSubmit(values: z.infer<typeof ngoSchema>) {
+    setIsLoading(true);
+    const result = await registerNgo(values);
+     if (result.success) {
+      toast({ title: t('register.ngo.toast.successTitle'), description: t('register.ngo.toast.successDescription') });
+      ngoForm.reset();
+    } else {
+      toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
+    }
+    setIsLoading(false);
   }
 
-  function onVolunteerSubmit(values: z.infer<typeof volunteerSchema>) {
-    console.log(values);
-    toast({ title: t('register.volunteer.toast.successTitle'), description: t('register.volunteer.toast.successDescription') });
-    volunteerForm.reset();
+  async function onVolunteerSubmit(values: z.infer<typeof volunteerSchema>) {
+    setIsLoading(true);
+    const result = await registerVolunteer(values);
+    if (result.success) {
+      toast({ title: t('register.volunteer.toast.successTitle'), description: t('register.volunteer.toast.successDescription') });
+      volunteerForm.reset();
+    } else {
+      toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
+    }
+    setIsLoading(false);
   }
 
   return (
@@ -116,7 +138,9 @@ export default function RegisterPage() {
                         <FormField control={advocateForm.control} name="password" render={({ field }) => (
                             <FormItem><FormLabel>{t('register.advocate.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
                         )} />
-                        <Button type="submit" className="w-full">{t('register.advocate.form.submitButton')}</Button>
+                        <Button type="submit" className="w-full" disabled={isLoading}>
+                          {isLoading ? <Loader2 className="animate-spin" /> : t('register.advocate.form.submitButton')}
+                        </Button>
                         </form>
                     </Form>
                     </CardContent>
@@ -137,13 +161,18 @@ export default function RegisterPage() {
                         <FormField control={ngoForm.control} name="registrationNumber" render={({ field }) => (
                             <FormItem><FormLabel>{t('register.ngo.form.regNo.label')}</FormLabel><FormControl><Input placeholder={t('register.ngo.form.regNo.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
                         )} />
+                         <FormField control={ngoForm.control} name="missionStatement" render={({ field }) => (
+                            <FormItem><FormLabel>{t('register.ngo.form.mission.label')}</FormLabel><FormControl><Textarea placeholder={t('register.ngo.form.mission.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                        )} />
                         <FormField control={ngoForm.control} name="contactEmail" render={({ field }) => (
                             <FormItem><FormLabel>{t('register.ngo.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('register.ngo.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
                         )} />
                         <FormField control={ngoForm.control} name="password" render={({ field }) => (
                             <FormItem><FormLabel>{t('register.ngo.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
                         )} />
-                        <Button type="submit" className="w-full">{t('register.ngo.form.submitButton')}</Button>
+                        <Button type="submit" className="w-full" disabled={isLoading}>
+                           {isLoading ? <Loader2 className="animate-spin" /> : t('register.ngo.form.submitButton')}
+                        </Button>
                         </form>
                     </Form>
                     </CardContent>
@@ -170,7 +199,9 @@ export default function RegisterPage() {
                         <FormField control={volunteerForm.control} name="password" render={({ field }) => (
                             <FormItem><FormLabel>{t('register.volunteer.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
                         )} />
-                        <Button type="submit" className="w-full">{t('register.volunteer.form.submitButton')}</Button>
+                        <Button type="submit" className="w-full" disabled={isLoading}>
+                           {isLoading ? <Loader2 className="animate-spin" /> : t('register.volunteer.form.submitButton')}
+                        </Button>
                         </form>
                     </Form>
                     </CardContent>
@@ -182,3 +213,5 @@ export default function RegisterPage() {
     </div>
   );
 }
+
+    

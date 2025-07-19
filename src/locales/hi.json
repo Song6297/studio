@@ -238,6 +238,9 @@
         "ngo": "गैर सरकारी संगठन",
         "volunteer": "स्वयंसेवक"
     },
+    "toast": {
+        "errorTitle": "पंजीकरण विफल"
+    },
     "advocate": {
         "cardTitle": "अधिवक्ता पंजीकरण",
         "cardDescription": "अपना पेशेवर प्रोफ़ाइल बनाएं।",
@@ -282,6 +285,10 @@
                 "label": "पंजीकरण संख्या",
                 "placeholder": "NGO/REG/12345"
             },
+            "mission": {
+                "label": "मिशन वक्तव्य",
+                "placeholder": "अपने एनजीओ के मिशन और फोकस का वर्णन करें..."
+            },
             "email": {
                 "label": "संपर्क ईमेल",
                 "placeholder": "contact@ngo.org"
@@ -294,6 +301,7 @@
         "validation": {
             "nameRequired": "एनजीओ का नाम आवश्यक है",
             "regNoRequired": "एक वैध पंजीकरण संख्या आवश्यक है",
+            "missionRequired": "कम से कम 20 वर्णों का एक मिशन वक्तव्य आवश्यक है",
             "emailInvalid": "अमान्य ईमेल पता",
             "passwordRequired": "पासवर्ड कम से कम 8 वर्ण का होना चाहिए"
         },
@@ -525,3 +533,5 @@
     }
   }
 }
+
+    
