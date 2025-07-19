@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Stamp, Gavel } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Gavel } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 
 export default function Home() {
@@ -48,13 +48,12 @@ export default function Home() {
   return (
     <>
       <section className="relative w-full bg-background pt-20 md:pt-32 lg:pt-40 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center -z-10">
-           <div className="w-full h-full max-w-[800px] max-h-[800px] text-primary opacity-10 dark:opacity-[0.07]">
-              <AshokaChakraIcon />
-           </div>
-        </div>
         <div className="container flex min-h-[calc(80vh-15rem)] flex-col items-center justify-center text-center">
           
+          <div className="w-24 h-24 mb-6 text-primary">
+              <AshokaChakraIcon />
+          </div>
+
           <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
             {t('home.mainHeading')}
           </h1>
