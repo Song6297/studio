@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -566,13 +566,22 @@ _________________________
 
 export default function LegalTemplatesPage() {
     const { t } = useLanguage();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return null; 
+    }
 
     return (
         <div className="container py-12 md:py-24">
             <div className="flex flex-col items-center text-center">
                 <FileText className="h-12 w-12 text-primary" />
                 <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">{t('header.legalLetters')}</h1>
-                <p className="mt-2 text-lg text-muted-foreground">Generate drafts for common legal letters and documents.</p>
+                <p className="mt-2 text-lg text-muted-foreground">Generate drafts for common legal letters.</p>
             </div>
             <Tabs defaultValue="rent-agreement" className="mt-8">
                 <TabsList className="grid w-full grid-cols-4">
@@ -597,3 +606,5 @@ export default function LegalTemplatesPage() {
         </div>
     );
 }
+
+    
