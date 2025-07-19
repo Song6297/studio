@@ -65,7 +65,11 @@ export async function login(data: any) {
         return { success: true, redirect: redirectPath };
     } catch (error) {
         if (error instanceof Error) {
-            return { success: false, error: error.message };
+            let errorMessage = error.message;
+            if (error.message.includes('auth/invalid-credential')) {
+                errorMessage = 'Invalid email or password. Please try again.';
+            }
+            return { success: false, error: errorMessage };
         }
         return { success: false, error: 'An unknown error occurred during login.' };
     }
