@@ -2,14 +2,19 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Bot, BookOpen, FileText, LayoutDashboard, Home, Menu, UserPlus } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '/dashboard', label: 'Dashboard' },
   { href: '/case-submission', label: 'Submit Case' },
   { href: '/legal-awareness', label: 'Awareness' },
   { href: '/ai-legal-guide', label: 'AI Guide' },
@@ -45,9 +50,19 @@ export function Header() {
             <Button asChild variant="ghost">
                 <Link href="/register">Log In</Link>
             </Button>
-            <Button asChild>
-                <Link href="/register">Register</Link>
-            </Button>
+             <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button>Register</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem asChild>
+                  <Link href="/register?type=advocate">As Advocate/Legal Adviser</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/register?type=ngo">As NGO</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
         </div>
 
         <div className="md:hidden">

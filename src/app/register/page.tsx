@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from '@/hooks/use-toast';
 import { UserPlus } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 
 const advocateSchema = z.object({
   fullName: z.string().min(2, 'Full name is required'),
@@ -28,6 +29,8 @@ const ngoSchema = z.object({
 
 export default function RegisterPage() {
   const { toast } = useToast();
+  const searchParams = useSearchParams();
+  const defaultTab = searchParams.get('type') || 'advocate';
   
   const advocateForm = useForm<z.infer<typeof advocateSchema>>({
     resolver: zodResolver(advocateSchema),
@@ -53,7 +56,7 @@ export default function RegisterPage() {
 
   return (
     <div className="container flex min-h-[calc(100vh-8rem)] items-center justify-center py-12">
-      <Tabs defaultValue="advocate" className="w-full max-w-md">
+      <Tabs defaultValue={defaultTab} className="w-full max-w-md">
         <div className="text-center mb-8">
             <UserPlus className="mx-auto h-12 w-12 text-primary" />
             <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">Join Our Network</h1>
