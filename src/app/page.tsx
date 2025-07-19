@@ -66,16 +66,16 @@ export default function Home() {
             {t('home.subHeading')}
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <Button asChild size="lg">
               <Link href="/case-submission">
-                  <Button size="lg">
-                    {t('home.registerCaseButton')} <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                {t('home.registerCaseButton')} <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
               <Link href="/ai-legal-guide">
-                  <Button size="lg" variant="outline">
-                    {t('home.aiAdviceButton')} <Bot className="ml-2 h-5 w-5" />
-                  </Button>
+                {t('home.aiAdviceButton')} <Bot className="ml-2 h-5 w-5" />
               </Link>
+            </Button>
           </div>
         </div>
       </section>
