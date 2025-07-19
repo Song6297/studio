@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -173,6 +173,15 @@ function LegalAidCamps() {
 
 export default function LegalServicesPage() {
     const { t } = useLanguage();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return null;
+    }
     
     const advisors: Advisor[] = t('legalServices.advisors.list', { returnObjects: true }) as unknown as Advisor[];
 
