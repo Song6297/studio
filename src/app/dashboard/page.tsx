@@ -1,9 +1,11 @@
+
 'use client';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { LayoutDashboard } from "lucide-react";
+import { useLanguage } from "@/context/language-context";
 
 const citizenCases = [
   // English
@@ -36,6 +38,7 @@ const ngoCases = [
 
 
 export default function DashboardPage() {
+  const {t} = useLanguage();
   return (
     <div className="container py-12 md:py-24">
       <div className="flex flex-col items-center text-center">

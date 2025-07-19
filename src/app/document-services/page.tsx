@@ -62,18 +62,23 @@ export default function DocumentServicesPage() {
 
   return (
     <div className="container py-12 md:py-24">
-      <div className="mx-auto max-w-5xl">
+       <div className="flex flex-col items-center text-center mb-12">
+          <PenSquare className="h-12 w-12 text-primary" />
+          <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">Document Services</h1>
+          <p className="mt-2 text-lg text-muted-foreground">Request professional assistance with affidavits and notarization.</p>
+        </div>
+      <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Affidavit Card */}
           <Card className="bg-card/80 backdrop-blur-sm">
             <CardHeader className="text-center p-8">
-              <PenSquare className="mx-auto h-12 w-12 text-primary" />
-              <CardTitle className="mt-4 font-headline text-3xl">Affidavit Services</CardTitle>
+              <PenSquare className="mx-auto h-10 w-10 text-primary" />
+              <CardTitle className="mt-4 font-headline text-2xl">Affidavit Services</CardTitle>
               <CardDescription className="text-lg text-muted-foreground mt-2">
                 Request an affidavit by filling out the form.
               </CardDescription>
             </CardHeader>
-            <CardContent className="p-8 pt-0">
+            <CardContent className="p-6 md:p-8 pt-0">
               <Form {...affidavitForm}>
                 <form onSubmit={affidavitForm.handleSubmit(onAffidavitSubmit)} className="space-y-6">
                   <FormField control={affidavitForm.control} name="fullName" render={({ field }) => (
@@ -106,13 +111,13 @@ export default function DocumentServicesPage() {
           {/* Notary Card */}
           <Card className="bg-card/80 backdrop-blur-sm">
             <CardHeader className="text-center p-8">
-              <Stamp className="mx-auto h-12 w-12 text-primary" />
-              <CardTitle className="mt-4 font-headline text-3xl">Notary Services</CardTitle>
+              <Stamp className="mx-auto h-10 w-10 text-primary" />
+              <CardTitle className="mt-4 font-headline text-2xl">Notary Services</CardTitle>
               <CardDescription className="text-lg text-muted-foreground mt-2">
                 Request notarization for your documents.
               </CardDescription>
             </CardHeader>
-            <CardContent className="p-8 pt-0">
+            <CardContent className="p-6 md:p-8 pt-0">
               <Form {...notaryForm}>
                 <form onSubmit={notaryForm.handleSubmit(onNotarySubmit)} className="space-y-6">
                   <FormField control={notaryForm.control} name="fullName" render={({ field }) => (

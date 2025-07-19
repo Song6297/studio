@@ -50,11 +50,11 @@ export default function Home() {
       cta: t('features.volunteerNetwork.cta'),
     },
     {
-      icon: FileText,
-      title: t('features.legalLetters.title'),
-      description: t('features.legalLetters.description'),
-      href: "/legal-templates",
-      cta: t('features.legalLetters.cta'),
+      icon: PenSquare,
+      title: t('features.documentServices.title'),
+      description: t('features.documentServices.description'),
+      href: "/document-services",
+      cta: t('features.documentServices.cta'),
     },
   ];
 
@@ -78,9 +78,9 @@ export default function Home() {
     <>
       <section className="relative w-full bg-background pt-20 md:pt-32 lg:pt-40 overflow-hidden">
         <IndianFlagBackground />
-        <div className="container flex min-h-[calc(80vh-15rem)] flex-col items-center justify-center text-center">
+        <div className="container flex min-h-[calc(60vh-10rem)] flex-col items-center justify-center text-center px-4">
           
-          <div className="w-32 h-32 mb-6 text-primary">
+          <div className="w-24 h-24 md:w-32 md:h-32 mb-6 text-primary">
               <AshokaChakraIcon />
           </div>
 
@@ -94,14 +94,14 @@ export default function Home() {
       </section>
 
       <section className="w-full bg-background pb-12 md:pb-24 lg:pb-32">
-        <div className="container">
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg">
+        <div className="container px-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button asChild size="lg" className="w-full sm:w-auto">
               <Link href="/case-submission">
                 {t('home.registerCaseButton')} <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline">
+            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
               <Link href="/ai-legal-guide">
                 {t('home.aiAdviceButton')} <Bot className="ml-2 h-5 w-5" />
               </Link>
@@ -114,13 +114,13 @@ export default function Home() {
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
             <Card className="shadow-2xl">
-              <CardHeader className="items-center text-center p-8">
-                <Gavel className="h-16 w-16 text-primary/80 mb-4" />
+              <CardHeader className="items-center text-center p-6 md:p-8">
+                <Gavel className="h-12 w-12 md:h-16 md:w-16 text-primary/80 mb-4" />
                 <CardTitle className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
                   {t('indianConstitution.preamble.title')}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-8 pt-0">
+              <CardContent className="p-6 pt-0 md:p-8 md:pt-0">
                 <p className="whitespace-pre-wrap text-center text-base md:text-lg leading-relaxed text-foreground/80 font-serif">
                     {preambleText}
                 </p>

@@ -22,6 +22,7 @@ export function Header() {
   const pathname = usePathname();
   const { t, setLanguage, currentLang } = useLanguage();
   const [isMounted, setIsMounted] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -33,7 +34,6 @@ export function Header() {
     { href: '/legal-awareness', label: t('header.awareness') },
     { href: '/ai-legal-guide', label: t('header.aiLegalAdvice') },
     { href: '/volunteer-network', label: t('header.volunteerNetwork') },
-    { href: '/legal-letters', label: t('header.legalLetters') },
   ];
 
   if (!isMounted) {
@@ -41,7 +41,7 @@ export function Header() {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center">
             <div className="flex items-center gap-6 flex-1">
-              <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4 ml-4">
+              <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4">
                   <Logo />
               </Link>
             </div>
@@ -54,10 +54,10 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className="flex items-center gap-6 flex-1">
-            <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4 ml-4">
+            <Link href="/" aria-label="My Legal Firm Home Page" className="hidden md:flex items-center gap-4">
               <Logo />
             </Link>
-            <nav className="hidden items-center gap-8 md:flex">
+            <nav className="hidden items-center gap-6 lg:gap-8 md:flex">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -71,6 +71,12 @@ export function Header() {
                 </Link>
               ))}
             </nav>
+        </div>
+        
+        <div className="md:hidden flex-1">
+          <Link href="/" aria-label="My Legal Firm Home Page">
+              <Logo />
+          </Link>
         </div>
         
         <div className="hidden items-center gap-2 md:flex">
@@ -112,16 +118,16 @@ export function Header() {
         </div>
 
         <div className="md:hidden ml-auto">
-          <Sheet>
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">{t('header.toggleMenu')}</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px]">
+            <SheetContent side="right" className="w-[300px] p-0">
               <div className="p-4 border-b">
-                <Link href="/" aria-label="My Legal Firm Home Page">
+                <Link href="/" aria-label="My Legal Firm Home Page" onClick={() => setIsSheetOpen(false)}>
                   <Logo />
                 </Link>
               </div>
@@ -130,6 +136,7 @@ export function Header() {
                     <Link
                       key={link.href}
                       href={link.href}
+                      onClick={() => setIsSheetOpen(false)}
                       className={cn(
                         'flex items-center gap-2 rounded-md p-3 text-lg font-medium transition-colors hover:bg-secondary',
                         pathname === link.href ? 'bg-secondary text-primary' : 'text-muted-foreground',
@@ -141,14 +148,14 @@ export function Header() {
                 <div className="border-t my-4"></div>
                  <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="outline" className="justify-between">
+                      <Button variant="outline" className="justify-between w-full">
                         <span>{currentLang.name}</span>
                         <Languages className="h-5 w-5" />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       {languages.map((lang) => (
-                        <DropdownMenuItem key={lang.code} onSelect={() => setLanguage(lang.code)}>
+                        <DropdownMenuItem key={lang.code} onSelect={() => {setLanguage(lang.code); setIsSheetOpen(false);}}>
                             {lang.name}
                         </DropdownMenuItem>
                       ))}
@@ -157,21 +164,21 @@ export function Header() {
 
                  <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button className="mt-2">{t('header.registerLogin')}</Button>
+                      <Button className="mt-2 w-full">{t('header.registerLogin')}</Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       <DropdownMenuItem asChild>
-                        <Link href="/register">{t('header.login')}</Link>
+                        <Link href="/register" onClick={() => setIsSheetOpen(false)}>{t('header.login')}</Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
-                        <Link href="/register?type=advocate">{t('header.registerAsAdvocate')}</Link>
+                        <Link href="/register?type=advocate" onClick={() => setIsSheetOpen(false)}>{t('header.registerAsAdvocate')}</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link href="/register?type=ngo">{t('header.registerAsNgo')}</Link>
+                        <Link href="/register?type=ngo" onClick={() => setIsSheetOpen(false)}>{t('header.registerAsNgo')}</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link href="/register?type=volunteer">{t('header.registerAsVolunteer')}</Link>
+                        <Link href="/register?type=volunteer" onClick={() => setIsSheetOpen(false)}>{t('header.registerAsVolunteer')}</Link>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

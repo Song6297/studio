@@ -5,7 +5,6 @@
     "awareness": "Awareness",
     "aiLegalAdvice": "AI Legal Advice",
     "volunteerNetwork": "Volunteer Network",
-    "legalLetters": "Legal Letters",
     "indianConstitution": "Indian Constitution",
     "login": "Log In",
     "register": "Register",
@@ -56,10 +55,10 @@
       "description": "Join our network of law students and paralegals to assist with legal research, drafting, and case evaluation.",
       "cta": "Join the Network"
     },
-    "legalLetters": {
-      "title": "Legal Letters",
-      "description": "Generate drafts for common legal letters like rent agreements, legal notices, and more.",
-      "cta": "Create Letter"
+    "documentServices": {
+      "title": "Document Services",
+      "description": "Request assistance with affidavits and notarization from verified professionals.",
+      "cta": "Get Documents"
     }
   },
   "indianConstitution": {
