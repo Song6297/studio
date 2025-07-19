@@ -127,7 +127,7 @@ export default function CaseSubmissionPage() {
               <FormField control={form.control} name="document" render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('caseSubmission.form.upload.label')}</FormLabel>
-                  <FormControl><Input type="file" disabled /></FormControl>
+                  <FormControl><Input type="file"  /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
