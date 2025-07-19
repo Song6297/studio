@@ -100,6 +100,14 @@ _________________________
     URL.revokeObjectURL(url);
   };
 
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div className="grid md:grid-cols-2 gap-8">
@@ -249,6 +257,15 @@ ${values.applicantAddress}
     URL.revokeObjectURL(url);
   };
 
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <div className="grid md:grid-cols-2 gap-8">
       <Card>
@@ -360,6 +377,15 @@ _________________________
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
+
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div className="grid md:grid-cols-2 gap-8">
@@ -499,6 +525,15 @@ _________________________
     URL.revokeObjectURL(url);
   };
   
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <div className="grid md:grid-cols-2 gap-8">
       <Card>
@@ -566,20 +601,12 @@ _________________________
 
 export default function LegalTemplatesPage() {
     const { t } = useLanguage();
-    const [isMounted, setIsMounted] = useState(false);
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
-    if (!isMounted) {
-        return null;
-    }
 
     return (
         <div className="container py-12 md:py-24">
             <div className="flex flex-col items-center text-center">
                 <FileText className="h-12 w-12 text-primary" />
-                <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">Legal Letters</h1>
+                <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">{t('header.legalLetters')}</h1>
                 <p className="mt-2 text-lg text-muted-foreground">Generate drafts for common legal letters and documents.</p>
             </div>
             <Tabs defaultValue="rent-agreement" className="mt-8">
@@ -605,4 +632,3 @@ export default function LegalTemplatesPage() {
         </div>
     );
 }
-
