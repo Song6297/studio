@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,17 +8,17 @@ import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale } from 'lucide-re
 const features = [
   {
     icon: FileText,
-    title: "Submit a Case",
-    description: "Easily submit your legal case with our simple and secure online form. Get connected with professionals who can help.",
+    title: "Register a Case",
+    description: "Easily register your legal case with our simple and secure online form. Get connected with professionals who can help.",
     href: "/case-submission",
-    cta: "Submit Your Case",
+    cta: "Register Your Case",
   },
   {
     icon: Bot,
-    title: "AI Legal Guide",
+    title: "AI Legal Advice",
     description: "Get preliminary legal information and guidance on various topics from our AI-powered assistant, available 24/7.",
     href: "/ai-legal-guide",
-    cta: "Ask AI Guide",
+    cta: "Ask AI Legal Advice",
   },
   {
     icon: BookOpen,
@@ -63,7 +64,7 @@ export default function Home() {
               </Link>
             </Button>
             <Button asChild variant="secondary" size="lg">
-              <Link href="/ai-legal-guide">AI Legal Guide</Link>
+              <Link href="/ai-legal-guide">AI Legal Advice</Link>
             </Button>
           </div>
         </div>

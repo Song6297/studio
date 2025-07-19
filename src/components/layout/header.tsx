@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -15,9 +16,9 @@ import {
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '/case-submission', label: 'Submit Case' },
+  { href: '/case-submission', label: 'Register Case' },
   { href: '/legal-awareness', label: 'Awareness' },
-  { href: '/ai-legal-guide', label: 'AI Guide' },
+  { href: '/ai-legal-guide', label: 'AI Legal Advice' },
 ];
 
 export function Header() {

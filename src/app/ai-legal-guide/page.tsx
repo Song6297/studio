@@ -1,3 +1,4 @@
+
 import { AiLegalGuideClient } from './ai-legal-guide-client';
 import { Bot } from 'lucide-react';
 
@@ -10,7 +11,7 @@ export default function AiLegalGuidePage() {
               <Bot className="h-8 w-8 text-primary" />
           </div>
           <h1 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            AI Legal Guide
+            AI Legal Advice
           </h1>
           <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
             Get instant, preliminary legal information based on the Indian legal system. Our AI is here to help you understand complex legal topics, but please remember this is not a substitute for advice from a qualified lawyer.

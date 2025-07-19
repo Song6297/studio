@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -37,7 +38,7 @@ export default function CaseSubmissionPage() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     toast({
-      title: 'Case Submitted Successfully!',
+      title: 'Case Registered Successfully!',
       description: 'We have received your case details and will get back to you shortly.',
     });
     form.reset();
@@ -48,7 +49,7 @@ export default function CaseSubmissionPage() {
       <Card className="mx-auto max-w-3xl">
         <CardHeader className="text-center">
           <FileText className="mx-auto h-12 w-12 text-primary" />
-          <CardTitle className="mt-4 font-headline text-3xl md:text-4xl">Submit Your Case</CardTitle>
+          <CardTitle className="mt-4 font-headline text-3xl md:text-4xl">Register Your Case</CardTitle>
           <CardDescription className="text-lg text-muted-foreground">
             Fill out the form below to get started. Our team will review your case.
           </CardDescription>
@@ -111,7 +112,7 @@ export default function CaseSubmissionPage() {
                   <FormMessage />
                 </FormItem>
               )} />
-              <Button type="submit" className="w-full" size="lg">Submit Case</Button>
+              <Button type="submit" className="w-full" size="lg">Register Case</Button>
             </form>
           </Form>
         </CardContent>
