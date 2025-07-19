@@ -5,6 +5,7 @@
     "awareness": "Awareness",
     "aiLegalAdvice": "AI Legal Advice",
     "documentServices": "Document Services",
+    "indianConstitution": "Indian Constitution",
     "login": "Log In",
     "register": "Register",
     "registerAsAdvocate": "As Advocate/Legal Adviser",
@@ -38,6 +39,11 @@
       "description": "Get preliminary legal information and guidance on various topics from our AI-powered assistant, available 24/7.",
       "cta": "Ask AI Legal Advice"
     },
+    "indianConstitution": {
+      "title": "Indian Constitution",
+      "description": "Explore the Preamble, Fundamental Rights, and Duties of the supreme law of India.",
+      "cta": "Explore the Constitution"
+    },
     "legalAwareness": {
       "title": "Legal Awareness",
       "description": "Empower yourself with knowledge. Browse our portal of articles and guides on Indian law and your rights.",
@@ -47,6 +53,21 @@
       "title": "Document Services",
       "description": "Create affidavits and get documents notarized with professional assistance.",
       "cta": "Get Started"
+    }
+  },
+  "indianConstitution": {
+    "title": "The Constitution of India",
+    "description": "An overview of the supreme law of India, including the Preamble, Fundamental Rights, and Fundamental Duties.",
+    "preamble": {
+      "title": "The Preamble of India"
+    },
+    "fundamentalRights": {
+      "title": "Fundamental Rights",
+      "description": "The Fundamental Rights, enshrined in Part III of the Constitution, guarantee civil liberties to all Indians, ensuring a life of dignity and equality."
+    },
+    "fundamentalDuties": {
+      "title": "Fundamental Duties",
+      "description": "These are the moral obligations of all citizens to help promote a spirit of patriotism and to uphold the unity of India."
     }
   },
   "caseSubmission": {

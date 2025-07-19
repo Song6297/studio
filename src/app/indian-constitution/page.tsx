@@ -1,0 +1,167 @@
+
+'use client';
+
+import { Card, CardContent } from '@/components/ui/card';
+import { Gavel, Shield, CheckSquare, Scale } from 'lucide-react';
+import { useLanguage } from '@/context/language-context';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
+export default function IndianConstitutionPage() {
+    const { t } = useLanguage();
+
+    const preambleText = "WE, THE PEOPLE OF INDIA, having solemnly resolved to constitute India into a SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC and to secure to all its citizens:\n\nJUSTICE, social, economic and political;\nLIBERTY of thought, expression, belief, faith and worship;\nEQUALITY of status and of opportunity;\nand to promote among them all\nFRATERNITY assuring the dignity of the individual and the unity and integrity of the Nation;\n\nIN OUR CONSTITUENT ASSEMBLY this twenty-sixth day of November, 1949, do HEREBY ADOPT, ENACT AND GIVE TO OURSELVES THIS CONSTITUTION.";
+
+    const fundamentalRights = [
+        { 
+            title: "Right to Equality (Articles 14-18)", 
+            content: [
+                { article: "Article 14", text: "Guarantees equality before the law and equal protection of the laws within the territory of India." },
+                { article: "Article 15", text: "Prohibits discrimination against any citizen on grounds only of religion, race, caste, sex, place of birth or any of them." },
+                { article: "Article 16", text: "Ensures equality of opportunity for all citizens in matters relating to employment or appointment to any office under the State." },
+                { article: "Article 17", text: "Abolishes 'Untouchability' and forbids its practice in any form." },
+                { article: "Article 18", text: "Abolishes all titles except military and academic distinctions." }
+            ]
+        },
+        { 
+            title: "Right to Freedom (Articles 19-22)", 
+            content: [
+                { article: "Article 19", text: "Protects six rights: freedom of speech and expression, assembly, association, movement, residence, and profession." },
+                { article: "Article 20", text: "Provides protection in respect of conviction for offenses, including protection against ex-post-facto law, double jeopardy, and self-incrimination." },
+                { article: "Article 21", text: "Guarantees the protection of life and personal liberty. No person shall be deprived of his life or personal liberty except according to procedure established by law." },
+                { article: "Article 21A", text: "Makes free and compulsory education for children between the age of six and fourteen years a fundamental right." },
+                { article: "Article 22", text: "Provides protection against arrest and detention in certain cases." }
+            ]
+        },
+        { 
+            title: "Right against Exploitation (Articles 23-24)", 
+            content: [
+                { article: "Article 23", text: "Prohibits traffic in human beings and 'begar' and other similar forms of forced labor." },
+                { article: "Article 24", text: "Prohibits the employment of children below the age of fourteen years in any factory, mine or other hazardous activities." }
+            ]
+        },
+        { 
+            title: "Right to Freedom of Religion (Articles 25-28)", 
+            content: [
+                { article: "Article 25", text: "Guarantees freedom of conscience and free profession, practice, and propagation of religion to all citizens." },
+                { article: "Article 26", text: "Gives every religious denomination the right to establish and maintain institutions for religious and charitable purposes." },
+                { article: "Article 27", text: "States that no person shall be compelled to pay any taxes for the promotion of a particular religion." },
+                { article: "Article 28", text: "Allows educational institutions maintained by religious groups to disseminate religious instruction." }
+            ]
+        },
+        { 
+            title: "Cultural and Educational Rights (Articles 29-30)", 
+            content: [
+                { article: "Article 29", text: "Protects the interests of minorities by ensuring that they can conserve their distinct language, script or culture." },
+                { article: "Article 30", text: "Grants minorities the right to establish and administer educational institutions of their choice." }
+            ]
+        },
+        { 
+            title: "Right to Constitutional Remedies (Article 32)", 
+            content: [
+                { article: "Article 32", text: "Guarantees the right to move the Supreme Court for the enforcement of Fundamental Rights. The Supreme Court is empowered to issue writs (Habeas Corpus, Mandamus, Prohibition, Certiorari, and Quo Warranto) for this purpose. Dr. B.R. Ambedkar called it the 'heart and soul' of the Constitution." }
+            ]
+        },
+    ];
+
+    const fundamentalDuties = [
+        "To abide by the Constitution and respect its ideals and institutions, the National Flag and the National Anthem.",
+        "To cherish and follow the noble ideals which inspired our national struggle for freedom.",
+        "To uphold and protect the sovereignty, unity and integrity of India.",
+        "To defend the country and render national service when called upon to do so.",
+        "To promote harmony and the spirit of common brotherhood amongst all the people of India.",
+        "To value and preserve the rich heritage of our composite culture.",
+        "To protect and improve the natural environment including forests, lakes, rivers and wild life.",
+        "To develop the scientific temper, humanism and the spirit of inquiry and reform.",
+        "To safeguard public property and to abjure violence.",
+        "To strive towards excellence in all spheres of individual and collective activity.",
+        "To provide opportunities for education to his child or ward between the age of six and fourteen years."
+    ];
+
+
+    return (
+        <div className="container py-12 md:py-24">
+            <div className="flex flex-col items-center text-center space-y-4 mb-12">
+                <div className="inline-block rounded-full bg-background p-4 shadow-md border border-primary/10">
+                    <Scale className="h-10 w-10 text-primary" />
+                </div>
+                <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+                    {t('indianConstitution.title')}
+                </h1>
+                <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
+                    {t('indianConstitution.description')}
+                </p>
+            </div>
+            
+            <div className="space-y-16">
+                <section id="preamble">
+                    <div className="flex flex-col items-center justify-center space-y-6 text-center">
+                        <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                            <Gavel className="h-8 w-8" />
+                        </div>
+                        <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">{t('indianConstitution.preamble.title')}</h2>
+                        <Card className="max-w-3xl mx-auto p-6 md:p-8 mt-6 bg-background/50 border-primary/20 shadow-lg">
+                            <CardContent className="p-0">
+                                <p className="whitespace-pre-wrap text-left text-base md:text-lg leading-relaxed text-foreground/80 font-serif">
+                                    {preambleText}
+                                </p>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </section>
+
+                <section id="fundamental-rights">
+                    <div className="flex flex-col items-center justify-center space-y-6 text-center">
+                        <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                            <Shield className="h-8 w-8" />
+                        </div>
+                        <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">{t('indianConstitution.fundamentalRights.title')}</h2>
+                        <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                            {t('indianConstitution.fundamentalRights.description')}
+                        </p>
+                    </div>
+                    <div className="mx-auto max-w-3xl mt-8">
+                        <Accordion type="single" collapsible className="w-full">
+                            {fundamentalRights.map((right, index) => (
+                                <AccordionItem value={`item-${index}`} key={index}>
+                                    <AccordionTrigger className="font-headline text-lg hover:no-underline">{right.title}</AccordionTrigger>
+                                    <AccordionContent className="text-base text-muted-foreground">
+                                    <ul className="space-y-3 list-disc list-inside">
+                                        {right.content.map((item, itemIndex) => (
+                                        <li key={itemIndex}>
+                                            <span className="font-semibold text-foreground/90">{item.article}:</span> {item.text}
+                                        </li>
+                                        ))}
+                                    </ul>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
+                    </div>
+                </section>
+
+                <section id="fundamental-duties">
+                    <div className="flex flex-col items-center justify-center space-y-6 text-center">
+                        <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                            <CheckSquare className="h-8 w-8" />
+                        </div>
+                        <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">{t('indianConstitution.fundamentalDuties.title')}</h2>
+                        <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                           {t('indianConstitution.fundamentalDuties.description')}
+                        </p>
+                    </div>
+                    <div className="mx-auto max-w-3xl mt-8">
+                        <Card className="bg-background/50 border-primary/20 shadow-lg">
+                            <CardContent className="p-6">
+                                <ul className="space-y-4 list-disc list-inside text-left text-base text-foreground/80">
+                                    {fundamentalDuties.map((duty, index) => (
+                                        <li key={index}>{duty}</li>
+                                    ))}
+                                </ul>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </section>
+            </div>
+        </div>
+    );
+}

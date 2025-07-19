@@ -29,6 +29,7 @@ export function Header() {
 
   const navLinks = [
     { href: '/case-submission', label: t('header.registerCase') },
+    { href: '/indian-constitution', label: t('header.indianConstitution') },
     { href: '/legal-awareness', label: t('header.awareness') },
     { href: '/ai-legal-guide', label: t('header.aiLegalAdvice') },
     { href: '/document-services', label: t('header.documentServices') },
