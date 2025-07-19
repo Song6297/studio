@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -99,15 +99,6 @@ _________________________
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
-
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <div className="grid md:grid-cols-2 gap-8">
@@ -257,15 +248,6 @@ ${values.applicantAddress}
     URL.revokeObjectURL(url);
   };
 
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
-
   return (
     <div className="grid md:grid-cols-2 gap-8">
       <Card>
@@ -377,15 +359,6 @@ _________________________
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
-
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <div className="grid md:grid-cols-2 gap-8">
@@ -525,14 +498,6 @@ _________________________
     URL.revokeObjectURL(url);
   };
   
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <div className="grid md:grid-cols-2 gap-8">
