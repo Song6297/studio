@@ -13,25 +13,11 @@ export default function LegalAwarenessPage() {
 
     const articles = [
         {
-            title: t('legalAwareness.articles.basicRights.title'),
-            description: t('legalAwareness.articles.basicRights.description'),
-            category: t('legalAwareness.articles.basicRights.category'),
+            title: t('legalAwareness.articles.rti.title'),
+            description: t('legalAwareness.articles.rti.description'),
+            category: t('legalAwareness.articles.rti.category'),
             image: "https://placehold.co/600x400.png",
-            hint: "law book"
-        },
-        {
-            title: t('legalAwareness.articles.fir.title'),
-            description: t('legalAwareness.articles.fir.description'),
-            category: t('legalAwareness.articles.fir.category'),
-            image: "https://placehold.co/600x400.png",
-            hint: "police station"
-        },
-        {
-            title: t('legalAwareness.articles.propertyPurchase.title'),
-            description: t('legalAwareness.articles.propertyPurchase.description'),
-            category: t('legalAwareness.articles.propertyPurchase.category'),
-            image: "https://placehold.co/600x400.png",
-            hint: "house keys"
+            hint: "file document"
         },
         {
             title: t('legalAwareness.articles.consumerRights.title'),
@@ -41,18 +27,32 @@ export default function LegalAwarenessPage() {
             hint: "shopping cart"
         },
         {
-            title: t('legalAwareness.articles.pil.title'),
-            description: t('legalAwareness.articles.pil.description'),
-            category: t('legalAwareness.articles.pil.category'),
+            title: t('legalAwareness.articles.cyberLaw.title'),
+            description: t('legalAwareness.articles.cyberLaw.description'),
+            category: t('legalAwareness.articles.cyberLaw.category'),
             image: "https://placehold.co/600x400.png",
-            hint: "crowd protest"
+            hint: "digital lock"
         },
         {
-            title: t('legalAwareness.articles.digitalSignature.title'),
-            description: t('legalAwareness.articles.digitalSignature.description'),
-            category: t('legalAwareness.articles.digitalSignature.category'),
+            title: t('legalAwareness.articles.ipLaw.title'),
+            description: t('legalAwareness.articles.ipLaw.description'),
+            category: t('legalAwareness.articles.ipLaw.category'),
             image: "https://placehold.co/600x400.png",
-            hint: "digital signature"
+            hint: "lightbulb idea"
+        },
+        {
+            title: t('legalAwareness.articles.corporateLaw.title'),
+            description: t('legalAwareness.articles.corporateLaw.description'),
+            category: t('legalAwareness.articles.corporateLaw.category'),
+            image: "https://placehold.co/600x400.png",
+            hint: "business meeting"
+        },
+        {
+            title: t('legalAwareness.articles.fir.title'),
+            description: t('legalAwareness.articles.fir.description'),
+            category: t('legalAwareness.articles.fir.category'),
+            image: "https://placehold.co/600x400.png",
+            hint: "police station"
         }
     ];
 

@@ -131,35 +131,35 @@
     "searchPlaceholder": "Search articles...",
     "readMore": "Read More",
     "articles": {
-      "basicRights": {
-        "title": "Understanding Your Basic Rights in India",
-        "description": "A comprehensive guide to the fundamental rights guaranteed by the Constitution of India.",
-        "category": "Constitutional Law"
-      },
-      "fir": {
-        "title": "The Process of Filing a First Information Report (FIR)",
-        "description": "Step-by-step instructions on how to file an FIR and what to expect during the process.",
-        "category": "Criminal Law"
-      },
-      "propertyPurchase": {
-        "title": "Navigating Property Purchase: Legal Checklist",
-        "description": "Key legal aspects to consider before buying a property to avoid future disputes.",
-        "category": "Property Law"
-      },
-      "consumerRights": {
-        "title": "Consumer Rights and Protection in India",
-        "description": "Know your rights as a consumer and how to seek redressal for grievances.",
-        "category": "Consumer Law"
-      },
-      "pil": {
-        "title": "Introduction to Public Interest Litigation (PIL)",
-        "description": "Learn how PIL can be used as a tool for social change and public justice.",
+      "rti": {
+        "title": "How to Use the Right to Information (RTI) Act",
+        "description": "A practical guide on filing RTI applications to obtain information from public authorities.",
         "category": "Public Law"
       },
-      "digitalSignature": {
-        "title": "Digital Signature and its Legal Validity",
-        "description": "Understanding the legal framework around electronic signatures in the digital age.",
+      "consumerRights": {
+        "title": "Your Rights as a Consumer in India",
+        "description": "Know your rights against unfair trade practices and how to file a consumer complaint.",
+        "category": "Consumer Law"
+      },
+      "cyberLaw": {
+        "title": "Introduction to Cyber Law & Online Safety",
+        "description": "Learn about laws governing online activities, data privacy, and protecting yourself from cybercrimes.",
         "category": "Cyber Law"
+      },
+      "ipLaw": {
+        "title": "Basics of Intellectual Property (IP) Law",
+        "description": "Understand the fundamentals of trademarks, copyrights, and patents in India.",
+        "category": "IP Law"
+      },
+      "corporateLaw": {
+        "title": "Understanding Corporate Law Basics",
+        "description": "An overview of the legal framework governing companies, from incorporation to compliance.",
+        "category": "Corporate Law"
+      },
+      "fir": {
+        "title": "The Process of Filing an FIR",
+        "description": "Step-by-step instructions on how to file a First Information Report with the police.",
+        "category": "Criminal Law"
       }
     }
   },
