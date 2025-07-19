@@ -54,7 +54,7 @@ export function Header() {
             <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4">
               <Logo />
             </Link>
-            <nav className="hidden items-center gap-6 md:flex">
+            <nav className="hidden items-center gap-8 md:flex">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
