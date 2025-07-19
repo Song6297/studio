@@ -112,10 +112,26 @@ export default function Home() {
     "To provide opportunities for education to his child or ward between the age of six and fourteen years."
   ];
 
+  const IndianFlagBackground = () => (
+    <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 900 600"
+        className="w-full h-full object-cover opacity-15 blur-sm"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <rect width="900" height="200" fill="#FF9933"/>
+        <rect y="200" width="900" height="200" fill="#FFFFFF"/>
+        <rect y="400" width="900" height="200" fill="#138808"/>
+      </svg>
+    </div>
+  );
+
 
   return (
     <>
       <section className="relative w-full bg-background pt-20 md:pt-32 lg:pt-40 overflow-hidden">
+        <IndianFlagBackground />
         <div className="container flex min-h-[calc(80vh-15rem)] flex-col items-center justify-center text-center">
           
           <div className="w-32 h-32 mb-6 text-primary">
@@ -264,4 +280,5 @@ export default function Home() {
   );
 }
 
+    
     
