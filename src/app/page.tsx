@@ -49,7 +49,7 @@ export default function Home() {
     <>
       <section className="relative w-full bg-background pt-20 md:pt-32 lg:pt-40 overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center -z-10">
-           <div className="w-full h-full max-w-[800px] max-h-[800px] opacity-10 dark:opacity-[0.07]">
+           <div className="w-full h-full max-w-[800px] max-h-[800px] text-primary opacity-10 dark:opacity-[0.07]">
               <AshokaChakraIcon />
            </div>
         </div>
