@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale, Gavel, Handshake } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale, Gavel, Handshake, FileQuestion } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 
 export default function Home() {
@@ -29,11 +29,11 @@ export default function Home() {
       cta: t('features.aiLegalAdvice.cta'),
     },
      {
-      icon: Scale,
-      title: t('features.indianConstitution.title'),
-      description: t('features.indianConstitution.description'),
-      href: "/indian-constitution",
-      cta: t('features.indianConstitution.cta'),
+      icon: FileQuestion,
+      title: t('features.fileRti.title'),
+      description: t('features.fileRti.description'),
+      href: "/file-rti",
+      cta: t('features.fileRti.cta'),
     },
     {
       icon: BookOpen,
@@ -50,11 +50,11 @@ export default function Home() {
       cta: t('features.volunteerNetwork.cta'),
     },
     {
-      icon: PenSquare,
-      title: t('features.documentServices.title'),
-      description: t('features.documentServices.description'),
-      href: "/document-services",
-      cta: t('features.documentServices.cta'),
+      icon: Scale,
+      title: t('features.indianConstitution.title'),
+      description: t('features.indianConstitution.description'),
+      href: "/indian-constitution",
+      cta: t('features.indianConstitution.cta'),
     },
   ];
 

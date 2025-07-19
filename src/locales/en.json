@@ -6,6 +6,7 @@
     "aiLegalAdvice": "AI Legal Advice",
     "volunteerNetwork": "Volunteer Network",
     "indianConstitution": "Indian Constitution",
+    "fileRti": "File RTI",
     "login": "Log In",
     "register": "Register",
     "registerAsAdvocate": "As Advocate/Legal Adviser",
@@ -55,10 +56,10 @@
       "description": "Join our network of law students and paralegals to assist with legal research, drafting, and case evaluation.",
       "cta": "Join the Network"
     },
-    "documentServices": {
-      "title": "Document Services",
-      "description": "Request assistance with affidavits and notarization from verified professionals.",
-      "cta": "Get Documents"
+    "fileRti": {
+      "title": "File an RTI",
+      "description": "Use our guide and generator to easily prepare and file a Right to Information request with government bodies.",
+      "cta": "File an RTI"
     }
   },
   "indianConstitution": {
@@ -332,5 +333,53 @@
     "description": "Connecting passionate law students and paralegals with opportunities to contribute to real cases under professional supervision.",
     "searchPlaceholder": "Search volunteers by skill or name...",
     "contactButton": "Contact Volunteer"
+  },
+  "fileRti": {
+    "title": "File a Right to Information (RTI) Request",
+    "description": "Use our tools to understand the RTI process and generate a correctly formatted request to send to government authorities.",
+    "guide": {
+      "title": "How to File an RTI",
+      "description": "A step-by-step guide to exercising your Right to Information.",
+      "steps": [
+        { "title": "Identify the Department", "description": "Determine which government department holds the information you need. The request must be sent to the Public Information Officer (PIO) of that specific department." },
+        { "title": "Draft Your Application", "description": "Write a clear and concise application. You can use our RTI Request Generator for this. State your questions clearly and specifically." },
+        { "title": "Pay the Fee", "description": "A nominal fee of ₹10 is required. This can be paid via cash, demand draft, or through the online portal." },
+        { "title": "Submit Your Application", "description": "Submit your application to the PIO either by post, in person, or through the official online RTI portal." },
+        { "title": "Wait for a Response", "description": "The department is required to respond within 30 days. If the matter concerns the life and liberty of a person, the response must be provided within 48 hours." },
+        { "title": "First Appeal", "description": "If you do not receive a satisfactory response, you can file a first appeal with the First Appellate Authority in the same department within 30 days of the response." },
+        { "title": "Second Appeal", "description": "If you are still not satisfied, you can file a second appeal with the Central or State Information Commission within 90 days." }
+      ],
+      "portalButton": "Go to Official RTI Portal"
+    },
+    "generator": {
+      "title": "RTI Request Generator",
+      "description": "Fill in the details below to create a formatted RTI request. You can then copy or download the text.",
+      "form": {
+        "name": { "label": "Your Full Name", "placeholder": "e.g., John Doe" },
+        "address": { "label": "Your Full Address", "placeholder": "e.g., 123 Main Street, New Delhi" },
+        "pio": { "label": "Public Information Officer (PIO)", "placeholder": "Public Information Officer" },
+        "department": { "label": "Department / Office Name", "placeholder": "e.g., Municipal Corporation of Delhi" },
+        "questions": { 
+            "label": "Questions for Information",
+            "placeholder": "Enter your question here",
+            "addButton": "Add Another Question"
+        },
+        "submitButton": "Generate RTI Request"
+      },
+      "validation": {
+          "nameRequired": "Your name is required.",
+          "addressRequired": "Your address is required.",
+          "pioRequired": "PIO name is required.",
+          "departmentRequired": "Department name is required.",
+          "questionRequired": "Question cannot be empty and must be at least 10 characters."
+      },
+      "toast": {
+          "successTitle": "RTI Request Generated!",
+          "copied": "Request text copied to clipboard."
+      },
+      "copyButton": "Copy Text",
+      "downloadButton": "Download .txt",
+      "backButton": "Create a new request"
+    }
   }
 }
