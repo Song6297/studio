@@ -12,17 +12,17 @@ export default function NgoDashboardPage() {
     const { user, loading } = useAuth();
     const router = useRouter();
     const { t } = useLanguage();
-    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        setIsMounted(true);
-        if (!loading && !user) {
-            router.push('/register?type=login');
+        if (!loading) {
+            if (!user) {
+                router.push('/register?type=login');
+            }
         }
     }, [user, loading, router]);
 
 
-    if (!isMounted || loading) {
+    if (loading) {
         return (
             <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
                 <Loader2 className="h-10 w-10 animate-spin text-primary" />

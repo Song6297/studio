@@ -51,8 +51,10 @@ function DashboardPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!authLoading && !user) {
-      router.push('/register?type=login');
+    if (!authLoading) {
+      if (!user) {
+        router.push('/register?type=login');
+      }
     }
   }, [user, authLoading, router]);
 
