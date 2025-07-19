@@ -4,24 +4,25 @@ import { Bot } from 'lucide-react';
 
 export default function AiLegalGuidePage() {
   return (
-    <div className="bg-secondary/50 flex-1">
-      <div className="container grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-8rem)] py-12 md:py-24">
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4">
-          <div className="inline-block rounded-lg bg-background p-3 shadow-sm border">
-              <Bot className="h-8 w-8 text-primary" />
+    <div className="bg-secondary/30 flex-1">
+      <div className="container mx-auto px-4 py-12 sm:py-16 md:py-24">
+        <div className="flex flex-col items-center justify-center text-center space-y-4">
+          <div className="inline-block rounded-full bg-background p-4 shadow-md border border-primary/10">
+              <Bot className="h-10 w-10 text-primary" />
           </div>
-          <h1 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center lg:text-left">
-            AI Legal Advice
+          <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+            AI Legal Guide
           </h1>
-          <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed text-center lg:text-left">
-            Get instant, preliminary legal information based on the Indian legal system. Our AI is here to help you understand complex legal topics, but please remember this is not a substitute for advice from a qualified lawyer.
+          <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
+            Get instant, preliminary legal information based on the Indian legal system. Our AI is here to help you understand complex legal topics.
           </p>
-           <p className="text-sm text-muted-foreground text-center lg:text-left">
-            Powered by advanced AI models for informational purposes.
+           <p className="text-sm text-muted-foreground">
+            Remember: This is not a substitute for advice from a qualified lawyer.
           </p>
         </div>
-        <div className="w-full rounded-lg bg-background p-8 shadow-lg border">
-          <AiLegalGuideClient />
+        
+        <div className="mt-12 mx-auto w-full max-w-3xl">
+           <AiLegalGuideClient />
         </div>
       </div>
     </div>
