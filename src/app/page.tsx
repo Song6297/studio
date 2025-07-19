@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Gavel, Scale, Shield, CheckSquare } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Gavel, Shield, CheckSquare } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -49,27 +49,52 @@ export default function Home() {
   const fundamentalRights = [
     { 
       title: "Right to Equality (Articles 14-18)", 
-      content: "Ensures equality before law, prohibits discrimination on grounds of religion, race, caste, sex or place of birth, and guarantees equality of opportunity in matters of public employment." 
+      content: [
+          { article: "Article 14", text: "Guarantees equality before the law and equal protection of the laws within the territory of India." },
+          { article: "Article 15", text: "Prohibits discrimination against any citizen on grounds only of religion, race, caste, sex, place of birth or any of them." },
+          { article: "Article 16", text: "Ensures equality of opportunity for all citizens in matters relating to employment or appointment to any office under the State." },
+          { article: "Article 17", text: "Abolishes 'Untouchability' and forbids its practice in any form." },
+          { article: "Article 18", text: "Abolishes all titles except military and academic distinctions." }
+      ]
     },
     { 
       title: "Right to Freedom (Articles 19-22)", 
-      content: "Guarantees six fundamental freedoms: speech and expression, assembly, association, movement, residence, and profession. It also provides protection in respect of conviction for offenses and protection of life and personal liberty." 
+      content: [
+          { article: "Article 19", text: "Protects six rights: freedom of speech and expression, assembly, association, movement, residence, and profession." },
+          { article: "Article 20", text: "Provides protection in respect of conviction for offenses, including protection against ex-post-facto law, double jeopardy, and self-incrimination." },
+          { article: "Article 21", text: "Guarantees the protection of life and personal liberty. No person shall be deprived of his life or personal liberty except according to procedure established by law." },
+          { article: "Article 21A", text: "Makes free and compulsory education for children between the age of six and fourteen years a fundamental right." },
+          { article: "Article 22", text: "Provides protection against arrest and detention in certain cases." }
+      ]
     },
     { 
       title: "Right against Exploitation (Articles 23-24)", 
-      content: "Prohibits all forms of forced labor, child labor, and trafficking of human beings." 
+      content: [
+          { article: "Article 23", text: "Prohibits traffic in human beings and 'begar' and other similar forms of forced labor." },
+          { article: "Article 24", text: "Prohibits the employment of children below the age of fourteen years in any factory, mine or other hazardous activities." }
+      ]
     },
     { 
       title: "Right to Freedom of Religion (Articles 25-28)", 
-      content: "Guarantees freedom of conscience and the right to profess, practice, and propagate religion freely." 
+      content: [
+          { article: "Article 25", text: "Guarantees freedom of conscience and free profession, practice, and propagation of religion to all citizens." },
+          { article: "Article 26", text: "Gives every religious denomination the right to establish and maintain institutions for religious and charitable purposes." },
+          { article: "Article 27", text: "States that no person shall be compelled to pay any taxes for the promotion of a particular religion." },
+          { article: "Article 28", text: "Allows educational institutions maintained by religious groups to disseminate religious instruction." }
+      ]
     },
     { 
       title: "Cultural and Educational Rights (Articles 29-30)", 
-      content: "Protects the rights of minorities to conserve their culture, language, and script, and to establish and administer educational institutions of their choice." 
+      content: [
+          { article: "Article 29", text: "Protects the interests of minorities by ensuring that they can conserve their distinct language, script or culture." },
+          { article: "Article 30", text: "Grants minorities the right to establish and administer educational institutions of their choice." }
+      ]
     },
     { 
       title: "Right to Constitutional Remedies (Article 32)", 
-      content: "Guarantees the right to move the Supreme Court for the enforcement of fundamental rights and empowers the court to issue directions or orders or writs for this purpose." 
+      content: [
+          { article: "Article 32", text: "Guarantees the right to move the Supreme Court for the enforcement of Fundamental Rights. The Supreme Court is empowered to issue writs (Habeas Corpus, Mandamus, Prohibition, Certiorari, and Quo Warranto) for this purpose. Dr. B.R. Ambedkar called it the 'heart and soul' of the Constitution." }
+      ]
     },
   ];
 
@@ -158,7 +183,13 @@ export default function Home() {
                   <AccordionItem value={`item-${index}`} key={index}>
                     <AccordionTrigger className="font-headline text-lg hover:no-underline">{right.title}</AccordionTrigger>
                     <AccordionContent className="text-base text-muted-foreground">
-                      {right.content}
+                      <ul className="space-y-3 list-disc list-inside">
+                        {right.content.map((item, itemIndex) => (
+                          <li key={itemIndex}>
+                            <span className="font-semibold text-foreground/90">{item.article}:</span> {item.text}
+                          </li>
+                        ))}
+                      </ul>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
@@ -232,3 +263,5 @@ export default function Home() {
     </>
   );
 }
+
+    
