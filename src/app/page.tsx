@@ -54,8 +54,8 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative w-full bg-background py-20 md:py-32 lg:py-40">
-        <div className="container flex min-h-[calc(100vh-15rem)] flex-col items-center justify-center text-center">
+      <section className="relative w-full bg-background pt-20 md:pt-32 lg:pt-40">
+        <div className="container flex min-h-[calc(80vh-15rem)] flex-col items-center justify-center text-center">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[400px] opacity-5 dark:opacity-10">
               <AshokaChakraIcon />
           </div>
@@ -65,7 +65,12 @@ export default function Home() {
           <p className="mx-auto mt-6 max-w-[700px] text-lg text-muted-foreground md:text-xl">
             {t('home.subHeading')}
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+        </div>
+      </section>
+
+      <section className="w-full bg-background pb-12 md:pb-24 lg:pb-32">
+        <div className="container">
+          <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg">
               <Link href="/case-submission">
                 {t('home.registerCaseButton')} <ArrowRight className="ml-2 h-5 w-5" />
