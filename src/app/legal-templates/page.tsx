@@ -35,6 +35,10 @@ function RentAgreementGenerator() {
       landlordName: '',
       tenantName: '',
       propertyAddress: '',
+      rentAmount: undefined,
+      securityDeposit: undefined,
+      startDate: '',
+      endDate: '',
       clauses: [{ value: 'The tenant shall not make any structural alterations to the property.' }],
     },
   });
@@ -203,7 +207,7 @@ function RtiRequestGenerator() {
   });
 
   function onSubmit(values: z.infer<typeof rtiRequestSchema>) {
-    const today = new Date().toLocaleDateString();
+    const today = new Date().toLocaleDateString('en-IN');
     const text = `
 To,
 The Public Information Officer (PIO),
@@ -312,7 +316,7 @@ function PoliceComplaintGenerator() {
   });
 
   function onSubmit(values: z.infer<typeof policeComplaintSchema>) {
-    const today = new Date().toLocaleDateString();
+    const today = new Date().toLocaleDateString('en-IN');
     const text = `
 To,
 The Officer in Charge,
@@ -430,11 +434,20 @@ function LegalNoticeGenerator() {
   const [generatedText, setGeneratedText] = useState('');
   const form = useForm<z.infer<typeof legalNoticeSchema>>({
     resolver: zodResolver(legalNoticeSchema),
-    defaultValues: { senderName: '', senderAddress: '', recipientName: '', recipientAddress: '', subject: '', noticeDetails: '', complianceDays: 15 },
+    defaultValues: { 
+      senderName: '', 
+      senderAddress: '', 
+      recipientName: '', 
+      recipientAddress: '', 
+      subject: '', 
+      noticeDetails: '', 
+      claimAmount: undefined,
+      complianceDays: 15 
+    },
   });
 
   function onSubmit(values: z.infer<typeof legalNoticeSchema>) {
-    const today = new Date().toLocaleDateString();
+    const today = new Date().toLocaleDateString('en-IN');
     const text = `
 LEGAL NOTICE
 
