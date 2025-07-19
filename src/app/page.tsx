@@ -35,17 +35,10 @@ export default function Home() {
     },
     {
       icon: PenSquare,
-      title: t('features.affidavitServices.title'),
-      description: t('features.affidavitServices.description'),
-      href: "/affidavit",
-      cta: t('features.affidavitServices.cta'),
-    },
-    {
-      icon: Stamp,
-      title: t('features.notaryServices.title'),
-      description: t('features.notaryServices.description'),
-      href: "/notary",
-      cta: t('features.notaryServices.cta'),
+      title: t('features.documentServices.title'),
+      description: t('features.documentServices.description'),
+      href: "/document-services",
+      cta: t('features.documentServices.cta'),
     },
   ];
 

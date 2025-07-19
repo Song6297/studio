@@ -42,15 +42,10 @@
       "description": "Empower yourself with knowledge. Browse our portal of articles and guides on Indian law and your rights.",
       "cta": "Explore Portal"
     },
-    "affidavitServices": {
-      "title": "Affidavit Services",
-      "description": "Create and validate legally binding affidavits for various purposes with professional assistance.",
-      "cta": "Get Affidavit"
-    },
-    "notaryServices": {
-      "title": "Notary Services",
-      "description": "Get your important documents notarized quickly and securely by certified professionals.",
-      "cta": "Notarize Document"
+    "documentServices": {
+      "title": "Document Services",
+      "description": "Create affidavits and get documents notarized with professional assistance.",
+      "cta": "Get Started"
     }
   },
   "caseSubmission": {
