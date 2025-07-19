@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale, Gavel } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Stamp, Gavel } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 
 export default function Home() {
@@ -37,14 +37,14 @@ export default function Home() {
       icon: PenSquare,
       title: t('features.affidavitServices.title'),
       description: t('features.affidavitServices.description'),
-      href: "/case-submission",
+      href: "/affidavit",
       cta: t('features.affidavitServices.cta'),
     },
     {
-      icon: Scale,
+      icon: Stamp,
       title: t('features.notaryServices.title'),
       description: t('features.notaryServices.description'),
-      href: "/case-submission",
+      href: "/notary",
       cta: t('features.notaryServices.cta'),
     },
   ];
@@ -56,9 +56,7 @@ export default function Home() {
     <>
       <section className="relative w-full bg-background pt-20 md:pt-32 lg:pt-40">
         <div className="container flex min-h-[calc(80vh-15rem)] flex-col items-center justify-center text-center">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[400px] opacity-5 dark:opacity-10">
-              <AshokaChakraIcon />
-          </div>
+          
           <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
             {t('home.mainHeading')}
           </h1>
@@ -117,7 +115,7 @@ export default function Home() {
             </div>
             <div className="mx-auto grid grid-cols-1 items-stretch gap-8 py-12 sm:grid-cols-2 lg:grid-cols-3">
                 {features.map((feature) => (
-                    <Card key={feature.title} className="group flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+                    <Card key={feature.title} className="group flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl bg-card/80 backdrop-blur-sm">
                       <CardHeader>
                         <div className="mb-4 flex items-center gap-4">
                           <div className="rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
