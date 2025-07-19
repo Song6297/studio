@@ -16,16 +16,36 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { cn } from '@/lib/utils';
 import { useLanguage, languages } from '@/context/language-context';
+import { useState, useEffect } from 'react';
 
 export function Header() {
   const pathname = usePathname();
   const { t, setLanguage, currentLang } = useLanguage();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const navLinks = [
     { href: '/case-submission', label: t('header.registerCase') },
     { href: '/legal-awareness', label: t('header.awareness') },
     { href: '/ai-legal-guide', label: t('header.aiLegalAdvice') },
   ];
+
+  if (!isMounted) {
+    return (
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center">
+            <div className="flex items-center gap-6 flex-1">
+              <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4">
+                  <Logo />
+              </Link>
+            </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
