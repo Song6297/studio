@@ -50,7 +50,7 @@ export default function Home() {
       <section className="relative w-full bg-background pt-20 md:pt-32 lg:pt-40 overflow-hidden">
         <div className="container flex min-h-[calc(80vh-15rem)] flex-col items-center justify-center text-center">
           
-          <div className="w-24 h-24 mb-6 text-primary">
+          <div className="w-32 h-32 mb-6 text-primary">
               <AshokaChakraIcon />
           </div>
 
