@@ -33,7 +33,7 @@ export function Header() {
     { href: '/legal-awareness', label: t('header.awareness') },
     { href: '/ai-legal-guide', label: t('header.aiLegalAdvice') },
     { href: '/document-services', label: t('header.documentServices') },
-    { href: '/legal-templates', label: t('header.legalTemplates') },
+    { href: '/legal-templates', label: t('header.legalLetters') },
   ];
 
   if (!isMounted) {

@@ -5,7 +5,7 @@
     "awareness": "Awareness",
     "aiLegalAdvice": "AI Legal Advice",
     "documentServices": "Document Services",
-    "legalTemplates": "Legal Templates",
+    "legalLetters": "Legal Letters",
     "indianConstitution": "Indian Constitution",
     "login": "Log In",
     "register": "Register",
@@ -55,10 +55,10 @@
       "description": "Create affidavits and get documents notarized with professional assistance.",
       "cta": "Get Started"
     },
-    "legalTemplates": {
-      "title": "Legal Templates",
-      "description": "Generate drafts for common legal documents like rent agreements, legal notices, and more.",
-      "cta": "Create Document"
+    "legalLetters": {
+      "title": "Legal Letters",
+      "description": "Generate drafts for common legal letters like rent agreements, legal notices, and more.",
+      "cta": "Create Letter"
     }
   },
   "indianConstitution": {

@@ -51,10 +51,10 @@ export default function Home() {
     },
     {
       icon: FileText,
-      title: t('features.legalTemplates.title'),
-      description: t('features.legalTemplates.description'),
+      title: t('features.legalLetters.title'),
+      description: t('features.legalLetters.description'),
       href: "/legal-templates",
-      cta: t('features.legalTemplates.cta'),
+      cta: t('features.legalLetters.cta'),
     },
   ];
 

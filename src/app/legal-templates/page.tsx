@@ -35,8 +35,8 @@ function RentAgreementGenerator() {
       landlordName: '',
       tenantName: '',
       propertyAddress: '',
-      rentAmount: undefined,
-      securityDeposit: undefined,
+      rentAmount: 0,
+      securityDeposit: 0,
       startDate: '',
       endDate: '',
       clauses: [{ value: 'The tenant shall not make any structural alterations to the property.' }],
@@ -441,7 +441,7 @@ function LegalNoticeGenerator() {
       recipientAddress: '', 
       subject: '', 
       noticeDetails: '', 
-      claimAmount: undefined,
+      claimAmount: 0,
       complianceDays: 15 
     },
   });
@@ -571,8 +571,8 @@ export default function LegalTemplatesPage() {
         <div className="container py-12 md:py-24">
             <div className="flex flex-col items-center text-center">
                 <FileText className="h-12 w-12 text-primary" />
-                <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">Legal Form Templates</h1>
-                <p className="mt-2 text-lg text-muted-foreground">Generate drafts for common legal documents.</p>
+                <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">Legal Letters</h1>
+                <p className="mt-2 text-lg text-muted-foreground">Generate drafts for common legal letters and documents.</p>
             </div>
             <Tabs defaultValue="rent-agreement" className="mt-8">
                 <TabsList className="grid w-full grid-cols-4">
