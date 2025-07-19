@@ -1,4 +1,4 @@
-import { AshokaChakraIcon } from '@/components/icons/emblem';
+import { AshokaChakraWithText } from '@/components/icons/emblem';
 import { Logo } from '@/components/icons/logo';
 import Link from 'next/link';
 
@@ -18,9 +18,7 @@ export function Footer() {
               Disclaimer: The information provided on this website does not, and is not intended to, constitute legal advice; instead, all information, content, and materials available on this site are for general informational purposes only.
             </p>
           </div>
-          <div className="flex items-center justify-center w-24 h-24 text-primary">
-            <AshokaChakraIcon />
-          </div>
+          <AshokaChakraWithText />
         </div>
       </div>
     </footer>
