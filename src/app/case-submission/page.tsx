@@ -45,16 +45,16 @@ export default function CaseSubmissionPage() {
   }
 
   return (
-    <div className="container py-12">
+    <div className="container py-12 md:py-24">
       <Card className="mx-auto max-w-3xl">
-        <CardHeader className="text-center">
+        <CardHeader className="text-center p-8">
           <FileText className="mx-auto h-12 w-12 text-primary" />
           <CardTitle className="mt-4 font-headline text-3xl md:text-4xl">Register Your Case</CardTitle>
-          <CardDescription className="text-lg text-muted-foreground">
+          <CardDescription className="text-lg text-muted-foreground mt-2">
             Fill out the form below to get started. Our team will review your case.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-8 pt-0">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

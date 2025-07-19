@@ -47,17 +47,17 @@ export default function Home() {
   return (
     <>
       <section className="relative w-full bg-background">
-        <div className="container flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center text-center">
+        <div className="container flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center text-center py-12 md:py-24">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[400px] opacity-5 dark:opacity-10">
               <AshokaChakraIcon />
           </div>
           <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
             Justice, Rights, and Support
           </h1>
-          <p className="mx-auto mt-4 max-w-[700px] text-lg text-muted-foreground md:text-xl">
+          <p className="mx-auto mt-6 max-w-[700px] text-lg text-muted-foreground md:text-xl">
             A unified platform connecting citizens with legal professionals and NGOs to ensure access to justice for all.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="/case-submission">
                 Get Started <ArrowRight className="ml-2 h-5 w-5" />
@@ -72,8 +72,8 @@ export default function Home() {
 
       <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
         <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                <div className="space-y-2">
+            <div className="flex flex-col items-center justify-center space-y-6 text-center">
+                <div className="space-y-3">
                     <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">Our Services</div>
                     <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">Your Gateway to Legal Solutions</h2>
                     <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">

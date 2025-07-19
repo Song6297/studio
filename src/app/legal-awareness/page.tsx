@@ -52,7 +52,7 @@ const articles = [
 
 export default function LegalAwarenessPage() {
     return (
-        <div className="container py-12">
+        <div className="container py-12 md:py-24">
             <div className="flex flex-col items-center text-center">
                 <BookOpen className="h-12 w-12 text-primary" />
                 <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">Legal Awareness Portal</h1>
@@ -62,7 +62,7 @@ export default function LegalAwarenessPage() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input placeholder="Search articles..." className="pl-10" />
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {articles.map((article, index) => (
                     <Card key={index} className="flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
                         <Image src={article.image} alt={article.title} width={600} height={400} className="h-48 w-full object-cover" data-ai-hint={article.hint}/>

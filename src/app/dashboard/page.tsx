@@ -35,7 +35,7 @@ const ngoCases = [
 
 export default function DashboardPage() {
   return (
-    <div className="container py-12">
+    <div className="container py-12 md:py-24">
       <div className="flex flex-col items-center text-center">
         <LayoutDashboard className="h-12 w-12 text-primary" />
         <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">Dashboard</h1>

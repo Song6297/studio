@@ -55,7 +55,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="container flex min-h-[calc(100vh-8rem)] items-center justify-center py-12">
+    <div className="container flex min-h-[calc(100vh-8rem)] items-center justify-center py-12 md:py-24">
       <Tabs defaultValue={defaultTab} className="w-full max-w-md">
         <div className="text-center mb-8">
             <UserPlus className="mx-auto h-12 w-12 text-primary" />
