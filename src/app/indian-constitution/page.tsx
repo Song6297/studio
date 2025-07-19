@@ -132,29 +132,7 @@ export default function IndianConstitutionPage() {
                             <Shield />
                         </div>
                         <div className="space-y-8 h-full flex flex-col overflow-y-auto">
-                            <section id="history">
-                                <div className="flex items-center gap-4 mb-4">
-                                    <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
-                                        <History className="h-6 w-6" />
-                                    </div>
-                                    <h2 className="font-headline text-2xl font-bold tracking-tighter sm:text-3xl">{historyOfConstitution.title}</h2>
-                                </div>
-                                <Accordion type="single" collapsible className="w-full">
-                                    <AccordionItem value="history-item">
-                                        <AccordionTrigger className="font-headline text-lg hover:no-underline">{historyOfConstitution.description}</AccordionTrigger>
-                                        <AccordionContent className="text-base text-muted-foreground">
-                                            <ul className="space-y-4 list-disc list-inside">
-                                                {historyOfConstitution.content.map((item, index) => (
-                                                    <li key={index}>
-                                                        <span className="font-semibold text-foreground/90">{item.point}</span> {item.text}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                </Accordion>
-                            </section>
-
+                           
                             <section id="fundamental-rights">
                                 <div className="flex items-center gap-4 mb-4">
                                     <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
@@ -205,11 +183,28 @@ export default function IndianConstitutionPage() {
                             </section>
                         </div>
                     </div>
-
                 </div>
             </div>
+
+            <section id="history" className="mx-auto max-w-6xl mt-16 p-8 bg-card rounded-lg shadow-xl">
+                <div className="flex items-center gap-4 mb-4">
+                    <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                        <History className="h-8 w-8" />
+                    </div>
+                    <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">{historyOfConstitution.title}</h2>
+                </div>
+                <p className="text-muted-foreground text-lg mb-6">
+                    {historyOfConstitution.description}
+                </p>
+                <div className="grid md:grid-cols-2 gap-x-8 gap-y-6">
+                    {historyOfConstitution.content.map((item, index) => (
+                        <div key={index}>
+                            <h3 className="font-headline text-xl font-semibold text-primary">{item.point}</h3>
+                            <p className="mt-1 text-foreground/90">{item.text}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
         </div>
     );
 }
-
-    
