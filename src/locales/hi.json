@@ -4,13 +4,14 @@
     "registerCase": "मामला दर्ज करें",
     "awareness": "जागरूकता",
     "aiLegalAdvice": "एआई कानूनी सलाह",
-    "documentServices": "दस्तावेज़ सेवाएं",
+    "volunteerNetwork": "स्वयंसेवी नेटवर्क",
     "legalLetters": "कानूनी पत्र",
     "indianConstitution": "भारतीय संविधान",
     "login": "लॉग इन करें",
     "register": "पंजीकरण करें",
     "registerAsAdvocate": "अधिवक्ता/कानूनी सलाहकार के रूप में",
     "registerAsNgo": "एनजीओ के रूप में",
+    "registerAsVolunteer": "पैरालीगल स्वयंसेवक के रूप में",
     "changeLanguage": "भाषा बदलें",
     "toggleMenu": "मेनू टॉगल करें",
     "registerLogin": "पंजीकरण / लॉग इन करें"
@@ -50,10 +51,10 @@
       "description": "ज्ञान से खुद को सशक्त बनाएं। भारतीय कानून और अपने अधिकारों पर हमारे लेखों और गाइडों के पोर्टल को ब्राउज़ करें।",
       "cta": "पोर्टल का अन्वेषण करें"
     },
-    "documentServices": {
-      "title": "Document Services",
-      "description": "Create affidavits and get documents notarized with professional assistance.",
-      "cta": "Get Started"
+    "volunteerNetwork": {
+      "title": "पैरालीगल स्वयंसेवक",
+      "description": "कानूनी अनुसंधान, प्रारूपण और मामले के मूल्यांकन में सहायता के लिए हमारे विधि छात्रों और पैरालीगल के नेटवर्क में शामिल हों।",
+      "cta": "नेटवर्क में शामिल हों"
     },
     "legalLetters": {
       "title": "कानूनी पत्र",
@@ -192,10 +193,11 @@
   },
   "register": {
     "title": "हमारे नेटवर्क में शामिल हों",
-    "description": "एक अधिवक्ता या एक गैर-सरकारी संगठन के रूप में पंजीकरण करें।",
+    "description": "एक अधिवक्ता, एनजीओ, या स्वयंसेवक के रूप में पंजीकरण करें।",
     "tabs": {
         "advocate": "अधिवक्ता/कानूनी सलाहकार",
-        "ngo": "गैर सरकारी संगठन"
+        "ngo": "गैर सरकारी संगठन",
+        "volunteer": "स्वयंसेवक"
     },
     "advocate": {
         "cardTitle": "अधिवक्ता पंजीकरण",
@@ -260,6 +262,44 @@
             "successTitle": "एनजीओ पंजीकरण सफल!",
             "successDescription": "आपकी प्रोफ़ाइल समीक्षाधीन है।"
         }
+    },
+    "volunteer": {
+        "cardTitle": "पैरालीगल स्वयंसेवक पंजीकरण",
+        "cardDescription": "अनुभव प्राप्त करने के लिए हमारे नेटवर्क में शामिल हों।",
+        "form": {
+            "fullName": {
+                "label": "पूरा नाम",
+                "placeholder": "जेन स्मिथ"
+            },
+            "email": {
+                "label": "ईमेल",
+                "placeholder": "volunteer@example.com"
+            },
+            "university": {
+                "label": "विश्वविद्यालय / संस्थान",
+                "placeholder": "राष्ट्रीय विधि विद्यालय"
+            },
+            "password": {
+                "label": "पासवर्ड"
+            },
+            "submitButton": "स्वयंसेवक के रूप में पंजीकरण करें"
+        },
+        "validation": {
+            "fullNameRequired": "पूरा नाम आवश्यक है",
+            "emailInvalid": "अमान्य ईमेल पता",
+            "universityRequired": "कृपया अपना विश्वविद्यालय या संस्थान दर्ज करें",
+            "passwordRequired": "पासवर्ड कम से कम 8 वर्ण का होना चाहिए"
+        },
+        "toast": {
+            "successTitle": "स्वयंसेवक पंजीकरण सफल!",
+            "successDescription": "आपका आवेदन समीक्षा के लिए प्रस्तुत किया गया है।"
+        }
     }
+  },
+  "volunteerNetwork": {
+    "title": "पैरालीगल स्वयंसेवक नेटवर्क",
+    "description": "पेशेवर पर्यवेक्षण के तहत वास्तविक मामलों में योगदान करने के अवसरों के साथ उत्साही कानून के छात्रों और पैरालीगल को जोड़ना।",
+    "searchPlaceholder": "कौशल या नाम से स्वयंसेवकों को खोजें...",
+    "contactButton": "स्वयंसेवक से संपर्क करें"
   }
 }

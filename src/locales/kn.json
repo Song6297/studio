@@ -4,13 +4,14 @@
     "registerCase": "ಪ್ರಕರಣವನ್ನು ನೋಂದಾಯಿಸಿ",
     "awareness": "ಅರಿವು",
     "aiLegalAdvice": "AI ಕಾನೂನು ಸಲಹೆ",
-    "documentServices": "ದಾಖಲೆ ಸೇವೆಗಳು",
+    "volunteerNetwork": "ಸ್ವಯಂಸೇವಕ ಜಾಲ",
     "legalLetters": "ಕಾನೂನು ಪತ್ರಗಳು",
     "indianConstitution": "ಭಾರತದ ಸಂವಿಧಾನ",
     "login": "ಲಾಗಿನ್ ಮಾಡಿ",
     "register": "ನೋಂದಾಯಿಸಿ",
     "registerAsAdvocate": "ವಕೀಲ/ಕಾನೂನು ಸಲಹೆಗಾರರಾಗಿ",
     "registerAsNgo": "NGO ಆಗಿ",
+    "registerAsVolunteer": "ಪ್ಯಾರಾಲೀಗಲ್ ಸ್ವಯಂಸೇವಕರಾಗಿ",
     "changeLanguage": "ಭಾಷೆ ಬದಲಾಯಿಸಿ",
     "toggleMenu": "ಮೆನು ಬದಲಿಸಿ",
     "registerLogin": "ನೋಂದಾಯಿಸಿ / ಲಾಗಿನ್ ಮಾಡಿ"
@@ -50,10 +51,10 @@
       "description": "ಜ್ಞಾನದಿಂದ ನಿಮ್ಮನ್ನು ಸಬಲೀಕರಣಗೊಳಿಸಿ. ಭಾರತೀಯ ಕಾನೂನು ಮತ್ತು ನಿಮ್ಮ ಹಕ್ಕುಗಳ ಕುರಿತ ನಮ್ಮ ಲೇಖನಗಳು ಮತ್ತು ಮಾರ್ಗದರ್ಶಿಗಳ ಪೋರ್ಟಲ್ ಅನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ.",
       "cta": "ಪೋರ್ಟಲ್ ಅನ್ವೇಷಿಸಿ"
     },
-    "documentServices": {
-      "title": "Document Services",
-      "description": "Create affidavits and get documents notarized with professional assistance.",
-      "cta": "Get Started"
+    "volunteerNetwork": {
+      "title": "ಪ್ಯಾರಾಲೀಗಲ್ ಸ್ವಯಂಸೇವಕರು",
+      "description": "ಕಾನೂನು ಸಂಶೋಧನೆ, ಕರಡು ರಚನೆ ಮತ್ತು ಪ್ರಕರಣ ಮೌಲ್ಯಮಾಪನದಲ್ಲಿ ಸಹಾಯ ಮಾಡಲು ನಮ್ಮ ಕಾನೂನು ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಪ್ಯಾರಾಲೀಗಲ್‌ಗಳ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸೇರಿ.",
+      "cta": "ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸೇರಿ"
     },
     "legalLetters": {
       "title": "ಕಾನೂನು ಪತ್ರಗಳು",
@@ -192,10 +193,11 @@
   },
   "register": {
     "title": "ನಮ್ಮ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸೇರಿ",
-    "description": "ವಕೀಲರಾಗಿ ಅಥವಾ ಎನ್‌ಜಿಒ ಆಗಿ ನೋಂದಾಯಿಸಿ.",
+    "description": "ವಕೀಲರಾಗಿ, ಎನ್‌ಜಿಒ ಆಗಿ ಅಥವಾ ಸ್ವಯಂಸೇವಕರಾಗಿ ನೋಂದಾಯಿಸಿ.",
     "tabs": {
         "advocate": "ವಕೀಲ/ಕಾನೂನು ಸಲಹೆಗಾರ",
-        "ngo": "ಎನ್‌ಜಿಒ"
+        "ngo": "ಎನ್‌ಜಿಒ",
+        "volunteer": "ಸ್ವಯಂಸೇವಕ"
     },
     "advocate": {
         "cardTitle": "ವಕೀಲರ ನೋಂದಣಿ",
@@ -260,6 +262,44 @@
             "successTitle": "ಎನ್‌ಜಿಒ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ!",
             "successDescription": "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ."
         }
+    },
+    "volunteer": {
+        "cardTitle": "ಪ್ಯಾರಾಲೀಗಲ್ ಸ್ವಯಂಸೇವಕರ ನೋಂದಣಿ",
+        "cardDescription": "ಅನುಭವ ಪಡೆಯಲು ನಮ್ಮ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ಸೇರಿ.",
+        "form": {
+            "fullName": {
+                "label": "ಪೂರ್ಣ ಹೆಸರು",
+                "placeholder": "ಜೇನ್ ಸ್ಮಿತ್"
+            },
+            "email": {
+                "label": "ಇಮೇಲ್",
+                "placeholder": "volunteer@example.com"
+            },
+            "university": {
+                "label": "ವಿಶ್ವವಿದ್ಯಾಲಯ / ಸಂಸ್ಥೆ",
+                "placeholder": "ರಾಷ್ಟ್ರೀಯ ಕಾನೂನು ಶಾಲೆ"
+            },
+            "password": {
+                "label": "ಗುಪ್ತಪದ"
+            },
+            "submitButton": "ಸ್ವಯಂಸೇವಕರಾಗಿ ನೋಂದಾಯಿಸಿ"
+        },
+        "validation": {
+            "fullNameRequired": "ಪೂರ್ಣ ಹೆಸರು ಅಗತ್ಯವಿದೆ",
+            "emailInvalid": "ಅಮಾನ್ಯ ಇಮೇಲ್ ವಿಳಾಸ",
+            "universityRequired": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ವಿಶ್ವವಿದ್ಯಾಲಯ ಅಥವಾ ಸಂಸ್ಥೆಯನ್ನು ನಮೂದಿಸಿ",
+            "passwordRequired": "ಗುಪ್ತಪದ ಕನಿಷ್ಠ 8 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು"
+        },
+        "toast": {
+            "successTitle": "ಸ್ವಯಂಸೇವಕರ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ!",
+            "successDescription": "ನಿಮ್ಮ ಅರ್ಜಿಯನ್ನು ಪರಿಶೀಲನೆಗಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ."
+        }
     }
+  },
+  "volunteerNetwork": {
+    "title": "ಪ್ಯಾರಾಲೀಗಲ್ ಸ್ವಯಂಸೇವಕ ಜಾಲ",
+    "description": "ವೃತ್ತಿಪರ ಮೇಲ್ವಿಚಾರಣೆಯಲ್ಲಿ ನಿಜವಾದ ಪ್ರಕರಣಗಳಿಗೆ ಕೊಡುಗೆ ನೀಡುವ ಅವಕಾಶಗಳೊಂದಿಗೆ ಭಾವೋದ್ರಿಕ್ತ ಕಾನೂನು ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಪ್ಯಾರಾಲೀಗಲ್‌ಗಳನ್ನು ಸಂಪರ್ಕಿಸುವುದು.",
+    "searchPlaceholder": "ಕೌಶಲ್ಯ ಅಥವಾ ಹೆಸರಿನಿಂದ ಸ್ವಯಂಸೇವಕರನ್ನು ಹುಡುಕಿ...",
+    "contactButton": "ಸ್ವಯಂಸೇವಕರನ್ನು ಸಂಪರ್ಕಿಸಿ"
   }
 }

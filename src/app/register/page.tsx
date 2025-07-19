@@ -33,6 +33,13 @@ export default function RegisterPage() {
     contactEmail: z.string().email(t('register.ngo.validation.emailInvalid')),
     password: z.string().min(8, t('register.ngo.validation.passwordRequired')),
   });
+  
+  const volunteerSchema = z.object({
+    fullName: z.string().min(2, t('register.volunteer.validation.fullNameRequired')),
+    email: z.string().email(t('register.volunteer.validation.emailInvalid')),
+    university: z.string().min(3, t('register.volunteer.validation.universityRequired')),
+    password: z.string().min(8, t('register.volunteer.validation.passwordRequired')),
+  });
 
   const advocateForm = useForm<z.infer<typeof advocateSchema>>({
     resolver: zodResolver(advocateSchema),
@@ -42,6 +49,11 @@ export default function RegisterPage() {
   const ngoForm = useForm<z.infer<typeof ngoSchema>>({
     resolver: zodResolver(ngoSchema),
     defaultValues: { ngoName: '', registrationNumber: '', contactEmail: '', password: '' },
+  });
+  
+  const volunteerForm = useForm<z.infer<typeof volunteerSchema>>({
+    resolver: zodResolver(volunteerSchema),
+    defaultValues: { fullName: '', email: '', university: '', password: '' },
   });
 
   function onAdvocateSubmit(values: z.infer<typeof advocateSchema>) {
@@ -56,6 +68,12 @@ export default function RegisterPage() {
     ngoForm.reset();
   }
 
+  function onVolunteerSubmit(values: z.infer<typeof volunteerSchema>) {
+    console.log(values);
+    toast({ title: t('register.volunteer.toast.successTitle'), description: t('register.volunteer.toast.successDescription') });
+    volunteerForm.reset();
+  }
+
   return (
     <div className="container flex min-h-[calc(100vh-8rem)] items-center justify-center py-12 md:py-24">
       <Tabs defaultValue={defaultTab} className="w-full max-w-md">
@@ -64,9 +82,10 @@ export default function RegisterPage() {
             <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">{t('register.title')}</h1>
             <p className="mt-2 text-lg text-muted-foreground">{t('register.description')}</p>
         </div>
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="advocate">{t('register.tabs.advocate')}</TabsTrigger>
           <TabsTrigger value="ngo">{t('register.tabs.ngo')}</TabsTrigger>
+          <TabsTrigger value="volunteer">{t('register.tabs.volunteer')}</TabsTrigger>
         </TabsList>
         <TabsContent value="advocate" className="mt-6">
           <Card className="bg-card/80 backdrop-blur-sm">
@@ -122,7 +141,34 @@ export default function RegisterPage() {
             </CardContent>
           </Card>
         </TabsContent>
+         <TabsContent value="volunteer" className="mt-6">
+          <Card className="bg-card/80 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="font-headline">{t('register.volunteer.cardTitle')}</CardTitle>
+              <CardDescription>{t('register.volunteer.cardDescription')}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Form {...volunteerForm}>
+                <form onSubmit={volunteerForm.handleSubmit(onVolunteerSubmit)} className="space-y-4">
+                  <FormField control={volunteerForm.control} name="fullName" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.volunteer.form.fullName.label')}</FormLabel><FormControl><Input placeholder={t('register.volunteer.form.fullName.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                  )} />
+                  <FormField control={volunteerForm.control} name="email" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.volunteer.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('register.volunteer.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                  )} />
+                   <FormField control={volunteerForm.control} name="university" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.volunteer.form.university.label')}</FormLabel><FormControl><Input placeholder={t('register.volunteer.form.university.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                  )} />
+                  <FormField control={volunteerForm.control} name="password" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.volunteer.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
+                  )} />
+                  <Button type="submit" className="w-full">{t('register.volunteer.form.submitButton')}</Button>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+        </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

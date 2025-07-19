@@ -4,13 +4,14 @@
     "registerCase": "Register Case",
     "awareness": "Awareness",
     "aiLegalAdvice": "AI Legal Advice",
-    "documentServices": "Document Services",
+    "volunteerNetwork": "Volunteer Network",
     "legalLetters": "Legal Letters",
     "indianConstitution": "Indian Constitution",
     "login": "Log In",
     "register": "Register",
     "registerAsAdvocate": "As Advocate/Legal Adviser",
     "registerAsNgo": "As NGO",
+    "registerAsVolunteer": "As Paralegal Volunteer",
     "changeLanguage": "Change language",
     "toggleMenu": "Toggle Menu",
     "registerLogin": "Register / Log In"
@@ -50,10 +51,10 @@
       "description": "Empower yourself with knowledge. Browse our portal of articles and guides on Indian law and your rights.",
       "cta": "Explore Portal"
     },
-    "documentServices": {
-      "title": "Document Services",
-      "description": "Create affidavits and get documents notarized with professional assistance.",
-      "cta": "Get Started"
+    "volunteerNetwork": {
+      "title": "Paralegal Volunteers",
+      "description": "Join our network of law students and paralegals to assist with legal research, drafting, and case evaluation.",
+      "cta": "Join the Network"
     },
     "legalLetters": {
       "title": "Legal Letters",
@@ -192,10 +193,11 @@
   },
   "register": {
     "title": "Join Our Network",
-    "description": "Register as an Advocate or an NGO.",
+    "description": "Register as an Advocate, NGO, or Volunteer.",
     "tabs": {
         "advocate": "Advocate/Legal Adviser",
-        "ngo": "NGO"
+        "ngo": "NGO",
+        "volunteer": "Volunteer"
     },
     "advocate": {
         "cardTitle": "Advocate Registration",
@@ -260,6 +262,44 @@
             "successTitle": "NGO Registration Successful!",
             "successDescription": "Your profile is under review."
         }
+    },
+    "volunteer": {
+        "cardTitle": "Paralegal Volunteer Registration",
+        "cardDescription": "Join our network to gain experience.",
+        "form": {
+            "fullName": {
+                "label": "Full Name",
+                "placeholder": "Jane Smith"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "volunteer@example.com"
+            },
+            "university": {
+                "label": "University / Institution",
+                "placeholder": "National Law School"
+            },
+            "password": {
+                "label": "Password"
+            },
+            "submitButton": "Register as Volunteer"
+        },
+        "validation": {
+            "fullNameRequired": "Full name is required",
+            "emailInvalid": "Invalid email address",
+            "universityRequired": "Please enter your university or institution",
+            "passwordRequired": "Password must be at least 8 characters"
+        },
+        "toast": {
+            "successTitle": "Volunteer Registration Successful!",
+            "successDescription": "Your application has been submitted for review."
+        }
     }
+  },
+  "volunteerNetwork": {
+    "title": "Paralegal Volunteers Network",
+    "description": "Connecting passionate law students and paralegals with opportunities to contribute to real cases under professional supervision.",
+    "searchPlaceholder": "Search volunteers by skill or name...",
+    "contactButton": "Contact Volunteer"
   }
 }

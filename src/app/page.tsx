@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale, Gavel } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale, Gavel, Handshake } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 
 export default function Home() {
@@ -43,11 +43,11 @@ export default function Home() {
       cta: t('features.legalAwareness.cta'),
     },
     {
-      icon: PenSquare,
-      title: t('features.documentServices.title'),
-      description: t('features.documentServices.description'),
-      href: "/document-services",
-      cta: t('features.documentServices.cta'),
+      icon: Handshake,
+      title: t('features.volunteerNetwork.title'),
+      description: t('features.volunteerNetwork.description'),
+      href: "/volunteer-network",
+      cta: t('features.volunteerNetwork.cta'),
     },
     {
       icon: FileText,

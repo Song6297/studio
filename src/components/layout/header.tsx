@@ -32,8 +32,8 @@ export function Header() {
     { href: '/indian-constitution', label: t('header.indianConstitution') },
     { href: '/legal-awareness', label: t('header.awareness') },
     { href: '/ai-legal-guide', label: t('header.aiLegalAdvice') },
-    { href: '/document-services', label: t('header.documentServices') },
-    { href: '/legal-templates', label: t('header.legalLetters') },
+    { href: '/volunteer-network', label: t('header.volunteerNetwork') },
+    { href: '/legal-letters', label: t('header.legalLetters') },
   ];
 
   if (!isMounted) {
@@ -104,6 +104,9 @@ export function Header() {
                 <DropdownMenuItem asChild>
                   <Link href="/register?type=ngo">{t('header.registerAsNgo')}</Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/register?type=volunteer">{t('header.registerAsVolunteer')}</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
         </div>
@@ -166,6 +169,9 @@ export function Header() {
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link href="/register?type=ngo">{t('header.registerAsNgo')}</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/register?type=volunteer">{t('header.registerAsVolunteer')}</Link>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
