@@ -143,7 +143,7 @@ function DashboardPage() {
     });
 
     // Events Table
-    const finalY = doc.autoTable.previous.finalY + 10;
+    const finalY = (doc as any).autoTable.previous.finalY + 10;
     doc.autoTable({
         startY: finalY,
         head: [['Date', 'Event/Update']],
