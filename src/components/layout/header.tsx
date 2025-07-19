@@ -2,8 +2,8 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Menu, Languages, Globe } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { Menu, Languages, Globe, LogOut } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -16,11 +16,16 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { cn } from '@/lib/utils';
 import { useLanguage, languages } from '@/context/language-context';
+import { useAuth } from '@/context/auth-context';
+import { auth } from '@/lib/firebase';
+import { signOut } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 
 export function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const { t, setLanguage, currentLang } = useLanguage();
+  const { user, loading } = useAuth();
   const [isMounted, setIsMounted] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
@@ -28,8 +33,12 @@ export function Header() {
     setIsMounted(true);
   }, []);
 
+  const handleLogout = async () => {
+    await signOut(auth);
+    router.push('/');
+  };
+
   const navLinks = [
-    { href: '/dashboard', label: t('header.dashboard') },
     { href: '/case-submission', label: t('header.registerCase') },
     { href: '/case-status', label: t('header.caseStatus') },
     { href: '/file-rti', label: t('header.fileRti') },
@@ -38,6 +47,13 @@ export function Header() {
     { href: '/ai-legal-guide', label: t('header.aiLegalAdvice') },
     { href: '/volunteer-network', label: t('header.volunteerNetwork') },
   ];
+  
+  const loggedInLinks = [
+    { href: '/dashboard', label: t('header.dashboard')},
+    ...navLinks,
+  ]
+
+  const linksToShow = user ? loggedInLinks : navLinks;
 
   if (!isMounted) {
     return (
@@ -61,7 +77,7 @@ export function Header() {
               <Logo />
             </Link>
             <nav className="hidden items-center gap-6 lg:gap-8 md:flex">
-              {navLinks.map((link) => (
+              {linksToShow.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -98,14 +114,20 @@ export function Header() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-
+            
+            {user ? (
+                <Button onClick={handleLogout} variant="outline">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    {t('header.logout')}
+                </Button>
+            ) : (
              <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button>{t('header.registerLogin')}</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
-                  <Link href="/register">{t('header.login')}</Link>
+                  <Link href="/register?type=login">{t('header.login')}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
@@ -119,6 +141,7 @@ export function Header() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            )}
         </div>
 
         <div className="md:hidden ml-auto">
@@ -136,7 +159,7 @@ export function Header() {
                 </Link>
               </div>
               <nav className="mt-4 flex flex-col gap-2 p-4">
-                 {navLinks.map((link) => (
+                 {linksToShow.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
@@ -159,20 +182,26 @@ export function Header() {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       {languages.map((lang) => (
-                        <DropdownMenuItem key={lang.code} onSelect={() => {setLanguage(lang.code); setIsSheetOpen(false);}}>
+                        <DropdownMenuItem key={lang.code} onSelect={() => {setLanguage(lang.code);}}>
                             {lang.name}
                         </DropdownMenuItem>
                       ))}
                     </DropdownMenuContent>
                   </DropdownMenu>
 
+                {user ? (
+                    <Button onClick={() => { handleLogout(); setIsSheetOpen(false); }} className="mt-2 w-full">
+                        <LogOut className="mr-2 h-4 w-4" />
+                        {t('header.logout')}
+                    </Button>
+                ) : (
                  <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button className="mt-2 w-full">{t('header.registerLogin')}</Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       <DropdownMenuItem asChild>
-                        <Link href="/register" onClick={() => setIsSheetOpen(false)}>{t('header.login')}</Link>
+                        <Link href="/register?type=login" onClick={() => setIsSheetOpen(false)}>{t('header.login')}</Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
@@ -186,6 +215,7 @@ export function Header() {
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
+                )}
 
               </nav>
             </SheetContent>

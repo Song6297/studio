@@ -11,18 +11,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from '@/hooks/use-toast';
 import { UserPlus, Loader2 } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect, Suspense } from 'react';
-import { registerAdvocate, registerNgo, registerVolunteer } from './actions';
+import { registerAdvocate, registerNgo, registerVolunteer, login } from './actions';
 import { Textarea } from '@/components/ui/textarea';
 
 function RegisterForm() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const searchParams = useSearchParams();
-  const defaultTab = searchParams.get('type') || 'advocate';
+  const router = useRouter();
+  const defaultTab = searchParams.get('type') || 'login';
   const [isLoading, setIsLoading] = useState(false);
+  
+  const loginSchema = z.object({
+    email: z.string().email(t('register.advocate.validation.emailInvalid')),
+    password: z.string().min(1, 'Password is required.'),
+  });
   
   const advocateSchema = z.object({
     fullName: z.string().min(2, t('register.advocate.validation.fullNameRequired')),
@@ -46,6 +52,11 @@ function RegisterForm() {
     password: z.string().min(8, t('register.volunteer.validation.passwordRequired')),
   });
 
+  const loginForm = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: '', password: '' },
+  });
+
   const advocateForm = useForm<z.infer<typeof advocateSchema>>({
     resolver: zodResolver(advocateSchema),
     defaultValues: { fullName: '', email: '', barId: '', password: '' },
@@ -60,6 +71,18 @@ function RegisterForm() {
     resolver: zodResolver(volunteerSchema),
     defaultValues: { fullName: '', email: '', university: '', password: '' },
   });
+
+  async function onLoginSubmit(values: z.infer<typeof loginSchema>) {
+    setIsLoading(true);
+    const result = await login(values);
+    if (result.success) {
+      toast({ title: t('register.login.toast.successTitle') });
+      router.push('/dashboard');
+    } else {
+      toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
+    }
+    setIsLoading(false);
+  }
 
   async function onAdvocateSubmit(values: z.infer<typeof advocateSchema>) {
     setIsLoading(true);
@@ -99,11 +122,35 @@ function RegisterForm() {
   
   return (
     <Tabs defaultValue={defaultTab} className="w-full">
-      <TabsList className="grid w-full grid-cols-3">
+      <TabsList className="grid w-full grid-cols-4">
+        <TabsTrigger value="login">{t('register.tabs.login')}</TabsTrigger>
         <TabsTrigger value="advocate">{t('register.tabs.advocate')}</TabsTrigger>
         <TabsTrigger value="ngo">{t('register.tabs.ngo')}</TabsTrigger>
         <TabsTrigger value="volunteer">{t('register.tabs.volunteer')}</TabsTrigger>
       </TabsList>
+      <TabsContent value="login" className="mt-6">
+        <Card className="bg-card/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="font-headline">{t('register.login.cardTitle')}</CardTitle>
+            <CardDescription>{t('register.login.cardDescription')}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Form {...loginForm}>
+              <form onSubmit={loginForm.handleSubmit(onLoginSubmit)} className="space-y-4">
+                <FormField control={loginForm.control} name="email" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.advocate.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('register.advocate.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={loginForm.control} name="password" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.advocate.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? <Loader2 className="animate-spin" /> : t('register.login.form.submitButton')}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      </TabsContent>
       <TabsContent value="advocate" className="mt-6">
         <Card className="bg-card/80 backdrop-blur-sm">
           <CardHeader>
@@ -208,7 +255,7 @@ export default function RegisterPage() {
 
   return (
     <div className="container flex min-h-[calc(100vh-8rem)] items-center justify-center py-12 md:py-24">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-lg">
         <div className="text-center mb-8">
             <UserPlus className="mx-auto h-12 w-12 text-primary" />
             <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">{t('register.title')}</h1>

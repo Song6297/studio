@@ -1,20 +1,32 @@
 
 'use server';
 
-import { db } from '@/lib/firebase';
+import { auth, db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
-async function saveData(collectionName: string, data: any) {
+async function saveData(collectionName: string, data: any, shouldCreateUser: boolean = true) {
   try {
-    // For simplicity, we are not handling password hashing.
-    // In a real application, NEVER store plain text passwords.
     const { password, ...formData } = data;
-    
-    await addDoc(collection(db, collectionName), {
-      ...formData,
-      status: 'pending',
-      registeredAt: serverTimestamp(),
-    });
+
+    if (shouldCreateUser) {
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, password);
+      const user = userCredential.user;
+      
+      await addDoc(collection(db, collectionName), {
+        ...formData,
+        userId: user.uid,
+        status: 'pending',
+        registeredAt: serverTimestamp(),
+      });
+    } else {
+        await addDoc(collection(db, collectionName), {
+            ...formData,
+            status: 'pending',
+            registeredAt: serverTimestamp(),
+        });
+    }
+
     return { success: true };
   } catch (error) {
     console.error(`Error adding document to ${collectionName}: `, error);
@@ -23,6 +35,18 @@ async function saveData(collectionName: string, data: any) {
     }
     return { success: false, error: `An unknown error occurred while registering.` };
   }
+}
+
+export async function login(data: any) {
+    try {
+        await signInWithEmailAndPassword(auth, data.email, data.password);
+        return { success: true };
+    } catch (error) {
+        if (error instanceof Error) {
+            return { success: false, error: error.message };
+        }
+        return { success: false, error: 'An unknown error occurred during login.' };
+    }
 }
 
 
@@ -37,5 +61,3 @@ export async function registerNgo(formData: any) {
 export async function registerVolunteer(formData: any) {
     return saveData('volunteers', formData);
 }
-
-    

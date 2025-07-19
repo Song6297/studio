@@ -3,12 +3,14 @@
 
 import { useEffect, useState } from 'react';
 import { db } from '@/lib/firebase';
-import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
+import { collection, getDocs, query, where, orderBy, Timestamp } from 'firebase/firestore';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { LayoutDashboard, Download } from "lucide-react";
+import { LayoutDashboard, Download, Loader2 } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
+import { useAuth } from '@/context/auth-context';
+import { useRouter } from 'next/navigation';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
@@ -31,6 +33,7 @@ interface Case {
   description: string;
   parties: Party[];
   events: CaseEvent[];
+  userId: string;
 }
 
 // Extend jsPDF with autoTable method
@@ -41,15 +44,24 @@ interface jsPDFWithAutoTable extends jsPDF {
 
 function DashboardPage() {
   const { t } = useLanguage();
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
   const [cases, setCases] = useState<Case[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!authLoading && !user) {
+      router.push('/register?type=login');
+    }
+  }, [user, authLoading, router]);
+
+  useEffect(() => {
     async function fetchCases() {
+      if (!user) return;
       try {
         const casesCollection = collection(db, 'cases');
-        const q = query(casesCollection, orderBy('submittedAt', 'desc'));
+        const q = query(casesCollection, where("userId", "==", user.uid), orderBy('submittedAt', 'desc'));
         const querySnapshot = await getDocs(q);
         const casesData = querySnapshot.docs.map(doc => {
             const data = doc.data();
@@ -61,7 +73,8 @@ function DashboardPage() {
                 submittedAt: data.submittedAt,
                 description: data.description || 'No description provided.',
                 parties: data.parties || [{name: data.fullName, role: 'Petitioner'}],
-                events: data.events || [{date: data.submittedAt.toDate().toLocaleDateString(), description: 'Case registered.'}]
+                events: data.events || [{date: data.submittedAt.toDate().toLocaleDateString(), description: 'Case registered.'}],
+                userId: data.userId
             };
         }) as Case[];
         setCases(casesData);
@@ -72,9 +85,19 @@ function DashboardPage() {
         setIsLoading(false);
       }
     }
+    
+    if (user) {
+        fetchCases();
+    }
+  }, [t, user]);
 
-    fetchCases();
-  }, [t]);
+  if (authLoading || isLoading) {
+      return (
+          <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
+              <Loader2 className="h-10 w-10 animate-spin text-primary" />
+          </div>
+      );
+  }
 
   const getStatusVariant = (status: Case['status']) => {
     switch (status) {
@@ -140,7 +163,6 @@ function DashboardPage() {
         <p className="mt-2 text-lg text-muted-foreground">{t('dashboard.description')}</p>
       </div>
       
-      {isLoading && <p className="text-center">{t('caseStatus.loading')}</p>}
       {error && <p className="text-center text-destructive">{error}</p>}
       {!isLoading && !error && cases.length === 0 && (
         <p className="text-center text-muted-foreground">{t('caseStatus.noCases')}</p>

@@ -11,13 +11,14 @@
     "fileRti": "File RTI",
     "legalServices": "Legal Services",
     "login": "Log In",
+    "logout": "Log Out",
     "register": "Register",
     "registerAsAdvocate": "As Advocate/Legal Adviser",
     "registerAsNgo": "As NGO",
     "registerAsVolunteer": "As Paralegal Volunteer",
     "changeLanguage": "Change language",
     "toggleMenu": "Toggle Menu",
-    "registerLogin": "Register / Log In"
+    "registerLogin": "Log In / Register"
   },
   "footer": {
     "brandName": "My Legal Firm",
@@ -233,14 +234,25 @@
   },
   "register": {
     "title": "Join Our Network",
-    "description": "Register as an Advocate, NGO, or Volunteer.",
+    "description": "Log in or register as an Advocate, NGO, or Volunteer.",
     "tabs": {
-        "advocate": "Advocate/Legal Adviser",
+        "login": "Log In",
+        "advocate": "Advocate",
         "ngo": "NGO",
         "volunteer": "Volunteer"
     },
     "toast": {
-        "errorTitle": "Registration Failed"
+        "errorTitle": "Operation Failed"
+    },
+    "login": {
+        "cardTitle": "Log In to Your Account",
+        "cardDescription": "Access your dashboard and manage your activities.",
+        "form": {
+            "submitButton": "Log In"
+        },
+        "toast": {
+            "successTitle": "Login Successful!"
+        }
     },
     "advocate": {
         "cardTitle": "Advocate Registration",
@@ -535,7 +547,7 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "description": "Overview of all registered cases.",
+    "description": "Overview of your registered cases.",
     "generateEbrief": "Generate eBrief"
   }
 }

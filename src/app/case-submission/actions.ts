@@ -4,10 +4,11 @@
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
-export async function submitCase(formData: any) {
+export async function submitCase(formData: any, userId: string) {
   try {
     const docRef = await addDoc(collection(db, 'cases'), {
       ...formData,
+      userId: userId,
       submittedAt: serverTimestamp(),
       status: 'new'
     });

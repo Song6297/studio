@@ -13,18 +13,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useToast } from '@/hooks/use-toast';
 import { FileText, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
+import { useAuth } from '@/context/auth-context';
 import { submitCase } from './actions';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function CaseSubmissionPage() {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    if (!authLoading && !user) {
+        router.push('/register?type=login');
+    }
+  }, [user, authLoading, router]);
 
   const formSchema = z.object({
     fullName: z.string().min(2, t('caseSubmission.validation.fullNameRequired')),
@@ -45,12 +52,24 @@ export default function CaseSubmissionPage() {
     },
   });
 
+   useEffect(() => {
+    if (user) {
+      form.setValue('fullName', user.displayName || '');
+      form.setValue('email', user.email || '');
+    }
+  }, [user, form]);
+
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if(!user) {
+        toast({ variant: 'destructive', title: "Authentication Error", description: "You must be logged in to submit a case."});
+        return;
+    }
+
     setIsLoading(true);
-    // We are not handling file uploads yet, so we remove the document field.
     const { document, ...formData } = values;
     
-    const result = await submitCase(formData);
+    const result = await submitCase(formData, user.uid);
 
     if (result.success) {
       toast({
@@ -68,23 +87,10 @@ export default function CaseSubmissionPage() {
     setIsLoading(false);
   }
 
-  if (!isMounted) {
+  if (!isMounted || authLoading) {
     return (
-      <div className="container py-12 md:py-24">
-        <Card className="mx-auto max-w-3xl bg-card/80 backdrop-blur-sm">
-          <CardHeader className="text-center p-8">
-            <FileText className="mx-auto h-12 w-12 text-primary" />
-            <CardTitle className="mt-4 font-headline text-3xl md:text-4xl">{t('caseSubmission.title')}</CardTitle>
-            <CardDescription className="text-lg text-muted-foreground mt-2">
-              {t('caseSubmission.description')}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="p-8 pt-0">
-             <div className="flex justify-center items-center h-64">
-                <Loader2 className="h-10 w-10 animate-spin text-primary" />
-             </div>
-          </CardContent>
-        </Card>
+      <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
       </div>
     );
   }
