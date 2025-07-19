@@ -2,6 +2,7 @@
 {
   "header": {
     "registerCase": "Register Case",
+    "caseStatus": "Case Status",
     "awareness": "Awareness",
     "aiLegalAdvice": "AI Legal Advice",
     "volunteerNetwork": "Volunteer Network",
@@ -500,6 +501,27 @@
           "description": "Need help filing a Right to Information (RTI) request? Our volunteers will guide you through the process and help you draft your application."
         }
       ]
+    }
+  },
+   "caseStatus": {
+    "title": "Case Status Tracker",
+    "description": "View the status of all submitted cases.",
+    "loading": "Loading cases...",
+    "noCases": "No cases have been submitted yet.",
+    "error": {
+      "fetch": "Failed to load cases. Please try again later."
+    },
+    "table": {
+      "caseId": "Case ID",
+      "name": "Name",
+      "category": "Category",
+      "submitted": "Submitted",
+      "status": "Status"
+    },
+    "statusLabels": {
+      "new": "New",
+      "in-progress": "In Progress",
+      "resolved": "Resolved"
     }
   }
 }

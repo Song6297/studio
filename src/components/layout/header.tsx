@@ -30,6 +30,7 @@ export function Header() {
 
   const navLinks = [
     { href: '/case-submission', label: t('header.registerCase') },
+    { href: '/case-status', label: t('header.caseStatus') },
     { href: '/file-rti', label: t('header.fileRti') },
     { href: '/legal-services', label: t('header.legalServices') },
     { href: '/legal-awareness', label: t('header.awareness') },

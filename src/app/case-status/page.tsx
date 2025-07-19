@@ -1,0 +1,119 @@
+
+'use client';
+
+import { useEffect, useState } from 'react';
+import { db } from '@/lib/firebase';
+import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/context/language-context';
+import { FileSearch, Loader2 } from 'lucide-react';
+
+interface Case {
+  id: string;
+  fullName: string;
+  caseCategory: string;
+  status: 'new' | 'in-progress' | 'resolved';
+  submittedAt: Timestamp;
+}
+
+function CaseStatusPage() {
+  const { t } = useLanguage();
+  const [cases, setCases] = useState<Case[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchCases() {
+      try {
+        const casesCollection = collection(db, 'cases');
+        const q = query(casesCollection, orderBy('submittedAt', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const casesData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as Case[];
+        setCases(casesData);
+      } catch (err) {
+        console.error(err);
+        setError(t('caseStatus.error.fetch'));
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchCases();
+  }, [t]);
+
+  const getStatusVariant = (status: Case['status']) => {
+    switch (status) {
+      case 'new': return 'secondary';
+      case 'in-progress': return 'default';
+      case 'resolved': return 'outline';
+      default: return 'secondary';
+    }
+  };
+
+  const formatDate = (timestamp: Timestamp) => {
+    if (!timestamp) return 'N/A';
+    return timestamp.toDate().toLocaleDateString();
+  };
+
+  return (
+    <div className="container py-12 md:py-24">
+      <Card className="mx-auto max-w-5xl">
+        <CardHeader className="text-center p-8">
+            <FileSearch className="mx-auto h-12 w-12 text-primary" />
+            <CardTitle className="mt-4 font-headline text-3xl md:text-4xl">{t('caseStatus.title')}</CardTitle>
+            <CardDescription className="text-lg text-muted-foreground mt-2">
+                {t('caseStatus.description')}
+            </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center h-64">
+              <Loader2 className="h-10 w-10 animate-spin text-primary" />
+              <p className="mt-4 text-muted-foreground">{t('caseStatus.loading')}</p>
+            </div>
+          ) : error ? (
+            <div className="text-center text-destructive">{error}</div>
+          ) : cases.length === 0 ? (
+            <div className="text-center text-muted-foreground py-8">{t('caseStatus.noCases')}</div>
+          ) : (
+            <div className="border rounded-lg">
+                <Table>
+                <TableHeader>
+                    <TableRow>
+                    <TableHead className="w-[150px]">{t('caseStatus.table.caseId')}</TableHead>
+                    <TableHead>{t('caseStatus.table.name')}</TableHead>
+                    <TableHead>{t('caseStatus.table.category')}</TableHead>
+                    <TableHead>{t('caseStatus.table.submitted')}</TableHead>
+                    <TableHead className="text-right">{t('caseStatus.table.status')}</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {cases.map((caseItem) => (
+                    <TableRow key={caseItem.id}>
+                        <TableCell className="font-medium truncate max-w-[150px]">{caseItem.id}</TableCell>
+                        <TableCell>{caseItem.fullName}</TableCell>
+                        <TableCell>{caseItem.caseCategory}</TableCell>
+                        <TableCell>{formatDate(caseItem.submittedAt)}</TableCell>
+                        <TableCell className="text-right">
+                        <Badge variant={getStatusVariant(caseItem.status)}>
+                            {t(`caseStatus.statusLabels.${caseItem.status}`)}
+                        </Badge>
+                        </TableCell>
+                    </TableRow>
+                    ))}
+                </TableBody>
+                </Table>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+export default CaseStatusPage;
