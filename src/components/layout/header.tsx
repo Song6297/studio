@@ -29,6 +29,7 @@ export function Header() {
   }, []);
 
   const navLinks = [
+    { href: '/dashboard', label: t('header.dashboard') },
     { href: '/case-submission', label: t('header.registerCase') },
     { href: '/case-status', label: t('header.caseStatus') },
     { href: '/file-rti', label: t('header.fileRti') },

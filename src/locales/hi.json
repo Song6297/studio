@@ -1,6 +1,7 @@
 
 {
   "header": {
+    "dashboard": "डैशबोर्ड",
     "registerCase": "मामला दर्ज करें",
     "caseStatus": "मामले की स्थिति",
     "awareness": "जागरूकता",
@@ -531,7 +532,10 @@
       "in-progress": "प्रगति में",
       "resolved": "हल"
     }
+  },
+  "dashboard": {
+    "title": "डैशबोर्ड",
+    "description": "सभी पंजीकृत मामलों का अवलोकन।",
+    "generateEbrief": "ई-ब्रीफ उत्पन्न करें"
   }
 }
-
-    

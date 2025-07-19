@@ -1,6 +1,7 @@
 
 {
   "header": {
+    "dashboard": "Dashboard",
     "registerCase": "Register Case",
     "caseStatus": "Case Status",
     "awareness": "Awareness",
@@ -531,7 +532,10 @@
       "in-progress": "In Progress",
       "resolved": "Resolved"
     }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Overview of all registered cases.",
+    "generateEbrief": "Generate eBrief"
   }
 }
-
-    
