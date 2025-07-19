@@ -20,8 +20,8 @@
   "home": {
     "mainHeading": "Satyameva Jayate",
     "subHeading": "A unified platform connecting citizens with legal professionals and NGOs to ensure access to justice for all.",
-    "getStartedButton": "Get Started",
-    "aiAdviceButton": "AI Legal Advice",
+    "registerCaseButton": "Register Case",
+    "aiAdviceButton": "Get Legal Advice with AI",
     "servicesTitle": "Our Services",
     "servicesHeading": "Your Gateway to Legal Solutions",
     "servicesDescription": "We provide a comprehensive suite of services to address your legal needs, from case submission to AI-powered guidance and document services."

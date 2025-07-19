@@ -68,7 +68,7 @@ export default function Home() {
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link href="/case-submission">
               <Button size="lg">
-                  {t('home.getStartedButton')} <ArrowRight className="ml-2 h-5 w-5" />
+                  {t('home.registerCaseButton')} <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link href="/ai-legal-guide">
