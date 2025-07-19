@@ -11,12 +11,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { FileText } from 'lucide-react';
+import { FileText, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
+import { submitCase } from './actions';
+import { useState } from 'react';
 
 export default function CaseSubmissionPage() {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const formSchema = z.object({
     fullName: z.string().min(2, t('caseSubmission.validation.fullNameRequired')),
@@ -37,13 +40,27 @@ export default function CaseSubmissionPage() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: t('caseSubmission.toast.successTitle'),
-      description: t('caseSubmission.toast.successDescription'),
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    // We are not handling file uploads yet, so we remove the document field.
+    const { document, ...formData } = values;
+    
+    const result = await submitCase(formData);
+
+    if (result.success) {
+      toast({
+        title: t('caseSubmission.toast.successTitle'),
+        description: t('caseSubmission.toast.successDescription'),
+      });
+      form.reset();
+    } else {
+        toast({
+            variant: 'destructive',
+            title: "Submission Failed",
+            description: result.error,
+        });
+    }
+    setIsLoading(false);
   }
 
   return (
@@ -110,11 +127,20 @@ export default function CaseSubmissionPage() {
               <FormField control={form.control} name="document" render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('caseSubmission.form.upload.label')}</FormLabel>
-                  <FormControl><Input type="file" /></FormControl>
+                  <FormControl><Input type="file" disabled /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
-              <Button type="submit" className="w-full" size="lg">{t('caseSubmission.form.submitButton')}</Button>
+              <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  t('caseSubmission.form.submitButton')
+                )}
+              </Button>
             </form>
           </Form>
         </CardContent>
