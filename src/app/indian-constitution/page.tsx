@@ -2,7 +2,7 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Gavel, Shield, CheckSquare, Scale } from 'lucide-react';
+import { Gavel, Shield, CheckSquare, Scale, History } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -77,6 +77,18 @@ export default function IndianConstitutionPage() {
         "To provide opportunities for education to his child or ward between the age of six and fourteen years."
     ];
 
+    const historyOfConstitution = {
+        title: "History of the Constitution",
+        description: "A brief history of the framing of the Indian Constitution.",
+        content: [
+            { point: "Why:", text: "After gaining independence in 1947, India needed a new constitution to govern the newly formed nation, replacing the colonial-era Government of India Act of 1935. The goal was to establish a sovereign, democratic republic with a framework for political structure, procedures, powers, and duties of government institutions, while also outlining fundamental rights and duties for its citizens." },
+            { point: "Who & Where:", text: "The task was entrusted to the Constituent Assembly of India, which was elected by the provincial assemblies. It comprised 389 members, later reduced to 299 after the partition of India. The Assembly met in the Constitution Hall (now the Central Hall of Parliament House) in New Delhi." },
+            { point: "How:", text: "The Assembly formed various committees to work on different aspects of the constitution. The most crucial was the Drafting Committee, with Dr. B. R. Ambedkar as its chairman. The committee prepared a draft constitution, which was then debated, discussed, and amended over a period of nearly three years." },
+            { point: "When:", text: "The Constituent Assembly held its first session on December 9, 1946. After 2 years, 11 months, and 18 days, the Constitution was adopted on November 26, 1949. It came into full effect on January 26, 1950, a day now celebrated as Republic Day in India." },
+            { point: "What:", text: "The result was the longest written constitution of any country in the world. It is a comprehensive document that lays down the framework for a federal parliamentary system of government, while guaranteeing fundamental rights and establishing a system of checks and balances." }
+        ]
+    };
+
 
     return (
         <div className="container py-12 md:py-16">
@@ -87,16 +99,15 @@ export default function IndianConstitutionPage() {
                 <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                     {t('indianConstitution.title')}
                 </h1>
+
                 <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
                     {t('indianConstitution.description')}
                 </p>
             </div>
             
-            {/* Book-like structure */}
             <div className="mx-auto max-w-6xl mt-8">
                 <div className="bg-card shadow-2xl rounded-lg flex flex-col md:flex-row min-h-[600px]">
                     
-                    {/* Left Page */}
                     <div className="w-full md:w-1/2 p-6 md:p-10 border-b-2 md:border-b-0 md:border-r-2 border-dashed border-primary/20 relative">
                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[300px] opacity-5 dark:opacity-10 -z-10">
                             <Gavel />
@@ -116,43 +127,61 @@ export default function IndianConstitutionPage() {
                         </section>
                     </div>
 
-                    {/* Right Page */}
                     <div className="w-full md:w-1/2 p-6 md:p-10 relative">
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[300px] opacity-5 dark:opacity-10 -z-10">
                             <Shield />
                         </div>
-                        <div className="space-y-12 h-full flex flex-col">
-                            <section id="fundamental-rights" className="flex-1 flex flex-col">
+                        <div className="space-y-8 h-full flex flex-col overflow-y-auto">
+                            <section id="history">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                                        <History className="h-6 w-6" />
+                                    </div>
+                                    <h2 className="font-headline text-2xl font-bold tracking-tighter sm:text-3xl">{historyOfConstitution.title}</h2>
+                                </div>
+                                <Accordion type="single" collapsible className="w-full">
+                                    <AccordionItem value="history-item">
+                                        <AccordionTrigger className="font-headline text-lg hover:no-underline">{historyOfConstitution.description}</AccordionTrigger>
+                                        <AccordionContent className="text-base text-muted-foreground">
+                                            <ul className="space-y-4 list-disc list-inside">
+                                                {historyOfConstitution.content.map((item, index) => (
+                                                    <li key={index}>
+                                                        <span className="font-semibold text-foreground/90">{item.point}</span> {item.text}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                            </section>
+
+                            <section id="fundamental-rights">
                                 <div className="flex items-center gap-4 mb-4">
                                     <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
                                         <Shield className="h-6 w-6" />
                                     </div>
                                     <h2 className="font-headline text-2xl font-bold tracking-tighter sm:text-3xl">{t('indianConstitution.fundamentalRights.title')}</h2>
                                 </div>
-                                <div className="overflow-y-auto flex-1">
-                                    <p className="text-muted-foreground text-sm mb-4">
-                                        {t('indianConstitution.fundamentalRights.description')}
-                                    </p>
-                                    <Accordion type="single" collapsible className="w-full">
-                                        {fundamentalRights.map((right, index) => (
-                                            <AccordionItem value={`item-${index}`} key={index}>
-                                                <AccordionTrigger className="font-headline text-lg hover:no-underline">{right.title}</AccordionTrigger>
-                                                <AccordionContent className="text-base text-muted-foreground">
-                                                <ul className="space-y-3 list-disc list-inside">
-                                                    {right.content.map((item, itemIndex) => (
-                                                    <li key={itemIndex}>
-                                                        <span className="font-semibold text-foreground/90">{item.article}:</span> {item.text}
-                                                    </li>
-                                                    ))}
-                                                </ul>
-                                                </AccordionContent>
-                                            </AccordionItem>
-                                        ))}
-                                    </Accordion>
-                                </div>
+                                <p className="text-muted-foreground text-sm mb-4">
+                                    {t('indianConstitution.fundamentalRights.description')}
+                                </p>
+                                <Accordion type="single" collapsible className="w-full">
+                                    {fundamentalRights.map((right, index) => (
+                                        <AccordionItem value={`item-${index}`} key={index}>
+                                            <AccordionTrigger className="font-headline text-lg hover:no-underline">{right.title}</AccordionTrigger>
+                                            <AccordionContent className="text-base text-muted-foreground">
+                                            <ul className="space-y-3 list-disc list-inside">
+                                                {right.content.map((item, itemIndex) => (
+                                                <li key={itemIndex}>
+                                                    <span className="font-semibold text-foreground/90">{item.article}:</span> {item.text}
+                                                </li>
+                                                ))}
+                                            </ul>
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    ))}
+                                </Accordion>
                             </section>
-
-                            <div className="border-t border-dashed border-primary/20 my-4"></div>
 
                             <section id="fundamental-duties">
                                 <div className="flex items-center gap-4 mb-4">
@@ -182,3 +211,5 @@ export default function IndianConstitutionPage() {
         </div>
     );
 }
+
+    
