@@ -99,14 +99,15 @@ export function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button asChild variant="ghost">
-                <Link href="/register">{t('header.login')}</Link>
-            </Button>
              <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button>{t('header.register')}</Button>
+                <Button>{t('header.registerLogin')}</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
+                <DropdownMenuItem asChild>
+                  <Link href="/register">{t('header.login')}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href="/register?type=advocate">{t('header.registerAsAdvocate')}</Link>
                 </DropdownMenuItem>
