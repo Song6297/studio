@@ -3,7 +3,7 @@
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
 import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
@@ -63,7 +63,7 @@ export default function Home() {
             {t('home.subHeading')}
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button asChild size="lg">
               <Link href="/case-submission">
                 {t('home.getStartedButton')} <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
