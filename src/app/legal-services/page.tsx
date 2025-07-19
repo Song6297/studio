@@ -11,7 +11,8 @@ import { Calendar } from '@/components/ui/calendar';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger, DialogClose } from '@/components/ui/dialog';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { CalendarCheck, Users, Video, Phone, UserCheck } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
@@ -32,7 +33,10 @@ function ConsultationBookingForm({ advisorName }: { advisorName: string }) {
     const { toast } = useToast();
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
     const [selectedTime, setSelectedTime] = useState<string | undefined>();
-    
+    const [isConfirming, setIsConfirming] = useState(false);
+    const [formData, setFormData] = useState<z.infer<typeof formSchema> | null>(null);
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
     const timeSlots = ["09:00 AM", "10:00 AM", "11:00 AM", "02:00 PM", "03:00 PM", "04:00 PM"];
 
     const formSchema = z.object({
@@ -46,8 +50,8 @@ function ConsultationBookingForm({ advisorName }: { advisorName: string }) {
         resolver: zodResolver(formSchema),
         defaultValues: { fullName: '', email: '', phone: '' },
     });
-
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    
+    function onAttemptSubmit(values: z.infer<typeof formSchema>) {
         if (!selectedDate || !selectedTime) {
             toast({
                 variant: 'destructive',
@@ -56,9 +60,15 @@ function ConsultationBookingForm({ advisorName }: { advisorName: string }) {
             });
             return;
         }
+        setFormData(values);
+        setIsConfirming(true);
+    }
+    
+    function handleConfirmBooking() {
+        if (!formData || !selectedDate || !selectedTime) return;
 
         console.log({
-            ...values,
+            ...formData,
             advisor: advisorName,
             date: format(selectedDate, 'PPP'),
             time: selectedTime,
@@ -70,71 +80,110 @@ function ConsultationBookingForm({ advisorName }: { advisorName: string }) {
         });
         form.reset();
         setSelectedTime(undefined);
+        setIsConfirming(false);
+        setIsBookingOpen(false); // Close the main booking dialog
     }
-    
+
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                    <FormField control={form.control} name="fullName" render={({ field }) => (
-                        <FormItem><FormLabel>{t('legalServices.form.name.label')}</FormLabel><FormControl><Input placeholder={t('legalServices.form.name.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
-                    )} />
-                    <FormField control={form.control} name="email" render={({ field }) => (
-                        <FormItem><FormLabel>{t('legalServices.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('legalServices.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
-                    )} />
-                </div>
-                <FormField control={form.control} name="phone" render={({ field }) => (
-                    <FormItem><FormLabel>{t('legalServices.form.phone.label')}</FormLabel><FormControl><Input type="tel" placeholder={t('legalServices.form.phone.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
-                )} />
-
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                     <div>
-                        <FormLabel>{t('legalServices.form.date.label')}</FormLabel>
-                        <Calendar
-                            mode="single"
-                            selected={selectedDate}
-                            onSelect={setSelectedDate}
-                            className="rounded-md border mt-2"
-                            disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
-                        />
-                     </div>
-                    <div>
-                        <FormLabel>{t('legalServices.form.time.label')}</FormLabel>
-                        <div className="grid grid-cols-2 gap-2 mt-2">
-                            {timeSlots.map(time => (
-                                <Button 
-                                    key={time} 
-                                    type="button" 
-                                    variant={selectedTime === time ? "default" : "outline"}
-                                    onClick={() => setSelectedTime(time)}
-                                >
-                                    {time}
-                                </Button>
-                            ))}
+        <Dialog open={isBookingOpen} onOpenChange={setIsBookingOpen}>
+          <DialogTrigger asChild>
+            <Button className="w-full">{t('legalServices.advisors.bookButton')}</Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-4xl">
+              <DialogHeader>
+                <DialogTitle className="font-headline text-2xl">{t('legalServices.booking.title')} - {advisorName}</DialogTitle>
+                <DialogDescription>
+                  {t('legalServices.booking.description')}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="py-4">
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onAttemptSubmit)} className="space-y-6">
+                         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                            <FormField control={form.control} name="fullName" render={({ field }) => (
+                                <FormItem><FormLabel>{t('legalServices.form.name.label')}</FormLabel><FormControl><Input placeholder={t('legalServices.form.name.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                            )} />
+                            <FormField control={form.control} name="email" render={({ field }) => (
+                                <FormItem><FormLabel>{t('legalServices.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('legalServices.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                            )} />
                         </div>
-                    </div>
-                </div>
+                        <FormField control={form.control} name="phone" render={({ field }) => (
+                            <FormItem><FormLabel>{t('legalServices.form.phone.label')}</FormLabel><FormControl><Input type="tel" placeholder={t('legalServices.form.phone.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                        )} />
 
-                <FormField control={form.control} name="consultationType" render={({ field }) => (
-                    <FormItem className="space-y-3"><FormLabel>{t('legalServices.form.type.label')}</FormLabel>
-                        <FormControl>
-                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex gap-4">
-                                <FormItem className="flex items-center space-x-3 space-y-0">
-                                    <FormControl><RadioGroupItem value="video" id="video" /></FormControl>
-                                    <FormLabel className="font-normal flex items-center gap-2"><Video /> {t('legalServices.form.type.options.video')}</FormLabel>
-                                </FormItem>
-                                <FormItem className="flex items-center space-x-3 space-y-0">
-                                    <FormControl><RadioGroupItem value="voice" id="voice" /></FormControl>
-                                    <FormLabel className="font-normal flex items-center gap-2"><Phone /> {t('legalServices.form.type.options.voice')}</FormLabel>
-                                </FormItem>
-                            </RadioGroup>
-                        </FormControl><FormMessage />
-                    </FormItem>
-                )} />
+                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                             <div>
+                                <FormLabel>{t('legalServices.form.date.label')}</FormLabel>
+                                <Calendar
+                                    mode="single"
+                                    selected={selectedDate}
+                                    onSelect={setSelectedDate}
+                                    className="rounded-md border mt-2"
+                                    disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
+                                />
+                             </div>
+                            <div>
+                                <FormLabel>{t('legalServices.form.time.label')}</FormLabel>
+                                <div className="grid grid-cols-2 gap-2 mt-2">
+                                    {timeSlots.map(time => (
+                                        <Button 
+                                            key={time} 
+                                            type="button" 
+                                            variant={selectedTime === time ? "default" : "outline"}
+                                            onClick={() => setSelectedTime(time)}
+                                        >
+                                            {time}
+                                        </Button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
 
-                <Button type="submit" className="w-full" size="lg">{t('legalServices.form.submitButton')}</Button>
-            </form>
-        </Form>
+                        <FormField control={form.control} name="consultationType" render={({ field }) => (
+                            <FormItem className="space-y-3"><FormLabel>{t('legalServices.form.type.label')}</FormLabel>
+                                <FormControl>
+                                    <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex gap-4">
+                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <FormControl><RadioGroupItem value="video" id="video" /></FormControl>
+                                            <FormLabel className="font-normal flex items-center gap-2"><Video /> {t('legalServices.form.type.options.video')}</FormLabel>
+                                        </FormItem>
+                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <FormControl><RadioGroupItem value="voice" id="voice" /></FormControl>
+                                            <FormLabel className="font-normal flex items-center gap-2"><Phone /> {t('legalServices.form.type.options.voice')}</FormLabel>
+                                        </FormItem>
+                                    </RadioGroup>
+                                </FormControl><FormMessage />
+                            </FormItem>
+                        )} />
+
+                        <Button type="submit" className="w-full" size="lg">{t('legalServices.form.submitButton')}</Button>
+                    </form>
+                </Form>
+              </div>
+
+               <AlertDialog open={isConfirming} onOpenChange={setIsConfirming}>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>{t('legalServices.booking.confirmTitle')}</AlertDialogTitle>
+                      <AlertDialogDescription>
+                          {t('legalServices.booking.confirmDescription')}
+                          <div className="my-4 space-y-2 text-sm text-foreground">
+                            <p><strong>{t('legalServices.booking.advisor')}:</strong> {advisorName}</p>
+                            <p><strong>{t('legalServices.booking.date')}:</strong> {selectedDate ? format(selectedDate, 'PPP') : 'N/A'}</p>
+                            <p><strong>{t('legalServices.booking.time')}:</strong> {selectedTime}</p>
+                            <p><strong>{t('legalServices.booking.type')}:</strong> {formData?.consultationType === 'video' ? t('legalServices.form.type.options.video') : t('legalServices.form.type.options.voice')}</p>
+                          </div>
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>{t('legalServices.booking.cancelButton')}</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleConfirmBooking}>{t('legalServices.booking.confirmButton')}</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+              </AlertDialog>
+
+          </DialogContent>
+        </Dialog>
     );
 }
 
@@ -180,7 +229,17 @@ export default function LegalServicesPage() {
     }, []);
 
     if (!isMounted) {
-        return null;
+        return (
+             <div className="container py-12 md:py-24">
+                <div className="flex flex-col items-center text-center mb-12">
+                    <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20 mb-4">
+                        <UserCheck className="h-10 w-10" />
+                    </div>
+                    <h1 className="font-headline text-3xl font-bold md:text-4xl">{t('legalServices.title')}</h1>
+                    <p className="mt-2 text-lg text-muted-foreground max-w-3xl">{t('legalServices.description')}</p>
+                </div>
+             </div>
+        );
     }
     
     const advisors: Advisor[] = t('legalServices.advisors.list', { returnObjects: true }) as unknown as Advisor[];
@@ -209,22 +268,7 @@ export default function LegalServicesPage() {
                           <p className="text-muted-foreground">{advisor.bio}</p>
                         </CardContent>
                         <CardFooter>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button className="w-full">{t('legalServices.advisors.bookButton')}</Button>
-                            </DialogTrigger>
-                            <DialogContent className="sm:max-w-4xl">
-                              <DialogHeader>
-                                <DialogTitle className="font-headline text-2xl">{t('legalServices.booking.title')} - {advisor.name}</DialogTitle>
-                                <DialogDescription>
-                                  {t('legalServices.booking.description')}
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="py-4">
-                                <ConsultationBookingForm advisorName={advisor.name} />
-                              </div>
-                            </DialogContent>
-                          </Dialog>
+                           <ConsultationBookingForm advisorName={advisor.name} />
                         </CardFooter>
                       </Card>
                     ))}

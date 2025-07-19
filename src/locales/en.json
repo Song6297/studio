@@ -393,7 +393,15 @@
     "description": "Connect with experienced legal advisors or find information about upcoming free legal aid camps organized by our partner NGOs.",
     "booking": {
       "title": "Book a Virtual Consultation",
-      "description": "Select a date and time to speak with the legal professional."
+      "description": "Select a date and time to speak with the legal professional.",
+      "confirmTitle": "Confirm Your Appointment",
+      "confirmDescription": "Please review the details below before confirming your appointment.",
+      "advisor": "Advisor",
+      "date": "Date",
+      "time": "Time",
+      "type": "Type",
+      "confirmButton": "Confirm Booking",
+      "cancelButton": "Cancel"
     },
     "form": {
       "name": { "label": "Full Name", "placeholder": "Your full name" },
