@@ -15,25 +15,17 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
-
-const navLinks = [
-  { href: '/case-submission', label: 'Register Case' },
-  { href: '/legal-awareness', label: 'Awareness' },
-  { href: '/ai-legal-guide', label: 'AI Legal Advice' },
-];
-
-const languages = [
-  { code: 'en', name: 'English' },
-  { code: 'kn', name: 'ಕನ್ನಡ' },
-  { code: 'hi', name: 'हिन्दी' },
-  { code: 'ta', name: 'தமிழ்' },
-  { code: 'ml', name: 'മലയാളം' },
-]
+import { useLanguage, languages } from '@/context/language-context';
 
 export function Header() {
   const pathname = usePathname();
-  const [currentLang, setCurrentLang] = useState(languages[0]);
+  const { t, setLanguage, currentLang } = useLanguage();
+
+  const navLinks = [
+    { href: '/case-submission', label: t('header.registerCase') },
+    { href: '/legal-awareness', label: t('header.awareness') },
+    { href: '/ai-legal-guide', label: t('header.aiLegalAdvice') },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -64,12 +56,12 @@ export function Header() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
                   <Globe />
-                  <span className="sr-only">Change language</span>
+                  <span className="sr-only">{t('header.changeLanguage')}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 {languages.map((lang) => (
-                   <DropdownMenuItem key={lang.code} onSelect={() => setCurrentLang(lang)}>
+                   <DropdownMenuItem key={lang.code} onSelect={() => setLanguage(lang.code)}>
                       {lang.name}
                    </DropdownMenuItem>
                 ))}
@@ -77,18 +69,18 @@ export function Header() {
             </DropdownMenu>
 
             <Button asChild variant="ghost">
-                <Link href="/register">Log In</Link>
+                <Link href="/register">{t('header.login')}</Link>
             </Button>
              <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button>Register</Button>
+                <Button>{t('header.register')}</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
-                  <Link href="/register?type=advocate">As Advocate/Legal Adviser</Link>
+                  <Link href="/register?type=advocate">{t('header.registerAsAdvocate')}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/register?type=ngo">As NGO</Link>
+                  <Link href="/register?type=ngo">{t('header.registerAsNgo')}</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -99,7 +91,7 @@ export function Header() {
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle Menu</span>
+                <span className="sr-only">{t('header.toggleMenu')}</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px]">
@@ -131,7 +123,7 @@ export function Header() {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       {languages.map((lang) => (
-                        <DropdownMenuItem key={lang.code} onSelect={() => setCurrentLang(lang)}>
+                        <DropdownMenuItem key={lang.code} onSelect={() => setLanguage(lang.code)}>
                             {lang.name}
                         </DropdownMenuItem>
                       ))}
@@ -140,18 +132,18 @@ export function Header() {
 
                  <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button className="mt-2">Register / Log In</Button>
+                      <Button className="mt-2">{t('header.registerLogin')}</Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       <DropdownMenuItem asChild>
-                        <Link href="/register">Log In</Link>
+                        <Link href="/register">{t('header.login')}</Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
-                        <Link href="/register?type=advocate">Register as Advocate</Link>
+                        <Link href="/register?type=advocate">{t('header.registerAsAdvocate')}</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link href="/register?type=ngo">Register as NGO</Link>
+                        <Link href="/register?type=ngo">{t('header.registerAsNgo')}</Link>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

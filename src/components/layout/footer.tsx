@@ -1,8 +1,12 @@
+
+'use client';
 import { AshokaChakraWithText } from '@/components/icons/emblem';
 import { Logo } from '@/components/icons/logo';
+import { useLanguage } from '@/context/language-context';
 import Link from 'next/link';
 
 export function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="border-t bg-secondary/50">
       <div className="container py-8">
@@ -12,10 +16,10 @@ export function Footer() {
               <Logo />
             </Link>
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} My Legal Firm. All rights reserved.
+              &copy; {new Date().getFullYear()} {t('footer.brandName')}. {t('footer.rightsReserved')}.
             </p>
             <p className="mt-2 text-xs text-muted-foreground max-w-lg">
-              Disclaimer: The information provided on this website does not, and is not intended to, constitute legal advice; instead, all information, content, and materials available on this site are for general informational purposes only.
+              {t('footer.disclaimer')}
             </p>
           </div>
           <AshokaChakraWithText />

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -11,27 +12,28 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from '@/hooks/use-toast';
 import { UserPlus } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
-
-const advocateSchema = z.object({
-  fullName: z.string().min(2, 'Full name is required'),
-  email: z.string().email('Invalid email address'),
-  barId: z.string().min(5, 'A valid Bar Council ID is required'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
-});
-
-const ngoSchema = z.object({
-  ngoName: z.string().min(3, 'NGO name is required'),
-  registrationNumber: z.string().min(5, 'A valid registration number is required'),
-  contactEmail: z.string().email('Invalid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
-});
-
+import { useLanguage } from '@/context/language-context';
 
 export default function RegisterPage() {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get('type') || 'advocate';
   
+  const advocateSchema = z.object({
+    fullName: z.string().min(2, t('register.advocate.validation.fullNameRequired')),
+    email: z.string().email(t('register.advocate.validation.emailInvalid')),
+    barId: z.string().min(5, t('register.advocate.validation.barIdRequired')),
+    password: z.string().min(8, t('register.advocate.validation.passwordRequired')),
+  });
+
+  const ngoSchema = z.object({
+    ngoName: z.string().min(3, t('register.ngo.validation.nameRequired')),
+    registrationNumber: z.string().min(5, t('register.ngo.validation.regNoRequired')),
+    contactEmail: z.string().email(t('register.ngo.validation.emailInvalid')),
+    password: z.string().min(8, t('register.ngo.validation.passwordRequired')),
+  });
+
   const advocateForm = useForm<z.infer<typeof advocateSchema>>({
     resolver: zodResolver(advocateSchema),
     defaultValues: { fullName: '', email: '', barId: '', password: '' },
@@ -44,13 +46,13 @@ export default function RegisterPage() {
 
   function onAdvocateSubmit(values: z.infer<typeof advocateSchema>) {
     console.log(values);
-    toast({ title: 'Advocate Registration Successful!', description: 'Your profile is under review.' });
+    toast({ title: t('register.advocate.toast.successTitle'), description: t('register.advocate.toast.successDescription') });
     advocateForm.reset();
   }
   
   function onNgoSubmit(values: z.infer<typeof ngoSchema>) {
     console.log(values);
-    toast({ title: 'NGO Registration Successful!', description: 'Your profile is under review.' });
+    toast({ title: t('register.ngo.toast.successTitle'), description: t('register.ngo.toast.successDescription') });
     ngoForm.reset();
   }
 
@@ -59,35 +61,35 @@ export default function RegisterPage() {
       <Tabs defaultValue={defaultTab} className="w-full max-w-md">
         <div className="text-center mb-8">
             <UserPlus className="mx-auto h-12 w-12 text-primary" />
-            <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">Join Our Network</h1>
-            <p className="mt-2 text-lg text-muted-foreground">Register as an Advocate or an NGO.</p>
+            <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">{t('register.title')}</h1>
+            <p className="mt-2 text-lg text-muted-foreground">{t('register.description')}</p>
         </div>
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="advocate">Advocate/Legal Adviser</TabsTrigger>
-          <TabsTrigger value="ngo">NGO</TabsTrigger>
+          <TabsTrigger value="advocate">{t('register.tabs.advocate')}</TabsTrigger>
+          <TabsTrigger value="ngo">{t('register.tabs.ngo')}</TabsTrigger>
         </TabsList>
         <TabsContent value="advocate" className="mt-6">
           <Card>
             <CardHeader>
-              <CardTitle className="font-headline">Advocate Registration</CardTitle>
-              <CardDescription>Create your professional profile.</CardDescription>
+              <CardTitle className="font-headline">{t('register.advocate.cardTitle')}</CardTitle>
+              <CardDescription>{t('register.advocate.cardDescription')}</CardDescription>
             </CardHeader>
             <CardContent>
               <Form {...advocateForm}>
                 <form onSubmit={advocateForm.handleSubmit(onAdvocateSubmit)} className="space-y-4">
                   <FormField control={advocateForm.control} name="fullName" render={({ field }) => (
-                    <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input placeholder="John Doe" {...field} /></FormControl><FormMessage /></FormItem>
+                    <FormItem><FormLabel>{t('register.advocate.form.fullName.label')}</FormLabel><FormControl><Input placeholder={t('register.advocate.form.fullName.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
                   <FormField control={advocateForm.control} name="email" render={({ field }) => (
-                    <FormItem><FormLabel>Email</FormLabel><FormControl><Input type="email" placeholder="advocate@example.com" {...field} /></FormControl><FormMessage /></FormItem>
+                    <FormItem><FormLabel>{t('register.advocate.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('register.advocate.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
                    <FormField control={advocateForm.control} name="barId" render={({ field }) => (
-                    <FormItem><FormLabel>Bar Council ID</FormLabel><FormControl><Input placeholder="BAR/1234/2024" {...field} /></FormControl><FormMessage /></FormItem>
+                    <FormItem><FormLabel>{t('register.advocate.form.barId.label')}</FormLabel><FormControl><Input placeholder={t('register.advocate.form.barId.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
                   <FormField control={advocateForm.control} name="password" render={({ field }) => (
-                    <FormItem><FormLabel>Password</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
+                    <FormItem><FormLabel>{t('register.advocate.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
-                  <Button type="submit" className="w-full">Register as Advocate</Button>
+                  <Button type="submit" className="w-full">{t('register.advocate.form.submitButton')}</Button>
                 </form>
               </Form>
             </CardContent>
@@ -96,25 +98,25 @@ export default function RegisterPage() {
         <TabsContent value="ngo" className="mt-6">
            <Card>
             <CardHeader>
-              <CardTitle className="font-headline">NGO Registration</CardTitle>
-              <CardDescription>Register your organization to collaborate.</CardDescription>
+              <CardTitle className="font-headline">{t('register.ngo.cardTitle')}</CardTitle>
+              <CardDescription>{t('register.ngo.cardDescription')}</CardDescription>
             </CardHeader>
             <CardContent>
               <Form {...ngoForm}>
                 <form onSubmit={ngoForm.handleSubmit(onNgoSubmit)} className="space-y-4">
                   <FormField control={ngoForm.control} name="ngoName" render={({ field }) => (
-                    <FormItem><FormLabel>NGO Name</FormLabel><FormControl><Input placeholder="Helpful Hands Foundation" {...field} /></FormControl><FormMessage /></FormItem>
+                    <FormItem><FormLabel>{t('register.ngo.form.name.label')}</FormLabel><FormControl><Input placeholder={t('register.ngo.form.name.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
                   <FormField control={ngoForm.control} name="registrationNumber" render={({ field }) => (
-                    <FormItem><FormLabel>Registration Number</FormLabel><FormControl><Input placeholder="NGO/REG/12345" {...field} /></FormControl><FormMessage /></FormItem>
+                    <FormItem><FormLabel>{t('register.ngo.form.regNo.label')}</FormLabel><FormControl><Input placeholder={t('register.ngo.form.regNo.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
                    <FormField control={ngoForm.control} name="contactEmail" render={({ field }) => (
-                    <FormItem><FormLabel>Contact Email</FormLabel><FormControl><Input type="email" placeholder="contact@ngo.org" {...field} /></FormControl><FormMessage /></FormItem>
+                    <FormItem><FormLabel>{t('register.ngo.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('register.ngo.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
                   <FormField control={ngoForm.control} name="password" render={({ field }) => (
-                    <FormItem><FormLabel>Password</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
+                    <FormItem><FormLabel>{t('register.ngo.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
-                  <Button type="submit" className="w-full">Register as NGO</Button>
+                  <Button type="submit" className="w-full">{t('register.ngo.form.submitButton')}</Button>
                 </form>
               </Form>
             </CardContent>

@@ -1,8 +1,11 @@
 
+'use client';
 import { AiLegalGuideClient } from './ai-legal-guide-client';
 import { Bot } from 'lucide-react';
+import { useLanguage } from '@/context/language-context';
 
 export default function AiLegalGuidePage() {
+  const { t } = useLanguage();
   return (
     <div className="bg-secondary/30 flex-1">
       <div className="container mx-auto px-4 py-12 sm:py-16 md:py-24">
@@ -11,13 +14,13 @@ export default function AiLegalGuidePage() {
               <Bot className="h-10 w-10 text-primary" />
           </div>
           <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-            AI Legal Guide
+            {t('aiLegalGuide.title')}
           </h1>
           <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-            Get instant, preliminary legal information based on the Indian legal system. Our AI is here to help you understand complex legal topics.
+            {t('aiLegalGuide.description')}
           </p>
            <p className="text-sm text-muted-foreground">
-            Remember: This is not a substitute for advice from a qualified lawyer.
+            {t('aiLegalGuide.disclaimer')}
           </p>
         </div>
         

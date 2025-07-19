@@ -1,49 +1,54 @@
 
+'use client';
+
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
 import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale } from 'lucide-react';
-
-const features = [
-  {
-    icon: FileText,
-    title: "Register a Case",
-    description: "Easily register your legal case with our simple and secure online form. Get connected with professionals who can help.",
-    href: "/case-submission",
-    cta: "Register Your Case",
-  },
-  {
-    icon: Bot,
-    title: "AI Legal Advice",
-    description: "Get preliminary legal information and guidance on various topics from our AI-powered assistant, available 24/7.",
-    href: "/ai-legal-guide",
-    cta: "Ask AI Legal Advice",
-  },
-  {
-    icon: BookOpen,
-    title: "Legal Awareness",
-    description: "Empower yourself with knowledge. Browse our portal of articles and guides on Indian law and your rights.",
-    href: "/legal-awareness",
-    cta: "Explore Portal",
-  },
-  {
-    icon: PenSquare,
-    title: "Affidavit Services",
-    description: "Create and validate legally binding affidavits for various purposes with professional assistance.",
-    href: "#",
-    cta: "Get Affidavit",
-  },
-  {
-    icon: Scale,
-    title: "Notary Services",
-    description: "Get your important documents notarized quickly and securely by certified professionals.",
-    href: "#",
-    cta: "Notarize Document",
-  },
-];
+import { useLanguage } from '@/context/language-context';
 
 export default function Home() {
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: FileText,
+      title: t('features.registerCase.title'),
+      description: t('features.registerCase.description'),
+      href: "/case-submission",
+      cta: t('features.registerCase.cta'),
+    },
+    {
+      icon: Bot,
+      title: t('features.aiLegalAdvice.title'),
+      description: t('features.aiLegalAdvice.description'),
+      href: "/ai-legal-guide",
+      cta: t('features.aiLegalAdvice.cta'),
+    },
+    {
+      icon: BookOpen,
+      title: t('features.legalAwareness.title'),
+      description: t('features.legalAwareness.description'),
+      href: "/legal-awareness",
+      cta: t('features.legalAwareness.cta'),
+    },
+    {
+      icon: PenSquare,
+      title: t('features.affidavitServices.title'),
+      description: t('features.affidavitServices.description'),
+      href: "#",
+      cta: t('features.affidavitServices.cta'),
+    },
+    {
+      icon: Scale,
+      title: t('features.notaryServices.title'),
+      description: t('features.notaryServices.description'),
+      href: "#",
+      cta: t('features.notaryServices.cta'),
+    },
+  ];
+
   return (
     <>
       <section className="relative w-full bg-background py-20 md:py-32 lg:py-40">
@@ -52,19 +57,19 @@ export default function Home() {
               <AshokaChakraIcon />
           </div>
           <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-            Satyameva Jayate
+            {t('home.mainHeading')}
           </h1>
           <p className="mx-auto mt-6 max-w-[700px] text-lg text-muted-foreground md:text-xl">
-            A unified platform connecting citizens with legal professionals and NGOs to ensure access to justice for all.
+            {t('home.subHeading')}
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="/case-submission">
-                Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                {t('home.getStartedButton')} <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button asChild variant="secondary" size="lg">
-              <Link href="/ai-legal-guide">AI Legal Advice</Link>
+              <Link href="/ai-legal-guide">{t('home.aiAdviceButton')}</Link>
             </Button>
           </div>
         </div>
@@ -74,10 +79,10 @@ export default function Home() {
         <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-6 text-center">
                 <div className="space-y-3">
-                    <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">Our Services</div>
-                    <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">Your Gateway to Legal Solutions</h2>
+                    <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">{t('home.servicesTitle')}</div>
+                    <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">{t('home.servicesHeading')}</h2>
                     <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                        We provide a comprehensive suite of services to address your legal needs, from case submission to AI-powered guidance and document services.
+                        {t('home.servicesDescription')}
                     </p>
                 </div>
             </div>

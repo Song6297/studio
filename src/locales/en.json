@@ -1,0 +1,242 @@
+
+{
+  "header": {
+    "registerCase": "Register Case",
+    "awareness": "Awareness",
+    "aiLegalAdvice": "AI Legal Advice",
+    "login": "Log In",
+    "register": "Register",
+    "registerAsAdvocate": "As Advocate/Legal Adviser",
+    "registerAsNgo": "As NGO",
+    "changeLanguage": "Change language",
+    "toggleMenu": "Toggle Menu",
+    "registerLogin": "Register / Log In"
+  },
+  "footer": {
+    "brandName": "My Legal Firm",
+    "rightsReserved": "All rights reserved",
+    "disclaimer": "Disclaimer: The information provided on this website does not, and is not intended to, constitute legal advice; instead, all information, content, and materials available on this site are for general informational purposes only."
+  },
+  "home": {
+    "mainHeading": "Satyameva Jayate",
+    "subHeading": "A unified platform connecting citizens with legal professionals and NGOs to ensure access to justice for all.",
+    "getStartedButton": "Get Started",
+    "aiAdviceButton": "AI Legal Advice",
+    "servicesTitle": "Our Services",
+    "servicesHeading": "Your Gateway to Legal Solutions",
+    "servicesDescription": "We provide a comprehensive suite of services to address your legal needs, from case submission to AI-powered guidance and document services."
+  },
+  "features": {
+    "registerCase": {
+      "title": "Register a Case",
+      "description": "Easily register your legal case with our simple and secure online form. Get connected with professionals who can help.",
+      "cta": "Register Your Case"
+    },
+    "aiLegalAdvice": {
+      "title": "AI Legal Advice",
+      "description": "Get preliminary legal information and guidance on various topics from our AI-powered assistant, available 24/7.",
+      "cta": "Ask AI Legal Advice"
+    },
+    "legalAwareness": {
+      "title": "Legal Awareness",
+      "description": "Empower yourself with knowledge. Browse our portal of articles and guides on Indian law and your rights.",
+      "cta": "Explore Portal"
+    },
+    "affidavitServices": {
+      "title": "Affidavit Services",
+      "description": "Create and validate legally binding affidavits for various purposes with professional assistance.",
+      "cta": "Get Affidavit"
+    },
+    "notaryServices": {
+      "title": "Notary Services",
+      "description": "Get your important documents notarized quickly and securely by certified professionals.",
+      "cta": "Notarize Document"
+    }
+  },
+  "caseSubmission": {
+    "title": "Register Your Case",
+    "description": "Fill out the form below to get started. Our team will review your case.",
+    "form": {
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "john.doe@example.com"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "+91 12345 67890"
+      },
+      "category": {
+        "label": "Case Category",
+        "placeholder": "Select a category",
+        "options": {
+          "family": "Family Law",
+          "criminal": "Criminal Law",
+          "corporate": "Corporate Law",
+          "property": "Property Law",
+          "other": "Other"
+        }
+      },
+      "caseDescription": {
+        "label": "Case Description",
+        "placeholder": "Describe your case in detail..."
+      },
+      "upload": {
+        "label": "Upload Documents (Optional)"
+      },
+      "submitButton": "Register Case"
+    },
+    "validation": {
+      "fullNameRequired": "Full name is required",
+      "emailInvalid": "Invalid email address",
+      "phoneInvalid": "Invalid phone number",
+      "categoryRequired": "Please select a case category",
+      "descriptionRequired": "Please provide a detailed description of at least 20 characters"
+    },
+    "toast": {
+      "successTitle": "Case Registered Successfully!",
+      "successDescription": "We have received your case details and will get back to you shortly."
+    }
+  },
+  "legalAwareness": {
+    "title": "Legal Awareness Portal",
+    "description": "Empowering citizens with legal knowledge.",
+    "searchPlaceholder": "Search articles...",
+    "readMore": "Read More",
+    "articles": {
+      "basicRights": {
+        "title": "Understanding Your Basic Rights in India",
+        "description": "A comprehensive guide to the fundamental rights guaranteed by the Constitution of India.",
+        "category": "Constitutional Law"
+      },
+      "fir": {
+        "title": "The Process of Filing a First Information Report (FIR)",
+        "description": "Step-by-step instructions on how to file an FIR and what to expect during the process.",
+        "category": "Criminal Law"
+      },
+      "propertyPurchase": {
+        "title": "Navigating Property Purchase: Legal Checklist",
+        "description": "Key legal aspects to consider before buying a property to avoid future disputes.",
+        "category": "Property Law"
+      },
+      "consumerRights": {
+        "title": "Consumer Rights and Protection in India",
+        "description": "Know your rights as a consumer and how to seek redressal for grievances.",
+        "category": "Consumer Law"
+      },
+      "pil": {
+        "title": "Introduction to Public Interest Litigation (PIL)",
+        "description": "Learn how PIL can be used as a tool for social change and public justice.",
+        "category": "Public Law"
+      },
+      "digitalSignature": {
+        "title": "Digital Signature and its Legal Validity",
+        "description": "Understanding the legal framework around electronic signatures in the digital age.",
+        "category": "Cyber Law"
+      }
+    }
+  },
+  "aiLegalGuide": {
+    "title": "AI Legal Guide",
+    "description": "Get instant, preliminary legal information based on the Indian legal system. Our AI is here to help you understand complex legal topics.",
+    "disclaimer": "Remember: This is not a substitute for advice from a qualified lawyer.",
+    "form": {
+      "query": {
+        "label": "Your legal query",
+        "placeholder": "e.g., What are the rules for renting a property in Mumbai?"
+      },
+      "submitButton": "Get AI Advice",
+      "submitButtonLoading": "Generating Advice..."
+    },
+    "validation": {
+        "queryRequired": "Please enter a query of at least 10 characters."
+    },
+    "loading": {
+      "thinking": "The AI is thinking...",
+      "patience": "This may take a few moments."
+    },
+    "error": {
+      "title": "An Error Occurred"
+    },
+    "adviceCard": {
+      "title": "Preliminary Legal Advice",
+      "disclaimer": "This is AI-generated advice. Always consult with a qualified legal professional.",
+      "downloadButton": "Download Advice"
+    }
+  },
+  "register": {
+    "title": "Join Our Network",
+    "description": "Register as an Advocate or an NGO.",
+    "tabs": {
+        "advocate": "Advocate/Legal Adviser",
+        "ngo": "NGO"
+    },
+    "advocate": {
+        "cardTitle": "Advocate Registration",
+        "cardDescription": "Create your professional profile.",
+        "form": {
+            "fullName": {
+                "label": "Full Name",
+                "placeholder": "John Doe"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "advocate@example.com"
+            },
+            "barId": {
+                "label": "Bar Council ID",
+                "placeholder": "BAR/1234/2024"
+            },
+            "password": {
+                "label": "Password"
+            },
+            "submitButton": "Register as Advocate"
+        },
+        "validation": {
+            "fullNameRequired": "Full name is required",
+            "emailInvalid": "Invalid email address",
+            "barIdRequired": "A valid Bar Council ID is required",
+            "passwordRequired": "Password must be at least 8 characters"
+        },
+        "toast": {
+            "successTitle": "Advocate Registration Successful!",
+            "successDescription": "Your profile is under review."
+        }
+    },
+    "ngo": {
+        "cardTitle": "NGO Registration",
+        "cardDescription": "Register your organization to collaborate.",
+        "form": {
+            "name": {
+                "label": "NGO Name",
+                "placeholder": "Helpful Hands Foundation"
+            },
+            "regNo": {
+                "label": "Registration Number",
+                "placeholder": "NGO/REG/12345"
+            },
+            "email": {
+                "label": "Contact Email",
+                "placeholder": "contact@ngo.org"
+            },
+            "password": {
+                "label": "Password"
+            },
+            "submitButton": "Register as NGO"
+        },
+        "validation": {
+            "nameRequired": "NGO name is required",
+            "regNoRequired": "A valid registration number is required",
+            "emailInvalid": "Invalid email address",
+            "passwordRequired": "Password must be at least 8 characters"
+        },
+        "toast": {
+            "successTitle": "NGO Registration Successful!",
+            "successDescription": "Your profile is under review."
+        }
+    }
+  }
+}

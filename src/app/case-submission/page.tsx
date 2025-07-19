@@ -12,18 +12,20 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { FileText } from 'lucide-react';
-
-const formSchema = z.object({
-  fullName: z.string().min(2, 'Full name is required'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().min(10, 'Invalid phone number'),
-  caseCategory: z.string({ required_error: 'Please select a case category' }),
-  description: z.string().min(20, 'Please provide a detailed description of at least 20 characters'),
-  document: z.any().optional(),
-});
+import { useLanguage } from '@/context/language-context';
 
 export default function CaseSubmissionPage() {
+  const { t } = useLanguage();
   const { toast } = useToast();
+
+  const formSchema = z.object({
+    fullName: z.string().min(2, t('caseSubmission.validation.fullNameRequired')),
+    email: z.string().email(t('caseSubmission.validation.emailInvalid')),
+    phone: z.string().min(10, t('caseSubmission.validation.phoneInvalid')),
+    caseCategory: z.string({ required_error: t('caseSubmission.validation.categoryRequired') }),
+    description: z.string().min(20, t('caseSubmission.validation.descriptionRequired')),
+    document: z.any().optional(),
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,8 +40,8 @@ export default function CaseSubmissionPage() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     toast({
-      title: 'Case Registered Successfully!',
-      description: 'We have received your case details and will get back to you shortly.',
+      title: t('caseSubmission.toast.successTitle'),
+      description: t('caseSubmission.toast.successDescription'),
     });
     form.reset();
   }
@@ -49,9 +51,9 @@ export default function CaseSubmissionPage() {
       <Card className="mx-auto max-w-3xl">
         <CardHeader className="text-center p-8">
           <FileText className="mx-auto h-12 w-12 text-primary" />
-          <CardTitle className="mt-4 font-headline text-3xl md:text-4xl">Register Your Case</CardTitle>
+          <CardTitle className="mt-4 font-headline text-3xl md:text-4xl">{t('caseSubmission.title')}</CardTitle>
           <CardDescription className="text-lg text-muted-foreground mt-2">
-            Fill out the form below to get started. Our team will review your case.
+            {t('caseSubmission.description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="p-8 pt-0">
@@ -60,15 +62,15 @@ export default function CaseSubmissionPage() {
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <FormField control={form.control} name="fullName" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
-                    <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
+                    <FormLabel>{t('caseSubmission.form.fullName.label')}</FormLabel>
+                    <FormControl><Input placeholder={t('caseSubmission.form.fullName.placeholder')} {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
                 <FormField control={form.control} name="email" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Address</FormLabel>
-                    <FormControl><Input type="email" placeholder="john.doe@example.com" {...field} /></FormControl>
+                    <FormLabel>{t('caseSubmission.form.email.label')}</FormLabel>
+                    <FormControl><Input type="email" placeholder={t('caseSubmission.form.email.placeholder')} {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
@@ -76,22 +78,22 @@ export default function CaseSubmissionPage() {
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <FormField control={form.control} name="phone" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl><Input type="tel" placeholder="+91 12345 67890" {...field} /></FormControl>
+                    <FormLabel>{t('caseSubmission.form.phone.label')}</FormLabel>
+                    <FormControl><Input type="tel" placeholder={t('caseSubmission.form.phone.placeholder')} {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
                 <FormField control={form.control} name="caseCategory" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Case Category</FormLabel>
+                    <FormLabel>{t('caseSubmission.form.category.label')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl><SelectTrigger><SelectValue placeholder="Select a category" /></SelectTrigger></FormControl>
+                      <FormControl><SelectTrigger><SelectValue placeholder={t('caseSubmission.form.category.placeholder')} /></SelectTrigger></FormControl>
                       <SelectContent>
-                        <SelectItem value="family">Family Law</SelectItem>
-                        <SelectItem value="criminal">Criminal Law</SelectItem>
-                        <SelectItem value="corporate">Corporate Law</SelectItem>
-                        <SelectItem value="property">Property Law</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        <SelectItem value="family">{t('caseSubmission.form.category.options.family')}</SelectItem>
+                        <SelectItem value="criminal">{t('caseSubmission.form.category.options.criminal')}</SelectItem>
+                        <SelectItem value="corporate">{t('caseSubmission.form.category.options.corporate')}</SelectItem>
+                        <SelectItem value="property">{t('caseSubmission.form.category.options.property')}</SelectItem>
+                        <SelectItem value="other">{t('caseSubmission.form.category.options.other')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -100,19 +102,19 @@ export default function CaseSubmissionPage() {
               </div>
               <FormField control={form.control} name="description" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Case Description</FormLabel>
-                  <FormControl><Textarea rows={6} placeholder="Describe your case in detail..." {...field} /></FormControl>
+                  <FormLabel>{t('caseSubmission.form.caseDescription.label')}</FormLabel>
+                  <FormControl><Textarea rows={6} placeholder={t('caseSubmission.form.caseDescription.placeholder')} {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="document" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Upload Documents (Optional)</FormLabel>
+                  <FormLabel>{t('caseSubmission.form.upload.label')}</FormLabel>
                   <FormControl><Input type="file" /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
-              <Button type="submit" className="w-full" size="lg">Register Case</Button>
+              <Button type="submit" className="w-full" size="lg">{t('caseSubmission.form.submitButton')}</Button>
             </form>
           </Form>
         </CardContent>

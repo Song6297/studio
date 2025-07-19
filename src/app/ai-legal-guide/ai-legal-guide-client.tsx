@@ -11,10 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Loader2, Sparkles, AlertTriangle, FileText, Download } from 'lucide-react';
-
-const formSchema = z.object({
-  query: z.string().min(10, { message: 'Please enter a query of at least 10 characters.' }),
-});
+import { useLanguage } from '@/context/language-context';
 
 // Custom hook for typing effect
 function useTypingEffect(text: string, speed = 30) {
@@ -40,9 +37,14 @@ function useTypingEffect(text: string, speed = 30) {
 
 
 export function AiLegalGuideClient() {
+  const { t } = useLanguage();
   const [advice, setAdvice] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const formSchema = z.object({
+    query: z.string().min(10, { message: t('aiLegalGuide.validation.queryRequired') }),
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -88,10 +90,10 @@ export function AiLegalGuideClient() {
               name="query"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="sr-only">Your legal query</FormLabel>
+                  <FormLabel className="sr-only">{t('aiLegalGuide.form.query.label')}</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="e.g., What are the rules for renting a property in Mumbai?"
+                      placeholder={t('aiLegalGuide.form.query.placeholder')}
                       rows={5}
                       className="bg-background/80 focus:bg-background text-base p-4 rounded-xl shadow-inner backdrop-blur-sm"
                       {...field}
@@ -105,12 +107,12 @@ export function AiLegalGuideClient() {
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Generating Advice...
+                  {t('aiLegalGuide.form.submitButtonLoading')}
                 </>
               ) : (
                 <>
                   <Sparkles className="mr-2 h-5 w-5" />
-                  Get AI Advice
+                  {t('aiLegalGuide.form.submitButton')}
                 </>
               )}
             </Button>
@@ -121,15 +123,15 @@ export function AiLegalGuideClient() {
           {isLoading && (
             <div className="flex flex-col items-center justify-center text-center rounded-lg bg-background/50 p-6 space-y-4">
               <Loader2 className="h-10 w-10 animate-spin text-primary" />
-              <p className="text-lg font-medium text-muted-foreground">The AI is thinking...</p>
-              <p className="text-sm text-muted-foreground/80">This may take a few moments.</p>
+              <p className="text-lg font-medium text-muted-foreground">{t('aiLegalGuide.loading.thinking')}</p>
+              <p className="text-sm text-muted-foreground/80">{t('aiLegalGuide.loading.patience')}</p>
             </div>
           )}
           {error && (
             <Card className="bg-destructive/10 border-destructive/50">
               <CardHeader className="flex-row items-center gap-4 space-y-0 pb-2">
                   <AlertTriangle className="h-6 w-6 text-destructive" />
-                  <h3 className="text-lg font-semibold text-destructive">An Error Occurred</h3>
+                  <h3 className="text-lg font-semibold text-destructive">{t('aiLegalGuide.error.title')}</h3>
               </CardHeader>
               <CardContent>
                 <p>{error}</p>
@@ -140,7 +142,7 @@ export function AiLegalGuideClient() {
              <Card className="bg-background/80 backdrop-blur-sm border-primary/20">
                <CardHeader className="flex-row items-center gap-4 space-y-0 pb-2">
                   <FileText className="h-6 w-6 text-primary" />
-                  <h3 className="font-headline text-xl font-bold text-primary">Preliminary Legal Advice</h3>
+                  <h3 className="font-headline text-xl font-bold text-primary">{t('aiLegalGuide.adviceCard.title')}</h3>
               </CardHeader>
               <CardContent>
                 <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap font-body text-card-foreground/90">
@@ -149,11 +151,11 @@ export function AiLegalGuideClient() {
               </CardContent>
               <CardFooter className="flex justify-between items-center">
                 <p className="text-xs text-muted-foreground">
-                  This is AI-generated advice. Always consult with a qualified legal professional.
+                  {t('aiLegalGuide.adviceCard.disclaimer')}
                 </p>
                 <Button variant="outline" size="sm" onClick={handleDownload}>
                   <Download className="mr-2 h-4 w-4" />
-                  Download Advice
+                  {t('aiLegalGuide.adviceCard.downloadButton')}
                 </Button>
               </CardFooter>
             </Card>
