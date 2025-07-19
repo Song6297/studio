@@ -78,14 +78,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="preamble" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+      <section id="preamble" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/30">
         <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-6 text-center">
                 <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
                   <Gavel className="h-8 w-8" />
                 </div>
                 <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">The Preamble of India</h2>
-                 <Card className="max-w-3xl mx-auto p-6 md:p-8 mt-6 bg-secondary/30 border-primary/20 shadow-lg">
+                 <Card className="max-w-3xl mx-auto p-6 md:p-8 mt-6 bg-background/50 border-primary/20 shadow-lg">
                     <CardContent className="p-0">
                         <p className="whitespace-pre-wrap text-left text-base md:text-lg leading-relaxed text-foreground/80 font-serif">
                             {preambleText}
@@ -97,7 +97,7 @@ export default function Home() {
       </section>
 
 
-      <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
+      <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-6 text-center">
                 <div className="space-y-3">
@@ -110,7 +110,7 @@ export default function Home() {
             </div>
             <div className="mx-auto grid grid-cols-1 items-stretch gap-8 py-12 sm:grid-cols-2 lg:grid-cols-3">
                 {features.map((feature) => (
-                    <div key={feature.title} className="group relative flex flex-col rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <Card key={feature.title} className="group flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
                       <CardHeader>
                         <div className="mb-4 flex items-center gap-4">
                           <div className="rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
@@ -128,7 +128,7 @@ export default function Home() {
                           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                       </CardFooter>
-                    </div>
+                    </Card>
                 ))}
             </div>
         </div>
