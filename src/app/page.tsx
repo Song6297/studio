@@ -65,6 +65,18 @@ export default function Home() {
           <p className="mx-auto mt-6 max-w-[700px] text-lg text-muted-foreground md:text-xl">
             {t('home.subHeading')}
           </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <Link href="/case-submission">
+                  <Button size="lg">
+                    {t('home.registerCaseButton')} <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+              </Link>
+              <Link href="/ai-legal-guide">
+                  <Button size="lg" variant="outline">
+                    {t('home.aiAdviceButton')} <Bot className="ml-2 h-5 w-5" />
+                  </Button>
+              </Link>
+          </div>
         </div>
       </section>
 
