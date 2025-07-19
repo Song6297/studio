@@ -66,18 +66,14 @@ export default function Home() {
             {t('home.subHeading')}
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link href="/case-submission" passHref legacyBehavior>
-              <Button asChild size="lg">
-                <a>
+            <Link href="/case-submission">
+              <Button size="lg">
                   {t('home.getStartedButton')} <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
               </Button>
             </Link>
-            <Link href="/ai-legal-guide" passHref legacyBehavior>
-              <Button asChild variant="secondary" size="lg">
-                <a>
+            <Link href="/ai-legal-guide">
+              <Button variant="secondary" size="lg">
                   {t('home.aiAdviceButton')}
-                </a>
               </Button>
             </Link>
           </div>
