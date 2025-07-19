@@ -134,32 +134,64 @@
       "rti": {
         "title": "How to Use the Right to Information (RTI) Act",
         "description": "A practical guide on filing RTI applications to obtain information from public authorities.",
-        "category": "Public Law"
+        "category": "Public Law",
+        "explanation": [
+          { "heading": "What is it?", "text": "The Right to Information (RTI) Act, 2005 is a law that empowers Indian citizens to request information from any public authority (a government body or an 'instrumentality of State'). The goal is to promote transparency and accountability in the working of every public authority." },
+          { "heading": "Who can ask for information?", "text": "Any citizen of India can file an RTI application. You don't need to give a reason for wanting the information." },
+          { "heading": "How to file an RTI?", "text": "You can write a simple application on a plain paper addressed to the Public Information Officer (PIO) of the concerned department. You need to pay a nominal fee of ₹10. Some departments also have an online facility to file RTIs." },
+          { "heading": "What is the time limit?", "text": "The public authority is required to reply within 30 days. If it concerns the life or liberty of a person, the information must be provided within 48 hours." }
+        ]
       },
       "consumerRights": {
         "title": "Your Rights as a Consumer in India",
         "description": "Know your rights against unfair trade practices and how to file a consumer complaint.",
-        "category": "Consumer Law"
+        "category": "Consumer Law",
+        "explanation": [
+          { "heading": "What is it?", "text": "The Consumer Protection Act, 2019 protects consumers against various forms of exploitation such as defective goods, unsatisfactory services, and unfair trade practices. It ensures consumers have the right to information, choice, safety, and the right to be heard." },
+          { "heading": "What are your key rights?", "text": "You have the right to be protected against the marketing of goods and services which are hazardous to life and property. You also have the right to be informed about the quality, quantity, potency, purity, standard, and price of goods or services." },
+          { "heading": "Where to file a complaint?", "text": "You can file a complaint in the District, State, or National Consumer Disputes Redressal Commissions, depending on the value of the goods or services. Complaints can now be filed electronically and from the place where the complainant resides." }
+        ]
       },
       "cyberLaw": {
         "title": "Introduction to Cyber Law & Online Safety",
         "description": "Learn about laws governing online activities, data privacy, and protecting yourself from cybercrimes.",
-        "category": "Cyber Law"
+        "category": "Cyber Law",
+        "explanation": [
+          { "heading": "What is it?", "text": "Cyber law, or IT law, deals with legal issues related to the internet and online communication. The primary law in India is the Information Technology (IT) Act, 2000. It covers activities like electronic commerce, digital signatures, and defines cybercrimes." },
+          { "heading": "What are common cybercrimes?", "text": "These include hacking, data theft, spreading viruses, online identity theft, phishing (tricking people into giving sensitive information), and online harassment (cyberbullying)." },
+          { "heading": "How to stay safe?", "text": "Use strong, unique passwords for different accounts. Be cautious about sharing personal information online. Do not click on suspicious links or download attachments from unknown sources. Use secure Wi-Fi networks and be aware of your digital footprint." },
+          { "heading": "What to do if you are a victim?", "text": "You can report cybercrimes to your local police station or file a complaint on the National Cyber Crime Reporting Portal (cybercrime.gov.in)." }
+        ]
       },
       "ipLaw": {
         "title": "Basics of Intellectual Property (IP) Law",
         "description": "Understand the fundamentals of trademarks, copyrights, and patents in India.",
-        "category": "IP Law"
+        "category": "IP Law",
+        "explanation": [
+          { "heading": "What is it?", "text": "Intellectual Property (IP) refers to creations of the mind, such as inventions, literary and artistic works, designs, symbols, names, and images used in commerce. IP law protects these creations." },
+          { "heading": "What are the main types?", "text": "Copyright protects original creative works like books, music, art, and software. A Trademark protects brand names, logos, and slogans. A Patent protects a new invention or a new technical solution to a problem." },
+          { "heading": "Why is it important?", "text": "IP rights encourage innovation and creativity by giving creators exclusive rights over their creations for a certain period. This allows them to benefit from their work and prevents others from using it without permission." }
+        ]
       },
       "corporateLaw": {
         "title": "Understanding Corporate Law Basics",
         "description": "An overview of the legal framework governing companies, from incorporation to compliance.",
-        "category": "Corporate Law"
+        "category": "Corporate Law",
+        "explanation": [
+          { "heading": "What is it?", "text": "Corporate law governs the rights, relations, and conduct of persons, companies, organizations, and businesses. The main law is the Companies Act, 2013, which regulates the incorporation of a company, its responsibilities, directors, and dissolution." },
+          { "heading": "What is a company?", "text": "A company is a legal entity separate from its owners (shareholders). This means the company can own property, enter into contracts, and sue or be sued in its own name. The liability of the owners is generally limited to their investment in the company." },
+          { "heading": "Key Concepts", "text": "Important aspects of corporate law include rules about how a company is formed (incorporation), how it is run (corporate governance), and the duties of its directors to act in the best interests of the company." }
+        ]
       },
       "fir": {
         "title": "The Process of Filing an FIR",
         "description": "Step-by-step instructions on how to file a First Information Report with the police.",
-        "category": "Criminal Law"
+        "category": "Criminal Law",
+        "explanation": [
+          { "heading": "What is an FIR?", "text": "A First Information Report (FIR) is a written document prepared by the police when they receive information about the commission of a cognizable offence (an offence for which police can arrest without a warrant). It is the first step in any criminal investigation." },
+          { "heading": "How to file an FIR?", "text": "You can provide the information to the police either orally or in writing. Go to the police station that has jurisdiction over the area where the offence was committed. If the officer refuses to register the FIR, you can send the information in writing to the Superintendent of Police." },
+          { "heading": "What happens after filing?", "text": "Once the FIR is registered, the police are legally bound to start an investigation. The complainant has the right to get a copy of the FIR free of cost." }
+        ]
       }
     }
   },

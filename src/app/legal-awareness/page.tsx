@@ -13,6 +13,7 @@ export default function LegalAwarenessPage() {
 
     const articles = [
         {
+            slug: 'rti',
             title: t('legalAwareness.articles.rti.title'),
             description: t('legalAwareness.articles.rti.description'),
             category: t('legalAwareness.articles.rti.category'),
@@ -20,6 +21,7 @@ export default function LegalAwarenessPage() {
             hint: "file document"
         },
         {
+            slug: 'consumerRights',
             title: t('legalAwareness.articles.consumerRights.title'),
             description: t('legalAwareness.articles.consumerRights.description'),
             category: t('legalAwareness.articles.consumerRights.category'),
@@ -27,6 +29,7 @@ export default function LegalAwarenessPage() {
             hint: "shopping cart"
         },
         {
+            slug: 'cyberLaw',
             title: t('legalAwareness.articles.cyberLaw.title'),
             description: t('legalAwareness.articles.cyberLaw.description'),
             category: t('legalAwareness.articles.cyberLaw.category'),
@@ -34,6 +37,7 @@ export default function LegalAwarenessPage() {
             hint: "digital lock"
         },
         {
+            slug: 'ipLaw',
             title: t('legalAwareness.articles.ipLaw.title'),
             description: t('legalAwareness.articles.ipLaw.description'),
             category: t('legalAwareness.articles.ipLaw.category'),
@@ -41,6 +45,7 @@ export default function LegalAwarenessPage() {
             hint: "lightbulb idea"
         },
         {
+            slug: 'corporateLaw',
             title: t('legalAwareness.articles.corporateLaw.title'),
             description: t('legalAwareness.articles.corporateLaw.description'),
             category: t('legalAwareness.articles.corporateLaw.category'),
@@ -48,6 +53,7 @@ export default function LegalAwarenessPage() {
             hint: "business meeting"
         },
         {
+            slug: 'fir',
             title: t('legalAwareness.articles.fir.title'),
             description: t('legalAwareness.articles.fir.description'),
             category: t('legalAwareness.articles.fir.category'),
@@ -79,7 +85,7 @@ export default function LegalAwarenessPage() {
                             <CardDescription>{article.description}</CardDescription>
                         </CardContent>
                         <CardFooter>
-                           <Link href="#" className="font-semibold text-primary hover:text-accent">{t('legalAwareness.readMore')} &rarr;</Link>
+                           <Link href={`/legal-awareness/article?topic=${article.slug}`} className="font-semibold text-primary hover:text-accent">{t('legalAwareness.readMore')} &rarr;</Link>
                         </CardFooter>
                     </Card>
                 ))}
