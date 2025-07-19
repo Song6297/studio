@@ -29,7 +29,6 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { href: '/dashboard', label: t('header.dashboard') },
     { href: '/case-submission', label: t('header.registerCase') },
     { href: '/indian-constitution', label: t('header.indianConstitution') },
     { href: '/legal-awareness', label: t('header.awareness') },
