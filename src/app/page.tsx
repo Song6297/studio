@@ -5,11 +5,13 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale, Gavel } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 
 export default function Home() {
   const { t } = useLanguage();
+
+  const preambleText = "WE, THE PEOPLE OF INDIA, having solemnly resolved to constitute India into a SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC and to secure to all its citizens:\n\nJUSTICE, social, economic and political;\nLIBERTY of thought, expression, belief, faith and worship;\nEQUALITY of status and of opportunity;\nand to promote among them all\nFRATERNITY assuring the dignity of the individual and the unity and integrity of the Nation;\n\nIN OUR CONSTITUENT ASSEMBLY this twenty-sixth day of November, 1949, do HEREBY ADOPT, ENACT AND GIVE TO OURSELVES THIS CONSTITUTION.";
 
   const features = [
     {
@@ -101,7 +103,27 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/30">
+      <section id="preamble" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/30">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-4xl">
+            <Card className="shadow-2xl">
+              <CardHeader className="items-center text-center p-8">
+                <Gavel className="h-16 w-16 text-primary/80 mb-4" />
+                <CardTitle className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
+                  {t('indianConstitution.preamble.title')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-8 pt-0">
+                <p className="whitespace-pre-wrap text-center text-base md:text-lg leading-relaxed text-foreground/80 font-serif">
+                    {preambleText}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-6 text-center">
                 <div className="space-y-3">
