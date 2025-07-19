@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -566,6 +566,14 @@ _________________________
 
 export default function LegalTemplatesPage() {
     const { t } = useLanguage();
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return null;
+    }
 
     return (
         <div className="container py-12 md:py-24">
@@ -597,3 +605,4 @@ export default function LegalTemplatesPage() {
         </div>
     );
 }
+
