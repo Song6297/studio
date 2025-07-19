@@ -2,15 +2,20 @@
 'use server';
 
 import { auth, db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, query, where, getDocs, limit } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 async function saveData(collectionName: string, data: any, shouldCreateUser: boolean = true) {
   try {
     const { password, ...formData } = data;
+    let email = data.email;
+    if (collectionName === 'ngos') {
+      email = data.contactEmail;
+    }
+
 
     if (shouldCreateUser) {
-      const userCredential = await createUserWithEmailAndPassword(auth, data.email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       
       await addDoc(collection(db, collectionName), {
@@ -37,10 +42,27 @@ async function saveData(collectionName: string, data: any, shouldCreateUser: boo
   }
 }
 
+async function checkUserRole(userId: string): Promise<string> {
+    const collections = ['advocates', 'ngos', 'volunteers'];
+    for (const collectionName of collections) {
+        const q = query(collection(db, collectionName), where("userId", "==", userId), limit(1));
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+            if (collectionName === 'ngos') return '/ngo-dashboard';
+            // Add other role-based redirects here if needed
+            return '/dashboard'; 
+        }
+    }
+    return '/dashboard'; // Default for regular users
+}
+
+
 export async function login(data: any) {
     try {
-        await signInWithEmailAndPassword(auth, data.email, data.password);
-        return { success: true };
+        const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
+        const user = userCredential.user;
+        const redirectPath = await checkUserRole(user.uid);
+        return { success: true, redirect: redirectPath };
     } catch (error) {
         if (error instanceof Error) {
             return { success: false, error: error.message };
@@ -55,7 +77,9 @@ export async function registerAdvocate(formData: any) {
 }
 
 export async function registerNgo(formData: any) {
-  return saveData('ngos', formData);
+  // Use contactEmail for authentication
+  const authData = { ...formData, email: formData.contactEmail };
+  return saveData('ngos', authData);
 }
 
 export async function registerVolunteer(formData: any) {

@@ -75,9 +75,9 @@ function RegisterForm() {
   async function onLoginSubmit(values: z.infer<typeof loginSchema>) {
     setIsLoading(true);
     const result = await login(values);
-    if (result.success) {
+    if (result.success && result.redirect) {
       toast({ title: t('register.login.toast.successTitle') });
-      router.push('/dashboard');
+      router.push(result.redirect);
     } else {
       toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
     }
@@ -90,6 +90,7 @@ function RegisterForm() {
     if (result.success) {
       toast({ title: t('register.advocate.toast.successTitle'), description: t('register.advocate.toast.successDescription') });
       advocateForm.reset();
+      router.push('/register?type=login');
     } else {
       toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
     }
@@ -102,6 +103,7 @@ function RegisterForm() {
      if (result.success) {
       toast({ title: t('register.ngo.toast.successTitle'), description: t('register.ngo.toast.successDescription') });
       ngoForm.reset();
+      router.push('/register?type=login');
     } else {
       toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
     }
@@ -114,6 +116,7 @@ function RegisterForm() {
     if (result.success) {
       toast({ title: t('register.volunteer.toast.successTitle'), description: t('register.volunteer.toast.successDescription') });
       volunteerForm.reset();
+      router.push('/register?type=login');
     } else {
       toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
     }
