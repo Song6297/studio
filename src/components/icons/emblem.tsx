@@ -1,9 +1,10 @@
+
 export function AshokaChakraIcon() {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 100 100"
-            className="h-full w-full opacity-5 dark:opacity-10"
+            className="h-full w-full"
             fill="currentColor"
         >
             <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="3" fill="none" />
