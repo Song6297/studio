@@ -4,6 +4,7 @@
     "registerCase": "ಪ್ರಕರಣವನ್ನು ನೋಂದಾಯಿಸಿ",
     "awareness": "ಅರಿವು",
     "aiLegalAdvice": "AI ಕಾನೂನು ಸಲಹೆ",
+    "documentServices": "ದಾಖಲೆ ಸೇವೆಗಳು",
     "login": "ಲಾಗಿನ್ ಮಾಡಿ",
     "register": "ನೋಂದಾಯಿಸಿ",
     "registerAsAdvocate": "ವಕೀಲ/ಕಾನೂನು ಸಲಹೆಗಾರರಾಗಿ",
@@ -42,15 +43,10 @@
       "description": "ಜ್ಞಾನದಿಂದ ನಿಮ್ಮನ್ನು ಸಬಲೀಕರಣಗೊಳಿಸಿ. ಭಾರತೀಯ ಕಾನೂನು ಮತ್ತು ನಿಮ್ಮ ಹಕ್ಕುಗಳ ಕುರಿತ ನಮ್ಮ ಲೇಖನಗಳು ಮತ್ತು ಮಾರ್ಗದರ್ಶಿಗಳ ಪೋರ್ಟಲ್ ಅನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ.",
       "cta": "ಪೋರ್ಟಲ್ ಅನ್ವೇಷಿಸಿ"
     },
-    "affidavitServices": {
-      "title": "ಅಫಿಡವಿಟ್ ಸೇವೆಗಳು",
-      "description": "ವೃತ್ತಿಪರರ ಸಹಾಯದಿಂದ ವಿವಿಧ ಉದ್ದೇಶಗಳಿಗಾಗಿ ಕಾನೂನುಬದ್ಧ ಅಫಿಡವಿಟ್‌ಗಳನ್ನು ರಚಿಸಿ ಮತ್ತು ಮೌಲ್ಯೀಕರಿಸಿ.",
-      "cta": "ಅಫಿಡವಿಟ್ ಪಡೆಯಿರಿ"
-    },
-    "notaryServices": {
-      "title": "ನೋಟರಿ ಸೇವೆಗಳು",
-      "description": "ಪ್ರಮಾಣೀಕೃತ ವೃತ್ತಿಪರರಿಂದ ನಿಮ್ಮ ಪ್ರಮುಖ ದಾಖಲೆಗಳನ್ನು ತ್ವರಿತವಾಗಿ ಮತ್ತು ಸುರಕ್ಷಿತವಾಗಿ ನೋಟರೈಸ್ ಮಾಡಿಸಿಕೊಳ್ಳಿ.",
-      "cta": "ದಾಖಲೆ ನೋಟರೈಸ್ ಮಾಡಿ"
+    "documentServices": {
+      "title": "Document Services",
+      "description": "Create affidavits and get documents notarized with professional assistance.",
+      "cta": "Get Started"
     }
   },
   "caseSubmission": {

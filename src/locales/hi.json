@@ -4,6 +4,7 @@
     "registerCase": "मामला दर्ज करें",
     "awareness": "जागरूकता",
     "aiLegalAdvice": "एआई कानूनी सलाह",
+    "documentServices": "दस्तावेज़ सेवाएं",
     "login": "लॉग इन करें",
     "register": "पंजीकरण करें",
     "registerAsAdvocate": "अधिवक्ता/कानूनी सलाहकार के रूप में",
@@ -42,15 +43,10 @@
       "description": "ज्ञान से खुद को सशक्त बनाएं। भारतीय कानून और अपने अधिकारों पर हमारे लेखों और गाइडों के पोर्टल को ब्राउज़ करें।",
       "cta": "पोर्टल का अन्वेषण करें"
     },
-    "affidavitServices": {
-      "title": "शपथ पत्र सेवाएं",
-      "description": "पेशेवर सहायता से विभिन्न उद्देश्यों के लिए कानूनी रूप से बाध्यकारी शपथ पत्र बनाएं और मान्य करें।",
-      "cta": "शपथ पत्र प्राप्त करें"
-    },
-    "notaryServices": {
-      "title": "नोटरी सेवाएं",
-      "description": "प्रमाणित पेशेवरों द्वारा अपने महत्वपूर्ण दस्तावेजों को जल्दी और सुरक्षित रूप से नोटरीकृत करवाएं।",
-      "cta": "दस्तावेज़ नोटरीकृत करें"
+    "documentServices": {
+      "title": "Document Services",
+      "description": "Create affidavits and get documents notarized with professional assistance.",
+      "cta": "Get Started"
     }
   },
   "caseSubmission": {

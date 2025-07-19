@@ -4,6 +4,7 @@
     "registerCase": "കേസ് രജിസ്റ്റർ ചെയ്യുക",
     "awareness": "അവബോധം",
     "aiLegalAdvice": "AI നിയമോപദേശം",
+    "documentServices": "പ്രമാണ സേവനങ്ങൾ",
     "login": "ലോഗിൻ ചെയ്യുക",
     "register": "രജിസ്റ്റർ ചെയ്യുക",
     "registerAsAdvocate": "അഭിഭാഷകൻ/നിയമോപദേശകൻ ആയി",
@@ -42,15 +43,10 @@
       "description": "അറിവ് കൊണ്ട് സ്വയം ശാക്തീകരിക്കുക. ഇന്ത്യൻ നിയമത്തെയും നിങ്ങളുടെ അവകാശങ്ങളെയും കുറിച്ചുള്ള ഞങ്ങളുടെ ലേഖനങ്ങളുടെയും ഗൈഡുകളുടെയും പോർട്ടൽ ബ്രൗസ് ചെയ്യുക.",
       "cta": "പോർട്ടൽ പര്യവേക്ഷണം ചെയ്യുക"
     },
-    "affidavitServices": {
-      "title": "സത്യവാങ്മൂലം സേവനങ്ങൾ",
-      "description": "പ്രൊഫഷണൽ സഹായത്തോടെ വിവിധ ആവശ്യങ്ങൾക്കായി നിയമപരമായി ബാധകമായ സത്യവാങ്മൂലങ്ങൾ സൃഷ്ടിക്കുകയും സാധൂകരിക്കുകയും ചെയ്യുക.",
-      "cta": "സത്യവാങ്മൂലം നേടുക"
-    },
-    "notaryServices": {
-      "title": "നോട്ടറി സേവനങ്ങൾ",
-      "description": "സർട്ടിഫൈഡ് പ്രൊഫഷണലുകൾ നിങ്ങളുടെ പ്രധാനപ്പെട്ട പ്രമാണങ്ങൾ വേഗത്തിലും സുരക്ഷിതമായും നോട്ടറൈസ് ചെയ്യുക.",
-      "cta": "പ്രമാണം നോട്ടറൈസ് ചെയ്യുക"
+    "documentServices": {
+      "title": "Document Services",
+      "description": "Create affidavits and get documents notarized with professional assistance.",
+      "cta": "Get Started"
     }
   },
   "caseSubmission": {

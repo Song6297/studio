@@ -4,6 +4,7 @@
     "registerCase": "வழக்கைப் பதிவு செய்",
     "awareness": "விழிப்புணர்வு",
     "aiLegalAdvice": "AI சட்ட ஆலோசனை",
+    "documentServices": "ஆவண சேவைகள்",
     "login": "உள்நுழை",
     "register": "பதிவு செய்",
     "registerAsAdvocate": "வழக்கறிஞர்/சட்ட ஆலோசகராக",
@@ -42,15 +43,10 @@
       "description": "அறிவுடன் உங்களை மேம்படுத்துங்கள். இந்திய சட்டம் மற்றும் உங்கள் உரிமைகள் குறித்த எங்கள் கட்டுரைகள் மற்றும் வழிகாட்டிகளின் போர்ட்டலை உலாவுக.",
       "cta": "போர்ட்டலை ஆராயுங்கள்"
     },
-    "affidavitServices": {
-      "title": "பிரமாணப் பத்திர சேவைகள்",
-      "description": "தொழில்முறை உதவியுடன் பல்வேறு நோக்கங்களுக்காக சட்டப்பூர்வமாக பிணைக்கப்பட்ட பிரமாணப் பத்திரங்களை உருவாக்கி சரிபார்க்கவும்.",
-      "cta": "பிரமாணப் பத்திரம் பெறுங்கள்"
-    },
-    "notaryServices": {
-      "title": "நோட்டரி சேவைகள்",
-      "description": "சான்றளிக்கப்பட்ட நிபுணர்களால் உங்கள் முக்கியமான ஆவணங்களை விரைவாகவும் பாதுகாப்பாகவும் நோட்டரி செய்யுங்கள்.",
-      "cta": "ஆவணத்தை நோட்டரி செய்யுங்கள்"
+    "documentServices": {
+      "title": "Document Services",
+      "description": "Create affidavits and get documents notarized with professional assistance.",
+      "cta": "Get Started"
     }
   },
   "caseSubmission": {
