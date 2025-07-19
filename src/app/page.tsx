@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale, Gavel } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 
 export default function Home() {
@@ -49,6 +49,9 @@ export default function Home() {
     },
   ];
 
+  const preambleText = "WE, THE PEOPLE OF INDIA, having solemnly resolved to constitute India into a SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC and to secure to all its citizens:\n\nJUSTICE, social, economic and political;\nLIBERTY of thought, expression, belief, faith and worship;\nEQUALITY of status and of opportunity;\nand to promote among them all\nFRATERNITY assuring the dignity of the individual and the unity and integrity of the Nation;\n\nIN OUR CONSTITUENT ASSEMBLY this twenty-sixth day of November, 1949, do HEREBY ADOPT, ENACT AND GIVE TO OURSELVES THIS CONSTITUTION.";
+
+
   return (
     <>
       <section className="relative w-full bg-background py-20 md:py-32 lg:py-40">
@@ -74,6 +77,25 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section id="preamble" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-6 text-center">
+                <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                  <Gavel className="h-8 w-8" />
+                </div>
+                <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">The Preamble of India</h2>
+                 <Card className="max-w-3xl mx-auto p-6 md:p-8 mt-6 bg-secondary/30 border-primary/20 shadow-lg">
+                    <CardContent className="p-0">
+                        <p className="whitespace-pre-wrap text-left text-base md:text-lg leading-relaxed text-foreground/80 font-serif">
+                            {preambleText}
+                        </p>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+      </section>
+
 
       <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
         <div className="container px-4 md:px-6">
