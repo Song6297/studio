@@ -101,13 +101,9 @@ export default function IndianConstitutionPage() {
                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[300px] opacity-5 dark:opacity-10 -z-10">
                             <Gavel />
                         </div>
-                        <section id="preamble" className="h-full flex flex-col">
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
-                                    <Gavel className="h-6 w-6" />
-                                </div>
-                                <h2 className="font-headline text-2xl font-bold tracking-tighter sm:text-3xl">{t('indianConstitution.preamble.title')}</h2>
-                            </div>
+                        <section id="preamble" className="h-full flex flex-col items-center text-center">
+                            <Gavel className="h-16 w-16 text-primary/80 mb-4" />
+                            <h2 className="font-headline text-2xl font-bold tracking-tighter sm:text-3xl mb-6">{t('indianConstitution.preamble.title')}</h2>
                             <div className="flex-1 overflow-y-auto">
                                 <Card className="p-6 md:p-8 bg-transparent border-none shadow-none">
                                     <CardContent className="p-0">
