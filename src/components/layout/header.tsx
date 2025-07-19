@@ -38,7 +38,7 @@ export function Header() {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center">
             <div className="flex items-center gap-6 flex-1">
-              <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4">
+              <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4 ml-4">
                   <Logo />
               </Link>
             </div>
@@ -51,7 +51,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className="flex items-center gap-6 flex-1">
-            <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4">
+            <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4 ml-4">
               <Logo />
             </Link>
             <nav className="hidden items-center gap-8 md:flex">
