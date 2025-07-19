@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -9,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Loader2, Sparkles, AlertTriangle, FileText } from 'lucide-react';
+import { Loader2, Sparkles, AlertTriangle, FileText, Download } from 'lucide-react';
 
 const formSchema = z.object({
   query: z.string().min(10, { message: 'Please enter a query of at least 10 characters.' }),
@@ -60,6 +61,19 @@ export function AiLegalGuideClient() {
     }
     setIsLoading(false);
   }
+
+  const handleDownload = () => {
+    if (!advice) return;
+    const blob = new Blob([advice], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'legal-advice.txt');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
   const displayedAdvice = useTypingEffect(advice);
 
@@ -133,8 +147,14 @@ export function AiLegalGuideClient() {
                   <p>{displayedAdvice}</p>
                 </div>
               </CardContent>
-              <CardFooter className="text-xs text-muted-foreground">
-                This is AI-generated advice. Always consult with a qualified legal professional.
+              <CardFooter className="flex justify-between items-center">
+                <p className="text-xs text-muted-foreground">
+                  This is AI-generated advice. Always consult with a qualified legal professional.
+                </p>
+                <Button variant="outline" size="sm" onClick={handleDownload}>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download Advice
+                </Button>
               </CardFooter>
             </Card>
           )}
