@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
 import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale } from 'lucide-react';
 
@@ -80,28 +80,27 @@ export default function Home() {
                     </p>
                 </div>
             </div>
-            <div className="mx-auto grid grid-cols-1 items-start gap-8 py-12 sm:grid-cols-2 md:grid-cols-3 lg:gap-12">
+            <div className="mx-auto grid grid-cols-1 items-stretch gap-8 py-12 sm:grid-cols-2 lg:grid-cols-3">
                 {features.map((feature) => (
-                    <Card key={feature.title} className="flex flex-col text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-                        <CardHeader className="items-center">
-                            <div className="mb-4 rounded-full bg-primary/10 p-4 text-primary">
-                                <feature.icon className="h-8 w-8" />
-                            </div>
-                            <CardTitle className="font-headline text-2xl">{feature.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="flex-1">
-                            <CardDescription className="text-base">
-                                {feature.description}
-                            </CardDescription>
-                        </CardContent>
-                        <CardContent>
-                             <Button asChild variant="outline">
-                                <Link href={feature.href}>
-                                    {feature.cta} <ArrowRight className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
-                        </CardContent>
-                    </Card>
+                    <div key={feature.title} className="group relative flex flex-col rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                      <CardHeader>
+                        <div className="mb-4 flex items-center gap-4">
+                          <div className="rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                            <feature.icon className="h-6 w-6" />
+                          </div>
+                          <CardTitle className="font-headline text-xl">{feature.title}</CardTitle>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="flex-1">
+                        <CardDescription>{feature.description}</CardDescription>
+                      </CardContent>
+                      <CardFooter>
+                        <Link href={feature.href} className="flex items-center font-semibold text-primary transition-colors hover:text-accent">
+                          {feature.cta}
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Link>
+                      </CardFooter>
+                    </div>
                 ))}
             </div>
         </div>

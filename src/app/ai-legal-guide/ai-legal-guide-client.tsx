@@ -7,7 +7,7 @@ import * as z from 'zod';
 import { getLegalAdvice } from './actions';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Loader2 } from 'lucide-react';
 
@@ -39,11 +39,8 @@ export function AiLegalGuideClient() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="font-headline">Ask a Legal Question</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <Card className="border-none shadow-none">
+      <CardContent className="p-0">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
@@ -51,11 +48,12 @@ export function AiLegalGuideClient() {
               name="query"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Your legal query</FormLabel>
+                  <FormLabel className="font-semibold">Your legal query</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="e.g., What are the rules for renting a property in Mumbai?"
                       rows={5}
+                      className="bg-background"
                       {...field}
                     />
                   </FormControl>
@@ -70,9 +68,9 @@ export function AiLegalGuideClient() {
           </form>
         </Form>
         {isLoading && (
-          <div className="mt-6 flex items-center justify-center">
-            <Loader2 className="mr-2 h-8 w-8 animate-spin text-primary" />
-            <p className="text-muted-foreground">Generating advice...</p>
+          <div className="mt-6 flex items-center justify-center rounded-lg bg-secondary/50 p-6">
+            <Loader2 className="mr-3 h-8 w-8 animate-spin text-primary" />
+            <p className="text-lg font-medium text-muted-foreground">Generating advice...</p>
           </div>
         )}
         {error && (
