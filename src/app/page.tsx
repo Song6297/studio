@@ -3,7 +3,7 @@
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
 import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale, Gavel } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
@@ -66,17 +66,17 @@ export default function Home() {
             {t('home.subHeading')}
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link href="/case-submission" passHref>
+            <Link href="/case-submission" passHref legacyBehavior>
               <Button asChild size="lg">
                 <a>
                   {t('home.getStartedButton')} <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
             </Link>
-            <Link href="/ai-legal-guide" passHref>
+            <Link href="/ai-legal-guide" passHref legacyBehavior>
               <Button asChild variant="secondary" size="lg">
                 <a>
-                    {t('home.aiAdviceButton')}
+                  {t('home.aiAdviceButton')}
                 </a>
               </Button>
             </Link>
