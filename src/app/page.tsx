@@ -46,13 +46,13 @@ const features = [
 export default function Home() {
   return (
     <>
-      <section className="relative w-full bg-background">
-        <div className="container flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center text-center py-12 md:py-24">
+      <section className="relative w-full bg-background py-20 md:py-32 lg:py-40">
+        <div className="container flex min-h-[calc(100vh-15rem)] flex-col items-center justify-center text-center">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[400px] opacity-5 dark:opacity-10">
               <AshokaChakraIcon />
           </div>
           <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-            Justice, Rights, and Support
+            Satyameva Jayate
           </h1>
           <p className="mx-auto mt-6 max-w-[700px] text-lg text-muted-foreground md:text-xl">
             A unified platform connecting citizens with legal professionals and NGOs to ensure access to justice for all.
