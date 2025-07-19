@@ -24,12 +24,15 @@ export default function CaseSubmissionPage() {
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if (!authLoading) {
-      if (!user) {
-        router.push('/register?type=login');
-      }
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push('/register?type=login');
     }
   }, [user, authLoading, router]);
 
@@ -87,7 +90,7 @@ export default function CaseSubmissionPage() {
     setIsLoading(false);
   }
 
-  if (authLoading) {
+  if (!isMounted || authLoading || !user) {
     return (
       <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
         <Loader2 className="h-10 w-10 animate-spin text-primary" />

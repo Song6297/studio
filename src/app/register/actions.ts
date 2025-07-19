@@ -65,8 +65,8 @@ export async function login(data: any) {
         return { success: true, redirect: redirectPath };
     } catch (error) {
         if (error instanceof Error) {
-            let errorMessage = error.message;
-            if (error.message.includes('auth/invalid-credential')) {
+            let errorMessage = "An unexpected error occurred.";
+            if (error.message.includes('auth/invalid-credential') || error.message.includes('auth/user-not-found') || error.message.includes('auth/wrong-password')) {
                 errorMessage = 'Invalid email or password. Please try again.';
             }
             return { success: false, error: errorMessage };

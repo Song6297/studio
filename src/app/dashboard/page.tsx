@@ -54,44 +54,40 @@ function DashboardPage() {
     if (!authLoading) {
       if (!user) {
         router.push('/register?type=login');
+      } else {
+        fetchCases(user.uid);
       }
     }
   }, [user, authLoading, router]);
 
-  useEffect(() => {
-    async function fetchCases() {
-      if (!user) return;
-      try {
-        const casesCollection = collection(db, 'cases');
-        const q = query(casesCollection, where("userId", "==", user.uid), orderBy('submittedAt', 'desc'));
-        const querySnapshot = await getDocs(q);
-        const casesData = querySnapshot.docs.map(doc => {
-            const data = doc.data();
-            return {
-                id: doc.id,
-                fullName: data.fullName,
-                caseCategory: data.caseCategory,
-                status: data.status,
-                submittedAt: data.submittedAt,
-                description: data.description || 'No description provided.',
-                parties: data.parties || [{name: data.fullName, role: 'Petitioner'}],
-                events: data.events || [{date: data.submittedAt.toDate().toLocaleDateString(), description: 'Case registered.'}],
-                userId: data.userId
-            };
-        }) as Case[];
-        setCases(casesData);
-      } catch (err) {
-        console.error(err);
-        setError(t('caseStatus.error.fetch'));
-      } finally {
-        setIsLoading(false);
-      }
+  async function fetchCases(userId: string) {
+    setIsLoading(true);
+    try {
+      const casesCollection = collection(db, 'cases');
+      const q = query(casesCollection, where("userId", "==", userId), orderBy('submittedAt', 'desc'));
+      const querySnapshot = await getDocs(q);
+      const casesData = querySnapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+              id: doc.id,
+              fullName: data.fullName,
+              caseCategory: data.caseCategory,
+              status: data.status,
+              submittedAt: data.submittedAt,
+              description: data.description || 'No description provided.',
+              parties: data.parties || [{name: data.fullName, role: 'Petitioner'}],
+              events: data.events || [{date: data.submittedAt.toDate().toLocaleDateString(), description: 'Case registered.'}],
+              userId: data.userId
+          };
+      }) as Case[];
+      setCases(casesData);
+    } catch (err) {
+      console.error(err);
+      setError(t('caseStatus.error.fetch'));
+    } finally {
+      setIsLoading(false);
     }
-    
-    if (user) {
-        fetchCases();
-    }
-  }, [t, user]);
+  }
 
   if (authLoading || isLoading) {
       return (
