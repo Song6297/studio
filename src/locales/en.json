@@ -389,11 +389,11 @@
     }
   },
   "legalServices": {
-    "title": "Book Legal Services",
-    "description": "Schedule a virtual consultation with a legal expert or find information about upcoming free legal aid camps organized by our partner NGOs.",
+    "title": "Find & Book Legal Services",
+    "description": "Connect with experienced legal advisors or find information about upcoming free legal aid camps organized by our partner NGOs.",
     "booking": {
       "title": "Book a Virtual Consultation",
-      "description": "Select a date and time to speak with a legal professional."
+      "description": "Select a date and time to speak with the legal professional."
     },
     "form": {
       "name": { "label": "Full Name", "placeholder": "Your full name" },
@@ -420,7 +420,55 @@
       "errorTitle": "Booking Failed",
       "errorDescription": "Please select a date and time for your appointment.",
       "successTitle": "Appointment Booked!",
-      "successDescription": "Your consultation is confirmed for"
+      "successDescription": "Your consultation is confirmed with"
+    },
+    "advisors": {
+      "title": "Our Legal Advisors",
+      "bookButton": "Book Appointment",
+      "list": [
+        {
+          "name": "Adv. Alok Sharma",
+          "specialization": "Criminal Law Expert",
+          "bio": "With over 15 years of experience in criminal defense, Adv. Sharma is a seasoned litigator known for his strategic approach.",
+          "image": "https://placehold.co/400x400.png",
+          "hint": "man lawyer portrait"
+        },
+        {
+          "name": "Adv. Sunita Gupta",
+          "specialization": "Family Law & Mediation",
+          "bio": "Specializing in divorce, child custody, and mediation, Adv. Gupta provides compassionate and effective legal counsel.",
+          "image": "https://placehold.co/400x400.png",
+          "hint": "woman lawyer portrait"
+        },
+        {
+          "name": "Adv. Rajesh Kumar",
+          "specialization": "Corporate & Commercial Law",
+          "bio": "Adv. Kumar advises startups and established companies on compliance, contracts, and corporate governance.",
+          "image": "https://placehold.co/400x400.png",
+          "hint": "professional man suit"
+        },
+        {
+          "name": "Adv. Priya Desai",
+          "specialization": "Property Law",
+          "bio": "Expert in real estate transactions, property disputes, and land registration matters. Ensuring your investments are secure.",
+          "image": "https://placehold.co/400x400.png",
+          "hint": "professional woman smiling"
+        },
+        {
+          "name": "Adv. Vikram Singh",
+          "specialization": "Cyber Law & IP",
+          "bio": "A specialist in the digital domain, focusing on data privacy, cybercrime defense, and intellectual property protection.",
+          "image": "https://placehold.co/400x400.png",
+          "hint": "man tech professional"
+        },
+        {
+          "name": "Adv. Meena Iyer",
+          "specialization": "Consumer Rights",
+          "bio": "Dedicated to protecting consumer interests, handling cases of defective products and unfair trade practices.",
+          "image": "https://placehold.co/400x400.png",
+          "hint": "woman corporate headshot"
+        }
+      ]
     },
     "camps": {
       "title": "Upcoming Legal Aid Camps",
