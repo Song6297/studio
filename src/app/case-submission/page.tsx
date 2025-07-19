@@ -14,12 +14,17 @@ import { useToast } from '@/hooks/use-toast';
 import { FileText, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { submitCase } from './actions';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function CaseSubmissionPage() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const formSchema = z.object({
     fullName: z.string().min(2, t('caseSubmission.validation.fullNameRequired')),
@@ -62,6 +67,28 @@ export default function CaseSubmissionPage() {
     }
     setIsLoading(false);
   }
+
+  if (!isMounted) {
+    return (
+      <div className="container py-12 md:py-24">
+        <Card className="mx-auto max-w-3xl bg-card/80 backdrop-blur-sm">
+          <CardHeader className="text-center p-8">
+            <FileText className="mx-auto h-12 w-12 text-primary" />
+            <CardTitle className="mt-4 font-headline text-3xl md:text-4xl">{t('caseSubmission.title')}</CardTitle>
+            <CardDescription className="text-lg text-muted-foreground mt-2">
+              {t('caseSubmission.description')}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="p-8 pt-0">
+             <div className="flex justify-center items-center h-64">
+                <Loader2 className="h-10 w-10 animate-spin text-primary" />
+             </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
 
   return (
     <div className="container py-12 md:py-24">
