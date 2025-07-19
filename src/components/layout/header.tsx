@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu } from 'lucide-react';
+import { Menu, Languages, Globe } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -12,8 +12,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
 
 const navLinks = [
   { href: '/case-submission', label: 'Register Case' },
@@ -21,15 +23,25 @@ const navLinks = [
   { href: '/ai-legal-guide', label: 'AI Legal Advice' },
 ];
 
+const languages = [
+  { code: 'en', name: 'English' },
+  { code: 'kn', name: 'ಕನ್ನಡ' },
+  { code: 'hi', name: 'हिन्दी' },
+  { code: 'ta', name: 'தமிழ்' },
+  { code: 'ml', name: 'മലയാളം' },
+]
+
 export function Header() {
   const pathname = usePathname();
+  const [currentLang, setCurrentLang] = useState(languages[0]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
-            <Link href="/" aria-label="My Legal Firm Home Page">
+            <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4">
               <Logo />
+               <p className="font-headline text-sm font-bold text-primary hidden sm:block" lang="kn">ಸತ್ಯಮೇವ ಜಯತೆ</p>
             </Link>
             <nav className="hidden items-center gap-6 md:flex">
               {navLinks.map((link) => (
@@ -48,6 +60,22 @@ export function Header() {
         </div>
         
         <div className="hidden items-center gap-2 md:flex">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Globe />
+                  <span className="sr-only">Change language</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {languages.map((lang) => (
+                   <DropdownMenuItem key={lang.code} onSelect={() => setCurrentLang(lang)}>
+                      {lang.name}
+                   </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Button asChild variant="ghost">
                 <Link href="/register">Log In</Link>
             </Button>
@@ -81,7 +109,7 @@ export function Header() {
                 </Link>
               </div>
               <nav className="mt-4 flex flex-col gap-2 p-4">
-                 {[...navLinks, {href: '/register', label: 'Register / Log In'}].map((link) => (
+                 {navLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
@@ -93,6 +121,41 @@ export function Header() {
                       {link.label}
                     </Link>
                 ))}
+                <div className="border-t my-4"></div>
+                 <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" className="justify-between">
+                        <span>{currentLang.name}</span>
+                        <Languages className="h-5 w-5" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      {languages.map((lang) => (
+                        <DropdownMenuItem key={lang.code} onSelect={() => setCurrentLang(lang)}>
+                            {lang.name}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+
+                 <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button className="mt-2">Register / Log In</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem asChild>
+                        <Link href="/register">Log In</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link href="/register?type=advocate">Register as Advocate</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/register?type=ngo">Register as NGO</Link>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+
               </nav>
             </SheetContent>
           </Sheet>
