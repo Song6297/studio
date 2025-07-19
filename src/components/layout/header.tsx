@@ -33,7 +33,6 @@ export function Header() {
         <div className="flex items-center gap-6 flex-1">
             <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4">
               <Logo />
-               <p className="font-headline text-sm font-bold text-primary hidden sm:block" lang="kn">ಸತ್ಯಮೇವ ಜಯತೆ</p>
             </Link>
             <nav className="hidden items-center gap-6 md:flex">
               {navLinks.map((link) => (
