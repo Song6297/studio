@@ -7,9 +7,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/context/language-context";
+import { useState, useEffect } from "react";
 
 export default function LegalAwarenessPage() {
     const { t } = useLanguage();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const articles = [
         {
@@ -61,6 +67,10 @@ export default function LegalAwarenessPage() {
             hint: "police station"
         }
     ];
+
+    if (!isMounted) {
+        return null;
+    }
 
     return (
         <div className="container py-12 md:py-24">
