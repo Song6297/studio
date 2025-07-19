@@ -1,6 +1,5 @@
 
 'use client';
-import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
@@ -9,6 +8,7 @@ import { Footer } from '@/components/layout/footer';
 import { LanguageProvider } from '@/context/language-context';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
 import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
 
 export default function RootLayout({
@@ -17,10 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
+
   const isAIGuidePage = pathname === '/ai-legal-guide';
+  const isHomePage = pathname === '/';
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -31,7 +35,7 @@ export default function RootLayout({
           <div className="relative flex min-h-dvh flex-col bg-background">
             <Header />
             <main className="flex-1 relative">
-             {!isAIGuidePage && (
+             {isMounted && !isAIGuidePage && !isHomePage && (
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[400px] opacity-5 dark:opacity-10 -z-10">
                     <AshokaChakraIcon />
                 </div>
