@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, PenSquare, Scale, Gavel, Handshake, FileQuestion } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, Scale, Gavel, Handshake, FileQuestion, CalendarCheck } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 
 export default function Home() {
@@ -34,6 +34,13 @@ export default function Home() {
       description: t('features.fileRti.description'),
       href: "/file-rti",
       cta: t('features.fileRti.cta'),
+    },
+    {
+      icon: CalendarCheck,
+      title: t('features.legalServices.title'),
+      description: t('features.legalServices.description'),
+      href: "/legal-services",
+      cta: t('features.legalServices.cta'),
     },
     {
       icon: BookOpen,

@@ -7,6 +7,7 @@
     "volunteerNetwork": "Volunteer Network",
     "indianConstitution": "Indian Constitution",
     "fileRti": "File RTI",
+    "legalServices": "Legal Services",
     "login": "Log In",
     "register": "Register",
     "registerAsAdvocate": "As Advocate/Legal Adviser",
@@ -60,6 +61,11 @@
       "title": "File an RTI",
       "description": "Use our guide and generator to easily prepare and file a Right to Information request with government bodies.",
       "cta": "File an RTI"
+    },
+    "legalServices": {
+      "title": "Book a Consultation",
+      "description": "Schedule a virtual consultation with a legal professional or find upcoming legal aid camps near you.",
+      "cta": "Book an Appointment"
     }
   },
   "indianConstitution": {
@@ -380,6 +386,64 @@
       "copyButton": "Copy Text",
       "downloadButton": "Download .txt",
       "backButton": "Create a new request"
+    }
+  },
+  "legalServices": {
+    "title": "Book Legal Services",
+    "description": "Schedule a virtual consultation with a legal expert or find information about upcoming free legal aid camps organized by our partner NGOs.",
+    "booking": {
+      "title": "Book a Virtual Consultation",
+      "description": "Select a date and time to speak with a legal professional."
+    },
+    "form": {
+      "name": { "label": "Full Name", "placeholder": "Your full name" },
+      "email": { "label": "Email Address", "placeholder": "you@example.com" },
+      "phone": { "label": "Phone Number", "placeholder": "+91 12345 67890" },
+      "date": { "label": "Select a Date" },
+      "time": { "label": "Select a Time Slot" },
+      "type": {
+        "label": "Consultation Type",
+        "options": {
+          "video": "Video Call",
+          "voice": "Voice Call"
+        }
+      },
+      "submitButton": "Book Appointment"
+    },
+    "validation": {
+      "nameRequired": "Full name is required.",
+      "emailInvalid": "A valid email is required.",
+      "phoneInvalid": "A valid phone number is required.",
+      "typeRequired": "Please select a consultation type."
+    },
+    "toast": {
+      "errorTitle": "Booking Failed",
+      "errorDescription": "Please select a date and time for your appointment.",
+      "successTitle": "Appointment Booked!",
+      "successDescription": "Your consultation is confirmed for"
+    },
+    "camps": {
+      "title": "Upcoming Legal Aid Camps",
+      "description": "Free in-person legal advice provided by our partner NGOs. No appointment necessary.",
+      "organizedBy": "Organized by:",
+      "date": "Date & Time",
+      "location": "Location",
+      "list": [
+        {
+          "title": "Free Legal Consultation Camp",
+          "ngo": "Justice for All Foundation",
+          "date": "August 15, 2024, 10:00 AM - 4:00 PM",
+          "location": "Community Hall, Sector 15, Noida",
+          "description": "Get free legal advice on matters related to family law, property disputes, and consumer rights. Our team of volunteer lawyers and paralegals will be available to assist you."
+        },
+        {
+          "title": "RTI Filing Assistance Camp",
+          "ngo": "Transparency India Initiative",
+          "date": "August 22, 2024, 11:00 AM - 2:00 PM",
+          "location": "Gandhi Park, MG Road, Bangalore",
+          "description": "Need help filing a Right to Information (RTI) request? Our volunteers will guide you through the process and help you draft your application."
+        }
+      ]
     }
   }
 }
