@@ -203,6 +203,7 @@ function RtiRequestGenerator() {
   });
 
   function onSubmit(values: z.infer<typeof rtiRequestSchema>) {
+    const today = new Date().toLocaleDateString();
     const text = `
 To,
 The Public Information Officer (PIO),
@@ -219,7 +220,7 @@ Details of Information Sought:
 
 I hereby declare that I am a citizen of India. I request you to provide the information at the earliest.
 
-Date: ${new Date().toLocaleDateString()}
+Date: ${today}
 Place: 
 
 Sincerely,
@@ -311,13 +312,14 @@ function PoliceComplaintGenerator() {
   });
 
   function onSubmit(values: z.infer<typeof policeComplaintSchema>) {
+    const today = new Date().toLocaleDateString();
     const text = `
 To,
 The Officer in Charge,
 [Police Station Name],
 [Police Station Address]
 
-Date: ${new Date().toLocaleDateString()}
+Date: ${today}
 
 Subject: Complaint regarding an incident on ${values.incidentDate}
 
@@ -432,10 +434,11 @@ function LegalNoticeGenerator() {
   });
 
   function onSubmit(values: z.infer<typeof legalNoticeSchema>) {
+    const today = new Date().toLocaleDateString();
     const text = `
 LEGAL NOTICE
 
-Date: ${new Date().toLocaleDateString()}
+Date: ${today}
 
 From:
 ${values.senderName}
