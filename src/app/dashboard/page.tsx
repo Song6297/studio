@@ -7,7 +7,7 @@ import { collection, getDocs, query, where, orderBy, Timestamp } from 'firebase/
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { LayoutDashboard, Download, Loader2 } from "lucide-react";
+import { LayoutDashboard, Download, Loader2, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
 import { useAuth } from '@/context/auth-context';
 import { useRouter } from 'next/navigation';
@@ -89,6 +89,11 @@ function DashboardPage() {
     }
   }
 
+  const handleCardClick = (caseId: string) => {
+    router.push(`/case-status/${caseId}`);
+  };
+
+
   if (authLoading || isLoading) {
       return (
           <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
@@ -163,12 +168,18 @@ function DashboardPage() {
       
       {error && <p className="text-center text-destructive">{error}</p>}
       {!isLoading && !error && cases.length === 0 && (
-        <p className="text-center text-muted-foreground">{t('caseStatus.noCases')}</p>
+         <div className="text-center text-muted-foreground bg-card border rounded-lg p-8">
+            <h3 className="text-xl font-semibold">{t('caseStatus.noCases')}</h3>
+            <p className="mt-2">You have not submitted any cases yet.</p>
+            <Button onClick={() => router.push('/case-submission')} className="mt-4">
+              Register a New Case <ArrowRight className="ml-2" />
+            </Button>
+          </div>
       )}
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {cases.map(caseItem => (
-          <Card key={caseItem.id} className="flex flex-col">
+          <Card key={caseItem.id} className="flex flex-col hover:shadow-lg transition-shadow cursor-pointer" onClick={() => handleCardClick(caseItem.id)}>
             <CardHeader>
               <div className="flex justify-between items-start">
                   <div>
@@ -194,11 +205,10 @@ function DashboardPage() {
                     <p>{formatDate(caseItem.submittedAt)}</p>
                 </div>
             </CardContent>
-            <CardFooter>
-              <Button className="w-full" onClick={() => generateEbrief(caseItem)}>
-                <Download className="mr-2 h-4 w-4" />
-                {t('dashboard.generateEbrief')}
-              </Button>
+            <CardFooter className="flex justify-end pt-4 border-t">
+               <Button variant="outline" size="sm">
+                View Details <ArrowRight className="ml-2" />
+               </Button>
             </CardFooter>
           </Card>
         ))}

@@ -8,8 +8,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/context/language-context';
-import { FileSearch, Loader2 } from 'lucide-react';
+import { FileSearch, Loader2, ShieldAlert } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/auth-context';
+import { Button } from '@/components/ui/button';
 
 interface Case {
   id: string;
@@ -22,11 +24,15 @@ interface Case {
 function CaseStatusPage() {
   const { t } = useLanguage();
   const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
   const [cases, setCases] = useState<Case[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // This page is for admins/NGOs to see all cases.
+    // Logged-in users should see their cases on their dashboard.
+    // For now, let's keep it open but add a note or redirect if not an admin role in future.
     async function fetchCases() {
       try {
         const casesCollection = collection(db, 'cases');
@@ -68,6 +74,24 @@ function CaseStatusPage() {
 
   return (
     <div className="container py-12 md:py-24">
+      
+      { user && (
+         <Card className="mb-8 bg-primary/5 border-primary/20">
+            <CardHeader className="flex-row items-center gap-4">
+                <ShieldAlert className="h-8 w-8 text-primary" />
+                <div>
+                    <CardTitle>Looking for your cases?</CardTitle>
+                    <CardDescription className="text-muted-foreground">
+                        You can find a personalized list of all cases you've submitted on your personal dashboard.
+                    </CardDescription>
+                </div>
+            </CardHeader>
+             <CardContent>
+                <Button onClick={() => router.push('/dashboard')}>Go to My Dashboard</Button>
+            </CardContent>
+        </Card>
+      )}
+
       <Card className="mx-auto max-w-5xl">
         <CardHeader className="text-center p-8">
             <FileSearch className="mx-auto h-12 w-12 text-primary" />
@@ -77,7 +101,7 @@ function CaseStatusPage() {
             </CardDescription>
         </CardHeader>
         <CardContent>
-          {isLoading ? (
+          {isLoading || authLoading ? (
             <div className="flex flex-col items-center justify-center h-64">
               <Loader2 className="h-10 w-10 animate-spin text-primary" />
               <p className="mt-4 text-muted-foreground">{t('caseStatus.loading')}</p>
