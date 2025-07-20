@@ -9,6 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/context/language-context';
 import { FileSearch, Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface Case {
   id: string;
@@ -20,6 +21,7 @@ interface Case {
 
 function CaseStatusPage() {
   const { t } = useLanguage();
+  const router = useRouter();
   const [cases, setCases] = useState<Case[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -60,6 +62,10 @@ function CaseStatusPage() {
     return timestamp.toDate().toLocaleDateString();
   };
 
+  const handleRowClick = (caseId: string) => {
+    router.push(`/case-status/${caseId}`);
+  };
+
   return (
     <div className="container py-12 md:py-24">
       <Card className="mx-auto max-w-5xl">
@@ -94,7 +100,7 @@ function CaseStatusPage() {
                 </TableHeader>
                 <TableBody>
                     {cases.map((caseItem) => (
-                    <TableRow key={caseItem.id}>
+                    <TableRow key={caseItem.id} onClick={() => handleRowClick(caseItem.id)} className="cursor-pointer">
                         <TableCell className="font-medium truncate max-w-[150px]">{caseItem.id}</TableCell>
                         <TableCell>{caseItem.fullName}</TableCell>
                         <TableCell>{caseItem.caseCategory}</TableCell>
