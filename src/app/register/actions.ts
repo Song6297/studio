@@ -10,6 +10,13 @@ async function createAuthUserAndFirestoreDoc(collectionName: string, data: any) 
     const { password, ...formData } = data;
     const email = collectionName === 'ngos' ? data.contactEmail : data.email;
 
+    // Check if user already exists
+     const userExistsQuery = query(collection(db, collectionName), where("email", "==", email), limit(1));
+     const existingUserSnapshot = await getDocs(userExistsQuery);
+     if (!existingUserSnapshot.empty) {
+         return { success: false, error: 'An account with this email already exists in this category.' };
+     }
+
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
@@ -44,7 +51,7 @@ async function checkUserRole(userId: string): Promise<string> {
           return '/dashboard'; 
       }
   }
-  return '/dashboard'; // Default for regular users
+  return '/dashboard'; // Default for regular users (citizens)
 }
 
 export async function login(data: any) {
@@ -59,7 +66,8 @@ export async function login(data: any) {
             if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
                 errorMessage = 'Invalid email or password. Please try again.';
             } else {
-                errorMessage = error.message;
+                 console.error("Login Error:", error);
+                errorMessage = "Failed to login. Please check console for details.";
             }
             return { success: false, error: errorMessage };
         }

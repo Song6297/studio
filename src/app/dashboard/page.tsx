@@ -31,7 +31,6 @@ function DashboardPage() {
 
   useEffect(() => {
     if (authLoading) {
-      // Wait until authentication status is resolved
       return;
     }
     if (!user) {
@@ -72,7 +71,7 @@ function DashboardPage() {
           </div>
       );
   }
-
+  
   const getStatusVariant = (status: Case['status']) => {
     switch (status) {
       case 'new': return 'secondary';

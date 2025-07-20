@@ -15,7 +15,7 @@ export default function NgoDashboardPage() {
 
     useEffect(() => {
         if (authLoading) {
-            return; // Wait until auth state is determined
+            return; 
         }
         if (!user) {
             router.push('/register?type=login');

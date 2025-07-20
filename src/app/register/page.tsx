@@ -25,7 +25,6 @@ function RegisterForm() {
   const defaultTab = searchParams.get('type') || 'login';
   const [activeTab, setActiveTab] = useState(defaultTab);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoginLoading, setIsLoginLoading] = useState(false);
   
   const loginSchema = z.object({
     email: z.string().email(t('register.advocate.validation.emailInvalid')),
@@ -108,14 +107,14 @@ function RegisterForm() {
   };
 
   const onLoginSubmit = async (values: z.infer<typeof loginSchema>) => {
-    setIsLoginLoading(true);
+    setIsLoading(true);
     const result = await login(values);
+    setIsLoading(false);
     if (result.success && result.redirect) {
       toast({ title: t('register.login.toast.successTitle') });
       router.push(result.redirect);
     } else {
       toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
-      setIsLoginLoading(false);
     }
   };
 
@@ -148,8 +147,8 @@ function RegisterForm() {
                 <FormField control={loginForm.control} name="password" render={({ field }) => (
                     <FormItem><FormLabel>{t('register.advocate.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
                 )} />
-                <Button type="submit" className="w-full" disabled={isLoginLoading}>
-                  {isLoginLoading ? <Loader2 className="animate-spin" /> : t('register.login.form.submitButton')}
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? <Loader2 className="animate-spin" /> : t('register.login.form.submitButton')}
                 </Button>
               </form>
             </Form>
