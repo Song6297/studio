@@ -23,12 +23,7 @@ export default function CaseSubmissionPage() {
   const { toast } = useToast();
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -69,7 +64,7 @@ export default function CaseSubmissionPage() {
         return;
     }
 
-    setIsLoading(true);
+    setIsSubmitting(true);
     const { document, ...formData } = values;
     
     const result = await submitCase(formData, user.uid);
@@ -80,6 +75,7 @@ export default function CaseSubmissionPage() {
         description: t('caseSubmission.toast.successDescription'),
       });
       form.reset();
+      router.push('/dashboard');
     } else {
         toast({
             variant: 'destructive',
@@ -87,10 +83,10 @@ export default function CaseSubmissionPage() {
             description: result.error,
         });
     }
-    setIsLoading(false);
+    setIsSubmitting(false);
   }
 
-  if (!isMounted || authLoading || !user) {
+  if (authLoading || !user) {
     return (
       <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
         <Loader2 className="h-10 w-10 animate-spin text-primary" />
@@ -167,8 +163,8 @@ export default function CaseSubmissionPage() {
                   <FormMessage />
                 </FormItem>
               )} />
-              <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
-                {isLoading ? (
+              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                     Submitting...

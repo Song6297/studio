@@ -9,20 +9,21 @@ import { Loader2, Building } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 export default function NgoDashboardPage() {
-    const { user, loading } = useAuth();
+    const { user, loading: authLoading } = useAuth();
     const router = useRouter();
     const { t } = useLanguage();
 
     useEffect(() => {
-        if (!loading) {
-            if (!user) {
-                router.push('/register?type=login');
-            }
+        if (authLoading) {
+            return; // Wait until auth state is determined
         }
-    }, [user, loading, router]);
+        if (!user) {
+            router.push('/register?type=login');
+        }
+    }, [user, authLoading, router]);
 
 
-    if (loading || !user) {
+    if (authLoading || !user) {
         return (
             <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
                 <Loader2 className="h-10 w-10 animate-spin text-primary" />

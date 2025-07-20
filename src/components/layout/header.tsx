@@ -36,6 +36,7 @@ export function Header() {
   const handleLogout = async () => {
     await signOut(auth);
     router.push('/');
+    router.refresh();
   };
 
   const navLinks = [
@@ -115,7 +116,7 @@ export function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            {user ? (
+            {loading ? null : user ? (
                 <Button onClick={handleLogout} variant="outline">
                     <LogOut className="mr-2 h-4 w-4" />
                     {t('header.logout')}
@@ -126,8 +127,11 @@ export function Header() {
                 <Button>{t('header.registerLogin')}</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
+                 <DropdownMenuItem asChild>
                   <Link href="/register?type=login">{t('header.login')}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/register?type=citizen">Citizen</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
@@ -189,7 +193,7 @@ export function Header() {
                     </DropdownMenuContent>
                   </DropdownMenu>
 
-                {user ? (
+                {loading ? null : user ? (
                     <Button onClick={() => { handleLogout(); setIsSheetOpen(false); }} className="mt-2 w-full">
                         <LogOut className="mr-2 h-4 w-4" />
                         {t('header.logout')}
@@ -202,6 +206,9 @@ export function Header() {
                     <DropdownMenuContent>
                       <DropdownMenuItem asChild>
                         <Link href="/register?type=login" onClick={() => setIsSheetOpen(false)}>{t('header.login')}</Link>
+                      </DropdownMenuItem>
+                       <DropdownMenuItem asChild>
+                        <Link href="/register?type=citizen" onClick={() => setIsSheetOpen(false)}>Citizen</Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>

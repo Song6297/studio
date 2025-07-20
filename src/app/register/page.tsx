@@ -14,7 +14,7 @@ import { UserPlus, Loader2 } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect, Suspense } from 'react';
-import { registerAdvocate, registerNgo, registerVolunteer, login, registerUser } from './actions';
+import { login, registerUser, registerAdvocate, registerNgo, registerVolunteer } from './actions';
 import { Textarea } from '@/components/ui/textarea';
 
 function RegisterForm() {
@@ -23,8 +23,8 @@ function RegisterForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const defaultTab = searchParams.get('type') || 'login';
+  const [activeTab, setActiveTab] = useState(defaultTab);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoginLoading, setIsLoginLoading] = useState(false);
   
   const loginSchema = z.object({
     email: z.string().email(t('register.advocate.validation.emailInvalid')),
@@ -83,73 +83,49 @@ function RegisterForm() {
     defaultValues: { fullName: '', email: '', university: '', password: '' },
   });
 
-  async function onLoginSubmit(values: z.infer<typeof loginSchema>) {
-    setIsLoginLoading(true);
+  const handleGenericSubmit = async (
+    action: (values: any) => Promise<{ success: boolean; error?: string; redirect?: string }>,
+    values: any,
+    form: any,
+    successTitle: string,
+    successDescription: string
+  ) => {
+    setIsLoading(true);
+    const result = await action(values);
+    if (result.success) {
+      toast({ title: successTitle, description: successDescription });
+      form.reset();
+      if (result.redirect) {
+        router.push(result.redirect);
+      } else {
+        setActiveTab('login');
+      }
+    } else {
+      toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
+    }
+    setIsLoading(false);
+  };
+
+  const onLoginSubmit = async (values: z.infer<typeof loginSchema>) => {
+    setIsLoading(true);
     const result = await login(values);
     if (result.success && result.redirect) {
       toast({ title: t('register.login.toast.successTitle') });
       router.push(result.redirect);
-      router.refresh();
+      router.refresh(); // This helps sync client state
     } else {
       toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
-      setIsLoginLoading(false);
+      setIsLoading(false);
     }
-  }
+  };
 
-  async function onUserSubmit(values: z.infer<typeof userSchema>) {
-    setIsLoading(true);
-    const result = await registerUser(values);
-    if (result.success) {
-      toast({ title: "Registration Successful!", description: "You can now log in." });
-      userForm.reset();
-      router.push('/register?type=login');
-    } else {
-      toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
-    }
-    setIsLoading(false);
-  }
-
-  async function onAdvocateSubmit(values: z.infer<typeof advocateSchema>) {
-    setIsLoading(true);
-    const result = await registerAdvocate(values);
-    if (result.success) {
-      toast({ title: t('register.advocate.toast.successTitle'), description: t('register.advocate.toast.successDescription') });
-      advocateForm.reset();
-      router.push('/register?type=login');
-    } else {
-      toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
-    }
-    setIsLoading(false);
-  }
-  
-  async function onNgoSubmit(values: z.infer<typeof ngoSchema>) {
-    setIsLoading(true);
-    const result = await registerNgo(values);
-     if (result.success) {
-      toast({ title: t('register.ngo.toast.successTitle'), description: t('register.ngo.toast.successDescription') });
-      ngoForm.reset();
-      router.push('/register?type=login');
-    } else {
-      toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
-    }
-    setIsLoading(false);
-  }
-
-  async function onVolunteerSubmit(values: z.infer<typeof volunteerSchema>) {
-    setIsLoading(true);
-    const result = await registerVolunteer(values);
-    if (result.success) {
-      toast({ title: t('register.volunteer.toast.successTitle'), description: t('register.volunteer.toast.successDescription') });
-      volunteerForm.reset();
-      router.push('/register?type=login');
-    } else {
-      toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
-    }
-    setIsLoading(false);
-  }
+  const onUserSubmit = (values: z.infer<typeof userSchema>) => handleGenericSubmit(registerUser, values, userForm, "Registration Successful!", "You can now log in.");
+  const onAdvocateSubmit = (values: z.infer<typeof advocateSchema>) => handleGenericSubmit(registerAdvocate, values, advocateForm, t('register.advocate.toast.successTitle'), t('register.advocate.toast.successDescription'));
+  const onNgoSubmit = (values: z.infer<typeof ngoSchema>) => handleGenericSubmit(registerNgo, values, ngoForm, t('register.ngo.toast.successTitle'), t('register.ngo.toast.successDescription'));
+  const onVolunteerSubmit = (values: z.infer<typeof volunteerSchema>) => handleGenericSubmit(registerVolunteer, values, volunteerForm, t('register.volunteer.toast.successTitle'), t('register.volunteer.toast.successDescription'));
   
   return (
-    <Tabs defaultValue={defaultTab} className="w-full">
+    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
       <TabsList className="grid w-full grid-cols-5">
         <TabsTrigger value="login">{t('register.tabs.login')}</TabsTrigger>
         <TabsTrigger value="citizen">Citizen</TabsTrigger>
@@ -172,8 +148,8 @@ function RegisterForm() {
                 <FormField control={loginForm.control} name="password" render={({ field }) => (
                     <FormItem><FormLabel>{t('register.advocate.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
                 )} />
-                <Button type="submit" className="w-full" disabled={isLoginLoading}>
-                  {isLoginLoading ? <Loader2 className="animate-spin" /> : t('register.login.form.submitButton')}
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? <Loader2 className="animate-spin" /> : t('register.login.form.submitButton')}
                 </Button>
               </form>
             </Form>
@@ -324,5 +300,3 @@ export default function RegisterPage() {
     </div>
   );
 }
-
-    

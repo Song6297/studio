@@ -2,60 +2,50 @@
 'use server';
 
 import { auth, db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp, query, where, getDocs, limit, doc, setDoc } from 'firebase/firestore';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { collection, addDoc, serverTimestamp, query, where, getDocs, limit } from 'firebase/firestore';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
-async function saveData(collectionName: string, data: any, shouldCreateUser: boolean = true) {
+async function createAuthUserAndFirestoreDoc(collectionName: string, data: any) {
   try {
     const { password, ...formData } = data;
-    let email = data.email;
-    if (collectionName === 'ngos') {
-      email = data.contactEmail;
-    }
+    const email = collectionName === 'ngos' ? data.contactEmail : data.email;
 
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
 
-    if (shouldCreateUser) {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      
-      await addDoc(collection(db, collectionName), {
-        ...formData,
-        userId: user.uid,
-        status: 'pending',
-        registeredAt: serverTimestamp(),
-      });
-    } else {
-        await addDoc(collection(db, collectionName), {
-            ...formData,
-            status: 'pending',
-            registeredAt: serverTimestamp(),
-        });
-    }
+    await addDoc(collection(db, collectionName), {
+      ...formData,
+      userId: user.uid,
+      status: 'pending',
+      registeredAt: serverTimestamp(),
+    });
 
-    return { success: true };
+    return { success: true, redirect: '/register?type=login' };
   } catch (error) {
-    console.error(`Error adding document to ${collectionName}: `, error);
+    console.error(`Error in createAuthUserAndFirestoreDoc for ${collectionName}:`, error);
     if (error instanceof Error) {
+      if (error.code === 'auth/email-already-in-use') {
+        return { success: false, error: 'This email is already registered. Please log in or use a different email.' };
+      }
       return { success: false, error: error.message };
     }
-    return { success: false, error: `An unknown error occurred while registering.` };
+    return { success: false, error: `An unknown error occurred during registration.` };
   }
 }
 
 async function checkUserRole(userId: string): Promise<string> {
-    const collections = ['advocates', 'ngos', 'volunteers'];
-    for (const collectionName of collections) {
-        const q = query(collection(db, collectionName), where("userId", "==", userId), limit(1));
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-            if (collectionName === 'ngos') return '/ngo-dashboard';
-            // Add other role-based redirects here if needed
-            return '/dashboard'; 
-        }
-    }
-    return '/dashboard'; // Default for regular users
+  const collections = ['advocates', 'ngos', 'volunteers'];
+  for (const collectionName of collections) {
+      const q = query(collection(db, collectionName), where("userId", "==", userId), limit(1));
+      const querySnapshot = await getDocs(q);
+      if (!querySnapshot.empty) {
+          if (collectionName === 'ngos') return '/ngo-dashboard';
+          // Add other role-based redirects here if needed
+          return '/dashboard'; 
+      }
+  }
+  return '/dashboard'; // Default for regular users
 }
-
 
 export async function login(data: any) {
     try {
@@ -79,10 +69,13 @@ export async function login(data: any) {
 
 export async function registerUser(data: any) {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
-    return { success: true };
+    await createUserWithEmailAndPassword(auth, data.email, data.password);
+    return { success: true, redirect: '/register?type=login' };
   } catch (error) {
     if (error instanceof Error) {
+      if (error.code === 'auth/email-already-in-use') {
+        return { success: false, error: 'This email is already registered. Please log in or use a different email.' };
+      }
       return { success: false, error: error.message };
     }
     return { success: false, error: 'An unknown error occurred during registration.' };
@@ -90,17 +83,13 @@ export async function registerUser(data: any) {
 }
 
 export async function registerAdvocate(formData: any) {
-  return saveData('advocates', formData);
+  return createAuthUserAndFirestoreDoc('advocates', formData);
 }
 
 export async function registerNgo(formData: any) {
-  // Use contactEmail for authentication
-  const authData = { ...formData, email: formData.contactEmail };
-  return saveData('ngos', authData);
+  return createAuthUserAndFirestoreDoc('ngos', formData);
 }
 
 export async function registerVolunteer(formData: any) {
-    return saveData('volunteers', formData);
+    return createAuthUserAndFirestoreDoc('volunteers', formData);
 }
-
-    
