@@ -25,6 +25,13 @@ function RegisterForm() {
   const defaultTab = searchParams.get('type') || 'login';
   const [activeTab, setActiveTab] = useState(defaultTab);
   const [isLoading, setIsLoading] = useState(false);
+  const [redirectPath, setRedirectPath] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (redirectPath) {
+      router.push(redirectPath);
+    }
+  }, [redirectPath, router]);
   
   const loginSchema = z.object({
     email: z.string().email(t('register.advocate.validation.emailInvalid')),
@@ -96,7 +103,7 @@ function RegisterForm() {
       toast({ title: successTitle, description: successDescription });
       form.reset();
       if (result.redirect) {
-        router.push(result.redirect);
+        setRedirectPath(result.redirect);
       } else {
         setActiveTab('login');
       }
@@ -112,7 +119,7 @@ function RegisterForm() {
     setIsLoading(false);
     if (result.success && result.redirect) {
       toast({ title: t('register.login.toast.successTitle') });
-      router.push(result.redirect);
+      setRedirectPath(result.redirect);
     } else {
       toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
     }
