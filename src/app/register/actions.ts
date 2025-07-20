@@ -2,8 +2,8 @@
 'use server';
 
 import { auth, db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp, query, where, getDocs, limit } from 'firebase/firestore';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, addDoc, serverTimestamp, query, where, getDocs, limit, doc, setDoc } from 'firebase/firestore';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 async function saveData(collectionName: string, data: any, shouldCreateUser: boolean = true) {
   try {
@@ -66,8 +66,10 @@ export async function login(data: any) {
     } catch (error) {
         if (error instanceof Error) {
             let errorMessage = "An unexpected error occurred.";
-            if (error.message.includes('auth/invalid-credential') || error.message.includes('auth/user-not-found') || error.message.includes('auth/wrong-password')) {
+            if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
                 errorMessage = 'Invalid email or password. Please try again.';
+            } else {
+                errorMessage = error.message;
             }
             return { success: false, error: errorMessage };
         }
@@ -75,6 +77,17 @@ export async function login(data: any) {
     }
 }
 
+export async function registerUser(data: any) {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+    return { success: true };
+  } catch (error) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
+    return { success: false, error: 'An unknown error occurred during registration.' };
+  }
+}
 
 export async function registerAdvocate(formData: any) {
   return saveData('advocates', formData);
@@ -89,3 +102,5 @@ export async function registerNgo(formData: any) {
 export async function registerVolunteer(formData: any) {
     return saveData('volunteers', formData);
 }
+
+    

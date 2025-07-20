@@ -14,7 +14,7 @@ import { UserPlus, Loader2 } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect, Suspense } from 'react';
-import { registerAdvocate, registerNgo, registerVolunteer, login } from './actions';
+import { registerAdvocate, registerNgo, registerVolunteer, login, registerUser } from './actions';
 import { Textarea } from '@/components/ui/textarea';
 
 function RegisterForm() {
@@ -31,6 +31,11 @@ function RegisterForm() {
     password: z.string().min(1, 'Password is required.'),
   });
   
+  const userSchema = z.object({
+    email: z.string().email(t('register.advocate.validation.emailInvalid')),
+    password: z.string().min(8, t('register.advocate.validation.passwordRequired')),
+  });
+
   const advocateSchema = z.object({
     fullName: z.string().min(2, t('register.advocate.validation.fullNameRequired')),
     email: z.string().email(t('register.advocate.validation.emailInvalid')),
@@ -58,6 +63,11 @@ function RegisterForm() {
     defaultValues: { email: '', password: '' },
   });
 
+  const userForm = useForm<z.infer<typeof userSchema>>({
+    resolver: zodResolver(userSchema),
+    defaultValues: { email: '', password: '' },
+  });
+
   const advocateForm = useForm<z.infer<typeof advocateSchema>>({
     resolver: zodResolver(advocateSchema),
     defaultValues: { fullName: '', email: '', barId: '', password: '' },
@@ -79,10 +89,24 @@ function RegisterForm() {
     if (result.success && result.redirect) {
       toast({ title: t('register.login.toast.successTitle') });
       router.push(result.redirect);
+      router.refresh();
     } else {
       toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
       setIsLoginLoading(false);
     }
+  }
+
+  async function onUserSubmit(values: z.infer<typeof userSchema>) {
+    setIsLoading(true);
+    const result = await registerUser(values);
+    if (result.success) {
+      toast({ title: "Registration Successful!", description: "You can now log in." });
+      userForm.reset();
+      router.push('/register?type=login');
+    } else {
+      toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
+    }
+    setIsLoading(false);
   }
 
   async function onAdvocateSubmit(values: z.infer<typeof advocateSchema>) {
@@ -126,8 +150,9 @@ function RegisterForm() {
   
   return (
     <Tabs defaultValue={defaultTab} className="w-full">
-      <TabsList className="grid w-full grid-cols-4">
+      <TabsList className="grid w-full grid-cols-5">
         <TabsTrigger value="login">{t('register.tabs.login')}</TabsTrigger>
+        <TabsTrigger value="citizen">Citizen</TabsTrigger>
         <TabsTrigger value="advocate">{t('register.tabs.advocate')}</TabsTrigger>
         <TabsTrigger value="ngo">{t('register.tabs.ngo')}</TabsTrigger>
         <TabsTrigger value="volunteer">{t('register.tabs.volunteer')}</TabsTrigger>
@@ -149,6 +174,29 @@ function RegisterForm() {
                 )} />
                 <Button type="submit" className="w-full" disabled={isLoginLoading}>
                   {isLoginLoading ? <Loader2 className="animate-spin" /> : t('register.login.form.submitButton')}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      </TabsContent>
+      <TabsContent value="citizen" className="mt-6">
+        <Card className="bg-card/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="font-headline">Citizen Registration</CardTitle>
+            <CardDescription>Create a citizen account to access services.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Form {...userForm}>
+              <form onSubmit={userForm.handleSubmit(onUserSubmit)} className="space-y-4">
+                <FormField control={userForm.control} name="email" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.advocate.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('register.advocate.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={userForm.control} name="password" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.advocate.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? <Loader2 className="animate-spin" /> : 'Register'}
                 </Button>
               </form>
             </Form>
@@ -276,3 +324,5 @@ export default function RegisterPage() {
     </div>
   );
 }
+
+    
