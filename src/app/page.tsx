@@ -19,57 +19,63 @@ export default function Home() {
 
   const preambleText = "WE, THE PEOPLE OF INDIA, having solemnly resolved to constitute India into a SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC and to secure to all its citizens:\n\nJUSTICE, social, economic and political;\nLIBERTY of thought, expression, belief, faith and worship;\nEQUALITY of status and of opportunity;\nand to promote among them all\nFRATERNITY assuring the dignity of the individual and the unity and integrity of the Nation;\n\nIN OUR CONSTITUENT ASSEMBLY this twenty-sixth day of November, 1949, do HEREBY ADOPT, ENACT AND GIVE TO OURSELVES THIS CONSTITUTION.";
 
-  const features = [
-    {
-      icon: FileText,
-      title: t('features.registerCase.title'),
-      description: t('features.registerCase.description'),
-      href: "/case-submission",
-      cta: t('features.registerCase.cta'),
-    },
-    {
-      icon: Bot,
-      title: t('features.aiLegalAdvice.title'),
-      description: t('features.aiLegalAdvice.description'),
-      href: "/ai-legal-guide",
-      cta: t('features.aiLegalAdvice.cta'),
-    },
-     {
-      icon: FileQuestion,
-      title: t('features.fileRti.title'),
-      description: t('features.fileRti.description'),
-      href: "/file-rti",
-      cta: t('features.fileRti.cta'),
-    },
-    {
-      icon: CalendarCheck,
-      title: t('features.legalServices.title'),
-      description: t('features.legalServices.description'),
-      href: "/legal-services",
-      cta: t('features.legalServices.cta'),
-    },
-    {
-      icon: BookOpen,
-      title: t('features.legalAwareness.title'),
-      description: t('features.legalAwareness.description'),
-      href: "/legal-awareness",
-      cta: t('features.legalAwareness.cta'),
-    },
-    {
-      icon: Handshake,
-      title: t('features.volunteerNetwork.title'),
-      description: t('features.volunteerNetwork.description'),
-      href: "/volunteer-network",
-      cta: t('features.volunteerNetwork.cta'),
-    },
-    {
-      icon: Scale,
-      title: t('features.indianConstitution.title'),
-      description: t('features.indianConstitution.description'),
-      href: "/indian-constitution",
-      cta: t('features.indianConstitution.cta'),
-    },
-  ];
+  // Define features inside a useEffect to ensure they are only created on the client
+  const [features, setFeatures] = useState<any[]>([]);
+  useEffect(() => {
+    if (isMounted) {
+      setFeatures([
+        {
+          icon: FileText,
+          title: t('features.registerCase.title'),
+          description: t('features.registerCase.description'),
+          href: "/case-submission",
+          cta: t('features.registerCase.cta'),
+        },
+        {
+          icon: Bot,
+          title: t('features.aiLegalAdvice.title'),
+          description: t('features.aiLegalAdvice.description'),
+          href: "/ai-legal-guide",
+          cta: t('features.aiLegalAdvice.cta'),
+        },
+        {
+          icon: FileQuestion,
+          title: t('features.fileRti.title'),
+          description: t('features.fileRti.description'),
+          href: "/file-rti",
+          cta: t('features.fileRti.cta'),
+        },
+        {
+          icon: CalendarCheck,
+          title: t('features.legalServices.title'),
+          description: t('features.legalServices.description'),
+          href: "/legal-services",
+          cta: t('features.legalServices.cta'),
+        },
+        {
+          icon: BookOpen,
+          title: t('features.legalAwareness.title'),
+          description: t('features.legalAwareness.description'),
+          href: "/legal-awareness",
+          cta: t('features.legalAwareness.cta'),
+        },
+        {
+          icon: Handshake,
+          title: t('features.volunteerNetwork.title'),
+          description: t('features.volunteerNetwork.description'),
+          href: "/volunteer-network",
+          cta: t('features.volunteerNetwork.cta'),
+        },
+        {
+          icon: Scale,
+          title: t('features.indianConstitution.title'),
+          description: t('features.indianConstitution.description'),
+          href: "/indian-constitution",
+          cta: t('features.indianConstitution.cta'),
+        },
+      ]);
+    }
+  }, [isMounted, t]);
 
   const IndianFlagBackground = () => (
     <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
@@ -85,7 +91,8 @@ export default function Home() {
       </svg>
     </div>
   );
-
+  
+  // Display a loader until the component is mounted
   if (!isMounted) {
     return (
        <div className="flex items-center justify-center min-h-dvh">
