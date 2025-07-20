@@ -16,12 +16,14 @@ import { useLanguage } from '@/context/language-context';
 import { useState, useEffect, Suspense } from 'react';
 import { login, registerUser, registerAdvocate, registerNgo, registerVolunteer } from './actions';
 import { Textarea } from '@/components/ui/textarea';
+import { useAuth } from '@/context/auth-context';
 
 function RegisterForm() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { refreshAuth } = useAuth();
   const defaultTab = searchParams.get('type') || 'login';
   const [activeTab, setActiveTab] = useState(defaultTab);
   const [isLoading, setIsLoading] = useState(false);
@@ -111,8 +113,8 @@ function RegisterForm() {
     const result = await login(values);
     if (result.success && result.redirect) {
       toast({ title: t('register.login.toast.successTitle') });
+      await refreshAuth(); // Force auth state refresh
       router.push(result.redirect);
-      router.refresh(); // This helps sync client state
     } else {
       toast({ variant: 'destructive', title: t('register.toast.errorTitle'), description: result.error });
       setIsLoading(false);
