@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 export default function Home() {
   const { t } = useLanguage();
   const [isMounted, setIsMounted] = useState(false);
+  const [redirectPath, setRedirectPath] = useState<string | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -79,16 +80,9 @@ export default function Home() {
 
   const IndianFlagBackground = () => (
     <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 900 600"
-        className="w-full h-full object-cover opacity-15 blur-sm"
-        preserveAspectRatio="xMidYMid slice"
-      >
-        <rect width="900" height="200" fill="#FF9933"/>
-        <rect y="200" width="900" height="200" fill="#FFFFFF"/>
-        <rect y="400" width="900" height="200" fill="#138808"/>
-      </svg>
+      <div className="absolute top-0 left-0 w-full h-1/3 bg-[#FF9933] opacity-10"></div>
+      <div className="absolute top-1/3 left-0 w-full h-1/3 bg-white opacity-10"></div>
+      <div className="absolute top-2/3 left-0 w-full h-1/3 bg-[#138808] opacity-10"></div>
     </div>
   );
   
@@ -107,7 +101,7 @@ export default function Home() {
         <IndianFlagBackground />
         <div className="container flex min-h-[calc(60vh-10rem)] flex-col items-center justify-center text-center px-4">
           
-          <div className="w-24 h-24 md:w-32 md:h-32 mb-6 text-primary">
+          <div className="w-24 h-24 md:w-32 md:h-32 mb-6 text-foreground">
               <AshokaChakraIcon />
           </div>
 
@@ -137,12 +131,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="preamble" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/30">
+      <section id="preamble" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/10">
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
             <Card className="shadow-2xl">
               <CardHeader className="items-center text-center p-6 md:p-8">
-                <Gavel className="h-12 w-12 md:h-16 md:w-16 text-primary/80 mb-4" />
+                <Gavel className="h-12 w-12 md:h-16 md:w-16 text-primary mb-4" />
                 <CardTitle className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
                   {t('indianConstitution.preamble.title')}
                 </CardTitle>
@@ -183,7 +177,7 @@ export default function Home() {
                         <CardDescription>{feature.description}</CardDescription>
                       </CardContent>
                       <CardFooter>
-                        <Link href={feature.href} className="flex items-center font-semibold text-primary transition-colors hover:text-accent">
+                        <Link href={feature.href} className="flex items-center font-semibold text-primary transition-colors hover:text-accent-foreground">
                           {feature.cta}
                           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Link>
