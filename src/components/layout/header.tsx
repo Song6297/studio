@@ -61,7 +61,7 @@ export function Header() {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center">
             <div className="flex items-center gap-6 flex-1">
-              <Link href="/" aria-label="My Legal Firm Home Page" className="flex items-center gap-4">
+              <Link href="/" aria-label="Satyameva Jayate Home Page" className="flex items-center gap-4">
                   <Logo />
               </Link>
             </div>
@@ -74,7 +74,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className="flex items-center gap-6 flex-1">
-            <Link href="/" aria-label="My Legal Firm Home Page" className="hidden md:flex items-center gap-4">
+            <Link href="/" aria-label="Satyameva Jayate Home Page" className="hidden md:flex items-center gap-4">
               <Logo />
             </Link>
             <nav className="hidden items-center gap-6 lg:gap-8 md:flex">
@@ -94,7 +94,7 @@ export function Header() {
         </div>
         
         <div className="md:hidden flex-1">
-          <Link href="/" aria-label="My Legal Firm Home Page">
+          <Link href="/" aria-label="Satyameva Jayate Home Page">
               <Logo />
           </Link>
         </div>
@@ -158,7 +158,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] p-0">
               <div className="p-4 border-b">
-                <Link href="/" aria-label="My Legal Firm Home Page" onClick={() => setIsSheetOpen(false)}>
+                <Link href="/" aria-label="Satyameva Jayate Home Page" onClick={() => setIsSheetOpen(false)}>
                   <Logo />
                 </Link>
               </div>
