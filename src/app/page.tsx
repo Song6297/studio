@@ -81,7 +81,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="w-full bg-background pt-20 md:pt-32 lg:pt-40">
+      <section className="w-full pt-20 md:pt-32 lg:pt-40">
         <div className="container px-4">
           <div className="grid gap-8 md:grid-cols-2 md:items-center">
             <div className="flex flex-col items-start text-left">
@@ -105,7 +105,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden items-center justify-center md:flex">
-              <div className="relative h-64 w-64 text-primary/80 md:h-96 md:w-96">
+              <div className="relative h-64 w-64 text-primary/40 md:h-96 md:w-96">
                 <AshokaChakraIcon />
               </div>
             </div>
