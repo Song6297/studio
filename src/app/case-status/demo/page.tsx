@@ -8,6 +8,12 @@ import { ArrowRight, BookCheck } from 'lucide-react';
 
 const demoCases = [
   {
+    id: 'upi-fraud-004',
+    title: 'UPI Payment Fraud Case',
+    category: 'Cybercrime',
+    description: 'A real-world example of how a victim of UPI fraud fought back and won their case against a bank.'
+  },
+  {
     id: 'consumer-dispute-001',
     title: 'Defective Product Complaint',
     category: 'Consumer Law',

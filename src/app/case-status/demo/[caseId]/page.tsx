@@ -9,6 +9,17 @@ import { ArrowLeft, User, Gavel, Calendar, Timer, IndianRupee, BookOpen } from '
 import { differenceInMonths, format } from 'date-fns';
 
 const demoCaseDetails = {
+  'upi-fraud-004': {
+    id: 'upi-fraud-004',
+    title: 'UPI Payment Fraud Case',
+    category: 'Cybercrime / Financial Fraud',
+    description: 'A retired teacher from Pune received a fraudulent text message about an overdue electricity bill, leading him to a fake payment website where he lost ₹50,000. The case was filed against the unknown fraudsters and also implicated the bank for failing to prevent the fraudulent transactions.',
+    submittedAt: new Date('2024-01-10'),
+    resolvedAt: new Date('2024-06-15'),
+    judgment: 'The Consumer Disputes Redressal Forum ruled in favor of the victim. The bank was found partially liable for "deficiency in service" due to inadequate fraud detection mechanisms. The bank was ordered to refund the entire amount of ₹50,000 and pay an additional ₹10,000 as compensation for mental distress.',
+    lawyerName: 'Adv. Priya Desai',
+    investigationExpenses: 2500,
+  },
   'consumer-dispute-001': {
     id: 'consumer-dispute-001',
     title: 'Defective Product Complaint',
@@ -131,4 +142,3 @@ export default function DemoCaseDetailsPage() {
     </div>
   );
 }
-

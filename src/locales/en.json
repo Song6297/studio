@@ -206,18 +206,6 @@
           { "heading": "Libel vs. Slander", "text": "In the online world, defamation is almost always 'libel' because it is in a written or otherwise permanent form. The statement must be false, published to a third party, and cause injury to the person's reputation." },
           { "heading": "What can you do?", "text": "You can send a legal notice to the person who published the statement, asking them to take it down and issue an apology. If they don't comply, you can file a civil suit for damages or a criminal complaint for defamation under the Indian Penal Code." }
         ]
-      },
-      "upiFraudCase": {
-        "title": "Case Study: The UPI Fraud",
-        "description": "A real-world example of how a victim of UPI fraud fought back and won.",
-        "category": "Case Study",
-        "explanation": [
-          { "heading": "The Incident (January 2024)", "text": "Mr. Sharma, a retired teacher from Pune, received a text message claiming his electricity bill was overdue and his power would be disconnected. The message included a link to pay immediately. Panicked, he clicked the link, which took him to a page that looked exactly like his electricity provider's website. He entered his UPI details to pay the 'outstanding amount' of ₹1,500. Shortly after, he received alerts that ₹50,000 had been debited from his account in multiple transactions." },
-          { "heading": "The Parties", "text": "Victim/Petitioner: Mr. Sharma. Advocate: Adv. Priya Desai, a lawyer specializing in cybercrime cases. The case was filed against the unknown fraudsters and also implicated the bank for failing to prevent the fraudulent transactions." },
-          { "heading": "The Legal Path", "text": "Adv. Desai immediately guided Mr. Sharma to call the national cybercrime helpline (1930) to report the fraud and block the accounts. They then filed an official complaint on cybercrime.gov.in and submitted a written complaint to Mr. Sharma's bank, attaching the police report. In the consumer court, Adv. Desai argued that the bank's security systems were not robust enough to detect multiple, rapid, high-value transactions from a customer's account, which was unusual behavior for Mr. Sharma. This constituted a 'deficiency in service' under the Consumer Protection Act." },
-          { "heading": "The Judgment (June 2024)", "text": "The Consumer Disputes Redressal Forum ruled in favor of Mr. Sharma. The judgment stated that while the customer was initially phished, the bank shared responsibility for not having adequate fraud detection mechanisms. The bank was ordered to refund the entire amount of ₹50,000 to Mr. Sharma and pay an additional ₹10,000 as compensation for the mental distress caused. The court noted the increasing sophistication of such scams and emphasized the duty of banks to protect their customers." },
-          { "heading": "Key Legal Takeaways", "text": "1. Always report cyber fraud immediately via helpline 1930 and the official portal. 2. Banks can be held liable for 'deficiency in service' if their security measures are found lacking. 3. Victims are not powerless; the Consumer Protection Act provides a strong avenue for redressal in cases of online financial fraud." }
-        ]
       }
     }
   },
