@@ -5,15 +5,13 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, Scale, Gavel, Handshake, FileQuestion, CalendarCheck, Loader2, Search } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, Scale, Gavel, Handshake, FileQuestion, CalendarCheck, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect } from 'react';
-import { Input } from '@/components/ui/input';
 
 export default function Home() {
   const { t } = useLanguage();
   const [isMounted, setIsMounted] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     setIsMounted(true);
@@ -73,18 +71,6 @@ export default function Home() {
       },
   ];
 
-  const translatedFeatures = allFeatures.map(feature => ({
-      ...feature,
-      title: t(feature.titleKey),
-      description: t(feature.descriptionKey),
-      cta: t(feature.ctaKey),
-  }));
-
-  const filteredFeatures = translatedFeatures.filter(feature => 
-    feature.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    feature.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  
   if (!isMounted) {
     return (
        <div className="flex items-center justify-center min-h-dvh">
@@ -102,46 +88,25 @@ export default function Home() {
           </div>
         </div>
         <div className="container px-4">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="flex flex-col items-start text-left">
-                <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-                  {t('home.mainHeading')}
-                </h1>
-                <p className="mt-6 max-w-xl text-lg text-muted-foreground md:text-xl">
-                  {t('home.subHeading')}
-                </p>
-                 <div className="flex flex-col sm:flex-row justify-start gap-4 mt-8 w-full">
-                    <Button asChild size="lg" className="w-full sm:w-auto">
-                      <Link href="/case-submission">
-                        {t('home.registerCaseButton')} <ArrowRight className="ml-2 h-5 w-5" />
-                      </Link>
-                    </Button>
-                    <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
-                      <Link href="/ai-legal-guide">
-                        {t('home.aiAdviceButton')} <Bot className="ml-2 h-5 w-5" />
-                      </Link>
-                    </Button>
-                  </div>
-              </div>
-              <div className="flex items-center justify-center">
-                <Card className="w-full max-w-md p-6 bg-card/80 backdrop-blur-sm shadow-2xl">
-                    <CardHeader>
-                      <CardTitle className="font-headline text-2xl">Search Services</CardTitle>
-                      <CardDescription>Find the legal service you need.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="relative">
-                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                          <Input 
-                            placeholder="e.g., RTI, AI Advice..." 
-                            className="pl-10 text-base" 
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                          />
-                      </div>
-                    </CardContent>
-                </Card>
-              </div>
+            <div className="flex flex-col items-center text-center">
+              <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+                {t('home.mainHeading')}
+              </h1>
+              <p className="mt-6 max-w-xl text-lg text-muted-foreground md:text-xl">
+                {t('home.subHeading')}
+              </p>
+               <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8 w-full">
+                  <Button asChild size="lg" className="w-full sm:w-auto">
+                    <Link href="/case-submission">
+                      {t('home.registerCaseButton')} <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+                    <Link href="/ai-legal-guide">
+                      {t('home.aiAdviceButton')} <Bot className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                </div>
             </div>
         </div>
       </section>
@@ -158,34 +123,28 @@ export default function Home() {
                 </div>
             </div>
             <div className="mx-auto grid grid-cols-1 items-stretch gap-8 py-12 sm:grid-cols-2 lg:grid-cols-3">
-                {filteredFeatures.map((feature) => (
-                    <Card key={feature.title} className="group flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl bg-card/80 backdrop-blur-sm">
+                {allFeatures.map((feature) => (
+                    <Card key={feature.titleKey} className="group flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl bg-card/80 backdrop-blur-sm">
                       <CardHeader>
                         <div className="mb-4 flex items-center gap-4">
                           <div className="rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
                             <feature.icon className="h-6 w-6" />
                           </div>
-                          <CardTitle className="font-headline text-xl">{feature.title}</CardTitle>
+                          <CardTitle className="font-headline text-xl">{t(feature.titleKey)}</CardTitle>
                         </div>
                       </CardHeader>
                       <CardContent className="flex-1">
-                        <CardDescription>{feature.description}</CardDescription>
+                        <CardDescription>{t(feature.descriptionKey)}</CardDescription>
                       </CardContent>
                       <CardFooter>
                         <Link href={feature.href} className="flex items-center font-semibold text-primary transition-colors hover:text-accent-foreground">
-                          {feature.cta}
+                          {t(feature.ctaKey)}
                           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                       </CardFooter>
                     </Card>
                 ))}
             </div>
-             {filteredFeatures.length === 0 && (
-                <div className="text-center py-12 text-muted-foreground">
-                    <p className="text-lg">No services found for "{searchTerm}".</p>
-                    <p>Please try a different search term.</p>
-                </div>
-            )}
         </div>
       </section>
       
