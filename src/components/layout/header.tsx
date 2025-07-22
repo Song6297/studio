@@ -31,7 +31,7 @@ export function Header() {
   const [dashboardLinks, setDashboardLinks] = useState([
     { href: '/case-status/demo', label: t('header.dashboards.citizen') },
     { href: '/advocate-dashboard/demo', label: t('header.dashboards.advocate') },
-    { href: '/ngo-dashboard', label: t('header.dashboards.ngo') },
+    { href: '/ngo-dashboard/demo', label: t('header.dashboards.ngo') },
     { href: '/law-firm-dashboard/demo', label: t('header.dashboards.lawFirm') },
   ]);
 
@@ -43,7 +43,7 @@ export function Header() {
     setDashboardLinks([
       { href: user ? '/dashboard' : '/case-status/demo', label: t('header.dashboards.citizen') },
       { href: '/advocate-dashboard/demo', label: t('header.dashboards.advocate') },
-      { href: '/ngo-dashboard', label: t('header.dashboards.ngo') },
+      { href: user ? '/ngo-dashboard' : '/ngo-dashboard/demo', label: t('header.dashboards.ngo') },
       { href: '/law-firm-dashboard/demo', label: t('header.dashboards.lawFirm') },
     ]);
   }, [user, t]);
