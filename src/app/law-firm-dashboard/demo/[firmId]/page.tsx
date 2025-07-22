@@ -571,5 +571,3 @@ export default function DemoFirmDashboardPage() {
     </div>
   );
 }
-
-    
