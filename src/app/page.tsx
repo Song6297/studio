@@ -30,13 +30,6 @@ export default function Home() {
         ctaKey: 'features.registerCase.cta',
       },
       {
-        icon: Bot,
-        titleKey: 'features.aiLegalAdvice.title',
-        descriptionKey: 'features.aiLegalAdvice.description',
-        href: "/ai-legal-guide",
-        ctaKey: 'features.aiLegalAdvice.cta',
-      },
-      {
         icon: FileQuestion,
         titleKey: 'features.fileRti.title',
         descriptionKey: 'features.fileRti.description',
@@ -56,13 +49,6 @@ export default function Home() {
         descriptionKey: 'features.legalAwareness.description',
         href: "/legal-awareness",
         ctaKey: 'features.legalAwareness.cta',
-      },
-      {
-        icon: Handshake,
-        titleKey: 'features.volunteerNetwork.title',
-        descriptionKey: 'features.volunteerNetwork.description',
-        href: "/volunteer-network",
-        ctaKey: 'features.volunteerNetwork.cta',
       },
       {
         icon: Scale,
