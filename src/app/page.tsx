@@ -82,7 +82,7 @@ export default function Home() {
                 <AshokaChakraIcon />
             </div>
              <div className="flex items-center gap-2 mb-2">
-              <Scale className="h-10 w-10 text-primary" />
+              <Scale className="h-12 w-12 text-primary" />
             </div>
           <div className="inline-block">
             <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-primary via-white to-[#138808] dark:to-secondary bg-clip-text text-transparent">
