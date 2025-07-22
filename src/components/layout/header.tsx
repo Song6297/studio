@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, Languages, Globe, LogOut, Building, LayoutDashboard as DashboardIcon } from 'lucide-react';
+import { Menu, Languages, Globe, LogOut, Building, LayoutDashboard as DashboardIcon, User } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
@@ -41,6 +41,7 @@ export function Header() {
   
   const dashboardLinks = [
     { href: user ? '/dashboard' : '/case-status/demo', label: t('header.dashboards.citizen') },
+    { href: '/advocate-dashboard/demo', label: t('header.dashboards.advocate') },
     { href: '/ngo-dashboard', label: t('header.dashboards.ngo') },
     { href: '/law-firm-dashboard/demo', label: t('header.dashboards.lawFirm') },
   ];

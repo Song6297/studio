@@ -50,6 +50,9 @@ async function checkUserRole(userId: string): Promise<string> {
           if (collectionName === 'lawFirms') {
               return `/law-firm-dashboard/${querySnapshot.docs[0].id}`;
           }
+          if (collectionName === 'advocates') {
+              return `/advocate-dashboard/${querySnapshot.docs[0].id}`;
+          }
           return '/dashboard'; 
       }
   }

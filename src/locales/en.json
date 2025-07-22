@@ -4,6 +4,7 @@
     "dashboards": {
       "title": "Dashboards",
       "citizen": "Citizen Dashboard",
+      "advocate": "Advocate Dashboard",
       "ngo": "NGO Dashboard",
       "lawFirm": "Law Firm Dashboard"
     },
