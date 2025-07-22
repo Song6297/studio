@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -35,6 +36,7 @@ export function DataBreachAdvisorClient() {
     defaultValues: { 
       incidentDescription: '',
       dataTypes: '',
+      isPersonalDataInvolved: false,
      },
   });
 
