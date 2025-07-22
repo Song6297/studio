@@ -10,6 +10,7 @@
     "indianConstitution": "Indian Constitution",
     "fileRti": "File RTI",
     "legalServices": "Legal Services",
+    "lawAspirants": "Law Aspirants",
     "login": "Log In",
     "logout": "Log Out",
     "register": "Register",
@@ -550,5 +551,66 @@
     "title": "Dashboard",
     "description": "Overview of your registered cases.",
     "generateEbrief": "Generate eBrief"
+  },
+  "lawAspirants": {
+    "title": "For Law Aspirants",
+    "description": "Your guide to cracking law entrance exams and finding the right college in India.",
+    "exams": {
+      "title": "Major Law Entrance Exams",
+      "application": "Application Period",
+      "examDate": "Exam Date",
+      "list": [
+        {
+          "name": "CLAT",
+          "fullName": "Common Law Admission Test",
+          "description": "A centralized national level entrance test for admissions to 24 National Law Universities (NLUs) in India.",
+          "application": "July - November",
+          "examDate": "December"
+        },
+        {
+          "name": "AILET",
+          "fullName": "All India Law Entrance Test",
+          "description": "Conducted by National Law University, Delhi (NLU Delhi) for admission to its undergraduate and postgraduate law programmes.",
+          "application": "August - November",
+          "examDate": "December"
+        },
+        {
+          "name": "LSAT India",
+          "fullName": "Law School Admission Test - India",
+          "description": "A standardized test of reading and verbal reasoning skills designed for admissions to various law colleges in India.",
+          "application": "October - May",
+          "examDate": "January & June"
+        }
+      ]
+    },
+    "colleges": {
+      "title": "Top Law Colleges with Affordable Fees",
+      "affordable": "Affordable",
+      "fees": "Approx. Annual Fees",
+      "eligibility": "Eligibility",
+      "list": [
+        {
+          "name": "Faculty of Law, University of Delhi",
+          "location": "New Delhi, Delhi",
+          "description": "One of India's oldest and most respected law schools, known for its distinguished faculty and minimal tuition fees.",
+          "fees": "₹15,000 - ₹20,000",
+          "eligibility": "Graduation in any discipline with 50% marks. Admission through DU LLB Entrance Test."
+        },
+        {
+          "name": "Banaras Hindu University (BHU), Faculty of Law",
+          "location": "Varanasi, Uttar Pradesh",
+          "description": "A premier central university offering high-quality legal education at a highly subsidized cost.",
+          "fees": "₹5,000 - ₹10,000",
+          "eligibility": "10+2 with 50% marks for BA LLB. Admission through BHU-UET (Law)."
+        },
+        {
+          "name": "Government Law College, Mumbai",
+          "location": "Mumbai, Maharashtra",
+          "description": "Asia's oldest law school, it has a rich legacy and offers excellent legal education with very low fees.",
+          "fees": "₹6,000 - ₹15,000",
+          "eligibility": "10+2 for 5-year LLB, Graduation for 3-year LLB. Admission through MH CET Law."
+        }
+      ]
+    }
   }
 }
