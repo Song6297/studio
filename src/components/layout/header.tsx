@@ -28,10 +28,25 @@ export function Header() {
   const { user, loading } = useAuth();
   const [isMounted, setIsMounted] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [dashboardLinks, setDashboardLinks] = useState([
+    { href: '/case-status/demo', label: t('header.dashboards.citizen') },
+    { href: '/advocate-dashboard/demo', label: t('header.dashboards.advocate') },
+    { href: '/ngo-dashboard', label: t('header.dashboards.ngo') },
+    { href: '/law-firm-dashboard/demo', label: t('header.dashboards.lawFirm') },
+  ]);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+  
+  useEffect(() => {
+    setDashboardLinks([
+      { href: user ? '/dashboard' : '/case-status/demo', label: t('header.dashboards.citizen') },
+      { href: '/advocate-dashboard/demo', label: t('header.dashboards.advocate') },
+      { href: '/ngo-dashboard', label: t('header.dashboards.ngo') },
+      { href: '/law-firm-dashboard/demo', label: t('header.dashboards.lawFirm') },
+    ]);
+  }, [user, t]);
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -39,13 +54,6 @@ export function Header() {
     router.refresh();
   };
   
-  const dashboardLinks = [
-    { href: user ? '/dashboard' : '/case-status/demo', label: t('header.dashboards.citizen') },
-    { href: '/advocate-dashboard/demo', label: t('header.dashboards.advocate') },
-    { href: '/ngo-dashboard', label: t('header.dashboards.ngo') },
-    { href: '/law-firm-dashboard/demo', label: t('header.dashboards.lawFirm') },
-  ];
-
   const navLinks = [
     { href: '/case-submission', label: t('header.registerCase') },
     { href: '/case-status', label: t('header.caseStatus') },
