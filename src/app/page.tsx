@@ -80,9 +80,9 @@ export default function Home() {
 
   const IndianFlagBackground = () => (
     <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
-      <div className="absolute top-0 left-0 w-full h-1/3 bg-primary opacity-10"></div>
-      <div className="absolute top-1/3 left-0 w-full h-1/3 bg-background opacity-10"></div>
-      <div className="absolute top-2/3 left-0 w-full h-1/3 bg-green-500 opacity-10"></div>
+      <div className="absolute top-0 left-0 w-full h-1/3 bg-[#FF9933]"></div>
+      <div className="absolute top-1/3 left-0 w-full h-1/3 bg-white"></div>
+      <div className="absolute top-2/3 left-0 w-full h-1/3 bg-[#138808]"></div>
     </div>
   );
   
@@ -101,14 +101,14 @@ export default function Home() {
         <IndianFlagBackground />
         <div className="container flex min-h-[calc(60vh-10rem)] flex-col items-center justify-center text-center px-4">
           
-          <div className="w-24 h-24 md:w-32 md:h-32 mb-6 text-foreground">
+          <div className="w-24 h-24 md:w-32 md:h-32 mb-6 text-blue-900 drop-shadow-lg">
               <AshokaChakraIcon />
           </div>
 
-          <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-white mix-blend-difference">
             {t('home.mainHeading')}
           </h1>
-          <p className="mx-auto mt-6 max-w-[700px] text-lg text-muted-foreground md:text-xl">
+          <p className="mx-auto mt-6 max-w-[700px] text-lg text-white mix-blend-difference md:text-xl">
             {t('home.subHeading')}
           </p>
         </div>
