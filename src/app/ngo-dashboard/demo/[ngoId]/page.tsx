@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Users, Briefcase, BarChart2, CalendarPlus, HandHelping, Filter, CheckCircle, Clock, Edit, Trash2, Mail, UserPlus, UserMinus, UserCheck, Award, HeartHand, GraduationCap, School } from 'lucide-react';
+import { ArrowLeft, Users, Briefcase, BarChart2, CalendarPlus, HandHelping, Filter, CheckCircle, Clock, Edit, Trash2, Mail, UserPlus, UserMinus, UserCheck, Award, HeartPulse, GraduationCap, School } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -53,7 +53,7 @@ const demoNgoData = {
       { id: 3, name: 'Priya Singh', skills: ['Client Interviewing', 'Drafting'], status: 'Available', imageHint: 'professional woman smiling' },
     ],
     aidPrograms: [
-      { id: 'AID-01', name: 'Monthly Medical Camp', type: 'Medical Aid', icon: HeartHand },
+      { id: 'AID-01', name: 'Monthly Medical Camp', type: 'Medical Aid', icon: HeartPulse },
       { id: 'AID-02', name: 'Student Scholarship Program', type: 'Education Aid', icon: GraduationCap },
       { id: 'AID-03', name: 'Community Marriage Support', type: 'Marriage Aid', icon: Users },
     ],
@@ -74,7 +74,9 @@ const demoNgoData = {
      officeBearers: [
         { name: 'Dr. Alisha Verma', role: 'Director', imageHint: 'female tech expert' },
      ],
-     members: [],
+     members: [
+        { name: 'Amit Kumar', imageHint: 'young indian man' },
+     ],
      cases: [
       { id: 'CASE-201', category: 'Online Fraud', status: 'In-Progress', volunteerId: 1, volunteer: 'Vikram Reddy' },
       { id: 'CASE-202', category: 'Cyberbullying', status: 'Resolved', volunteerId: 2, volunteer: 'Sunita Rao' },
@@ -91,7 +93,7 @@ const demoNgoData = {
       chartData: [
         { category: 'Online Fraud', count: 110 },
         { category: 'Cyberbullying', count: 40 },
-        { category: 'Data Privacy', count: 30 },
+        { category: 'Workshops', count: 30 },
       ]
     }
   },
@@ -100,7 +102,9 @@ const demoNgoData = {
     name: 'RTI Watchdogs',
     mission: 'Empowering citizens to demand government transparency and accountability by assisting them in filing Right to Information (RTI) applications.',
     metrics: { casesSupported: 400, volunteersActive: 15, eventsOrganized: 50 },
-    officeBearers: [],
+    officeBearers: [
+        { name: 'Mr. Rakesh Singh', role: 'Founder', imageHint: 'activist portrait' },
+    ],
     members: [],
     cases: [],
     volunteers: [],
@@ -257,7 +261,7 @@ function AddProgramDialog({ onSave, onCancel }: { onSave: (newProgram: AidProgra
   const handleSave = () => {
     if(name && type) {
         let icon = HandHelping;
-        if(type === 'Medical Aid') icon = HeartHand;
+        if(type === 'Medical Aid') icon = HeartPulse;
         if(type === 'Education Aid') icon = GraduationCap;
         if(type === 'Marriage Aid') icon = Users;
         onSave({ id: `AID-${Date.now()}`, name, type, icon });
@@ -534,5 +538,3 @@ export default function DemoNgoDashboardPage() {
     </div>
   );
 }
-
-    
