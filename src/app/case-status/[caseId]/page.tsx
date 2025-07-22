@@ -8,7 +8,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Edit, Trash2, Loader2, AlertTriangle, FileText, Download } from 'lucide-react';
+import { ArrowLeft, Edit, Trash2, AlertTriangle, FileText, Download, Scale } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useLanguage } from '@/context/language-context';
 import { getEbriefForCase } from './actions';
@@ -107,7 +107,7 @@ function EbriefDialog({ caseData }: { caseData: Case }) {
           )}
           {isLoading && (
             <div className="flex flex-col items-center justify-center text-center rounded-lg bg-background/50 p-6 space-y-4">
-              <Loader2 className="h-10 w-10 animate-spin text-primary" />
+              <Scale className="h-12 w-12 animate-bounce text-primary" />
               <p className="text-lg font-medium text-muted-foreground">Generating eBrief...</p>
               <p className="text-sm text-muted-foreground/80">The AI is analyzing the case. This may take a moment.</p>
             </div>
@@ -213,7 +213,7 @@ export default function CaseDetailsPage() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
-        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+        <Scale className="h-12 w-12 animate-bounce text-primary" />
       </div>
     );
   }

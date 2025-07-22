@@ -10,7 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from '@/hooks/use-toast';
-import { UserPlus, Loader2 } from 'lucide-react';
+import { UserPlus, Loader2, Scale } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect, Suspense } from 'react';
@@ -324,11 +324,11 @@ export default function RegisterPage() {
             <p className="mt-2 text-lg text-muted-foreground">{t('register.description')}</p>
         </div>
         {isMounted ? (
-          <Suspense fallback={<div className="flex justify-center"><Loader2 className="h-10 w-10 animate-spin text-primary" /></div>}>
+          <Suspense fallback={<div className="flex justify-center"><Scale className="h-12 w-12 animate-bounce text-primary" /></div>}>
             <RegisterForm />
           </Suspense>
         ) : (
-          <div className="flex justify-center"><Loader2 className="h-10 w-10 animate-spin text-primary" /></div>
+          <div className="flex justify-center"><Scale className="h-12 w-12 animate-bounce text-primary" /></div>
         )}
       </div>
     </div>

@@ -7,7 +7,7 @@ import { collection, getDocs, query, where, orderBy, Timestamp } from 'firebase/
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { LayoutDashboard, Loader2, ArrowRight } from "lucide-react";
+import { LayoutDashboard, ArrowRight, Scale } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
 import { useAuth } from '@/context/auth-context';
 import { useRouter } from 'next/navigation';
@@ -67,7 +67,7 @@ function DashboardPage() {
   if (authLoading || isLoading) {
       return (
           <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
-              <Loader2 className="h-10 w-10 animate-spin text-primary" />
+              <Scale className="h-12 w-12 animate-bounce text-primary" />
           </div>
       );
   }

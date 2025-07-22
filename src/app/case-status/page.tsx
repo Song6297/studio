@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/context/language-context';
-import { FileSearch, Loader2, ShieldAlert, Eye, Building, User } from 'lucide-react';
+import { FileSearch, ShieldAlert, Eye, Building, User, Scale } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth-context';
 import { Button } from '@/components/ui/button';
@@ -114,7 +114,7 @@ function CaseStatusPage() {
           </div>
           {isLoading || authLoading ? (
             <div className="flex flex-col items-center justify-center h-64">
-              <Loader2 className="h-10 w-10 animate-spin text-primary" />
+              <Scale className="h-12 w-12 animate-bounce text-primary" />
               <p className="mt-4 text-muted-foreground">{t('caseStatus.loading')}</p>
             </div>
           ) : error ? (

@@ -5,7 +5,7 @@ import { useAuth } from '@/context/auth-context';
 import { useLanguage } from '@/context/language-context';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { Loader2, Building } from 'lucide-react';
+import { Building, Scale } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 export default function NgoDashboardPage() {
@@ -26,7 +26,7 @@ export default function NgoDashboardPage() {
     if (authLoading || !user) {
         return (
             <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
-                <Loader2 className="h-10 w-10 animate-spin text-primary" />
+                <Scale className="h-12 w-12 animate-bounce text-primary" />
             </div>
         );
     }

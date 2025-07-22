@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, Scale, Gavel, Handshake, FileQuestion, CalendarCheck, Loader2, ShieldAlert } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, Scale, Gavel, Handshake, FileQuestion, CalendarCheck, ShieldAlert } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
@@ -83,7 +83,7 @@ export default function Home() {
   if (!isMounted) {
     return (
        <div className="flex items-center justify-center min-h-dvh">
-         <Loader2 className="h-10 w-10 animate-spin text-primary" />
+         <Scale className="h-12 w-12 animate-bounce text-primary" />
        </div>
     );
   }

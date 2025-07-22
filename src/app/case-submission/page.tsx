@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { FileText, Loader2 } from 'lucide-react';
+import { FileText, Loader2, Scale } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { useAuth } from '@/context/auth-context';
 import { submitCase } from './actions';
@@ -89,7 +89,7 @@ export default function CaseSubmissionPage() {
   if (authLoading || !user) {
     return (
       <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
-        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+        <Scale className="h-12 w-12 animate-bounce text-primary" />
       </div>
     );
   }

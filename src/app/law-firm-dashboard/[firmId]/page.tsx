@@ -7,7 +7,7 @@ import { db } from '@/lib/firebase';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Building, Users, BarChart2, Loader2, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Building, Users, BarChart2, AlertTriangle, Scale } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from 'recharts';
@@ -109,7 +109,7 @@ export default function LawFirmDashboardPage() {
   if (isLoading || authLoading) {
     return (
       <div className="flex justify-center items-center h-[calc(100vh-8rem)]">
-        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+        <Scale className="h-12 w-12 animate-bounce text-primary" />
       </div>
     );
   }

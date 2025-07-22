@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Loader2, Sparkles, AlertTriangle, FileText, Download } from 'lucide-react';
+import { Sparkles, AlertTriangle, FileText, Download, Scale } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 
 // Custom hook for typing effect
@@ -106,7 +106,7 @@ export function AiLegalGuideClient() {
             <Button type="submit" disabled={isLoading} size="lg" className="w-full font-bold text-lg bg-accent text-accent-foreground hover:bg-accent/90">
               {isLoading ? (
                 <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  <Scale className="mr-2 h-6 w-6 animate-bounce" />
                   {t('aiLegalGuide.form.submitButtonLoading')}
                 </>
               ) : (
@@ -122,7 +122,7 @@ export function AiLegalGuideClient() {
         <div className="mt-8 min-h-[200px]">
           {isLoading && (
             <div className="flex flex-col items-center justify-center text-center rounded-lg bg-background/50 p-6 space-y-4">
-              <Loader2 className="h-10 w-10 animate-spin text-primary" />
+              <Scale className="h-12 w-12 animate-bounce text-primary" />
               <p className="text-lg font-medium text-muted-foreground">{t('aiLegalGuide.loading.thinking')}</p>
               <p className="text-sm text-muted-foreground/80">{t('aiLegalGuide.loading.patience')}</p>
             </div>
