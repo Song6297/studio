@@ -24,56 +24,63 @@ export default function Home() {
   const allFeatures = [
       {
         icon: FileText,
-        title: t('features.registerCase.title'),
-        description: t('features.registerCase.description'),
+        titleKey: 'features.registerCase.title',
+        descriptionKey: 'features.registerCase.description',
         href: "/case-submission",
-        cta: t('features.registerCase.cta'),
+        ctaKey: 'features.registerCase.cta',
       },
       {
         icon: Bot,
-        title: t('features.aiLegalAdvice.title'),
-        description: t('features.aiLegalAdvice.description'),
+        titleKey: 'features.aiLegalAdvice.title',
+        descriptionKey: 'features.aiLegalAdvice.description',
         href: "/ai-legal-guide",
-        cta: t('features.aiLegalAdvice.cta'),
+        ctaKey: 'features.aiLegalAdvice.cta',
       },
       {
         icon: FileQuestion,
-        title: t('features.fileRti.title'),
-        description: t('features.fileRti.description'),
+        titleKey: 'features.fileRti.title',
+        descriptionKey: 'features.fileRti.description',
         href: "/file-rti",
-        cta: t('features.fileRti.cta'),
+        ctaKey: 'features.fileRti.cta',
       },
       {
         icon: CalendarCheck,
-        title: t('features.legalServices.title'),
-        description: t('features.legalServices.description'),
+        titleKey: 'features.legalServices.title',
+        descriptionKey: 'features.legalServices.description',
         href: "/legal-services",
-        cta: t('features.legalServices.cta'),
+        ctaKey: 'features.legalServices.cta',
       },
       {
         icon: BookOpen,
-        title: t('features.legalAwareness.title'),
-        description: t('features.legalAwareness.description'),
+        titleKey: 'features.legalAwareness.title',
+        descriptionKey: 'features.legalAwareness.description',
         href: "/legal-awareness",
-        cta: t('features.legalAwareness.cta'),
+        ctaKey: 'features.legalAwareness.cta',
       },
       {
         icon: Handshake,
-        title: t('features.volunteerNetwork.title'),
-        description: t('features.volunteerNetwork.description'),
+        titleKey: 'features.volunteerNetwork.title',
+        descriptionKey: 'features.volunteerNetwork.description',
         href: "/volunteer-network",
-        cta: t('features.volunteerNetwork.cta'),
+        ctaKey: 'features.volunteerNetwork.cta',
       },
       {
         icon: Scale,
-        title: t('features.indianConstitution.title'),
-        description: t('features.indianConstitution.description'),
+        titleKey: 'features.indianConstitution.title',
+        descriptionKey: 'features.indianConstitution.description',
         href: "/indian-constitution",
-        cta: t('features.indianConstitution.cta'),
+        ctaKey: 'features.indianConstitution.cta',
       },
   ];
 
-  const filteredFeatures = allFeatures.filter(feature => 
+  const translatedFeatures = allFeatures.map(feature => ({
+      ...feature,
+      title: t(feature.titleKey),
+      description: t(feature.descriptionKey),
+      cta: t(feature.ctaKey),
+  }));
+
+  const filteredFeatures = translatedFeatures.filter(feature => 
     feature.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     feature.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
