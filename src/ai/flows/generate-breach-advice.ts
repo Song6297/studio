@@ -8,7 +8,7 @@
  * - GenerateBreachAdviceOutput - The return type for the generateBreachAdvice function.
  */
 
-import {ai} from '@/ai/genkit';
+import {ai} from '@/ai/init';
 import {z} from 'genkit';
 
 const GenerateBreachAdviceInputSchema = z.object({

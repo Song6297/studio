@@ -7,7 +7,7 @@
  * - generateFirDraft - A function that handles the FIR draft generation.
  */
 
-import {ai} from '@/ai/genkit';
+import {ai} from '@/ai/init';
 import { GenerateFirDraftInputSchema, GenerateFirDraftOutputSchema, type GenerateFirDraftInput, type GenerateFirDraftOutput } from '@/ai/schemas/fir-schema';
 
 
