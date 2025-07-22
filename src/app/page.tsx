@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, Scale, Gavel, Handshake, FileQuestion, CalendarCheck, Loader2, ShieldAlert } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, Scale, Gavel, Handshake, FileQuestion, CalendarCheck, Loader2, ShieldAlert, FileSignature } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
@@ -35,6 +35,13 @@ export default function Home() {
         descriptionKey: 'features.aiLegalAdvice.description',
         href: "/ai-legal-guide",
         ctaKey: 'features.aiLegalAdvice.cta',
+      },
+      {
+        icon: FileSignature,
+        titleKey: 'features.firGenerator.title',
+        descriptionKey: 'features.firGenerator.description',
+        href: "/fir-generator",
+        ctaKey: 'features.firGenerator.cta',
       },
       {
         icon: ShieldAlert,
