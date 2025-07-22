@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, Languages, Globe, LogOut, Building, LayoutDashboard as DashboardIcon, User, ShieldAlert } from 'lucide-react';
+import { Menu, Languages, Globe, LogOut, Building, LayoutDashboard as DashboardIcon, User, ShieldAlert, PenSquare } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
@@ -57,10 +57,10 @@ export function Header() {
   const navLinks = [
     { href: '/case-submission', label: t('header.registerCase') },
     { href: '/case-status', label: t('header.caseStatus') },
-    { href: '/data-breach-advisor', label: 'Breach Advisor'},
+    { href: '/data-breach-advisor', label: t('header.breachAdvisor')},
     { href: '/file-rti', label: t('header.fileRti') },
     { href: '/legal-services', label: t('header.legalServices') },
-    { href: '/document-services', label: 'Document Services' },
+    { href: '/document-services', label: t('header.documentServices') },
     { href: '/legal-awareness', label: t('header.awareness') },
     { href: '/volunteer-network', label: t('header.volunteerNetwork') },
     { href: '/law-aspirants', label: t('header.lawAspirants') },
@@ -97,7 +97,7 @@ export function Header() {
               <DropdownMenuTrigger asChild>
                 <Button variant={isMobile ? "outline" : "ghost"} className={cn(
                     isMobile ? dashboardDropdownTriggerClass : commonLinkClass,
-                    pathname.startsWith('/dashboard') || pathname.startsWith('/ngo-dashboard') || pathname.startsWith('/law-firm-dashboard') ? activeLinkClass : inactiveLinkClass
+                    pathname.startsWith('/dashboard') || pathname.startsWith('/ngo-dashboard') || pathname.startsWith('/law-firm-dashboard') || pathname.startsWith('/advocate-dashboard') ? activeLinkClass : inactiveLinkClass
                 )}>
                   {t('header.dashboards.title')}
                   {isMobile && <DashboardIcon className="h-5 w-5" />}

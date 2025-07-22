@@ -152,6 +152,7 @@ function RegisterForm() {
         <TabsTrigger value="advocate">{t('register.tabs.advocate')}</TabsTrigger>
         <TabsTrigger value="ngo">{t('register.tabs.ngo')}</TabsTrigger>
         <TabsTrigger value="lawFirm">Law Firm</TabsTrigger>
+         <TabsTrigger value="volunteer">{t('register.tabs.volunteer')}</TabsTrigger>
       </TabsList>
       <TabsContent value="login" className="mt-6">
         <Card className="bg-card/80 backdrop-blur-sm">
@@ -297,6 +298,35 @@ function RegisterForm() {
                 )} />
                 <Button type="submit" className="w-full" disabled={isLoading}>
                    {isLoading ? <Loader2 className="animate-spin" /> : 'Register Law Firm'}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      </TabsContent>
+       <TabsContent value="volunteer" className="mt-6">
+        <Card className="bg-card/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="font-headline">{t('register.volunteer.cardTitle')}</CardTitle>
+            <CardDescription>{t('register.volunteer.cardDescription')}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Form {...volunteerForm}>
+              <form onSubmit={volunteerForm.handleSubmit(onVolunteerSubmit)} className="space-y-4">
+                <FormField control={volunteerForm.control} name="fullName" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.volunteer.form.fullName.label')}</FormLabel><FormControl><Input placeholder={t('register.volunteer.form.fullName.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={volunteerForm.control} name="email" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.volunteer.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('register.volunteer.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={volunteerForm.control} name="university" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.volunteer.form.university.label')}</FormLabel><FormControl><Input placeholder={t('register.volunteer.form.university.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={volunteerForm.control} name="password" render={({ field }) => (
+                    <FormItem><FormLabel>{t('register.volunteer.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                   {isLoading ? <Loader2 className="animate-spin" /> : t('register.volunteer.form.submitButton')}
                 </Button>
               </form>
             </Form>

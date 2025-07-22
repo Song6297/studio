@@ -12,6 +12,8 @@
     "caseStatus": "Case Status",
     "awareness": "Legal Awareness",
     "aiLegalAdvice": "AI Legal Advisor",
+    "breachAdvisor": "Breach Advisor",
+    "documentServices": "Document Services",
     "volunteerNetwork": "Volunteer Network",
     "indianConstitution": "Indian Constitution",
     "fileRti": "File RTI",
@@ -53,9 +55,14 @@
       "cta": "Ask AI Advisor"
     },
     "dataBreachAdvisor": {
-      "title": "AI Data Breach Advisor",
+      "title": "Data Breach Advisor",
       "description": "Experienced a security breach? Get an instant action plan based on Indian cyber law to guide your next steps.",
       "cta": "Get Action Plan"
+    },
+     "documentServices": {
+      "title": "Document Services",
+      "description": "Need an affidavit or a document notarized? Request professional assistance for your legal documentation needs.",
+      "cta": "Request a Document"
     },
     "indianConstitution": {
       "title": "Indian Constitution",
@@ -246,7 +253,7 @@
   },
   "register": {
     "title": "Join Our Network",
-    "description": "Log in or register as an Advocate, NGO, or Volunteer.",
+    "description": "Log in or register as a Citizen, Advocate, NGO, Law Firm or Volunteer.",
     "tabs": {
       "login": "Log In",
       "advocate": "Advocate",
@@ -536,7 +543,7 @@
       ]
     }
   },
-   "caseStatus": {
+  "caseStatus": {
     "title": "Case Status Tracker",
     "description": "View the status of all submitted cases.",
     "loading": "Loading cases...",

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { ArrowRight, BookOpen, FileText, Bot, Scale, Gavel, Handshake, FileQuestion, CalendarCheck, ShieldAlert } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, Bot, Scale, Gavel, Handshake, FileQuestion, CalendarCheck, ShieldAlert, PenSquare } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
@@ -36,7 +36,7 @@ export default function Home() {
         href: "/ai-legal-guide",
         ctaKey: 'features.aiLegalAdvice.cta',
       },
-      {
+       {
         icon: ShieldAlert,
         titleKey: 'features.dataBreachAdvisor.title',
         descriptionKey: 'features.dataBreachAdvisor.description',
@@ -44,18 +44,18 @@ export default function Home() {
         ctaKey: 'features.dataBreachAdvisor.cta',
       },
       {
-        icon: Handshake,
-        titleKey: 'features.volunteerNetwork.title',
-        descriptionKey: 'features.volunteerNetwork.description',
-        href: "/volunteer-network",
-        ctaKey: 'features.volunteerNetwork.cta',
-      },
-      {
         icon: FileQuestion,
         titleKey: 'features.fileRti.title',
         descriptionKey: 'features.fileRti.description',
         href: "/file-rti",
         ctaKey: 'features.fileRti.cta',
+      },
+       {
+        icon: PenSquare,
+        titleKey: 'features.documentServices.title',
+        descriptionKey: 'features.documentServices.description',
+        href: "/document-services",
+        ctaKey: 'features.documentServices.cta',
       },
       {
         icon: CalendarCheck,
@@ -70,6 +70,13 @@ export default function Home() {
         descriptionKey: 'features.legalAwareness.description',
         href: "/legal-awareness",
         ctaKey: 'features.legalAwareness.cta',
+      },
+       {
+        icon: Handshake,
+        titleKey: 'features.volunteerNetwork.title',
+        descriptionKey: 'features.volunteerNetwork.description',
+        href: "/volunteer-network",
+        ctaKey: 'features.volunteerNetwork.cta',
       },
       {
         icon: Scale,
