@@ -65,6 +65,14 @@ export default function LegalAwarenessPage() {
             category: t('legalAwareness.articles.onlineDefamation.category'),
             image: "https://placehold.co/600x400.png",
             hint: "gavel keyboard"
+        },
+        {
+            slug: 'upiFraudCase',
+            title: t('legalAwareness.articles.upiFraudCase.title'),
+            description: t('legalAwareness.articles.upiFraudCase.description'),
+            category: t('legalAwareness.articles.upiFraudCase.category'),
+            image: "https://placehold.co/600x400.png",
+            hint: "mobile banking court"
         }
     ];
 
