@@ -47,7 +47,9 @@ async function checkUserRole(userId: string): Promise<string> {
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
           if (collectionName === 'ngos') return '/ngo-dashboard';
-          if (collectionName === 'lawFirms') return `/law-firm-dashboard/${querySnapshot.docs[0].id}`;
+          if (collectionName === 'lawFirms') {
+              return `/law-firm-dashboard/${querySnapshot.docs[0].id}`;
+          }
           return '/dashboard'; 
       }
   }

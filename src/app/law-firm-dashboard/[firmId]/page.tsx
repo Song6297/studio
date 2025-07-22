@@ -48,9 +48,6 @@ export default function LawFirmDashboardPage() {
   useEffect(() => {
     if (!firmId) return;
 
-    // A real implementation would verify that the logged-in user
-    // has permission to view this firm's dashboard.
-    // For now, we will allow access if logged in.
     if (authLoading) return;
     if (!user) {
         router.push('/register?type=login');
@@ -63,10 +60,15 @@ export default function LawFirmDashboardPage() {
         const firmDocSnap = await getDoc(firmDocRef);
 
         if (firmDocSnap.exists()) {
-          setFirmData({ id: firmDocSnap.id, ...firmDocSnap.data() } as FirmData);
+          const firmDocData = firmDocSnap.data();
+          if(firmDocData.userId !== user?.uid){
+            setError('You do not have permission to view this dashboard.');
+            setIsLoading(false);
+            return;
+          }
 
-          // In a real app, you would fetch staff and case data associated with the firm.
-          // For now, we'll use placeholder data for demonstration.
+          setFirmData({ id: firmDocSnap.id, ...firmDocData } as FirmData);
+
           setStaff([
             { name: 'Lead Counsel', role: 'Managing Partner', experience: '20 Years', imageHint: 'senior male lawyer' },
             { name: 'Associate Lawyer', role: 'Associate', experience: '5 Years', imageHint: 'junior female lawyer' },
