@@ -22,7 +22,6 @@ export default function RootLayout({
   useEffect(() => setIsMounted(true), []);
 
   const isAIGuidePage = pathname === '/ai-legal-guide';
-  const isHomePage = pathname === '/';
 
   return (
     <html lang="en">
@@ -37,7 +36,7 @@ export default function RootLayout({
             <div className="relative flex min-h-dvh flex-col bg-background">
               <Header />
               <main className="flex-1 relative">
-              {isMounted && !isAIGuidePage && !isHomePage && (
+              {isMounted && !isAIGuidePage && (
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[400px] opacity-5 dark:opacity-10 -z-10">
                       <AshokaChakraIcon />
                   </div>
