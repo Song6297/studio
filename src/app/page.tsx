@@ -81,9 +81,12 @@ export default function Home() {
             <div className="absolute -top-48 -left-48 md:-top-64 md:-left-64 h-[400px] w-[400px] md:h-[600px] md:w-[600px] text-accent/10 -z-10">
                 <AshokaChakraIcon />
             </div>
+             <h2 className="font-headline text-3xl font-bold tracking-widest text-foreground/80" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                LIBRA
+            </h2>
           <div className="inline-block">
             <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-primary via-white to-[#138808] dark:to-secondary bg-clip-text text-transparent">
-              {t('home.mainHeading')}
+              Satyameva Jayate for Justice
             </h1>
           </div>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground md:text-xl">
