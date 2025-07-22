@@ -1,11 +1,11 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Building, Users, Briefcase, BarChart2, Star, Mail, UserPlus, Edit, Trash2, UserX } from 'lucide-react';
+import { ArrowLeft, Building, Users, Briefcase, BarChart2, Star, Mail, UserPlus, Edit, Trash2, UserX, Gavel } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -15,7 +15,9 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from '@/lib/utils';
+import { Textarea } from '@/components/ui/textarea';
 
 const demoFirmData = {
   'agrawal-associates': {
@@ -37,6 +39,19 @@ const demoFirmData = {
         { category: 'Litigation', solved: 25, pending: 8 },
         { category: 'IP', solved: 60, pending: 15 },
       ]
+    },
+     cases: {
+      available: [
+        { id: 'CORP-001', category: 'Compliance Audit', description: 'A mid-sized tech company requires a full compliance audit before its next funding round.' },
+        { id: 'CORP-002', category: 'Contract Drafting', description: 'Drafting a master service agreement for a new SaaS product offering.' },
+        { id: 'CORP-003', category: 'Shareholder Agreement', description: 'A startup with three co-founders needs a comprehensive shareholder agreement.' },
+      ],
+      pending: [
+        { id: 'CORP-004', category: 'Merger & Acquisition', description: 'Representing the acquiring company in a cross-border M&A deal. Due diligence phase.', status: 'Due Diligence' },
+      ],
+      resolved: [
+        { id: 'CORP-005', category: 'IP Registration', description: 'Successfully registered a portfolio of trademarks for a new consumer brand.', outcome: 'Completed' },
+      ]
     }
   },
   'singh-legal': {
@@ -56,7 +71,8 @@ const demoFirmData = {
         { category: 'Appeal', solved: 45, pending: 10 },
         { category: 'White Collar', solved: 15, pending: 5 },
       ]
-    }
+    },
+     cases: { available: [], pending: [], resolved: [] }
   },
    'gupta-family-law': {
     id: 'gupta-family-law',
@@ -75,12 +91,15 @@ const demoFirmData = {
         { category: 'Adoption', solved: 30, pending: 5 },
         { category: 'Mediation', solved: 200, pending: 18 },
       ]
-    }
+    },
+     cases: { available: [], pending: [], resolved: [] }
   }
 };
 
 type StaffMember = typeof demoFirmData['agrawal-associates']['staff'][0];
 type DemoFirm = typeof demoFirmData['agrawal-associates'];
+type Case = { id: string, category: string, description: string, status?: string, outcome?: string };
+
 
 function StaffEditDialog({ staffMember, onSave, onCancel }: { staffMember: StaffMember, onSave: (updatedStaff: StaffMember) => void, onCancel: () => void }) {
   const [editedStaff, setEditedStaff] = useState(staffMember);
@@ -277,6 +296,52 @@ function ManageStaffDialog({ staff, setStaff, onCancel }: { staff: StaffMember[]
     );
 }
 
+function BidDialog({ caseItem, onBid, onCancel }: { caseItem: Case, onBid: (caseId: string, bidDetails: { amount: string, comments: string }) => void, onCancel: () => void }) {
+    const [amount, setAmount] = useState('');
+    const [comments, setComments] = useState('');
+
+    const handleBid = () => {
+        if (amount) {
+            onBid(caseItem.id, { amount, comments });
+        }
+    };
+
+    return (
+        <Dialog open={true} onOpenChange={onCancel}>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Bid on Case: {caseItem.id}</DialogTitle>
+                    <DialogDescription>
+                        Review the case details and place your firm's bid.
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="py-4 space-y-4">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>{caseItem.category}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p>{caseItem.description}</p>
+                        </CardContent>
+                    </Card>
+                    <div className="space-y-2">
+                        <Label htmlFor="bid-amount">Your Bidding Amount (INR)</Label>
+                        <Input id="bid-amount" type="number" value={amount} onChange={e => setAmount(e.target.value)} placeholder="e.g., 250000" />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="bid-comments">Comments / Proposed Strategy (Optional)</Label>
+                        <Textarea id="bid-comments" value={comments} onChange={e => setComments(e.target.value)} placeholder="Outline your firm's approach..." />
+                    </div>
+                </div>
+                <DialogFooter>
+                    <Button variant="outline" onClick={onCancel}>Cancel</Button>
+                    <Button onClick={handleBid}>Submit Bid</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    );
+}
+
 
 export default function DemoFirmDashboardPage() {
   const router = useRouter();
@@ -289,6 +354,7 @@ export default function DemoFirmDashboardPage() {
   const [isManagingStaff, setIsManagingStaff] = useState(false);
   const [isHiring, setIsHiring] = useState(false);
   const [hireRole, setHireRole] = useState('Associate');
+  const [biddingOnCase, setBiddingOnCase] = useState<Case | null>(null);
 
 
   if (!firmData) {
@@ -316,6 +382,15 @@ export default function DemoFirmDashboardPage() {
     setIsHiring(false);
     toast({ title: "Staff Added", description: `${newStaff.name} has been added to the firm.` });
   };
+  
+   const handlePlaceBid = (caseId: string, bidDetails: { amount: string, comments: string }) => {
+    console.log(`Bidding on ${caseId}`, bidDetails);
+    setBiddingOnCase(null);
+    toast({
+        title: "Bid Submitted!",
+        description: `Your firm's bid of ₹${bidDetails.amount} for case ${caseId} has been submitted.`,
+    });
+  }
 
 
   return (
@@ -343,6 +418,66 @@ export default function DemoFirmDashboardPage() {
               <Button onClick={() => handleHireClick('Associate')}><UserPlus className="mr-2"/> Hire Advocate</Button>
               <Button onClick={() => handleHireClick('Paralegal')} variant="secondary"><UserPlus className="mr-2"/> Hire Law Graduate</Button>
           </CardFooter>
+        </Card>
+
+        {/* Case Management Section */}
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Gavel /> Case Management</CardTitle>
+                <CardDescription>Bid on new corporate cases and manage your firm's portfolio.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Tabs defaultValue="available">
+                    <TabsList className="grid w-full grid-cols-3">
+                        <TabsTrigger value="available">Available Cases <Badge variant="destructive" className="ml-2">{firmData.cases.available.length}</Badge></TabsTrigger>
+                        <TabsTrigger value="pending">Pending Cases</TabsTrigger>
+                        <TabsTrigger value="resolved">Resolved Cases</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="available" className="mt-4">
+                        <div className="space-y-4">
+                            {firmData.cases.available.length > 0 ? firmData.cases.available.map(caseItem => (
+                                <Card key={caseItem.id} className="flex flex-col sm:flex-row items-start justify-between p-4">
+                                    <div className="flex-1 mb-4 sm:mb-0">
+                                        <p className="font-bold text-primary">{caseItem.category}</p>
+                                        <p className="text-sm text-muted-foreground">{caseItem.description}</p>
+                                    </div>
+                                    <Button onClick={() => setBiddingOnCase(caseItem)}>View & Bid</Button>
+                                </Card>
+                            )) : <p className="text-center text-muted-foreground p-8">No new corporate cases available for bidding.</p>}
+                        </div>
+                    </TabsContent>
+                    <TabsContent value="pending" className="mt-4">
+                         <div className="space-y-4">
+                            {firmData.cases.pending.map(caseItem => (
+                                <Card key={caseItem.id} className="p-4">
+                                    <div className="flex justify-between">
+                                        <div>
+                                            <p className="font-bold">{caseItem.category}</p>
+                                            <p className="text-sm text-muted-foreground">{caseItem.description}</p>
+                                        </div>
+                                        <Badge variant="secondary">{caseItem.status}</Badge>
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
+                    </TabsContent>
+                    <TabsContent value="resolved" className="mt-4">
+                         <div className="space-y-4">
+                            {firmData.cases.resolved.map(caseItem => (
+                                <Card key={caseItem.id} className="p-4">
+                                    <div className="flex justify-between">
+                                        <div>
+                                            <p className="font-bold">{caseItem.category}</p>
+                                            <p className="text-sm text-muted-foreground">{caseItem.description}</p>
+                                        </div>
+                                        <Badge variant="outline" className="text-green-600 border-green-600">{caseItem.outcome}</Badge>
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
+                    </TabsContent>
+                </Tabs>
+            </CardContent>
         </Card>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -406,6 +541,7 @@ export default function DemoFirmDashboardPage() {
       </div>
       {isManagingStaff && <ManageStaffDialog staff={staff} setStaff={setStaff} onCancel={() => setIsManagingStaff(false)} />}
       {isHiring && <AddStaffDialog onSave={handleSaveNewHire} onCancel={() => setIsHiring(false)} defaultRole={hireRole} />}
+       {biddingOnCase && <BidDialog caseItem={biddingOnCase} onBid={handlePlaceBid} onCancel={() => setBiddingOnCase(null)} />}
     </div>
   );
 }

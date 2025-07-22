@@ -5,17 +5,19 @@ import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Users, BarChart2, Star, Mail, UserPlus, Edit, Trash2, UserX } from 'lucide-react';
+import { ArrowLeft, Users, BarChart2, Star, Mail, UserPlus, Edit, Trash2, UserX, Gavel, FileText, CheckCircle2, Search } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useToast } from '@/hooks/use-toast';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from '@/lib/utils';
+import { Textarea } from '@/components/ui/textarea';
 
 const demoAdvocateData = {
   'alok-sharma': {
@@ -34,6 +36,20 @@ const demoAdvocateData = {
         { category: 'Appeals', solved: 30, pending: 5 },
         { category: 'White-Collar', solved: 10, pending: 8 },
       ]
+    },
+    cases: {
+      available: [
+        { id: 'CASE-001', category: 'Theft', description: 'Client accused of shoplifting from a retail store. Claims mistaken identity.' },
+        { id: 'CASE-002', category: 'Assault', description: 'Altercation outside a pub resulting in minor injuries. Client claims self-defense.' },
+      ],
+      pending: [
+        { id: 'CASE-003', category: 'Bail Application', description: 'Seeking pre-arrest bail for a client in a financial fraud case.', status: 'Hearing Scheduled' },
+        { id: 'CASE-004', category: 'Trial', description: 'Defending a client in a high-profile cheating case. Evidence examination ongoing.', status: 'Trial in Progress' },
+      ],
+      resolved: [
+        { id: 'CASE-005', category: 'Acquittal', description: 'Successfully acquitted a client falsely accused in a dowry harassment case.', outcome: 'Acquitted' },
+        { id: 'CASE-006', category: 'Bail Granted', description: 'Secured bail for a client accused of reckless driving.', outcome: 'Bail Granted' },
+      ]
     }
   },
   'sunita-gupta': {
@@ -51,6 +67,11 @@ const demoAdvocateData = {
         { category: 'Mediation', solved: 120, pending: 15 },
         { category: 'Maintenance', solved: 60, pending: 5 },
       ]
+    },
+    cases: {
+      available: [],
+      pending: [],
+      resolved: []
     }
   },
    'vikram-singh': {
@@ -69,12 +90,19 @@ const demoAdvocateData = {
         { category: 'Trademark', solved: 90, pending: 20 },
         { category: 'Copyright', solved: 75, pending: 10 },
       ]
+    },
+    cases: {
+      available: [],
+      pending: [],
+      resolved: []
     }
   }
 };
 
 type JuniorMember = typeof demoAdvocateData['alok-sharma']['juniors'][0];
 type DemoAdvocate = typeof demoAdvocateData['alok-sharma'];
+type Case = { id: string, category: string, description: string, status?: string, outcome?: string };
+
 
 function AddJuniorDialog({ onSave, onCancel }: { onSave: (newJunior: JuniorMember) => void, onCancel: () => void }) {
     const [newJunior, setNewJunior] = useState<Omit<JuniorMember, 'id' | 'status'>>({
@@ -130,6 +158,52 @@ function AddJuniorDialog({ onSave, onCancel }: { onSave: (newJunior: JuniorMembe
     );
 }
 
+function BidDialog({ caseItem, onBid, onCancel }: { caseItem: Case, onBid: (caseId: string, bidDetails: { amount: string, comments: string }) => void, onCancel: () => void }) {
+    const [amount, setAmount] = useState('');
+    const [comments, setComments] = useState('');
+
+    const handleBid = () => {
+        if (amount) {
+            onBid(caseItem.id, { amount, comments });
+        }
+    };
+
+    return (
+        <Dialog open={true} onOpenChange={onCancel}>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Bid on Case: {caseItem.id}</DialogTitle>
+                    <DialogDescription>
+                        Review the case details and place your bid.
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="py-4 space-y-4">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>{caseItem.category}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p>{caseItem.description}</p>
+                        </CardContent>
+                    </Card>
+                    <div className="space-y-2">
+                        <Label htmlFor="bid-amount">Your Bidding Amount (INR)</Label>
+                        <Input id="bid-amount" type="number" value={amount} onChange={e => setAmount(e.target.value)} placeholder="e.g., 25000" />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="bid-comments">Comments (Optional)</Label>
+                        <Textarea id="bid-comments" value={comments} onChange={e => setComments(e.target.value)} placeholder="Add any comments about your approach..." />
+                    </div>
+                </div>
+                <DialogFooter>
+                    <Button variant="outline" onClick={onCancel}>Cancel</Button>
+                    <Button onClick={handleBid}>Submit Bid</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    );
+}
+
 export default function DemoAdvocateDashboardPage() {
   const router = useRouter();
   const params = useParams();
@@ -139,6 +213,7 @@ export default function DemoAdvocateDashboardPage() {
   
   const [juniors, setJuniors] = useState(advocateData?.juniors || []);
   const [isHiring, setIsHiring] = useState(false);
+  const [biddingOnCase, setBiddingOnCase] = useState<Case | null>(null);
 
 
   if (!advocateData) {
@@ -161,6 +236,15 @@ export default function DemoAdvocateDashboardPage() {
     setIsHiring(false);
     toast({ title: "Team Member Added", description: `${newJunior.name} has been added to your team.` });
   };
+  
+  const handlePlaceBid = (caseId: string, bidDetails: { amount: string, comments: string }) => {
+    console.log(`Bidding on ${caseId}`, bidDetails);
+    setBiddingOnCase(null);
+    toast({
+        title: "Bid Submitted!",
+        description: `Your bid of ₹${bidDetails.amount} for case ${caseId} has been submitted.`,
+    });
+  }
 
   return (
     <div className="container py-12 md:py-16">
@@ -185,6 +269,66 @@ export default function DemoAdvocateDashboardPage() {
           <CardContent>
             <p className="text-muted-foreground">{advocateData.bio}</p>
           </CardContent>
+        </Card>
+
+        {/* Case Management Section */}
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Gavel /> Case Management</CardTitle>
+                <CardDescription>Bid on new cases and manage your existing caseload.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Tabs defaultValue="available">
+                    <TabsList className="grid w-full grid-cols-3">
+                        <TabsTrigger value="available">Available Cases <Badge variant="destructive" className="ml-2">{advocateData.cases.available.length}</Badge></TabsTrigger>
+                        <TabsTrigger value="pending">Pending Cases</TabsTrigger>
+                        <TabsTrigger value="resolved">Resolved Cases</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="available" className="mt-4">
+                        <div className="space-y-4">
+                            {advocateData.cases.available.length > 0 ? advocateData.cases.available.map(caseItem => (
+                                <Card key={caseItem.id} className="flex flex-col sm:flex-row items-start justify-between p-4">
+                                    <div className="flex-1 mb-4 sm:mb-0">
+                                        <p className="font-bold text-primary">{caseItem.category}</p>
+                                        <p className="text-sm text-muted-foreground">{caseItem.description}</p>
+                                    </div>
+                                    <Button onClick={() => setBiddingOnCase(caseItem)}>View & Bid</Button>
+                                </Card>
+                            )) : <p className="text-center text-muted-foreground p-8">No new cases available for bidding.</p>}
+                        </div>
+                    </TabsContent>
+                    <TabsContent value="pending" className="mt-4">
+                         <div className="space-y-4">
+                            {advocateData.cases.pending.map(caseItem => (
+                                <Card key={caseItem.id} className="p-4">
+                                    <div className="flex justify-between">
+                                        <div>
+                                            <p className="font-bold">{caseItem.category}</p>
+                                            <p className="text-sm text-muted-foreground">{caseItem.description}</p>
+                                        </div>
+                                        <Badge variant="secondary">{caseItem.status}</Badge>
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
+                    </TabsContent>
+                    <TabsContent value="resolved" className="mt-4">
+                         <div className="space-y-4">
+                            {advocateData.cases.resolved.map(caseItem => (
+                                <Card key={caseItem.id} className="p-4">
+                                    <div className="flex justify-between">
+                                        <div>
+                                            <p className="font-bold">{caseItem.category}</p>
+                                            <p className="text-sm text-muted-foreground">{caseItem.description}</p>
+                                        </div>
+                                        <Badge variant="outline" className="text-green-600 border-green-600">{caseItem.outcome}</Badge>
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
+                    </TabsContent>
+                </Tabs>
+            </CardContent>
         </Card>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -245,6 +389,7 @@ export default function DemoAdvocateDashboardPage() {
         </div>
       </div>
       {isHiring && <AddJuniorDialog onSave={handleSaveNewHire} onCancel={() => setIsHiring(false)} />}
+      {biddingOnCase && <BidDialog caseItem={biddingOnCase} onBid={handlePlaceBid} onCancel={() => setBiddingOnCase(null)} />}
     </div>
   );
 }
