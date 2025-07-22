@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/context/language-context';
-import { FileSearch, Loader2, ShieldAlert } from 'lucide-react';
+import { FileSearch, Loader2, ShieldAlert, Eye } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth-context';
 import { Button } from '@/components/ui/button';
@@ -101,6 +101,11 @@ function CaseStatusPage() {
             </CardDescription>
         </CardHeader>
         <CardContent>
+          <div className="flex justify-end mb-4">
+            <Button onClick={() => router.push('/case-status/demo')}>
+              <Eye className="mr-2" /> View Demo Cases
+            </Button>
+          </div>
           {isLoading || authLoading ? (
             <div className="flex flex-col items-center justify-center h-64">
               <Loader2 className="h-10 w-10 animate-spin text-primary" />
