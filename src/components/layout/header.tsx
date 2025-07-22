@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, Languages, Globe, LogOut } from 'lucide-react';
+import { Menu, Languages, Globe, LogOut, Building } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
@@ -141,6 +141,9 @@ export function Header() {
                 <DropdownMenuItem asChild>
                   <Link href="/register?type=ngo">{t('header.registerAsNgo')}</Link>
                 </DropdownMenuItem>
+                 <DropdownMenuItem asChild>
+                  <Link href="/register?type=lawFirm">Law Firm</Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/register?type=volunteer">{t('header.registerAsVolunteer')}</Link>
                 </DropdownMenuItem>
@@ -218,6 +221,9 @@ export function Header() {
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link href="/register?type=ngo" onClick={() => setIsSheetOpen(false)}>{t('header.registerAsNgo')}</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/register?type=lawFirm" onClick={() => setIsSheetOpen(false)}>Law Firm</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link href="/register?type=volunteer" onClick={() => setIsSheetOpen(false)}>{t('header.registerAsVolunteer')}</Link>

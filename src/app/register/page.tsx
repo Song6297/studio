@@ -14,8 +14,9 @@ import { UserPlus, Loader2 } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect, Suspense } from 'react';
-import { login, registerUser, registerAdvocate, registerNgo, registerVolunteer } from './actions';
+import { login, registerUser, registerAdvocate, registerNgo, registerVolunteer, registerLawFirm } from './actions';
 import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 function RegisterForm() {
   const { t } = useLanguage();
@@ -64,6 +65,13 @@ function RegisterForm() {
     university: z.string().min(3, t('register.volunteer.validation.universityRequired')),
     password: z.string().min(8, t('register.volunteer.validation.passwordRequired')),
   });
+  
+  const lawFirmSchema = z.object({
+    firmName: z.string().min(3, 'Firm name is required'),
+    practiceArea: z.string({ required_error: 'Please select a practice area' }),
+    email: z.string().email('Invalid email address'),
+    password: z.string().min(8, 'Password must be at least 8 characters'),
+  });
 
   const loginForm = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -88,6 +96,11 @@ function RegisterForm() {
   const volunteerForm = useForm<z.infer<typeof volunteerSchema>>({
     resolver: zodResolver(volunteerSchema),
     defaultValues: { fullName: '', email: '', university: '', password: '' },
+  });
+
+  const lawFirmForm = useForm<z.infer<typeof lawFirmSchema>>({
+    resolver: zodResolver(lawFirmSchema),
+    defaultValues: { firmName: '', email: '', password: '' },
   });
 
   const handleGenericSubmit = async (
@@ -129,7 +142,8 @@ function RegisterForm() {
   const onAdvocateSubmit = (values: z.infer<typeof advocateSchema>) => handleGenericSubmit(registerAdvocate, values, advocateForm, t('register.advocate.toast.successTitle'), t('register.advocate.toast.successDescription'));
   const onNgoSubmit = (values: z.infer<typeof ngoSchema>) => handleGenericSubmit(registerNgo, values, ngoForm, t('register.ngo.toast.successTitle'), t('register.ngo.toast.successDescription'));
   const onVolunteerSubmit = (values: z.infer<typeof volunteerSchema>) => handleGenericSubmit(registerVolunteer, values, volunteerForm, t('register.volunteer.toast.successTitle'), t('register.volunteer.toast.successDescription'));
-  
+  const onLawFirmSubmit = (values: z.infer<typeof lawFirmSchema>) => handleGenericSubmit(registerLawFirm, values, lawFirmForm, "Law Firm Registration Successful!", "Your firm's profile is under review.");
+
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
       <TabsList className="grid w-full grid-cols-5">
@@ -137,7 +151,7 @@ function RegisterForm() {
         <TabsTrigger value="citizen">Citizen</TabsTrigger>
         <TabsTrigger value="advocate">{t('register.tabs.advocate')}</TabsTrigger>
         <TabsTrigger value="ngo">{t('register.tabs.ngo')}</TabsTrigger>
-        <TabsTrigger value="volunteer">{t('register.tabs.volunteer')}</TabsTrigger>
+        <TabsTrigger value="lawFirm">Law Firm</TabsTrigger>
       </TabsList>
       <TabsContent value="login" className="mt-6">
         <Card className="bg-card/80 backdrop-blur-sm">
@@ -246,29 +260,43 @@ function RegisterForm() {
           </CardContent>
         </Card>
       </TabsContent>
-      <TabsContent value="volunteer" className="mt-6">
+       <TabsContent value="lawFirm" className="mt-6">
         <Card className="bg-card/80 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="font-headline">{t('register.volunteer.cardTitle')}</CardTitle>
-            <CardDescription>{t('register.volunteer.cardDescription')}</CardDescription>
+            <CardTitle className="font-headline">Law Firm Registration</CardTitle>
+            <CardDescription>Register your law firm to manage your team and cases.</CardDescription>
           </CardHeader>
           <CardContent>
-            <Form {...volunteerForm}>
-              <form onSubmit={volunteerForm.handleSubmit(onVolunteerSubmit)} className="space-y-4">
-                <FormField control={volunteerForm.control} name="fullName" render={({ field }) => (
-                    <FormItem><FormLabel>{t('register.volunteer.form.fullName.label')}</FormLabel><FormControl><Input placeholder={t('register.volunteer.form.fullName.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+            <Form {...lawFirmForm}>
+              <form onSubmit={lawFirmForm.handleSubmit(onLawFirmSubmit)} className="space-y-4">
+                 <FormField control={lawFirmForm.control} name="firmName" render={({ field }) => (
+                    <FormItem><FormLabel>Firm Name</FormLabel><FormControl><Input placeholder="Singh & Associates" {...field} /></FormControl><FormMessage /></FormItem>
                 )} />
-                <FormField control={volunteerForm.control} name="email" render={({ field }) => (
-                    <FormItem><FormLabel>{t('register.volunteer.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('register.volunteer.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                <FormField control={lawFirmForm.control} name="practiceArea" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Primary Practice Area</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl><SelectTrigger><SelectValue placeholder="Select a practice area" /></SelectTrigger></FormControl>
+                      <SelectContent>
+                        <SelectItem value="criminal-law">Criminal Law</SelectItem>
+                        <SelectItem value="corporate-law">Corporate Law</SelectItem>
+                        <SelectItem value="family-law">Family Law</SelectItem>
+                        <SelectItem value="property-law">Property Law</SelectItem>
+                        <SelectItem value="cyber-law">Cyber Law</SelectItem>
+                         <SelectItem value="general-practice">General Practice</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
                 )} />
-                <FormField control={volunteerForm.control} name="university" render={({ field }) => (
-                    <FormItem><FormLabel>{t('register.volunteer.form.university.label')}</FormLabel><FormControl><Input placeholder={t('register.volunteer.form.university.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                <FormField control={lawFirmForm.control} name="email" render={({ field }) => (
+                    <FormItem><FormLabel>Official Email</FormLabel><FormControl><Input type="email" placeholder="contact@singh-associates.com" {...field} /></FormControl><FormMessage /></FormItem>
                 )} />
-                <FormField control={volunteerForm.control} name="password" render={({ field }) => (
-                    <FormItem><FormLabel>{t('register.volunteer.form.password.label')}</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
+                <FormField control={lawFirmForm.control} name="password" render={({ field }) => (
+                    <FormItem><FormLabel>Password</FormLabel><FormControl><Input type="password" placeholder="********" {...field} /></FormControl><FormMessage /></FormItem>
                 )} />
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                   {isLoading ? <Loader2 className="animate-spin" /> : t('register.volunteer.form.submitButton')}
+                   {isLoading ? <Loader2 className="animate-spin" /> : 'Register Law Firm'}
                 </Button>
               </form>
             </Form>

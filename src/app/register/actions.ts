@@ -41,13 +41,13 @@ async function createAuthUserAndFirestoreDoc(collectionName: string, data: any) 
 }
 
 async function checkUserRole(userId: string): Promise<string> {
-  const collections = ['advocates', 'ngos', 'volunteers'];
+  const collections = ['advocates', 'ngos', 'volunteers', 'lawFirms'];
   for (const collectionName of collections) {
       const q = query(collection(db, collectionName), where("userId", "==", userId), limit(1));
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
           if (collectionName === 'ngos') return '/ngo-dashboard';
-          // Add other role-based redirects here if needed
+          if (collectionName === 'lawFirms') return `/law-firm-dashboard/${querySnapshot.docs[0].id}`;
           return '/dashboard'; 
       }
   }
@@ -100,4 +100,8 @@ export async function registerNgo(formData: any) {
 
 export async function registerVolunteer(formData: any) {
     return createAuthUserAndFirestoreDoc('volunteers', formData);
+}
+
+export async function registerLawFirm(formData: any) {
+  return createAuthUserAndFirestoreDoc('lawFirms', formData);
 }
