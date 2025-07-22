@@ -92,7 +92,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 flex flex-col items-center">
-            <div className="absolute -top-48 -left-48 md:-top-64 md:-left-64 h-[400px] w-[400px] md:h-[600px] md:w-[600px] text-primary/5 opacity-50 -z-10">
+            <div className="absolute -top-48 -left-48 md:-top-64 md:-left-64 h-[400px] w-[400px] md:h-[600px] md:w-[600px] text-accent/5 opacity-50 -z-10">
                 <AshokaChakraIcon />
             </div>
           <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
@@ -201,4 +201,3 @@ export default function Home() {
     </div>
   );
 }
-
