@@ -564,22 +564,22 @@
           "name": "CLAT",
           "fullName": "Common Law Admission Test",
           "description": "A centralized national level entrance test for admissions to 24 National Law Universities (NLUs) in India.",
-          "application": "July - November",
-          "examDate": "December"
+          "application": "July - November 2024",
+          "examDate": "December 2024"
         },
         {
           "name": "AILET",
           "fullName": "All India Law Entrance Test",
           "description": "Conducted by National Law University, Delhi (NLU Delhi) for admission to its undergraduate and postgraduate law programmes.",
-          "application": "August - November",
-          "examDate": "December"
+          "application": "August - November 2024",
+          "examDate": "December 2024"
         },
         {
           "name": "LSAT India",
           "fullName": "Law School Admission Test - India",
           "description": "A standardized test of reading and verbal reasoning skills designed for admissions to various law colleges in India.",
-          "application": "October - May",
-          "examDate": "January & June"
+          "application": "October 2024 - May 2025",
+          "examDate": "January & June 2025"
         }
       ]
     },
