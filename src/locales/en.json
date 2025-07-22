@@ -7,14 +7,14 @@
       "ngo": "NGO Dashboard",
       "lawFirm": "Law Firm Dashboard"
     },
-    "registerCase": "Register Case",
+    "registerCase": "Report Cybercrime",
     "caseStatus": "Case Status",
-    "awareness": "Awareness",
-    "aiLegalAdvice": "AI Legal Advice",
-    "volunteerNetwork": "Volunteer Network",
+    "awareness": "Cyber Awareness",
+    "aiLegalAdvice": "AI Cyber Law Advisor",
+    "volunteerNetwork": "Cyber Volunteers",
     "indianConstitution": "Indian Constitution",
     "fileRti": "File RTI",
-    "legalServices": "Legal Services",
+    "legalServices": "Cyber Law Services",
     "lawAspirants": "Law Aspirants",
     "login": "Log In",
     "logout": "Log Out",
@@ -33,23 +33,23 @@
   },
   "home": {
     "mainHeading": "Satyameva Jayate",
-    "subHeading": "A unified platform connecting citizens with legal professionals and NGOs to ensure access to justice for all.",
-    "registerCaseButton": "Register Case",
-    "aiAdviceButton": "Get Legal Advice with AI",
+    "subHeading": "A unified platform dedicated to cyber law, connecting citizens with legal professionals and NGOs to ensure digital justice for all.",
+    "registerCaseButton": "Report a Cyber Incident",
+    "aiAdviceButton": "Ask AI Cyber Law Advisor",
     "servicesTitle": "Our Services",
-    "servicesHeading": "Your Gateway to Legal Solutions",
-    "servicesDescription": "We provide a comprehensive suite of services to address your legal needs, from case submission to AI-powered guidance and document services."
+    "servicesHeading": "Your Gateway to Cyber Legal Solutions",
+    "servicesDescription": "We provide a comprehensive suite of services to address your cyber legal needs, from incident reporting to AI-powered guidance and expert consultations."
   },
   "features": {
     "registerCase": {
-      "title": "Register a Case",
-      "description": "Easily register your legal case with our simple and secure online form. Get connected with professionals who can help.",
-      "cta": "Register Your Case"
+      "title": "Report a Cyber Incident",
+      "description": "Easily report cybercrime incidents with our simple and secure online form. Get connected with professionals who can help.",
+      "cta": "Report an Incident"
     },
     "aiLegalAdvice": {
-      "title": "AI Legal Advice",
-      "description": "Get preliminary legal information and guidance on various topics from our AI-powered assistant, available 24/7.",
-      "cta": "Ask AI Legal Advice"
+      "title": "AI Cyber Law Advisor",
+      "description": "Get preliminary legal information and guidance on various cyber law topics from our AI-powered assistant, available 24/7.",
+      "cta": "Ask AI Advisor"
     },
     "indianConstitution": {
       "title": "Indian Constitution",
@@ -57,13 +57,13 @@
       "cta": "Explore the Constitution"
     },
     "legalAwareness": {
-      "title": "Legal Awareness",
-      "description": "Empower yourself with knowledge. Browse our portal of articles and guides on Indian law and your rights.",
+      "title": "Cyber Law Awareness",
+      "description": "Empower yourself with knowledge. Browse our portal of articles and guides on Indian cyber law and your digital rights.",
       "cta": "Explore Portal"
     },
     "volunteerNetwork": {
-      "title": "Paralegal Volunteers",
-      "description": "Join our network of law students and paralegals to assist with legal research, drafting, and case evaluation.",
+      "title": "Cybersecurity Volunteers",
+      "description": "Join our network of tech students and cybersecurity enthusiasts to assist with research and case evaluation.",
       "cta": "Join the Network"
     },
     "fileRti": {
@@ -72,8 +72,8 @@
       "cta": "File an RTI"
     },
     "legalServices": {
-      "title": "Book a Consultation",
-      "description": "Schedule a virtual consultation with a legal professional or find upcoming legal aid camps near you.",
+      "title": "Book a Cyber Law Consultation",
+      "description": "Schedule a virtual consultation with a legal professional specializing in cyber law.",
       "cta": "Book an Appointment"
     }
   },
@@ -94,7 +94,7 @@
     }
   },
   "caseSubmission": {
-    "title": "Register Your Case",
+    "title": "Report a Cyber Incident",
     "description": "Fill out the form below to get started. Our team will review your case.",
     "form": {
       "fullName": {
@@ -110,24 +110,24 @@
         "placeholder": "+91 12345 67890"
       },
       "category": {
-        "label": "Case Category",
+        "label": "Cybercrime Category",
         "placeholder": "Select a category",
         "options": {
-          "family": "Family Law",
-          "criminal": "Criminal Law",
-          "corporate": "Corporate Law",
-          "property": "Property Law",
+          "family": "Online Fraud",
+          "criminal": "Cyberbullying / Harassment",
+          "corporate": "Data Breach",
+          "property": "Identity Theft",
           "other": "Other"
         }
       },
       "caseDescription": {
-        "label": "Case Description",
-        "placeholder": "Describe your case in detail..."
+        "label": "Incident Description",
+        "placeholder": "Describe the cyber incident in detail..."
       },
       "upload": {
-        "label": "Upload Documents (Optional)"
+        "label": "Upload Evidence (Screenshots, etc.)"
       },
-      "submitButton": "Register Case"
+      "submitButton": "Report Incident"
     },
     "validation": {
       "fullNameRequired": "Full name is required",
@@ -137,94 +137,92 @@
       "descriptionRequired": "Please provide a detailed description of at least 20 characters"
     },
     "toast": {
-      "successTitle": "Case Registered Successfully!",
-      "successDescription": "We have received your case details and will get back to you shortly."
+      "successTitle": "Incident Reported Successfully!",
+      "successDescription": "We have received your report and will get back to you shortly."
     }
   },
   "legalAwareness": {
-    "title": "Legal Awareness Portal",
-    "description": "Empowering citizens with legal knowledge.",
-    "searchPlaceholder": "Search articles...",
+    "title": "Cyber Law Awareness Portal",
+    "description": "Empowering citizens with knowledge to stay safe online.",
+    "searchPlaceholder": "Search cyber law articles...",
     "readMore": "Read More",
     "articles": {
-      "rti": {
-        "title": "How to Use the Right to Information (RTI) Act",
-        "description": "A practical guide on filing RTI applications to obtain information from public authorities.",
-        "category": "Public Law",
+      "onlineFraud": {
+        "title": "Recognizing and Avoiding Online Fraud",
+        "description": "A guide to identifying phishing scams, financial fraud, and other online tricks.",
+        "category": "Financial Security",
         "explanation": [
-          { "heading": "What is it?", "text": "The Right to Information (RTI) Act, 2005 is a law that empowers Indian citizens to request information from any public authority (a government body or an 'instrumentality of State'). The goal is to promote transparency and accountability in the working of every public authority." },
-          { "heading": "Who can ask for information?", "text": "Any citizen of India can file an RTI application. You don't need to give a reason for wanting the information." },
-          { "heading": "How to file an RTI?", "text": "You can write a simple application on a plain paper addressed to the Public Information Officer (PIO) of the concerned department. You need to pay a nominal fee of ₹10. Some departments also have an online facility to file RTIs." },
-          { "heading": "What is the time limit?", "text": "The public authority is required to reply within 30 days. If it concerns the life or liberty of a person, the information must be provided within 48 hours." }
+          { "heading": "What is Online Fraud?", "text": "Online fraud involves using the internet to deceive people for financial gain. Common types include phishing emails that steal your passwords, fake shopping websites, and investment scams promising high returns." },
+          { "heading": "How to Spot a Scam?", "text": "Be wary of unsolicited emails or messages asking for personal information or money. Check for poor grammar and spelling. Verify the website's URL is correct and secure (https). If an offer seems too good to be true, it probably is." },
+          { "heading": "Prevention is Key", "text": "Use strong, unique passwords and enable two-factor authentication. Never share your bank details, passwords, or OTPs with anyone. Keep your software and antivirus updated." }
         ]
       },
-      "consumerRights": {
-        "title": "Your Rights as a Consumer in India",
-        "description": "Know your rights against unfair trade practices and how to file a consumer complaint.",
-        "category": "Consumer Law",
+      "dataPrivacy": {
+        "title": "Understanding Your Data Privacy Rights",
+        "description": "Learn about India's Digital Personal Data Protection (DPDP) Act and how it protects you.",
+        "category": "Digital Rights",
         "explanation": [
-          { "heading": "What is it?", "text": "The Consumer Protection Act, 2019 protects consumers against various forms of exploitation such as defective goods, unsatisfactory services, and unfair trade practices. It ensures consumers have the right to information, choice, safety, and the right to be heard." },
-          { "heading": "What are your key rights?", "text": "You have the right to be protected against the marketing of goods and services which are hazardous to life and property. You also have the right to be informed about the quality, quantity, potency, purity, standard, and price of goods or services." },
-          { "heading": "Where to file a complaint?", "text": "You can file a complaint in the District, State, or National Consumer Disputes Redressal Commissions, depending on the value of the goods or services. Complaints can now be filed electronically and from the place where the complainant resides." }
+          { "heading": "What is the DPDP Act?", "text": "The Digital Personal Data Protection Act, 2023, is India's primary law for data privacy. It governs how companies and organizations (Data Fiduciaries) can collect, use, and store your personal data." },
+          { "heading": "Your Rights as a 'Data Principal'", "text": "You have the right to access information about your data, correct or erase your data, and withdraw your consent for its use. Organizations must obtain your clear and informed consent before processing your data." },
+          { "heading": "What is Consent?", "text": "Consent must be free, specific, informed, and unambiguous. Companies can no longer use long, complicated terms and conditions to hide how they use your data. They must ask for consent for each specific purpose." }
         ]
       },
-      "cyberLaw": {
-        "title": "Introduction to Cyber Law & Online Safety",
-        "description": "Learn about laws governing online activities, data privacy, and protecting yourself from cybercrimes.",
-        "category": "Cyber Law",
+      "cyberbullying": {
+        "title": "Dealing with Cyberbullying and Harassment",
+        "description": "Legal recourse and practical steps to take when facing online harassment.",
+        "category": "Online Safety",
         "explanation": [
-          { "heading": "What is it?", "text": "Cyber law, or IT law, deals with legal issues related to the internet and online communication. The primary law in India is the Information Technology (IT) Act, 2000. It covers activities like electronic commerce, digital signatures, and defines cybercrimes." },
-          { "heading": "What are common cybercrimes?", "text": "These include hacking, data theft, spreading viruses, online identity theft, phishing (tricking people into giving sensitive information), and online harassment (cyberbullying)." },
-          { "heading": "How to stay safe?", "text": "Use strong, unique passwords for different accounts. Be cautious about sharing personal information online. Do not click on suspicious links or download attachments from unknown sources. Use secure Wi-Fi networks and be aware of your digital footprint." },
-          { "heading": "What to do if you are a victim?", "text": "You can report cybercrimes to your local police station or file a complaint on the National Cyber Crime Reporting Portal (cybercrime.gov.in)." }
+          { "heading": "What is Cyberbullying?", "text": "Cyberbullying is the use of digital technology to harass, threaten, embarrass, or target another person. It can include sending hurtful messages, spreading rumors online, or posting embarrassing photos or videos without consent." },
+          { "heading": "What to do?", "text": "Do not respond to the bully. Document everything by taking screenshots of the messages, posts, and profiles. Block the person and report their profile to the social media platform." },
+          { "heading": "Legal Action", "text": "Cyberbullying and online harassment are punishable offenses under the IT Act and the Indian Penal Code. You can file a complaint at the National Cyber Crime Reporting Portal or your nearest police station." }
         ]
       },
-      "ipLaw": {
-        "title": "Basics of Intellectual Property (IP) Law",
-        "description": "Understand the fundamentals of trademarks, copyrights, and patents in India.",
-        "category": "IP Law",
+      "identityTheft": {
+        "title": "Protecting Yourself from Identity Theft",
+        "description": "Learn how criminals steal personal information and how to safeguard your identity online.",
+        "category": "Personal Security",
         "explanation": [
-          { "heading": "What is it?", "text": "Intellectual Property (IP) refers to creations of the mind, such as inventions, literary and artistic works, designs, symbols, names, and images used in commerce. IP law protects these creations." },
-          { "heading": "What are the main types?", "text": "Copyright protects original creative works like books, music, art, and software. A Trademark protects brand names, logos, and slogans. A Patent protects a new invention or a new technical solution to a problem." },
-          { "heading": "Why is it important?", "text": "IP rights encourage innovation and creativity by giving creators exclusive rights over their creations for a certain period. This allows them to benefit from their work and prevents others from using it without permission." }
+          { "heading": "What is it?", "text": "Online identity theft occurs when someone steals your personal information (like name, PAN number, or bank details) to commit fraud, such as taking out loans or making purchases in your name." },
+          { "heading": "How does it happen?", "text": "Criminals use various methods, including phishing emails, malware that records your keystrokes, or by finding personal information you've shared on social media. Data breaches at companies can also expose your information." },
+          { "heading": "Prevention Tips", "text": "Be cautious about the information you share online. Shred physical documents with sensitive information. Regularly review your bank and credit card statements for any suspicious activity." }
         ]
       },
-      "corporateLaw": {
-        "title": "Understanding Corporate Law Basics",
-        "description": "An overview of the legal framework governing companies, from incorporation to compliance.",
-        "category": "Corporate Law",
+      "reportingCybercrime": {
+        "title": "How to Report a Cybercrime",
+        "description": "A step-by-step guide to filing an official complaint for any online offense.",
+        "category": "Legal Procedure",
         "explanation": [
-          { "heading": "What is it?", "text": "Corporate law governs the rights, relations, and conduct of persons, companies, organizations, and businesses. The main law is the Companies Act, 2013, which regulates the incorporation of a company, its responsibilities, directors, and dissolution." },
-          { "heading": "What is a company?", "text": "A company is a legal entity separate from its owners (shareholders). This means the company can own property, enter into contracts, and sue or be sued in its own name. The liability of the owners is generally limited to their investment in the company." },
-          { "heading": "Key Concepts", "text": "Important aspects of corporate law include rules about how a company is formed (incorporation), how it is run (corporate governance), and the duties of its directors to act in the best interests of the company." }
+          { "heading": "Where to Report?", "text": "The Government of India has a dedicated portal for reporting cybercrimes: The National Cyber Crime Reporting Portal (cybercrime.gov.in). You can also go to your nearest police station." },
+          { "heading": "What to Prepare?", "text": "Gather all evidence related to the crime. This includes screenshots of messages or posts, URLs of fake profiles, bank statements (if it's a financial fraud), and any contact details of the accused." },
+          { "heading": "Filing the Complaint", "text": "On the portal, you'll need to provide your personal details and then details of the incident, including the category of crime, date, time, and a full description. Upload all the evidence you have collected." }
         ]
       },
-      "fir": {
-        "title": "The Process of Filing an FIR",
-        "description": "Step-by-step instructions on how to file a First Information Report with the police.",
-        "category": "Criminal Law",
+      "onlineDefamation": {
+        "title": "Understanding Online Defamation",
+        "description": "Learn what constitutes defamation online and the legal steps you can take.",
+        "category": "Digital Rights",
         "explanation": [
-          { "heading": "What is an FIR?", "text": "A First Information Report (FIR) is a written document prepared by the police when they receive information about the commission of a cognizable offence (an offence for which police can arrest without a warrant). It is the first step in any criminal investigation." },
-          { "heading": "How to file an FIR?", "text": "You can provide the information to the police either orally or in writing. Go to the police station that has jurisdiction over the area where the offence was committed. If the officer refuses to register the FIR, you can send the information in writing to the Superintendent of Police." },
-          { "heading": "What happens after filing?", "text": "Once the FIR is registered, the police are legally bound to start an investigation. The complainant has the right to get a copy of the FIR free of cost." }
+          { "heading": "What is it?", "text": "Online defamation is the act of publishing a false statement about someone on the internet that harms their reputation. This can be through a social media post, a blog, a review, or a video." },
+          { "heading": "Libel vs. Slander", "text": "In the online world, defamation is almost always 'libel' because it is in a written or otherwise permanent form. The statement must be false, published to a third party, and cause injury to the person's reputation." },
+          { "heading": "What can you do?", "text": "You can send a legal notice to the person who published the statement, asking them to take it down and issue an apology. If they don't comply, you can file a civil suit for damages or a criminal complaint for defamation under the Indian Penal Code." }
         ]
       }
     }
   },
   "aiLegalGuide": {
-    "title": "AI Legal Guide",
-    "description": "Get instant, preliminary legal information based on the Indian legal system. Our AI is here to help you understand complex legal topics.",
+    "title": "AI Cyber Law Guide",
+    "description": "Get instant, preliminary legal information based on Indian cyber law. Our AI is here to help you understand complex digital legal topics.",
     "disclaimer": "Remember: This is not a substitute for advice from a qualified lawyer.",
     "form": {
       "query": {
-        "label": "Your legal query",
-        "placeholder": "e.g., What are the rules for renting a property in Mumbai?"
+        "label": "Your cyber law query",
+        "placeholder": "e.g., What are my rights if my data is breached?"
       },
       "submitButton": "Get AI Advice",
       "submitButtonLoading": "Generating Advice..."
     },
     "validation": {
-        "queryRequired": "Please enter a query of at least 10 characters."
+      "queryRequired": "Please enter a query of at least 10 characters."
     },
     "loading": {
       "thinking": "The AI is thinking...",
@@ -243,124 +241,124 @@
     "title": "Join Our Network",
     "description": "Log in or register as an Advocate, NGO, or Volunteer.",
     "tabs": {
-        "login": "Log In",
-        "advocate": "Advocate",
-        "ngo": "NGO",
-        "volunteer": "Volunteer"
+      "login": "Log In",
+      "advocate": "Advocate",
+      "ngo": "NGO",
+      "volunteer": "Volunteer"
     },
     "toast": {
-        "errorTitle": "Operation Failed"
+      "errorTitle": "Operation Failed"
     },
     "login": {
-        "cardTitle": "Log In to Your Account",
-        "cardDescription": "Access your dashboard and manage your activities.",
-        "form": {
-            "submitButton": "Log In"
-        },
-        "toast": {
-            "successTitle": "Login Successful!"
-        }
+      "cardTitle": "Log In to Your Account",
+      "cardDescription": "Access your dashboard and manage your activities.",
+      "form": {
+        "submitButton": "Log In"
+      },
+      "toast": {
+        "successTitle": "Login Successful!"
+      }
     },
     "advocate": {
-        "cardTitle": "Advocate Registration",
-        "cardDescription": "Create your professional profile.",
-        "form": {
-            "fullName": {
-                "label": "Full Name",
-                "placeholder": "John Doe"
-            },
-            "email": {
-                "label": "Email",
-                "placeholder": "advocate@example.com"
-            },
-            "barId": {
-                "label": "Bar Council ID",
-                "placeholder": "BAR/1234/2024"
-            },
-            "password": {
-                "label": "Password"
-            },
-            "submitButton": "Register as Advocate"
+      "cardTitle": "Advocate Registration",
+      "cardDescription": "Create your professional profile.",
+      "form": {
+        "fullName": {
+          "label": "Full Name",
+          "placeholder": "John Doe"
         },
-        "validation": {
-            "fullNameRequired": "Full name is required",
-            "emailInvalid": "Invalid email address",
-            "barIdRequired": "A valid Bar Council ID is required",
-            "passwordRequired": "Password must be at least 8 characters"
+        "email": {
+          "label": "Email",
+          "placeholder": "advocate@example.com"
         },
-        "toast": {
-            "successTitle": "Advocate Registration Successful!",
-            "successDescription": "Your profile is under review."
-        }
+        "barId": {
+          "label": "Bar Council ID",
+          "placeholder": "BAR/1234/2024"
+        },
+        "password": {
+          "label": "Password"
+        },
+        "submitButton": "Register as Advocate"
+      },
+      "validation": {
+        "fullNameRequired": "Full name is required",
+        "emailInvalid": "Invalid email address",
+        "barIdRequired": "A valid Bar Council ID is required",
+        "passwordRequired": "Password must be at least 8 characters"
+      },
+      "toast": {
+        "successTitle": "Advocate Registration Successful!",
+        "successDescription": "Your profile is under review."
+      }
     },
     "ngo": {
-        "cardTitle": "NGO Registration",
-        "cardDescription": "Register your organization to collaborate.",
-        "form": {
-            "name": {
-                "label": "NGO Name",
-                "placeholder": "Helpful Hands Foundation"
-            },
-            "regNo": {
-                "label": "Registration Number",
-                "placeholder": "NGO/REG/12345"
-            },
-            "mission": {
-                "label": "Mission Statement",
-                "placeholder": "Describe the mission and focus of your NGO..."
-            },
-            "email": {
-                "label": "Contact Email",
-                "placeholder": "contact@ngo.org"
-            },
-            "password": {
-                "label": "Password"
-            },
-            "submitButton": "Register as NGO"
+      "cardTitle": "NGO Registration",
+      "cardDescription": "Register your organization to collaborate.",
+      "form": {
+        "name": {
+          "label": "NGO Name",
+          "placeholder": "Helpful Hands Foundation"
         },
-        "validation": {
-            "nameRequired": "NGO name is required",
-            "regNoRequired": "A valid registration number is required",
-            "missionRequired": "A mission statement of at least 20 characters is required",
-            "emailInvalid": "Invalid email address",
-            "passwordRequired": "Password must be at least 8 characters"
+        "regNo": {
+          "label": "Registration Number",
+          "placeholder": "NGO/REG/12345"
         },
-        "toast": {
-            "successTitle": "NGO Registration Successful!",
-            "successDescription": "Your profile is under review."
-        }
+        "mission": {
+          "label": "Mission Statement",
+          "placeholder": "Describe the mission and focus of your NGO..."
+        },
+        "email": {
+          "label": "Contact Email",
+          "placeholder": "contact@ngo.org"
+        },
+        "password": {
+          "label": "Password"
+        },
+        "submitButton": "Register as NGO"
+      },
+      "validation": {
+        "nameRequired": "NGO name is required",
+        "regNoRequired": "A valid registration number is required",
+        "missionRequired": "A mission statement of at least 20 characters is required",
+        "emailInvalid": "Invalid email address",
+        "passwordRequired": "Password must be at least 8 characters"
+      },
+      "toast": {
+        "successTitle": "NGO Registration Successful!",
+        "successDescription": "Your profile is under review."
+      }
     },
     "volunteer": {
-        "cardTitle": "Paralegal Volunteer Registration",
-        "cardDescription": "Join our network to gain experience.",
-        "form": {
-            "fullName": {
-                "label": "Full Name",
-                "placeholder": "Jane Smith"
-            },
-            "email": {
-                "label": "Email",
-                "placeholder": "volunteer@example.com"
-            },
-            "university": {
-                "label": "University / Institution",
-                "placeholder": "National Law School"
-            },
-            "password": {
-                "label": "Password"
-            },
-            "submitButton": "Register as Volunteer"
+      "cardTitle": "Paralegal Volunteer Registration",
+      "cardDescription": "Join our network to gain experience.",
+      "form": {
+        "fullName": {
+          "label": "Full Name",
+          "placeholder": "Jane Smith"
         },
-        "validation": {
-            "fullNameRequired": "Full name is required",
-            "emailInvalid": "Invalid email address",
-            "universityRequired": "Please enter your university or institution",
-            "passwordRequired": "Password must be at least 8 characters"
+        "email": {
+          "label": "Email",
+          "placeholder": "volunteer@example.com"
         },
-        "toast": {
-            "successTitle": "Volunteer Registration Successful!",
-            "successDescription": "Your application has been submitted for review."
-        }
+        "university": {
+          "label": "University / Institution",
+          "placeholder": "National Law School"
+        },
+        "password": {
+          "label": "Password"
+        },
+        "submitButton": "Register as Volunteer"
+      },
+      "validation": {
+        "fullNameRequired": "Full name is required",
+        "emailInvalid": "Invalid email address",
+        "universityRequired": "Please enter your university or institution",
+        "passwordRequired": "Password must be at least 8 characters"
+      },
+      "toast": {
+        "successTitle": "Volunteer Registration Successful!",
+        "successDescription": "Your application has been submitted for review."
+      }
     }
   },
   "volunteerNetwork": {

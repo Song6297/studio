@@ -19,52 +19,52 @@ export default function LegalAwarenessPage() {
 
     const articles = [
         {
-            slug: 'rti',
-            title: t('legalAwareness.articles.rti.title'),
-            description: t('legalAwareness.articles.rti.description'),
-            category: t('legalAwareness.articles.rti.category'),
+            slug: 'onlineFraud',
+            title: t('legalAwareness.articles.onlineFraud.title'),
+            description: t('legalAwareness.articles.onlineFraud.description'),
+            category: t('legalAwareness.articles.onlineFraud.category'),
             image: "https://placehold.co/600x400.png",
-            hint: "file document"
+            hint: "credit card security"
         },
         {
-            slug: 'consumerRights',
-            title: t('legalAwareness.articles.consumerRights.title'),
-            description: t('legalAwareness.articles.consumerRights.description'),
-            category: t('legalAwareness.articles.consumerRights.category'),
-            image: "https://placehold.co/600x400.png",
-            hint: "shopping cart"
-        },
-        {
-            slug: 'cyberLaw',
-            title: t('legalAwareness.articles.cyberLaw.title'),
-            description: t('legalAwareness.articles.cyberLaw.description'),
-            category: t('legalAwareness.articles.cyberLaw.category'),
+            slug: 'dataPrivacy',
+            title: t('legalAwareness.articles.dataPrivacy.title'),
+            description: t('legalAwareness.articles.dataPrivacy.description'),
+            category: t('legalAwareness.articles.dataPrivacy.category'),
             image: "https://placehold.co/600x400.png",
             hint: "digital lock"
         },
         {
-            slug: 'ipLaw',
-            title: t('legalAwareness.articles.ipLaw.title'),
-            description: t('legalAwareness.articles.ipLaw.description'),
-            category: t('legalAwareness.articles.ipLaw.category'),
+            slug: 'cyberbullying',
+            title: t('legalAwareness.articles.cyberbullying.title'),
+            description: t('legalAwareness.articles.cyberbullying.description'),
+            category: t('legalAwareness.articles.cyberbullying.category'),
             image: "https://placehold.co/600x400.png",
-            hint: "lightbulb idea"
+            hint: "social media harassment"
         },
         {
-            slug: 'corporateLaw',
-            title: t('legalAwareness.articles.corporateLaw.title'),
-            description: t('legalAwareness.articles.corporateLaw.description'),
-            category: t('legalAwareness.articles.corporateLaw.category'),
+            slug: 'identityTheft',
+            title: t('legalAwareness.articles.identityTheft.title'),
+            description: t('legalAwareness.articles.identityTheft.description'),
+            category: t('legalAwareness.articles.identityTheft.category'),
             image: "https://placehold.co/600x400.png",
-            hint: "business meeting"
+            hint: "person silhouette puzzle"
         },
         {
-            slug: 'fir',
-            title: t('legalAwareness.articles.fir.title'),
-            description: t('legalAwareness.articles.fir.description'),
-            category: t('legalAwareness.articles.fir.category'),
+            slug: 'reportingCybercrime',
+            title: t('legalAwareness.articles.reportingCybercrime.title'),
+            description: t('legalAwareness.articles.reportingCybercrime.description'),
+            category: t('legalAwareness.articles.reportingCybercrime.category'),
             image: "https://placehold.co/600x400.png",
-            hint: "police station"
+            hint: "police report"
+        },
+        {
+            slug: 'onlineDefamation',
+            title: t('legalAwareness.articles.onlineDefamation.title'),
+            description: t('legalAwareness.articles.onlineDefamation.description'),
+            category: t('legalAwareness.articles.onlineDefamation.category'),
+            image: "https://placehold.co/600x400.png",
+            hint: "gavel keyboard"
         }
     ];
 
