@@ -81,33 +81,35 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative w-full bg-background pt-20 md:pt-32 lg:pt-40 overflow-hidden">
-        <div className="absolute inset-0 w-full h-full flex items-center justify-center -z-10">
-          <div className="text-primary/5 dark:text-primary/10 w-full max-w-screen-lg h-full">
-            <AshokaChakraIcon />
-          </div>
-        </div>
+      <section className="w-full bg-background pt-20 md:pt-32 lg:pt-40">
         <div className="container px-4">
-            <div className="flex flex-col items-center text-center">
+          <div className="grid gap-8 md:grid-cols-2 md:items-center">
+            <div className="flex flex-col items-start text-left">
               <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
                 {t('home.mainHeading')}
               </h1>
               <p className="mt-6 max-w-xl text-lg text-muted-foreground md:text-xl">
                 {t('home.subHeading')}
               </p>
-               <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8 w-full">
-                  <Button asChild size="lg" className="w-full sm:w-auto">
-                    <Link href="/case-submission">
-                      {t('home.registerCaseButton')} <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                  <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
-                    <Link href="/ai-legal-guide">
-                      {t('home.aiAdviceButton')} <Bot className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                </div>
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <Button asChild size="lg">
+                  <Link href="/case-submission">
+                    {t('home.registerCaseButton')} <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/ai-legal-guide">
+                    {t('home.aiAdviceButton')} <Bot className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+              </div>
             </div>
+            <div className="hidden items-center justify-center md:flex">
+              <div className="relative h-64 w-64 text-primary/80 md:h-96 md:w-96">
+                <AshokaChakraIcon />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       
