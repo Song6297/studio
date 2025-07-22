@@ -64,7 +64,7 @@ export default function DocumentServicesPage() {
     <div className="container py-12 md:py-24">
        <div className="flex flex-col items-center text-center mb-12">
           <PenSquare className="h-12 w-12 text-primary" />
-          <h1 className="mt-4 font-headline text-3xl font-bold md:text-4xl">Document Services</h1>
+          <h1 className="font-headline text-3xl font-bold md:text-4xl">Document Services</h1>
           <p className="mt-2 text-lg text-muted-foreground">Request professional assistance with affidavits and notarization.</p>
         </div>
       <div className="mx-auto max-w-6xl">
