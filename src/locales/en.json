@@ -1,7 +1,12 @@
 
 {
   "header": {
-    "dashboard": "Dashboard",
+    "dashboards": {
+      "title": "Dashboards",
+      "citizen": "Citizen Dashboard",
+      "ngo": "NGO Dashboard",
+      "lawFirm": "Law Firm Dashboard"
+    },
     "registerCase": "Register Case",
     "caseStatus": "Case Status",
     "awareness": "Awareness",

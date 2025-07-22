@@ -1,7 +1,12 @@
 
 {
   "header": {
-    "dashboard": "डैशबोर्ड",
+    "dashboards": {
+      "title": "डैशबोर्ड",
+      "citizen": "नागरिक डैशबोर्ड",
+      "ngo": "एनजीओ डैशबोर्ड",
+      "lawFirm": "कानूनी फर्म डैशबोर्ड"
+    },
     "registerCase": "मामला दर्ज करें",
     "caseStatus": "मामले की स्थिति",
     "awareness": "जागरूकता",

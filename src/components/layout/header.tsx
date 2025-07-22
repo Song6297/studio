@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, Languages, Globe, LogOut, Building } from 'lucide-react';
+import { Menu, Languages, Globe, LogOut, Building, LayoutDashboard as DashboardIcon } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
@@ -38,6 +38,12 @@ export function Header() {
     router.push('/');
     router.refresh();
   };
+  
+  const dashboardLinks = [
+    { href: '/dashboard', label: t('header.dashboards.citizen') },
+    { href: '/ngo-dashboard', label: t('header.dashboards.ngo') },
+    { href: '/law-firm-dashboard/demo', label: t('header.dashboards.lawFirm') },
+  ];
 
   const navLinks = [
     { href: '/case-submission', label: t('header.registerCase') },
@@ -51,12 +57,7 @@ export function Header() {
     { href: '/volunteer-network', label: t('header.volunteerNetwork') },
   ];
   
-  const loggedInLinks = [
-    { href: '/dashboard', label: t('header.dashboard')},
-    ...navLinks,
-  ]
-
-  const linksToShow = user ? loggedInLinks : navLinks;
+  const linksToShow = user ? navLinks : navLinks;
 
   if (!isMounted) {
     return (
@@ -71,6 +72,51 @@ export function Header() {
       </header>
     );
   }
+  
+  const renderNavLinks = (isMobile = false) => {
+    const commonLinkClass = isMobile 
+        ? 'flex items-center gap-2 rounded-md p-3 text-lg font-medium transition-colors hover:bg-secondary'
+        : 'text-sm font-medium transition-colors hover:text-primary';
+    const activeLinkClass = isMobile ? 'bg-secondary text-primary' : 'text-primary';
+    const inactiveLinkClass = isMobile ? 'text-muted-foreground' : 'text-muted-foreground';
+
+    const dashboardDropdownTriggerClass = isMobile ? 'justify-between w-full' : '';
+
+    return (
+        <>
+            {user && (
+                 <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant={isMobile ? "outline" : "ghost"} className={cn(
+                          isMobile ? dashboardDropdownTriggerClass : commonLinkClass,
+                          pathname.startsWith('/dashboard') || pathname.startsWith('/ngo-dashboard') || pathname.startsWith('/law-firm-dashboard') ? activeLinkClass : inactiveLinkClass
+                      )}>
+                        {t('header.dashboards.title')}
+                        {isMobile && <DashboardIcon className="h-5 w-5" />}
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      {dashboardLinks.map((link) => (
+                        <DropdownMenuItem key={link.href} asChild>
+                          <Link href={link.href} onClick={() => isMobile && setIsSheetOpen(false)}>{link.label}</Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+            )}
+            {linksToShow.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => isMobile && setIsSheetOpen(false)}
+                  className={cn(commonLinkClass, pathname === link.href ? activeLinkClass : inactiveLinkClass)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+        </>
+    );
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -80,18 +126,7 @@ export function Header() {
               <Logo />
             </Link>
             <nav className="hidden items-center gap-6 lg:gap-8 md:flex">
-              {linksToShow.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    'text-sm font-medium transition-colors hover:text-primary',
-                    pathname === link.href ? 'text-primary' : 'text-muted-foreground'
-                  )}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {renderNavLinks()}
             </nav>
         </div>
         
@@ -169,19 +204,7 @@ export function Header() {
                 </Link>
               </div>
               <nav className="mt-4 flex flex-col gap-2 p-4">
-                 {linksToShow.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setIsSheetOpen(false)}
-                      className={cn(
-                        'flex items-center gap-2 rounded-md p-3 text-lg font-medium transition-colors hover:bg-secondary',
-                        pathname === link.href ? 'bg-secondary text-primary' : 'text-muted-foreground',
-                      )}
-                    >
-                      {link.label}
-                    </Link>
-                ))}
+                 {renderNavLinks(true)}
                 <div className="border-t my-4"></div>
                  <DropdownMenu>
                     <DropdownMenuTrigger asChild>
