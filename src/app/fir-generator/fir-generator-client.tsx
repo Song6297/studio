@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { GenerateFirDraftInputSchema, type GenerateFirDraftInput } from '@/ai/flows/generate-fir-draft';
+import { GenerateFirDraftInputSchema, type GenerateFirDraftInput } from '@/ai/schemas/fir-schema';
 import { getFirDraft } from './actions';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
