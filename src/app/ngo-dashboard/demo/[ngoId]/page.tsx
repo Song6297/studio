@@ -5,12 +5,13 @@ import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Users, Briefcase, BarChart2, CalendarPlus, HandHelping, Filter, CheckCircle, Clock } from 'lucide-react';
+import { ArrowLeft, Users, Briefcase, BarChart2, CalendarPlus, HandHelping, Filter, CheckCircle, Clock, Edit, Trash2, Mail, UserPlus, UserMinus, UserCheck, Award } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useToast } from '@/hooks/use-toast';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -30,11 +31,16 @@ const demoNgoData = {
       volunteersActive: 45,
       campsOrganized: 12,
     },
+    officeBearers: [
+        { name: 'Mr. Prakash Rao', role: 'President', imageHint: 'senior indian man portrait' },
+        { name: 'Ms. Sunita Sharma', role: 'Secretary', imageHint: 'middle-aged indian woman professional' },
+        { name: 'Mr. Arjun Desai', role: 'Treasurer', imageHint: 'man professional glasses' },
+    ],
     cases: [
-      { id: 'CASE-101', category: 'Family Law', status: 'In-Progress', volunteer: 'Ananya Sharma' },
-      { id: 'CASE-102', category: 'Consumer Rights', status: 'Resolved', volunteer: 'Rohan Verma' },
-      { id: 'CASE-103', category: 'Property Law', status: 'New', volunteer: null },
-      { id: 'CASE-104', category: 'Family Law', status: 'New', volunteer: null },
+      { id: 'CASE-101', category: 'Family Law', status: 'In-Progress', volunteerId: 1, volunteer: 'Ananya Sharma' },
+      { id: 'CASE-102', category: 'Consumer Rights', status: 'Resolved', volunteerId: 2, volunteer: 'Rohan Verma' },
+      { id: 'CASE-103', category: 'Property Law', status: 'New', volunteerId: null, volunteer: null },
+      { id: 'CASE-104', category: 'Family Law', status: 'New', volunteerId: null, volunteer: null },
     ],
     volunteers: [
       { id: 1, name: 'Ananya Sharma', skills: ['Legal Research', 'Family Law'], status: 'Assigned', imageHint: 'young woman portrait' },
@@ -58,10 +64,11 @@ const demoNgoData = {
     name: 'Cyber Guardians Initiative',
     mission: 'Dedicated to educating citizens about their digital rights, combating online fraud, and providing support to victims of cybercrime.',
      metrics: { casesSupported: 180, volunteersActive: 25, campsOrganized: 30 },
+     officeBearers: [],
      cases: [
-      { id: 'CASE-201', category: 'Online Fraud', status: 'In-Progress', volunteer: 'Vikram Reddy' },
-      { id: 'CASE-202', category: 'Cyberbullying', status: 'Resolved', volunteer: 'Sunita Rao' },
-      { id: 'CASE-203', category: 'Data Privacy', status: 'New', volunteer: null },
+      { id: 'CASE-201', category: 'Online Fraud', status: 'In-Progress', volunteerId: 1, volunteer: 'Vikram Reddy' },
+      { id: 'CASE-202', category: 'Cyberbullying', status: 'Resolved', volunteerId: 2, volunteer: 'Sunita Rao' },
+      { id: 'CASE-203', category: 'Data Privacy', status: 'New', volunteerId: null, volunteer: null },
     ],
     volunteers: [
         { id: 1, name: 'Vikram Reddy', skills: ['Digital Forensics', 'IT Act'], status: 'Assigned', imageHint: 'tech professional' },
@@ -83,6 +90,7 @@ const demoNgoData = {
     name: 'RTI Watchdogs',
     mission: 'Empowering citizens to demand government transparency and accountability by assisting them in filing Right to Information (RTI) applications.',
     metrics: { casesSupported: 400, volunteersActive: 15, campsOrganized: 50 },
+    officeBearers: [],
     cases: [],
     volunteers: [],
     camps: [],
@@ -139,6 +147,97 @@ function AssignVolunteerDialog({ caseItem, volunteers, onAssign, onCancel }: { c
     </Dialog>
   );
 }
+
+function AddVolunteerDialog({ onSave, onCancel }: { onSave: (newVolunteer: Volunteer) => void; onCancel: () => void }) {
+    const [name, setName] = useState('');
+    const [skills, setSkills] = useState('');
+
+    const handleSave = () => {
+        if (name && skills) {
+            onSave({
+                id: Date.now(),
+                name,
+                skills: skills.split(',').map(s => s.trim()),
+                status: 'Available',
+                imageHint: 'professional portrait'
+            });
+        }
+    };
+
+    return (
+        <Dialog open onOpenChange={onCancel}>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Add New Volunteer</DialogTitle>
+                </DialogHeader>
+                <div className="py-4 space-y-4">
+                    <div className="space-y-2">
+                        <Label htmlFor="vol-name">Volunteer Name</Label>
+                        <Input id="vol-name" value={name} onChange={e => setName(e.target.value)} />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="vol-skills">Skills (comma-separated)</Label>
+                        <Input id="vol-skills" value={skills} onChange={e => setSkills(e.target.value)} placeholder="e.g., Legal Research, Drafting" />
+                    </div>
+                </div>
+                <DialogFooter>
+                    <Button variant="outline" onClick={onCancel}>Cancel</Button>
+                    <Button onClick={handleSave}>Add Volunteer</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    );
+}
+
+function ManageVolunteersDialog({ volunteers, setVolunteers, onCancel }: { volunteers: Volunteer[]; setVolunteers: React.Dispatch<React.SetStateAction<Volunteer[]>>; onCancel: () => void }) {
+    const { toast } = useToast();
+    const [isAdding, setIsAdding] = useState(false);
+
+    const handleRemove = (id: number) => {
+        setVolunteers(prev => prev.filter(v => v.id !== id));
+        toast({ title: "Volunteer Removed" });
+    };
+
+    const handleSaveNew = (newVolunteer: Volunteer) => {
+        setVolunteers(prev => [...prev, newVolunteer]);
+        setIsAdding(false);
+        toast({ title: "Volunteer Added" });
+    };
+
+    return (
+        <Dialog open onOpenChange={onCancel}>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Manage Volunteers</DialogTitle>
+                </DialogHeader>
+                <div className="py-4 space-y-2 max-h-[60vh] overflow-y-auto">
+                    {volunteers.map(v => (
+                        <div key={v.id} className="flex items-center gap-4 p-2 rounded-md hover:bg-muted/50">
+                            <Avatar><AvatarImage src={`https://placehold.co/40x40.png`} data-ai-hint={v.imageHint} /><AvatarFallback>{v.name.charAt(0)}</AvatarFallback></Avatar>
+                            <div className="flex-1">
+                                <p className="font-semibold">{v.name}</p>
+                                <p className="text-xs text-muted-foreground">{v.skills.join(', ')}</p>
+                            </div>
+                            <Badge variant={v.status === 'Available' ? 'secondary' : 'outline'}>{v.status}</Badge>
+                            <AlertDialog>
+                                <AlertDialogTrigger asChild><Button variant="ghost" size="icon" disabled={v.status === 'Assigned'}><Trash2 className="h-4 w-4 text-destructive" /></Button></AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader><AlertDialogTitle>Are you sure?</AlertDialogTitle><AlertDialogDescription>This will permanently remove {v.name}. This action cannot be undone.</AlertDialogDescription></AlertDialogHeader>
+                                    <AlertDialogFooter><AlertDialogCancel>Cancel</AlertDialogCancel><AlertDialogAction onClick={() => handleRemove(v.id)}>Remove</AlertDialogAction></AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+                        </div>
+                    ))}
+                </div>
+                <DialogFooter>
+                    <Button variant="outline" onClick={() => setIsAdding(true)}><UserPlus className="mr-2" /> Add Volunteer</Button>
+                </DialogFooter>
+            </DialogContent>
+            {isAdding && <AddVolunteerDialog onSave={handleSaveNew} onCancel={() => setIsAdding(false)} />}
+        </Dialog>
+    );
+}
+
 
 function AddCampDialog({ onSave, onCancel }: { onSave: (newCamp: Camp) => void, onCancel: () => void }) {
   const [name, setName] = useState('');
@@ -202,6 +301,7 @@ export default function DemoNgoDashboardPage() {
   const [camps, setCamps] = useState(ngoData?.camps || []);
   const [caseFilter, setCaseFilter] = useState('All');
   const [assigningCase, setAssigningCase] = useState<Case | null>(null);
+  const [managingVolunteers, setManagingVolunteers] = useState(false);
   const [organizingCamp, setOrganizingCamp] = useState(false);
   
   if (!ngoData) {
@@ -216,10 +316,17 @@ export default function DemoNgoDashboardPage() {
 
   const handleAssignVolunteer = (caseId: string, volunteerId: number) => {
     const volunteerName = volunteers.find(v => v.id === volunteerId)?.name || 'A volunteer';
-    setCases(cases.map(c => c.id === caseId ? { ...c, volunteer: volunteerName, status: 'In-Progress' } : c));
+    setCases(cases.map(c => c.id === caseId ? { ...c, volunteerId, volunteer: volunteerName, status: 'In-Progress' } : c));
     setVolunteers(volunteers.map(v => v.id === volunteerId ? { ...v, status: 'Assigned' } : v));
     setAssigningCase(null);
     toast({ title: 'Volunteer Assigned', description: `${volunteerName} has been assigned to case ${caseId}.`});
+  };
+
+  const handleDeassignVolunteer = (caseId: string, volunteerId: number | null) => {
+    if (!volunteerId) return;
+    setCases(cases.map(c => c.id === caseId ? { ...c, volunteerId: null, volunteer: null, status: 'New' } : c));
+    setVolunteers(volunteers.map(v => v.id === volunteerId ? { ...v, status: 'Available' } : v));
+    toast({ title: 'Volunteer De-assigned', description: `Volunteer has been unassigned from case ${caseId}.`});
   };
 
   const handleCreateCamp = (newCamp: Camp) => {
@@ -248,19 +355,38 @@ export default function DemoNgoDashboardPage() {
                     <p className="text-sm text-muted-foreground">Cases Supported</p>
                 </div>
                 <div>
-                    <p className="text-2xl font-bold">{ngoData.metrics.volunteersActive}</p>
+                    <p className="text-2xl font-bold">{volunteers.length}</p>
                     <p className="text-sm text-muted-foreground">Volunteers Active</p>
                 </div>
                 <div>
-                    <p className="text-2xl font-bold">{ngoData.metrics.campsOrganized}</p>
+                    <p className="text-2xl font-bold">{camps.length}</p>
                     <p className="text-sm text-muted-foreground">Camps Organized</p>
                 </div>
             </div>
           </CardContent>
         </Card>
+        
+        {ngoData.officeBearers.length > 0 && (
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2"><Award/> Key Office Bearers</CardTitle>
+                </CardHeader>
+                <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    {ngoData.officeBearers.map(bearer => (
+                        <div key={bearer.name} className="flex flex-col items-center">
+                            <Avatar className="h-24 w-24 mb-2">
+                                <AvatarImage src={`https://placehold.co/100x100.png`} data-ai-hint={bearer.imageHint} />
+                                <AvatarFallback>{bearer.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                            <p className="font-semibold">{bearer.name}</p>
+                            <p className="text-sm text-muted-foreground">{bearer.role}</p>
+                        </div>
+                    ))}
+                </CardContent>
+            </Card>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Case Management */}
             <Card className="lg:col-span-2">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2"><Briefcase /> Case Management</CardTitle>
@@ -281,13 +407,14 @@ export default function DemoNgoDashboardPage() {
                                     <div>
                                         <p className="font-mono text-sm">{c.id}</p>
                                         <p className="font-semibold">{c.category}</p>
-                                        <p className="text-xs text-muted-foreground mt-1">
-                                            {c.volunteer ? `Assigned to: ${c.volunteer}` : 'Unassigned'}
+                                        <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                                            {c.volunteer ? <><UserCheck className="w-3 h-3 text-green-600"/> Assigned to: {c.volunteer}</> : <><UserMinus className="w-3 h-3 text-amber-600"/>Unassigned</>}
                                         </p>
                                     </div>
                                     <div className="flex flex-col items-end gap-2">
                                         <Badge variant={c.status === 'Resolved' ? 'outline' : 'default'} className={cn(c.status === 'New' && 'bg-amber-500')}>{c.status}</Badge>
                                         {c.status === 'New' && <Button size="sm" onClick={() => setAssigningCase(c)}>Assign Volunteer</Button>}
+                                        {c.status === 'In-Progress' && <Button size="sm" variant="destructive" onClick={() => handleDeassignVolunteer(c.id, c.volunteerId)}>De-assign</Button>}
                                     </div>
                                 </div>
                             </Card>
@@ -297,14 +424,13 @@ export default function DemoNgoDashboardPage() {
                 </CardContent>
             </Card>
 
-            {/* Volunteer Coordination */}
             <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2"><Users /> Volunteer Coordination</CardTitle>
                     <CardDescription>Manage your active paralegal volunteers.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                    {volunteers.map(v => (
+                    {volunteers.slice(0, 4).map(v => (
                         <div key={v.id} className="flex items-center gap-4">
                             <Avatar>
                                 <AvatarImage src={`https://placehold.co/40x40.png`} data-ai-hint={v.imageHint} />
@@ -319,13 +445,12 @@ export default function DemoNgoDashboardPage() {
                     ))}
                 </CardContent>
                 <CardFooter>
-                    <Button className="w-full" variant="outline">Manage Volunteers</Button>
+                    <Button className="w-full" variant="outline" onClick={() => setManagingVolunteers(true)}>Manage Volunteers</Button>
                 </CardFooter>
             </Card>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Legal Aid Camps */}
             <Card className="lg:col-span-1">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2"><HandHelping/> Legal Aid Camps</CardTitle>
@@ -345,7 +470,6 @@ export default function DemoNgoDashboardPage() {
                 </CardFooter>
             </Card>
 
-            {/* Impact Analytics */}
             <Card className="lg:col-span-2">
                  <CardHeader>
                     <CardTitle className="flex items-center gap-2"><BarChart2 /> Impact Analytics</CardTitle>
@@ -373,6 +497,7 @@ export default function DemoNgoDashboardPage() {
 
       {assigningCase && <AssignVolunteerDialog caseItem={assigningCase} volunteers={volunteers} onAssign={handleAssignVolunteer} onCancel={() => setAssigningCase(null)} />}
       {organizingCamp && <AddCampDialog onSave={handleCreateCamp} onCancel={() => setOrganizingCamp(false)} />}
+      {managingVolunteers && <ManageVolunteersDialog volunteers={volunteers} setVolunteers={setVolunteers} onCancel={() => setManagingVolunteers(false)} />}
     </div>
   );
 }
