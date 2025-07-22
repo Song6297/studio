@@ -95,9 +95,11 @@ export default function Home() {
             <div className="absolute -top-48 -left-48 md:-top-64 md:-left-64 h-[400px] w-[400px] md:h-[600px] md:w-[600px] text-accent/10 -z-10">
                 <AshokaChakraIcon />
             </div>
-          <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-            {t('home.mainHeading')}
-          </h1>
+          <div className="inline-block">
+            <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-primary via-white to-[#138808] dark:to-secondary bg-clip-text text-transparent">
+              {t('home.mainHeading')}
+            </h1>
+          </div>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground md:text-xl">
             {t('home.subHeading')}
           </p>
