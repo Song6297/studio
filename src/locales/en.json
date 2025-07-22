@@ -52,11 +52,6 @@
       "description": "Get preliminary legal information and guidance on various legal topics from our AI-powered assistant, available 24/7.",
       "cta": "Ask AI Advisor"
     },
-     "firGenerator": {
-      "title": "Cyber Complaint (FIR) Generator",
-      "description": "Generate a ready-to-use complaint draft for filing with the police or cyber crime cell for incidents like online fraud.",
-      "cta": "Generate FIR Draft"
-    },
     "dataBreachAdvisor": {
       "title": "AI Data Breach Advisor",
       "description": "Experienced a security breach? Get an instant action plan based on Indian cyber law to guide your next steps.",

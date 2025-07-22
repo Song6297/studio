@@ -16,4 +16,3 @@ export const ai = genkit({
 import '@/ai/flows/generate-legal-advice';
 import '@/ai/flows/generate-ebrief';
 import '@/ai/flows/generate-breach-advice';
-import '@/ai/flows/generate-fir-draft';
