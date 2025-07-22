@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Users, Briefcase, BarChart2, CalendarPlus, HandHelping, Filter, CheckCircle, Clock, Edit, Trash2, Mail, UserPlus, UserMinus, UserCheck, Award } from 'lucide-react';
+import { ArrowLeft, Users, Briefcase, BarChart2, CalendarPlus, HandHelping, Filter, CheckCircle, Clock, Edit, Trash2, Mail, UserPlus, UserMinus, UserCheck, Award, HeartHand, GraduationCap, School } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -25,16 +25,21 @@ const demoNgoData = {
   'justice-foundation': {
     id: 'justice-foundation',
     name: 'Justice for All Foundation',
-    mission: 'To provide free, high-quality legal aid to underprivileged communities, ensuring that no one is denied justice due to lack of resources.',
+    mission: 'To provide free, high-quality legal aid and social support to underprivileged communities, ensuring that no one is denied justice or basic needs.',
     metrics: {
       casesSupported: 250,
       volunteersActive: 45,
-      campsOrganized: 12,
+      eventsOrganized: 15,
     },
     officeBearers: [
         { name: 'Mr. Prakash Rao', role: 'President', imageHint: 'senior indian man portrait' },
         { name: 'Ms. Sunita Sharma', role: 'Secretary', imageHint: 'middle-aged indian woman professional' },
         { name: 'Mr. Arjun Desai', role: 'Treasurer', imageHint: 'man professional glasses' },
+    ],
+    members: [
+        { name: 'Ravi Kumar', imageHint: 'young indian man' },
+        { name: 'Priya Patel', imageHint: 'young indian woman' },
+        { name: 'Sanjay Singh', imageHint: 'man portrait serious' },
     ],
     cases: [
       { id: 'CASE-101', category: 'Family Law', status: 'In-Progress', volunteerId: 1, volunteer: 'Ananya Sharma' },
@@ -47,15 +52,17 @@ const demoNgoData = {
       { id: 2, name: 'Rohan Verma', skills: ['Documentation', 'Consumer Law'], status: 'Assigned', imageHint: 'young man professional' },
       { id: 3, name: 'Priya Singh', skills: ['Client Interviewing', 'Drafting'], status: 'Available', imageHint: 'professional woman smiling' },
     ],
-    camps: [
-      { id: 1, name: 'Free Legal Consultation Camp', date: new Date('2024-09-15'), location: 'Community Hall, Sector 15, Noida' }
+    aidPrograms: [
+      { id: 'AID-01', name: 'Monthly Medical Camp', type: 'Medical Aid', icon: HeartHand },
+      { id: 'AID-02', name: 'Student Scholarship Program', type: 'Education Aid', icon: GraduationCap },
+      { id: 'AID-03', name: 'Community Marriage Support', type: 'Marriage Aid', icon: Users },
     ],
-    analytics: {
+    impactAnalytics: {
       chartData: [
-        { category: 'Family Law', count: 90 },
-        { category: 'Consumer', count: 75 },
-        { category: 'Property', count: 50 },
-        { category: 'RTI', count: 35 },
+        { category: 'Legal Cases', count: 90 },
+        { category: 'Medical Aid', count: 120 },
+        { category: 'Education Aid', count: 45 },
+        { category: 'Other Events', count: 35 },
       ]
     }
   },
@@ -63,8 +70,11 @@ const demoNgoData = {
     id: 'cyber-guardians',
     name: 'Cyber Guardians Initiative',
     mission: 'Dedicated to educating citizens about their digital rights, combating online fraud, and providing support to victims of cybercrime.',
-     metrics: { casesSupported: 180, volunteersActive: 25, campsOrganized: 30 },
-     officeBearers: [],
+     metrics: { casesSupported: 180, volunteersActive: 25, eventsOrganized: 30 },
+     officeBearers: [
+        { name: 'Dr. Alisha Verma', role: 'Director', imageHint: 'female tech expert' },
+     ],
+     members: [],
      cases: [
       { id: 'CASE-201', category: 'Online Fraud', status: 'In-Progress', volunteerId: 1, volunteer: 'Vikram Reddy' },
       { id: 'CASE-202', category: 'Cyberbullying', status: 'Resolved', volunteerId: 2, volunteer: 'Sunita Rao' },
@@ -74,10 +84,10 @@ const demoNgoData = {
         { id: 1, name: 'Vikram Reddy', skills: ['Digital Forensics', 'IT Act'], status: 'Assigned', imageHint: 'tech professional' },
         { id: 2, name: 'Sunita Rao', skills: ['Victim Counseling', 'Documentation'], status: 'Assigned', imageHint: 'counselor portrait' },
     ],
-    camps: [
-      { id: 1, name: 'Safe Internet Practices Workshop', date: new Date('2024-10-05'), location: 'Online Webinar' }
+    aidPrograms: [
+      { id: 'AID-C-01', name: 'Safe Internet Workshop', type: 'Education Aid', icon: School },
     ],
-     analytics: {
+     impactAnalytics: {
       chartData: [
         { category: 'Online Fraud', count: 110 },
         { category: 'Cyberbullying', count: 40 },
@@ -89,12 +99,13 @@ const demoNgoData = {
     id: 'rti-watchdogs',
     name: 'RTI Watchdogs',
     mission: 'Empowering citizens to demand government transparency and accountability by assisting them in filing Right to Information (RTI) applications.',
-    metrics: { casesSupported: 400, volunteersActive: 15, campsOrganized: 50 },
+    metrics: { casesSupported: 400, volunteersActive: 15, eventsOrganized: 50 },
     officeBearers: [],
+    members: [],
     cases: [],
     volunteers: [],
-    camps: [],
-     analytics: {
+    aidPrograms: [],
+     impactAnalytics: {
       chartData: [
         { category: 'Public Works', count: 150 },
         { category: 'Social Schemes', count: 120 },
@@ -107,7 +118,7 @@ const demoNgoData = {
 
 type Case = typeof demoNgoData['justice-foundation']['cases'][0];
 type Volunteer = typeof demoNgoData['justice-foundation']['volunteers'][0];
-type Camp = typeof demoNgoData['justice-foundation']['camps'][0];
+type AidProgram = typeof demoNgoData['justice-foundation']['aidPrograms'][0];
 type DemoNgo = typeof demoNgoData['justice-foundation'];
 
 function AssignVolunteerDialog({ caseItem, volunteers, onAssign, onCancel }: { caseItem: Case, volunteers: Volunteer[], onAssign: (caseId: string, volunteerId: number) => void, onCancel: () => void }) {
@@ -239,14 +250,17 @@ function ManageVolunteersDialog({ volunteers, setVolunteers, onCancel }: { volun
 }
 
 
-function AddCampDialog({ onSave, onCancel }: { onSave: (newCamp: Camp) => void, onCancel: () => void }) {
+function AddProgramDialog({ onSave, onCancel }: { onSave: (newProgram: AidProgram) => void, onCancel: () => void }) {
   const [name, setName] = useState('');
-  const [location, setLocation] = useState('');
-  const [date, setDate] = useState<Date | undefined>();
+  const [type, setType] = useState('');
 
   const handleSave = () => {
-    if(name && location && date) {
-      onSave({ id: Date.now(), name, location, date });
+    if(name && type) {
+        let icon = HandHelping;
+        if(type === 'Medical Aid') icon = HeartHand;
+        if(type === 'Education Aid') icon = GraduationCap;
+        if(type === 'Marriage Aid') icon = Users;
+        onSave({ id: `AID-${Date.now()}`, name, type, icon });
     }
   }
 
@@ -254,35 +268,29 @@ function AddCampDialog({ onSave, onCancel }: { onSave: (newCamp: Camp) => void, 
     <Dialog open={true} onOpenChange={(isOpen) => !isOpen && onCancel()}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Organize New Legal Aid Camp</DialogTitle>
+          <DialogTitle>Organize New Aid Program</DialogTitle>
         </DialogHeader>
         <div className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="camp-name">Camp Name / Title</Label>
-            <Input id="camp-name" value={name} onChange={e => setName(e.target.value)} placeholder="e.g., Free Legal Consultation Camp" />
+            <Label htmlFor="program-name">Program Name / Title</Label>
+            <Input id="program-name" value={name} onChange={e => setName(e.target.value)} placeholder="e.g., Free Health Check-up" />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="camp-location">Location</Label>
-            <Input id="camp-location" value={location} onChange={e => setLocation(e.target.value)} placeholder="e.g., Community Hall, Koramangala" />
-          </div>
-           <div className="space-y-2">
-            <Label>Date</Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant={"outline"} className={cn("w-full justify-start text-left font-normal", !date && "text-muted-foreground")}>
-                  <CalendarPlus className="mr-2 h-4 w-4" />
-                  {date ? format(date, "PPP") : <span>Pick a date</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-              </PopoverContent>
-            </Popover>
+            <Label htmlFor="program-type">Program Type</Label>
+             <Select onValueChange={setType}>
+              <SelectTrigger id="program-type"><SelectValue placeholder="Select an aid type" /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Medical Aid">Medical Aid</SelectItem>
+                <SelectItem value="Education Aid">Education Aid</SelectItem>
+                <SelectItem value="Marriage Aid">Marriage Aid</SelectItem>
+                <SelectItem value="Other">Other</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onCancel}>Cancel</Button>
-          <Button onClick={handleSave}>Add Camp</Button>
+          <Button onClick={handleSave}>Add Program</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -298,11 +306,11 @@ export default function DemoNgoDashboardPage() {
   
   const [cases, setCases] = useState(ngoData?.cases || []);
   const [volunteers, setVolunteers] = useState(ngoData?.volunteers || []);
-  const [camps, setCamps] = useState(ngoData?.camps || []);
+  const [aidPrograms, setAidPrograms] = useState(ngoData?.aidPrograms || []);
   const [caseFilter, setCaseFilter] = useState('All');
   const [assigningCase, setAssigningCase] = useState<Case | null>(null);
   const [managingVolunteers, setManagingVolunteers] = useState(false);
-  const [organizingCamp, setOrganizingCamp] = useState(false);
+  const [organizingProgram, setOrganizingProgram] = useState(false);
   
   if (!ngoData) {
     return (
@@ -329,10 +337,10 @@ export default function DemoNgoDashboardPage() {
     toast({ title: 'Volunteer De-assigned', description: `Volunteer has been unassigned from case ${caseId}.`});
   };
 
-  const handleCreateCamp = (newCamp: Camp) => {
-    setCamps([...camps, newCamp]);
-    setOrganizingCamp(false);
-    toast({ title: 'Camp Organized!', description: `${newCamp.name} has been added to the schedule.`});
+  const handleCreateProgram = (newProgram: AidProgram) => {
+    setAidPrograms([...aidPrograms, newProgram]);
+    setOrganizingProgram(false);
+    toast({ title: 'Program Organized!', description: `${newProgram.name} has been added to the schedule.`});
   };
 
 
@@ -359,8 +367,8 @@ export default function DemoNgoDashboardPage() {
                     <p className="text-sm text-muted-foreground">Volunteers Active</p>
                 </div>
                 <div>
-                    <p className="text-2xl font-bold">{camps.length}</p>
-                    <p className="text-sm text-muted-foreground">Camps Organized</p>
+                    <p className="text-2xl font-bold">{ngoData.metrics.eventsOrganized}</p>
+                    <p className="text-sm text-muted-foreground">Events Organized</p>
                 </div>
             </div>
           </CardContent>
@@ -385,12 +393,31 @@ export default function DemoNgoDashboardPage() {
                 </CardContent>
             </Card>
         )}
+        
+        {ngoData.members.length > 0 && (
+             <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2"><Users/> Our Members</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-6">
+                    {ngoData.members.map(member => (
+                        <div key={member.name} className="flex flex-col items-center text-center">
+                            <Avatar className="h-20 w-20">
+                                <AvatarImage src={`https://placehold.co/100x100.png`} data-ai-hint={member.imageHint} />
+                                <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                            <p className="font-semibold mt-2 text-sm">{member.name}</p>
+                        </div>
+                    ))}
+                </CardContent>
+            </Card>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <Card className="lg:col-span-2">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2"><Briefcase /> Case Management</CardTitle>
-                    <CardDescription>Monitor cases and assign volunteers.</CardDescription>
+                    <CardDescription>Monitor legal cases and assign volunteers.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="flex items-center gap-2 mb-4">
@@ -453,31 +480,37 @@ export default function DemoNgoDashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <Card className="lg:col-span-1">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><HandHelping/> Legal Aid Camps</CardTitle>
-                    <CardDescription>Organize and manage outreach events.</CardDescription>
+                    <CardTitle className="flex items-center gap-2"><HandHelping/> Aid & Outreach Programs</CardTitle>
+                    <CardDescription>Manage other social initiatives.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                   {camps.map(camp => (
-                       <Card key={camp.id} className="p-3">
-                           <p className="font-semibold">{camp.name}</p>
-                           <p className="text-sm text-muted-foreground flex items-center gap-2"><CalendarPlus className="w-4 h-4"/> {format(camp.date, "PPP")}</p>
-                           <p className="text-xs text-muted-foreground">{camp.location}</p>
+                   {aidPrograms.map(program => {
+                       const Icon = program.icon;
+                       return (
+                       <Card key={program.id} className="p-3">
+                           <div className="flex items-center gap-3">
+                            <Icon className="h-5 w-5 text-primary" />
+                            <div>
+                               <p className="font-semibold">{program.name}</p>
+                               <p className="text-xs text-muted-foreground">{program.type}</p>
+                            </div>
+                           </div>
                        </Card>
-                   ))}
+                   )})}
                 </CardContent>
                 <CardFooter>
-                    <Button className="w-full" onClick={() => setOrganizingCamp(true)}><CalendarPlus className="mr-2"/> Organize New Camp</Button>
+                    <Button className="w-full" onClick={() => setOrganizingProgram(true)}><CalendarPlus className="mr-2"/> Organize New Program</Button>
                 </CardFooter>
             </Card>
 
             <Card className="lg:col-span-2">
                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><BarChart2 /> Impact Analytics</CardTitle>
-                    <CardDescription>Total cases supported by category.</CardDescription>
+                    <CardTitle className="flex items-center gap-2"><BarChart2 /> Community Impact Analytics</CardTitle>
+                    <CardDescription>Total support provided by category.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={ngoData.analytics.chartData}>
+                        <BarChart data={ngoData.impactAnalytics.chartData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="category" />
                         <YAxis />
@@ -487,7 +520,7 @@ export default function DemoNgoDashboardPage() {
                             borderColor: "hsl(var(--border))",
                             }}
                         />
-                        <Bar dataKey="count" fill="hsl(var(--primary))" name="Cases" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="count" fill="hsl(var(--primary))" name="Count" radius={[4, 4, 0, 0]} />
                         </BarChart>
                     </ResponsiveContainer>
                 </CardContent>
@@ -496,8 +529,10 @@ export default function DemoNgoDashboardPage() {
       </div>
 
       {assigningCase && <AssignVolunteerDialog caseItem={assigningCase} volunteers={volunteers} onAssign={handleAssignVolunteer} onCancel={() => setAssigningCase(null)} />}
-      {organizingCamp && <AddCampDialog onSave={handleCreateCamp} onCancel={() => setOrganizingCamp(false)} />}
+      {organizingProgram && <AddProgramDialog onSave={handleCreateProgram} onCancel={() => setOrganizingProgram(false)} />}
       {managingVolunteers && <ManageVolunteersDialog volunteers={volunteers} setVolunteers={setVolunteers} onCancel={() => setManagingVolunteers(false)} />}
     </div>
   );
 }
+
+    
