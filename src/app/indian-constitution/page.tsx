@@ -2,7 +2,7 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Gavel, Shield, CheckSquare, Scale, History } from 'lucide-react';
+import { Gavel, Shield, CheckSquare, Scale, History, Network } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -61,6 +61,25 @@ export default function IndianConstitutionPage() {
                 { article: "Article 32", text: "Guarantees the right to move the Supreme Court for the enforcement of Fundamental Rights. The Supreme Court is empowered to issue writs (Habeas Corpus, Mandamus, Prohibition, Certiorari, and Quo Warranto) for this purpose. Dr. B.R. Ambedkar called it the 'heart and soul' of the Constitution." }
             ]
         },
+    ];
+
+    const cyberLawArticles = [
+        {
+            title: "Freedom of Speech and Expression in Cyberspace (Article 19(1)(a))",
+            content: "This fundamental right extends to the digital world, protecting online speech, publications, and artistic expression. However, it is subject to 'reasonable restrictions' under Article 19(2), which can be invoked to regulate content for reasons like public order, defamation, or incitement to an offense. This forms the basis for laws governing online content moderation and cybercrime."
+        },
+        {
+            title: "Right to Privacy in the Digital Age (Article 21)",
+            content: "The Supreme Court, in the case of Justice K.S. Puttaswamy (Retd.) vs. Union of India, declared the Right to Privacy as a fundamental right, intrinsic to the Right to Life and Personal Liberty under Article 21. This landmark judgment is the constitutional bedrock for data protection laws in India, including the Digital Personal Data Protection (DPDP) Act, and it governs how personal data is collected and processed online."
+        },
+        {
+            title: "E-Commerce and Digital Trade (Article 301)",
+            content: "Article 301 guarantees the freedom of trade, commerce, and intercourse throughout the territory of India. This principle is applied to electronic commerce, ensuring that digital trade is not unduly restricted. It provides the constitutional backing for a seamless national market for digital goods and services."
+        },
+        {
+            title: "Legislative Authority for Cyber Laws (Seventh Schedule)",
+            content: "The Constitution's Seventh Schedule distributes legislative powers between the Union and the States. The Union List (List I) includes subjects like 'Posts and telegraphs; telephones, wireless, broadcasting and other like forms of communication' (Entry 31). This entry grants the Parliament of India the authority to enact laws governing telecommunications and the internet, such as the Information Technology (IT) Act, 2000, which is the primary legislation dealing with cybercrime and electronic commerce in India."
+        }
     ];
 
     const fundamentalDuties = [
@@ -185,6 +204,28 @@ export default function IndianConstitutionPage() {
                     </div>
                 </div>
             </div>
+
+            <section id="cyber-law-constitution" className="mx-auto max-w-6xl mt-16 p-8 bg-card rounded-lg shadow-xl">
+                 <div className="flex items-center gap-4 mb-4">
+                    <div className="inline-block rounded-lg bg-primary/10 p-3 text-primary ring-1 ring-inset ring-primary/20">
+                        <Network className="h-8 w-8" />
+                    </div>
+                    <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">Cyber Law & the Indian Constitution</h2>
+                </div>
+                <p className="text-muted-foreground text-lg mb-6">
+                    While the Constitution was framed long before the digital age, its principles provide a strong foundation for cyber laws in India.
+                </p>
+                <Accordion type="single" collapsible className="w-full">
+                    {cyberLawArticles.map((article, index) => (
+                        <AccordionItem value={`cyber-${index}`} key={index}>
+                            <AccordionTrigger className="font-headline text-xl hover:no-underline">{article.title}</AccordionTrigger>
+                            <AccordionContent className="text-base text-muted-foreground">
+                                {article.content}
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+            </section>
 
             <section id="history" className="mx-auto max-w-6xl mt-16 p-8 bg-card rounded-lg shadow-xl">
                 <div className="flex items-center gap-4 mb-4">
