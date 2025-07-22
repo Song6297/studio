@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Menu, Languages, Globe, LogOut } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -157,6 +157,7 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] p-0">
+               <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
               <div className="p-4 border-b">
                 <Link href="/" aria-label="Satyameva Jayate Home Page" onClick={() => setIsSheetOpen(false)}>
                   <Logo />
