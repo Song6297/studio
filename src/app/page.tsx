@@ -82,10 +82,7 @@ export default function Home() {
                 <AshokaChakraIcon />
             </div>
              <div className="flex items-center gap-2 mb-2">
-              <Scale className="h-8 w-8 text-primary" />
-              <h2 className="font-headline text-3xl font-bold tracking-widest text-foreground/80" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-                  LIBRA
-              </h2>
+              <Scale className="h-10 w-10 text-primary" />
             </div>
           <div className="inline-block">
             <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-primary via-white to-[#138808] dark:to-secondary bg-clip-text text-transparent">
