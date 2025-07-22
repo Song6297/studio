@@ -40,7 +40,7 @@ export function Header() {
   };
   
   const dashboardLinks = [
-    { href: '/dashboard', label: t('header.dashboards.citizen') },
+    { href: user ? '/dashboard' : '/case-status/demo', label: t('header.dashboards.citizen') },
     { href: '/ngo-dashboard', label: t('header.dashboards.ngo') },
     { href: '/law-firm-dashboard/demo', label: t('header.dashboards.lawFirm') },
   ];
@@ -84,26 +84,24 @@ export function Header() {
 
     return (
         <>
-            {user && (
-                 <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant={isMobile ? "outline" : "ghost"} className={cn(
-                          isMobile ? dashboardDropdownTriggerClass : commonLinkClass,
-                          pathname.startsWith('/dashboard') || pathname.startsWith('/ngo-dashboard') || pathname.startsWith('/law-firm-dashboard') ? activeLinkClass : inactiveLinkClass
-                      )}>
-                        {t('header.dashboards.title')}
-                        {isMobile && <DashboardIcon className="h-5 w-5" />}
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      {dashboardLinks.map((link) => (
-                        <DropdownMenuItem key={link.href} asChild>
-                          <Link href={link.href} onClick={() => isMobile && setIsSheetOpen(false)}>{link.label}</Link>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-            )}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant={isMobile ? "outline" : "ghost"} className={cn(
+                    isMobile ? dashboardDropdownTriggerClass : commonLinkClass,
+                    pathname.startsWith('/dashboard') || pathname.startsWith('/ngo-dashboard') || pathname.startsWith('/law-firm-dashboard') ? activeLinkClass : inactiveLinkClass
+                )}>
+                  {t('header.dashboards.title')}
+                  {isMobile && <DashboardIcon className="h-5 w-5" />}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {dashboardLinks.map((link) => (
+                  <DropdownMenuItem key={link.href} asChild>
+                    <Link href={link.href} onClick={() => isMobile && setIsSheetOpen(false)}>{link.label}</Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             {linksToShow.map((link) => (
                 <Link
                   key={link.href}
