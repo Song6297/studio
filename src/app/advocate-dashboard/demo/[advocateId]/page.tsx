@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Users, BarChart2, Star, Mail, UserPlus, Edit, Trash2, UserX, Gavel, FileText, CheckCircle2, Search } from 'lucide-react';
+import { ArrowLeft, Users, BarChart2, Star, Mail, UserPlus, Edit, Trash2, UserX, Gavel, FileText, CheckCircle2, Search, PenSquare } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -49,6 +49,10 @@ const demoAdvocateData = {
       resolved: [
         { id: 'CASE-005', category: 'Acquittal', description: 'Successfully acquitted a client falsely accused in a dowry harassment case.', outcome: 'Acquitted' },
         { id: 'CASE-006', category: 'Bail Granted', description: 'Secured bail for a client accused of reckless driving.', outcome: 'Bail Granted' },
+      ],
+      documentRequests: [
+        { id: 'DOC-001', type: 'Affidavit', description: 'Request for a Change of Name affidavit for passport application.' },
+        { id: 'DOC-002', type: 'Notarization', description: 'Notarization of a rental agreement for a commercial property.' },
       ]
     }
   },
@@ -71,7 +75,8 @@ const demoAdvocateData = {
     cases: {
       available: [],
       pending: [],
-      resolved: []
+      resolved: [],
+      documentRequests: []
     }
   },
    'vikram-singh': {
@@ -94,7 +99,8 @@ const demoAdvocateData = {
     cases: {
       available: [],
       pending: [],
-      resolved: []
+      resolved: [],
+      documentRequests: []
     }
   }
 };
@@ -102,6 +108,7 @@ const demoAdvocateData = {
 type JuniorMember = typeof demoAdvocateData['alok-sharma']['juniors'][0];
 type DemoAdvocate = typeof demoAdvocateData['alok-sharma'];
 type Case = { id: string, category: string, description: string, status?: string, outcome?: string };
+type DocumentRequest = { id: string, type: 'Affidavit' | 'Notarization', description: string };
 
 
 function AddJuniorDialog({ onSave, onCancel }: { onSave: (newJunior: JuniorMember) => void, onCancel: () => void }) {
@@ -245,6 +252,13 @@ export default function DemoAdvocateDashboardPage() {
         description: `Your bid of ₹${bidDetails.amount} for case ${caseId} has been submitted.`,
     });
   }
+  
+  const handleRespondToDocumentRequest = (docId: string) => {
+      toast({
+          title: "Response Sent",
+          description: `You have indicated your interest in handling document request ${docId}. The citizen will be notified.`
+      })
+  }
 
   return (
     <div className="container py-12 md:py-16">
@@ -279,8 +293,9 @@ export default function DemoAdvocateDashboardPage() {
             </CardHeader>
             <CardContent>
                 <Tabs defaultValue="available">
-                    <TabsList className="grid w-full grid-cols-3">
+                    <TabsList className="grid w-full grid-cols-4">
                         <TabsTrigger value="available">Available Cases <Badge variant="destructive" className="ml-2">{advocateData.cases.available.length}</Badge></TabsTrigger>
+                        <TabsTrigger value="requests">Document Requests <Badge variant="destructive" className="ml-2">{advocateData.cases.documentRequests.length}</Badge></TabsTrigger>
                         <TabsTrigger value="pending">Pending Cases</TabsTrigger>
                         <TabsTrigger value="resolved">Resolved Cases</TabsTrigger>
                     </TabsList>
@@ -295,6 +310,19 @@ export default function DemoAdvocateDashboardPage() {
                                     <Button onClick={() => setBiddingOnCase(caseItem)}>View & Bid</Button>
                                 </Card>
                             )) : <p className="text-center text-muted-foreground p-8">No new cases available for bidding.</p>}
+                        </div>
+                    </TabsContent>
+                    <TabsContent value="requests" className="mt-4">
+                        <div className="space-y-4">
+                            {advocateData.cases.documentRequests.length > 0 ? advocateData.cases.documentRequests.map(req => (
+                                <Card key={req.id} className="flex flex-col sm:flex-row items-start justify-between p-4">
+                                    <div className="flex-1 mb-4 sm:mb-0">
+                                        <p className="font-bold text-primary flex items-center gap-2"><PenSquare className="w-5 h-5"/> {req.type} Request</p>
+                                        <p className="text-sm text-muted-foreground">{req.description}</p>
+                                    </div>
+                                    <Button onClick={() => handleRespondToDocumentRequest(req.id)}>View & Respond</Button>
+                                </Card>
+                            )) : <p className="text-center text-muted-foreground p-8">No new document requests.</p>}
                         </div>
                     </TabsContent>
                     <TabsContent value="pending" className="mt-4">
@@ -393,3 +421,5 @@ export default function DemoAdvocateDashboardPage() {
     </div>
   );
 }
+
+    

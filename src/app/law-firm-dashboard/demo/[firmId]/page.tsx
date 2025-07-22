@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Building, Users, Briefcase, BarChart2, Star, Mail, UserPlus, Edit, Trash2, UserX, Gavel } from 'lucide-react';
+import { ArrowLeft, Building, Users, Briefcase, BarChart2, Star, Mail, UserPlus, Edit, Trash2, UserX, Gavel, PenSquare } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -51,6 +51,10 @@ const demoFirmData = {
       ],
       resolved: [
         { id: 'CORP-005', category: 'IP Registration', description: 'Successfully registered a portfolio of trademarks for a new consumer brand.', outcome: 'Completed' },
+      ],
+      documentRequests: [
+          { id: 'DOC-F-001', type: 'Notarization', description: 'Bulk notarization required for a set of employee agreements.' },
+          { id: 'DOC-F-002', type: 'Affidavit', description: 'Affidavit of No-Claim required from a vendor for final settlement.' },
       ]
     }
   },
@@ -72,7 +76,7 @@ const demoFirmData = {
         { category: 'White Collar', solved: 15, pending: 5 },
       ]
     },
-     cases: { available: [], pending: [], resolved: [] }
+     cases: { available: [], pending: [], resolved: [], documentRequests: [] }
   },
    'gupta-family-law': {
     id: 'gupta-family-law',
@@ -92,13 +96,14 @@ const demoFirmData = {
         { category: 'Mediation', solved: 200, pending: 18 },
       ]
     },
-     cases: { available: [], pending: [], resolved: [] }
+     cases: { available: [], pending: [], resolved: [], documentRequests: [] }
   }
 };
 
 type StaffMember = typeof demoFirmData['agrawal-associates']['staff'][0];
 type DemoFirm = typeof demoFirmData['agrawal-associates'];
 type Case = { id: string, category: string, description: string, status?: string, outcome?: string };
+type DocumentRequest = { id: string, type: 'Affidavit' | 'Notarization', description: string };
 
 
 function StaffEditDialog({ staffMember, onSave, onCancel }: { staffMember: StaffMember, onSave: (updatedStaff: StaffMember) => void, onCancel: () => void }) {
@@ -391,6 +396,13 @@ export default function DemoFirmDashboardPage() {
         description: `Your firm's bid of ₹${bidDetails.amount} for case ${caseId} has been submitted.`,
     });
   }
+  
+  const handleRespondToDocumentRequest = (docId: string) => {
+      toast({
+          title: "Response Sent",
+          description: `Your firm has indicated interest in handling document request ${docId}. The citizen will be notified.`
+      })
+  }
 
 
   return (
@@ -428,8 +440,9 @@ export default function DemoFirmDashboardPage() {
             </CardHeader>
             <CardContent>
                 <Tabs defaultValue="available">
-                    <TabsList className="grid w-full grid-cols-3">
+                    <TabsList className="grid w-full grid-cols-4">
                         <TabsTrigger value="available">Available Cases <Badge variant="destructive" className="ml-2">{firmData.cases.available.length}</Badge></TabsTrigger>
+                        <TabsTrigger value="requests">Document Requests <Badge variant="destructive" className="ml-2">{firmData.cases.documentRequests.length}</Badge></TabsTrigger>
                         <TabsTrigger value="pending">Pending Cases</TabsTrigger>
                         <TabsTrigger value="resolved">Resolved Cases</TabsTrigger>
                     </TabsList>
@@ -444,6 +457,19 @@ export default function DemoFirmDashboardPage() {
                                     <Button onClick={() => setBiddingOnCase(caseItem)}>View & Bid</Button>
                                 </Card>
                             )) : <p className="text-center text-muted-foreground p-8">No new corporate cases available for bidding.</p>}
+                        </div>
+                    </TabsContent>
+                    <TabsContent value="requests" className="mt-4">
+                        <div className="space-y-4">
+                            {firmData.cases.documentRequests.length > 0 ? firmData.cases.documentRequests.map(req => (
+                                <Card key={req.id} className="flex flex-col sm:flex-row items-start justify-between p-4">
+                                    <div className="flex-1 mb-4 sm:mb-0">
+                                        <p className="font-bold text-primary flex items-center gap-2"><PenSquare className="w-5 h-5"/> {req.type} Request</p>
+                                        <p className="text-sm text-muted-foreground">{req.description}</p>
+                                    </div>
+                                    <Button onClick={() => handleRespondToDocumentRequest(req.id)}>View & Respond</Button>
+                                </Card>
+                            )) : <p className="text-center text-muted-foreground p-8">No new document requests.</p>}
                         </div>
                     </TabsContent>
                     <TabsContent value="pending" className="mt-4">
