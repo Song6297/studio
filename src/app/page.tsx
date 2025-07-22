@@ -81,10 +81,14 @@ export default function Home() {
 
   return (
     <>
-      <section className="w-full pt-20 md:pt-32 lg:pt-40">
+      <section className="relative w-full pt-20 md:pt-32 lg:pt-40 overflow-hidden">
         <div className="container px-4">
-          <div className="grid gap-8 md:grid-cols-2 md:items-center">
-            <div className="flex flex-col items-start text-left">
+            <div className="absolute inset-0 flex items-center justify-center -z-10">
+                <div className="relative h-[500px] w-[500px] text-primary/10">
+                    <AshokaChakraIcon />
+                </div>
+            </div>
+            <div className="relative z-10 flex flex-col items-center text-center">
               <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
                 {t('home.mainHeading')}
               </h1>
@@ -104,12 +108,6 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className="hidden items-center justify-center md:flex">
-              <div className="relative h-64 w-64 text-primary/40 md:h-96 md:w-96">
-                <AshokaChakraIcon />
-              </div>
-            </div>
-          </div>
         </div>
       </section>
       

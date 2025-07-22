@@ -7,8 +7,6 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { LanguageProvider } from '@/context/language-context';
 import { AuthProvider } from '@/context/auth-context';
-import { AshokaChakraIcon } from '@/components/icons/emblem';
-import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 
@@ -17,11 +15,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => setIsMounted(true), []);
-
-  const isAIGuidePage = pathname === '/ai-legal-guide';
 
   return (
     <html lang="en">
@@ -35,12 +30,7 @@ export default function RootLayout({
           <LanguageProvider>
             <div className="relative flex min-h-dvh flex-col bg-background">
               <Header />
-              <main className="flex-1 relative">
-              {isMounted && !isAIGuidePage && (
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[400px] opacity-5 dark:opacity-10 -z-10">
-                      <AshokaChakraIcon />
-                  </div>
-                )}
+              <main className="flex-1">
                 {children}
               </main>
               <Footer />
