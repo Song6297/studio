@@ -147,18 +147,6 @@
     "searchPlaceholder": "Search cyber law articles...",
     "readMore": "Read More",
     "articles": {
-      "upiFraudCase": {
-          "title": "Case Study: The UPI Fraud",
-          "description": "A deep dive into a real-world UPI fraud case, from the incident to the final court judgment.",
-          "category": "Case Study",
-          "explanation": [
-              { "heading": "The Incident", "text": "A retired teacher from Pune received a text message about an overdue electricity bill. The message urged immediate payment through a link to avoid power disconnection. The link led to a website that looked identical to an official payment portal. After entering his UPI details and authorizing a 'test' transaction of ₹1, the victim found that ₹50,000 had been debited from his account." },
-              { "heading": "Immediate Action & Reporting", "text": "The victim immediately called the national cybercrime helpline (1930) and reported the transaction on the National Cyber Crime Reporting Portal (cybercrime.gov.in). He also filed a formal complaint at his local police station, providing screenshots of the fraudulent messages and transaction details." },
-              { "heading": "The Legal Path", "text": "Represented by Advocate Priya Desai, the victim filed a complaint with the Consumer Disputes Redressal Forum against his bank, citing 'deficiency in service'. The argument was that the bank's fraud detection system should have flagged the suspicious transaction and that they failed to adequately warn customers about such prevalent scams." },
-              { "heading": "The Judgment", "text": "The Forum ruled in favor of the victim. It found the bank partially liable for failing to implement stronger security measures and for not providing sufficient customer awareness. The bank was ordered to refund the entire amount of ₹50,000 and pay an additional ₹10,000 as compensation for the mental distress caused." },
-              { "heading": "Key Legal Takeaway", "text": "This case shows that while individuals must be cautious, banks and financial institutions also have a duty of care. A 'deficiency in service' claim can be a powerful tool for victims of cyber fraud. Promptly reporting the crime is crucial for any legal action." }
-          ]
-      },
       "onlineFraud": {
         "title": "Recognizing and Avoiding Online Fraud",
         "description": "A guide to identifying phishing scams, financial fraud, and other online tricks.",
