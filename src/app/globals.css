@@ -4,65 +4,65 @@
 
 @layer base {
   :root {
-    --background: 231 48% 98%; /* Light Lavender Grey */
-    --foreground: 232 63% 15%; /* Dark Navy Blue */
+    --background: 20 50% 98%; /* Very Light Cream (for White) */
+    --foreground: 240 10% 15%; /* Dark Grey, almost Black */
 
-    --card: 231 48% 98%;
-    --card-foreground: 232 63% 15%;
+    --card: 20 50% 98%;
+    --card-foreground: 240 10% 15%;
 
-    --popover: 231 48% 98%;
-    --popover-foreground: 232 63% 15%;
+    --popover: 20 50% 98%;
+    --popover-foreground: 240 10% 15%;
 
-    --primary: 232 63% 30%; /* Navy Blue #1A237E */
-    --primary-foreground: 231 48% 95%;
+    --primary: 25 95% 53%; /* Saffron/Orange */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 231 48% 94%; /* Lavender Grey #E8EAF6 */
-    --secondary-foreground: 232 63% 25%;
+    --secondary: 120 73% 94%; /* Light Green */
+    --secondary-foreground: 120 40% 20%;
 
-    --muted: 231 48% 94%;
-    --muted-foreground: 232 20% 45%;
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 42 100% 50%; /* Amber #FFB300 */
-    --accent-foreground: 232 63% 15%;
+    --accent: 240 100% 27%; /* Navy Blue (from Ashoka Chakra) */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 65% 47%; /* Legal Red #C62828 */
+    --destructive: 0 84% 60%; /* Standard Red */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 231 20% 85%;
-    --input: 231 20% 85%;
-    --ring: 232 63% 30%;
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 25 95% 53%; /* Saffron for ring */
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 232 63% 10%;
-    --foreground: 231 48% 95%;
+    --background: 240 10% 10%;
+    --foreground: 210 40% 98%;
 
-    --card: 232 63% 10%;
-    --card-foreground: 231 48% 95%;
+    --card: 240 10% 10%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 232 63% 10%;
-    --popover-foreground: 231 48% 95%;
+    --popover: 240 10% 10%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 231 48% 80%; /* Lighter Lavender for primary */
-    --primary-foreground: 232 63% 15%;
+    --primary: 25 95% 60%; /* Brighter Saffron */
+    --primary-foreground: 25 95% 10%;
 
-    --secondary: 232 63% 15%;
-    --secondary-foreground: 231 48% 95%;
+    --secondary: 120 40% 20%; /* Darker Green */
+    --secondary-foreground: 120 73% 94%;
 
-    --muted: 232 63% 15%;
-    --muted-foreground: 231 20% 65%;
+    --muted: 240 5% 15%;
+    --muted-foreground: 240 5% 65%;
 
-    --accent: 42 100% 50%; /* Amber #FFB300 */
-    --accent-foreground: 232 63% 10%;
+    --accent: 240 100% 70%; /* Brighter Navy Blue */
+    --accent-foreground: 240 100% 10%;
 
-    --destructive: 0 65% 55%;
+    --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 232 63% 20%;
-    --input: 232 63% 20%;
-    --ring: 42 100% 50%;
+    --border: 240 5% 20%;
+    --input: 240 5% 20%;
+    --ring: 25 95% 60%;
   }
 }
 
