@@ -111,6 +111,26 @@ export default function Home() {
         </div>
       </section>
       
+      <section id="preamble" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/10">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-4xl">
+            <Card className="shadow-2xl">
+              <CardHeader className="items-center text-center p-6 md:p-8">
+                <Gavel className="h-12 w-12 md:h-16 md:w-16 text-primary mb-4" />
+                <CardTitle className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
+                  {t('indianConstitution.preamble.title')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 pt-0 md:p-8 md:pt-0">
+                <p className="whitespace-pre-wrap text-center text-base md:text-lg leading-relaxed text-foreground/80 font-serif">
+                    {preambleText}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-6 text-center">
@@ -145,26 +165,6 @@ export default function Home() {
                     </Card>
                 ))}
             </div>
-        </div>
-      </section>
-      
-      <section id="preamble" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/10">
-        <div className="container px-4 md:px-6">
-          <div className="mx-auto max-w-4xl">
-            <Card className="shadow-2xl">
-              <CardHeader className="items-center text-center p-6 md:p-8">
-                <Gavel className="h-12 w-12 md:h-16 md:w-16 text-primary mb-4" />
-                <CardTitle className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
-                  {t('indianConstitution.preamble.title')}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6 pt-0 md:p-8 md:pt-0">
-                <p className="whitespace-pre-wrap text-center text-base md:text-lg leading-relaxed text-foreground/80 font-serif">
-                    {preambleText}
-                </p>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </section>
 
