@@ -80,9 +80,9 @@ export default function Home() {
 
   const IndianFlagBackground = () => (
     <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
-      <div className="absolute top-0 left-0 w-full h-1/3 bg-[#FF9933] opacity-10"></div>
-      <div className="absolute top-1/3 left-0 w-full h-1/3 bg-white opacity-10"></div>
-      <div className="absolute top-2/3 left-0 w-full h-1/3 bg-[#138808] opacity-10"></div>
+      <div className="absolute top-0 left-0 w-full h-1/3 bg-primary opacity-10"></div>
+      <div className="absolute top-1/3 left-0 w-full h-1/3 bg-background opacity-10"></div>
+      <div className="absolute top-2/3 left-0 w-full h-1/3 bg-green-500 opacity-10"></div>
     </div>
   );
   
