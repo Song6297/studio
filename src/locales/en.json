@@ -52,6 +52,11 @@
       "description": "Get preliminary legal information and guidance on various legal topics from our AI-powered assistant, available 24/7.",
       "cta": "Ask AI Advisor"
     },
+    "dataBreachAdvisor": {
+      "title": "AI Data Breach Advisor",
+      "description": "Experienced a security breach? Get an instant action plan based on Indian cyber law to guide your next steps.",
+      "cta": "Get Action Plan"
+    },
     "indianConstitution": {
       "title": "Indian Constitution",
       "description": "Explore the Preamble, Fundamental Rights, and Duties of the supreme law of India.",

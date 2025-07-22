@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, Languages, Globe, LogOut, Building, LayoutDashboard as DashboardIcon, User } from 'lucide-react';
+import { Menu, Languages, Globe, LogOut, Building, LayoutDashboard as DashboardIcon, User, ShieldAlert } from 'lucide-react';
 import { Logo } from '@/components/icons/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
@@ -57,6 +57,7 @@ export function Header() {
   const navLinks = [
     { href: '/case-submission', label: t('header.registerCase') },
     { href: '/case-status', label: t('header.caseStatus') },
+    { href: '/data-breach-advisor', label: 'Breach Advisor'},
     { href: '/file-rti', label: t('header.fileRti') },
     { href: '/legal-services', label: t('header.legalServices') },
     { href: '/document-services', label: 'Document Services' },
