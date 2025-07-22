@@ -85,7 +85,7 @@ export default function Home() {
               <Scale className="h-16 w-16 text-primary" />
             </div>
           <div className="inline-block">
-            <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-primary via-white to-[#138808] dark:to-secondary bg-clip-text text-transparent">
+            <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-primary via-blue-100 to-[#138808] dark:to-secondary bg-clip-text text-transparent">
               Satyameva Jayate for Justice
             </h1>
           </div>
