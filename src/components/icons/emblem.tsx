@@ -27,7 +27,7 @@ export function AshokaChakraIcon() {
 
 export function AshokaChakraWithText() {
     return (
-        <div className="flex flex-col items-center justify-center text-primary">
+        <div className="flex flex-col items-center justify-center text-accent">
             <div className="w-24 h-24 opacity-100">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
