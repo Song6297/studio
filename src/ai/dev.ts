@@ -2,3 +2,4 @@ import { config } from 'dotenv';
 config();
 
 import '@/ai/flows/generate-legal-advice.ts';
+import '@/ai/flows/generate-ebrief.ts';
