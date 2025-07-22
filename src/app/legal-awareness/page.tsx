@@ -43,37 +43,29 @@ export default function LegalAwarenessPage() {
             hint: "social media harassment"
         },
         {
-            slug: 'identityTheft',
-            title: t('legalAwareness.articles.identityTheft.title'),
-            description: t('legalAwareness.articles.identityTheft.description'),
-            category: t('legalAwareness.articles.identityTheft.category'),
+            slug: 'consumerRights',
+            title: t('legalAwareness.articles.consumerRights.title'),
+            description: t('legalAwareness.articles.consumerRights.description'),
+            category: t('legalAwareness.articles.consumerRights.category'),
             image: "https://placehold.co/600x400.png",
-            hint: "person silhouette puzzle"
+            hint: "shopping cart receipt"
         },
         {
-            slug: 'reportingCybercrime',
-            title: t('legalAwareness.articles.reportingCybercrime.title'),
-            description: t('legalAwareness.articles.reportingCybercrime.description'),
-            category: t('legalAwareness.articles.reportingCybercrime.category'),
+            slug: 'propertyDisputes',
+            title: t('legalAwareness.articles.propertyDisputes.title'),
+            description: t('legalAwareness.articles.propertyDisputes.description'),
+            category: t('legalAwareness.articles.propertyDisputes.category'),
             image: "https://placehold.co/600x400.png",
-            hint: "police report"
+            hint: "house blueprint gavel"
         },
         {
-            slug: 'onlineDefamation',
-            title: t('legalAwareness.articles.onlineDefamation.title'),
-            description: t('legalAwareness.articles.onlineDefamation.description'),
-            category: t('legalAwareness.articles.onlineDefamation.category'),
+            slug: 'intellectualProperty',
+            title: t('legalAwareness.articles.intellectualProperty.title'),
+            description: t('legalAwareness.articles.intellectualProperty.description'),
+            category: t('legalAwareness.articles.intellectualProperty.category'),
             image: "https://placehold.co/600x400.png",
-            hint: "gavel keyboard"
+            hint: "lightbulb gears"
         },
-        {
-            slug: 'upiFraudCase',
-            title: t('legalAwareness.articles.upiFraudCase.title'),
-            description: t('legalAwareness.articles.upiFraudCase.description'),
-            category: t('legalAwareness.articles.upiFraudCase.category'),
-            image: "https://placehold.co/600x400.png",
-            hint: "mobile banking court"
-        }
     ];
 
     if (!isMounted) {

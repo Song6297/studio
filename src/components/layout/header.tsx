@@ -52,6 +52,7 @@ export function Header() {
     { href: '/legal-services', label: t('header.legalServices') },
     { href: '/document-services', label: 'Document Services' },
     { href: '/legal-awareness', label: t('header.awareness') },
+    { href: '/volunteer-network', label: t('header.volunteerNetwork') },
     { href: '/law-aspirants', label: t('header.lawAspirants') },
   ];
   

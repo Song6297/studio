@@ -7,14 +7,14 @@
       "ngo": "NGO Dashboard",
       "lawFirm": "Law Firm Dashboard"
     },
-    "registerCase": "Report Cybercrime",
+    "registerCase": "Register a Case",
     "caseStatus": "Case Status",
-    "awareness": "Cyber Awareness",
-    "aiLegalAdvice": "AI Cyber Law Advisor",
-    "volunteerNetwork": "Cyber Volunteers",
+    "awareness": "Legal Awareness",
+    "aiLegalAdvice": "AI Legal Advisor",
+    "volunteerNetwork": "Volunteer Network",
     "indianConstitution": "Indian Constitution",
     "fileRti": "File RTI",
-    "legalServices": "Cyber Law Services",
+    "legalServices": "Legal Services",
     "lawAspirants": "Law Aspirants",
     "login": "Log In",
     "logout": "Log Out",
@@ -33,22 +33,22 @@
   },
   "home": {
     "mainHeading": "Satyameva Jayate for Justice",
-    "subHeading": "A unified platform dedicated to cyber law, connecting citizens with legal professionals and NGOs to ensure digital justice for all.",
-    "registerCaseButton": "Report a Cyber Incident",
-    "aiAdviceButton": "Ask AI Cyber Law Advisor",
+    "subHeading": "A unified platform for legal empowerment, with a special focus on Cyber Law, connecting citizens with legal professionals and NGOs to ensure justice for all.",
+    "registerCaseButton": "Register a Case",
+    "aiAdviceButton": "Ask AI Legal Advisor",
     "servicesTitle": "Our Services",
-    "servicesHeading": "Your Gateway to Cyber Legal Solutions",
-    "servicesDescription": "We provide a comprehensive suite of services to address your cyber legal needs, from incident reporting to AI-powered guidance and expert consultations."
+    "servicesHeading": "Your Gateway to Legal Solutions",
+    "servicesDescription": "We provide a comprehensive suite of services to address your legal needs, from case registration and AI-powered guidance to expert consultations, with a specialization in Cyber Law."
   },
   "features": {
     "registerCase": {
-      "title": "Report a Cyber Incident",
-      "description": "Easily report cybercrime incidents with our simple and secure online form. Get connected with professionals who can help.",
-      "cta": "Report an Incident"
+      "title": "Register a Case",
+      "description": "Easily file your legal case with our simple and secure online form. Get connected with professionals who can help.",
+      "cta": "File a Case"
     },
     "aiLegalAdvice": {
-      "title": "AI Cyber Law Advisor",
-      "description": "Get preliminary legal information and guidance on various cyber law topics from our AI-powered assistant, available 24/7.",
+      "title": "AI Legal Advisor",
+      "description": "Get preliminary legal information and guidance on various legal topics from our AI-powered assistant, available 24/7.",
       "cta": "Ask AI Advisor"
     },
     "indianConstitution": {
@@ -57,13 +57,13 @@
       "cta": "Explore the Constitution"
     },
     "legalAwareness": {
-      "title": "Cyber Law Awareness",
-      "description": "Empower yourself with knowledge. Browse our portal of articles and guides on Indian cyber law and your digital rights.",
+      "title": "Legal Awareness",
+      "description": "Empower yourself with knowledge. Browse our portal of articles and guides on Indian law, with a special focus on your digital rights.",
       "cta": "Explore Portal"
     },
     "volunteerNetwork": {
-      "title": "Cybersecurity Volunteers",
-      "description": "Join our network of tech students and cybersecurity enthusiasts to assist with research and case evaluation.",
+      "title": "Paralegal Volunteers",
+      "description": "Join our network of law students and paralegals to assist with research and case evaluation under expert supervision.",
       "cta": "Join the Network"
     },
     "fileRti": {
@@ -72,8 +72,8 @@
       "cta": "File an RTI"
     },
     "legalServices": {
-      "title": "Book a Cyber Law Consultation",
-      "description": "Schedule a virtual consultation with a legal professional specializing in cyber law.",
+      "title": "Book a Legal Consultation",
+      "description": "Schedule a virtual consultation with a legal professional specializing in your area of need.",
       "cta": "Book an Appointment"
     }
   },
@@ -94,7 +94,7 @@
     }
   },
   "caseSubmission": {
-    "title": "Report a Cyber Incident",
+    "title": "Register Your Case",
     "description": "Fill out the form below to get started. Our team will review your case.",
     "form": {
       "fullName": {
@@ -110,24 +110,25 @@
         "placeholder": "+91 12345 67890"
       },
       "category": {
-        "label": "Cybercrime Category",
+        "label": "Case Category",
         "placeholder": "Select a category",
         "options": {
-          "family": "Online Fraud",
-          "criminal": "Cyberbullying / Harassment",
-          "corporate": "Data Breach",
-          "property": "Identity Theft",
+          "cyberCrime": "Cyber Crime",
+          "family": "Family Law",
+          "criminal": "Criminal Law",
+          "corporate": "Corporate Law",
+          "property": "Property Law",
           "other": "Other"
         }
       },
       "caseDescription": {
-        "label": "Incident Description",
-        "placeholder": "Describe the cyber incident in detail..."
+        "label": "Case Description",
+        "placeholder": "Describe the incident in detail..."
       },
       "upload": {
-        "label": "Upload Evidence (Screenshots, etc.)"
+        "label": "Upload Evidence (Documents, Screenshots, etc.)"
       },
-      "submitButton": "Report Incident"
+      "submitButton": "Submit Case"
     },
     "validation": {
       "fullNameRequired": "Full name is required",
@@ -137,20 +138,20 @@
       "descriptionRequired": "Please provide a detailed description of at least 20 characters"
     },
     "toast": {
-      "successTitle": "Incident Reported Successfully!",
-      "successDescription": "We have received your report and will get back to you shortly."
+      "successTitle": "Case Submitted Successfully!",
+      "successDescription": "We have received your case details and will get back to you shortly."
     }
   },
   "legalAwareness": {
-    "title": "Cyber Law Awareness Portal",
-    "description": "Empowering citizens with knowledge to stay safe online.",
-    "searchPlaceholder": "Search cyber law articles...",
+    "title": "Legal Awareness Portal",
+    "description": "Empowering citizens with legal knowledge for the real world.",
+    "searchPlaceholder": "Search legal articles...",
     "readMore": "Read More",
     "articles": {
       "onlineFraud": {
         "title": "Recognizing and Avoiding Online Fraud",
         "description": "A guide to identifying phishing scams, financial fraud, and other online tricks.",
-        "category": "Financial Security",
+        "category": "Cyber Law",
         "explanation": [
           { "heading": "What is Online Fraud?", "text": "Online fraud involves using the internet to deceive people for financial gain. Common types include phishing emails that steal your passwords, fake shopping websites, and investment scams promising high returns." },
           { "heading": "How to Spot a Scam?", "text": "Be wary of unsolicited emails or messages asking for personal information or money. Check for poor grammar and spelling. Verify the website's URL is correct and secure (https). If an offer seems too good to be true, it probably is." },
@@ -160,7 +161,7 @@
       "dataPrivacy": {
         "title": "Understanding Your Data Privacy Rights",
         "description": "Learn about India's Digital Personal Data Protection (DPDP) Act and how it protects you.",
-        "category": "Digital Rights",
+        "category": "Cyber Law",
         "explanation": [
           { "heading": "What is the DPDP Act?", "text": "The Digital Personal Data Protection Act, 2023, is India's primary law for data privacy. It governs how companies and organizations (Data Fiduciaries) can collect, use, and store your personal data." },
           { "heading": "Your Rights as a 'Data Principal'", "text": "You have the right to access information about your data, correct or erase your data, and withdraw your consent for its use. Organizations must obtain your clear and informed consent before processing your data." },
@@ -170,53 +171,53 @@
       "cyberbullying": {
         "title": "Dealing with Cyberbullying and Harassment",
         "description": "Legal recourse and practical steps to take when facing online harassment.",
-        "category": "Online Safety",
+        "category": "Cyber Law",
         "explanation": [
           { "heading": "What is Cyberbullying?", "text": "Cyberbullying is the use of digital technology to harass, threaten, embarrass, or target another person. It can include sending hurtful messages, spreading rumors online, or posting embarrassing photos or videos without consent." },
           { "heading": "What to do?", "text": "Do not respond to the bully. Document everything by taking screenshots of the messages, posts, and profiles. Block the person and report their profile to the social media platform." },
           { "heading": "Legal Action", "text": "Cyberbullying and online harassment are punishable offenses under the IT Act and the Indian Penal Code. You can file a complaint at the National Cyber Crime Reporting Portal or your nearest police station." }
         ]
       },
-      "identityTheft": {
-        "title": "Protecting Yourself from Identity Theft",
-        "description": "Learn how criminals steal personal information and how to safeguard your identity online.",
-        "category": "Personal Security",
+      "consumerRights": {
+        "title": "Know Your Consumer Rights",
+        "description": "Learn about your rights as a consumer against unfair trade practices and defective products.",
+        "category": "Consumer Law",
         "explanation": [
-          { "heading": "What is it?", "text": "Online identity theft occurs when someone steals your personal information (like name, PAN number, or bank details) to commit fraud, such as taking out loans or making purchases in your name." },
-          { "heading": "How does it happen?", "text": "Criminals use various methods, including phishing emails, malware that records your keystrokes, or by finding personal information you've shared on social media. Data breaches at companies can also expose your information." },
-          { "heading": "Prevention Tips", "text": "Be cautious about the information you share online. Shred physical documents with sensitive information. Regularly review your bank and credit card statements for any suspicious activity." }
+          { "heading": "Key Consumer Rights", "text": "The Consumer Protection Act, 2019, grants you the Right to Safety, Right to be Informed, Right to Choose, Right to be Heard, Right to Seek Redressal, and Right to Consumer Education." },
+          { "heading": "What are Unfair Trade Practices?", "text": "This includes deceptive advertising, offering fake discounts, or selling goods that do not meet safety standards. It's illegal for businesses to mislead you into buying a product or service." },
+          { "heading": "How to File a Complaint?", "text": "You can file a complaint in the District, State, or National Consumer Disputes Redressal Commission depending on the value of the goods or services. You can also file complaints online through the e-Daakhil portal." }
         ]
       },
-      "reportingCybercrime": {
-        "title": "How to Report a Cybercrime",
-        "description": "A step-by-step guide to filing an official complaint for any online offense.",
-        "category": "Legal Procedure",
+      "propertyDisputes": {
+        "title": "Navigating Property Disputes",
+        "description": "An overview of common property disputes in India and the legal avenues available.",
+        "category": "Property Law",
         "explanation": [
-          { "heading": "Where to Report?", "text": "The Government of India has a dedicated portal for reporting cybercrimes: The National Cyber Crime Reporting Portal (cybercrime.gov.in). You can also go to your nearest police station." },
-          { "heading": "What to Prepare?", "text": "Gather all evidence related to the crime. This includes screenshots of messages or posts, URLs of fake profiles, bank statements (if it's a financial fraud), and any contact details of the accused." },
-          { "heading": "Filing the Complaint", "text": "On the portal, you'll need to provide your personal details and then details of the incident, including the category of crime, date, time, and a full description. Upload all the evidence you have collected." }
+          { "heading": "Common Disputes", "text": "Property disputes often revolve around title ownership, illegal possession, inheritance claims, and landlord-tenant disagreements over rent or eviction." },
+          { "heading": "Importance of Documentation", "text": "Clear and legally sound documentation, such as the Sale Deed, Title Deed, and property tax receipts, is crucial in any property dispute. Always ensure your documents are properly registered." },
+          { "heading": "Legal Remedies", "text": "Depending on the nature of the dispute, you can file a civil suit for declaration of title, partition, or injunction. Mediation is also a popular and effective method for resolving family property disputes." }
         ]
       },
-      "onlineDefamation": {
-        "title": "Understanding Online Defamation",
-        "description": "Learn what constitutes defamation online and the legal steps you can take.",
-        "category": "Digital Rights",
+      "intellectualProperty": {
+        "title": "Basics of Intellectual Property (IP)",
+        "description": "Understand the difference between trademarks, copyrights, and patents for your business or creation.",
+        "category": "Business Law",
         "explanation": [
-          { "heading": "What is it?", "text": "Online defamation is the act of publishing a false statement about someone on the internet that harms their reputation. This can be through a social media post, a blog, a review, or a video." },
-          { "heading": "Libel vs. Slander", "text": "In the online world, defamation is almost always 'libel' because it is in a written or otherwise permanent form. The statement must be false, published to a third party, and cause injury to the person's reputation." },
-          { "heading": "What can you do?", "text": "You can send a legal notice to the person who published the statement, asking them to take it down and issue an apology. If they don't comply, you can file a civil suit for damages or a criminal complaint for defamation under the Indian Penal Code." }
+          { "heading": "What is a Trademark?", "text": "A trademark is a sign, design, or expression which identifies products or services of a particular source from those of others. Think of logos and brand names like 'Coca-Cola' or the Nike 'swoosh'." },
+          { "heading": "What is a Copyright?", "text": "Copyright is a legal right that grants the creator of an original work exclusive rights for its use and distribution. This applies to literary works, music, films, and software." },
+          { "heading": "What is a Patent?", "text": "A patent is an exclusive right granted for an invention. It provides the patent owner with the right to decide how - or whether - the invention can be used by others for a limited period." }
         ]
       }
     }
   },
   "aiLegalGuide": {
-    "title": "AI Cyber Law Guide",
-    "description": "Get instant, preliminary legal information based on Indian cyber law. Our AI is here to help you understand complex digital legal topics.",
+    "title": "AI Legal Guide",
+    "description": "Get instant, preliminary legal information based on Indian law. Our AI is here to help you understand complex legal topics.",
     "disclaimer": "Remember: This is not a substitute for advice from a qualified lawyer.",
     "form": {
       "query": {
-        "label": "Your cyber law query",
-        "placeholder": "e.g., What are my rights if my data is breached?"
+        "label": "Your legal query",
+        "placeholder": "e.g., What are the steps for filing for divorce?"
       },
       "submitButton": "Get AI Advice",
       "submitButtonLoading": "Generating Advice..."

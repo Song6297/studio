@@ -138,10 +138,11 @@ export default function CaseSubmissionPage() {
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl><SelectTrigger><SelectValue placeholder={t('caseSubmission.form.category.placeholder')} /></SelectTrigger></FormControl>
                       <SelectContent>
-                        <SelectItem value="family">{t('caseSubmission.form.category.options.family')}</SelectItem>
-                        <SelectItem value="criminal">{t('caseSubmission.form.category.options.criminal')}</SelectItem>
-                        <SelectItem value="corporate">{t('caseSubmission.form.category.options.corporate')}</SelectItem>
-                        <SelectItem value="property">{t('caseSubmission.form.category.options.property')}</SelectItem>
+                        <SelectItem value="cyber-crime">{t('caseSubmission.form.category.options.cyberCrime')}</SelectItem>
+                        <SelectItem value="family-law">{t('caseSubmission.form.category.options.family')}</SelectItem>
+                        <SelectItem value="criminal-law">{t('caseSubmission.form.category.options.criminal')}</SelectItem>
+                        <SelectItem value="corporate-law">{t('caseSubmission.form.category.options.corporate')}</SelectItem>
+                        <SelectItem value="property-law">{t('caseSubmission.form.category.options.property')}</SelectItem>
                         <SelectItem value="other">{t('caseSubmission.form.category.options.other')}</SelectItem>
                       </SelectContent>
                     </Select>
