@@ -560,8 +560,7 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "description": "Overview of your registered cases.",
-    "generateEbrief": "Generate eBrief"
+    "description": "Overview of your registered cases."
   },
   "lawAspirants": {
     "title": "For Law Aspirants",

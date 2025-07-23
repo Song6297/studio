@@ -23,18 +23,18 @@ export default function Home() {
 
   const allFeatures = [
       {
-        icon: FileText,
-        titleKey: 'features.registerCase.title',
-        descriptionKey: 'features.registerCase.description',
-        href: "/case-submission",
-        ctaKey: 'features.registerCase.cta',
-      },
-      {
         icon: Bot,
         titleKey: 'features.aiLegalAdvice.title',
         descriptionKey: 'features.aiLegalAdvice.description',
         href: "/ai-legal-guide",
         ctaKey: 'features.aiLegalAdvice.cta',
+      },
+      {
+        icon: FileText,
+        titleKey: 'features.registerCase.title',
+        descriptionKey: 'features.registerCase.description',
+        href: "/case-submission",
+        ctaKey: 'features.registerCase.cta',
       },
       {
         icon: FileQuestion,
