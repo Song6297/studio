@@ -60,15 +60,6 @@ export default function Home() {
         hint: "notary stamp"
       },
       {
-        icon: CalendarCheck,
-        titleKey: 'features.legalServices.title',
-        descriptionKey: 'features.legalServices.description',
-        href: "/legal-services",
-        ctaKey: 'features.legalServices.cta',
-        image: "https://placehold.co/600x400.png",
-        hint: "legal consultation"
-      },
-      {
         icon: BookOpen,
         titleKey: 'features.legalAwareness.title',
         descriptionKey: 'features.legalAwareness.description',
@@ -230,3 +221,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

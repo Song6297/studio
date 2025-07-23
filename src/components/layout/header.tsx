@@ -58,7 +58,6 @@ export function Header() {
     { href: '/case-submission', label: t('header.registerCase') },
     { href: '/case-status', label: t('header.caseStatus') },
     { href: '/file-rti', label: t('header.fileRti') },
-    { href: '/legal-services', label: t('header.legalServices') },
     { href: '/document-services', label: t('header.documentServices') },
     { href: '/legal-awareness', label: t('header.awareness') },
     { href: '/volunteer-network', label: t('header.volunteerNetwork') },
@@ -270,3 +269,5 @@ export function Header() {
     </header>
   );
 }
+
+    
