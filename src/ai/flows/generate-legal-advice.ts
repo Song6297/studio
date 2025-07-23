@@ -22,10 +22,6 @@ const GenerateLegalAdviceOutputSchema = z.object({
 });
 export type GenerateLegalAdviceOutput = z.infer<typeof GenerateLegalAdviceOutputSchema>;
 
-export async function generateLegalAdvice(input: GenerateLegalAdviceInput): Promise<GenerateLegalAdviceOutput> {
-  return generateLegalAdviceFlow(input);
-}
-
 const prompt = ai.definePrompt({
   name: 'generateLegalAdvicePrompt',
   input: {schema: GenerateLegalAdviceInputSchema},
@@ -44,3 +40,8 @@ const generateLegalAdviceFlow = ai.defineFlow(
     return output!;
   }
 );
+
+
+export async function generateLegalAdvice(input: GenerateLegalAdviceInput): Promise<GenerateLegalAdviceOutput> {
+  return generateLegalAdviceFlow(input);
+}

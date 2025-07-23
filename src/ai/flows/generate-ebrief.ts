@@ -28,10 +28,6 @@ const GenerateEbriefOutputSchema = z.object({
 });
 export type GenerateEbriefOutput = z.infer<typeof GenerateEbriefOutputSchema>;
 
-export async function generateEbrief(input: GenerateEbriefInput): Promise<GenerateEbriefOutput> {
-  return generateEbriefFlow(input);
-}
-
 const prompt = ai.definePrompt({
   name: 'generateEbriefPrompt',
   input: {schema: GenerateEbriefInputSchema},
@@ -63,3 +59,7 @@ const generateEbriefFlow = ai.defineFlow(
     return output!;
   }
 );
+
+export async function generateEbrief(input: GenerateEbriefInput): Promise<GenerateEbriefOutput> {
+  return generateEbriefFlow(input);
+}
