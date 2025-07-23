@@ -1,5 +1,3 @@
-'use server';
-
 /**
  * @fileoverview This file initializes the Genkit AI object.
  * It is meant to be imported by server-side processes only.
