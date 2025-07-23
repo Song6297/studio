@@ -12,7 +12,6 @@
     "caseStatus": "Case Status",
     "awareness": "Legal Awareness",
     "aiLegalAdvice": "AI Legal Advisor",
-    "breachAdvisor": "Breach Advisor",
     "documentServices": "Document Services",
     "volunteerNetwork": "Volunteer Network",
     "indianConstitution": "Indian Constitution",
@@ -53,11 +52,6 @@
       "title": "AI Legal Advisor",
       "description": "Get preliminary legal information and guidance on various legal topics from our AI-powered assistant, available 24/7.",
       "cta": "Ask AI Advisor"
-    },
-    "dataBreachAdvisor": {
-      "title": "Data Breach Advisor",
-      "description": "Experienced a security breach? Get an instant action plan based on Indian cyber law to guide your next steps.",
-      "cta": "Get Action Plan"
     },
      "documentServices": {
       "title": "Document Services",
