@@ -9,6 +9,7 @@ import { ArrowRight, BookOpen, FileText, Bot, Scale, Gavel, Handshake, FileQuest
 import { useLanguage } from '@/context/language-context';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 
 export default function Home() {
@@ -28,6 +29,8 @@ export default function Home() {
         descriptionKey: 'features.aiLegalAdvice.description',
         href: "/ai-legal-guide",
         ctaKey: 'features.aiLegalAdvice.cta',
+        image: "https://placehold.co/600x400.png",
+        hint: "robot judge"
       },
       {
         icon: FileText,
@@ -35,6 +38,8 @@ export default function Home() {
         descriptionKey: 'features.registerCase.description',
         href: "/case-submission",
         ctaKey: 'features.registerCase.cta',
+        image: "https://placehold.co/600x400.png",
+        hint: "court document"
       },
       {
         icon: FileQuestion,
@@ -42,6 +47,8 @@ export default function Home() {
         descriptionKey: 'features.fileRti.description',
         href: "/file-rti",
         ctaKey: 'features.fileRti.cta',
+        image: "https://placehold.co/600x400.png",
+        hint: "government building"
       },
        {
         icon: PenSquare,
@@ -49,6 +56,8 @@ export default function Home() {
         descriptionKey: 'features.documentServices.description',
         href: "/document-services",
         ctaKey: 'features.documentServices.cta',
+        image: "https://placehold.co/600x400.png",
+        hint: "notary stamp"
       },
       {
         icon: CalendarCheck,
@@ -56,6 +65,8 @@ export default function Home() {
         descriptionKey: 'features.legalServices.description',
         href: "/legal-services",
         ctaKey: 'features.legalServices.cta',
+        image: "https://placehold.co/600x400.png",
+        hint: "legal consultation"
       },
       {
         icon: BookOpen,
@@ -63,6 +74,8 @@ export default function Home() {
         descriptionKey: 'features.legalAwareness.description',
         href: "/legal-awareness",
         ctaKey: 'features.legalAwareness.cta',
+        image: "https://placehold.co/600x400.png",
+        hint: "law books"
       },
        {
         icon: Handshake,
@@ -70,6 +83,8 @@ export default function Home() {
         descriptionKey: 'features.volunteerNetwork.description',
         href: "/volunteer-network",
         ctaKey: 'features.volunteerNetwork.cta',
+        image: "https://placehold.co/600x400.png",
+        hint: "community help"
       },
       {
         icon: Scale,
@@ -77,6 +92,8 @@ export default function Home() {
         descriptionKey: 'features.indianConstitution.description',
         href: "/indian-constitution",
         ctaKey: 'features.indianConstitution.cta',
+        image: "https://placehold.co/600x400.png",
+        hint: "constitution book"
       },
   ];
 
