@@ -11,12 +11,11 @@ import { Calendar } from '@/components/ui/calendar';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger, DialogClose } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
-import { CalendarCheck, Users, Video, Phone, UserCheck } from 'lucide-react';
+import { Users, Video, Phone, UserCheck } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
-import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
@@ -89,7 +88,7 @@ function ConsultationBookingForm({ advisorName }: { advisorName: string }) {
           <DialogTrigger asChild>
             <Button className="w-full">{t('legalServices.advisors.bookButton')}</Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-4xl">
+          <DialogContent className="sm:max-w-2xl">
               <DialogHeader>
                 <DialogTitle className="font-headline text-2xl">{t('legalServices.booking.title')} - {advisorName}</DialogTitle>
                 <DialogDescription>
@@ -99,26 +98,26 @@ function ConsultationBookingForm({ advisorName }: { advisorName: string }) {
               <div className="py-4">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onAttemptSubmit)} className="space-y-6">
-                         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                        <div className="space-y-4">
                             <FormField control={form.control} name="fullName" render={({ field }) => (
                                 <FormItem><FormLabel>{t('legalServices.form.name.label')}</FormLabel><FormControl><Input placeholder={t('legalServices.form.name.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
                             )} />
                             <FormField control={form.control} name="email" render={({ field }) => (
                                 <FormItem><FormLabel>{t('legalServices.form.email.label')}</FormLabel><FormControl><Input type="email" placeholder={t('legalServices.form.email.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
                             )} />
+                            <FormField control={form.control} name="phone" render={({ field }) => (
+                                <FormItem><FormLabel>{t('legalServices.form.phone.label')}</FormLabel><FormControl><Input type="tel" placeholder={t('legalServices.form.phone.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
+                            )} />
                         </div>
-                        <FormField control={form.control} name="phone" render={({ field }) => (
-                            <FormItem><FormLabel>{t('legalServices.form.phone.label')}</FormLabel><FormControl><Input type="tel" placeholder={t('legalServices.form.phone.placeholder')} {...field} /></FormControl><FormMessage /></FormItem>
-                        )} />
 
                         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                             <div>
-                                <FormLabel>{t('legalServices.form.date.label')}</FormLabel>
+                             <div className="flex flex-col items-center">
+                                <FormLabel className="w-full mb-2">{t('legalServices.form.date.label')}</FormLabel>
                                 <Calendar
                                     mode="single"
                                     selected={selectedDate}
                                     onSelect={setSelectedDate}
-                                    className="rounded-md border mt-2"
+                                    className="rounded-md border"
                                     disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
                                 />
                              </div>
